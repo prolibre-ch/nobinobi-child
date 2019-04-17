@@ -1,0 +1,13 @@
+-r requirements.txt
+coverage==4.5.1
+mock>=1.0.1
+flake8>=2.1.0
+tox>=1.7.0
+codecov>=2.0.0
+pylint>=2.1.0
+sphinx>=1.8.0
+selenium>=3.14.0
+model_mommy>=1.6.0
+# Additional test requirements go here
+
+django-model-utils>=2.0
