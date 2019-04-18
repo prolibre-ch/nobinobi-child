@@ -3,6 +3,7 @@ django-model-utils>=2.0
 # Additional requirements go here
 django-phonenumber-field>=2.3.1
 phonenumbers>=8.10.10
+psycopg2>=2.8.2
 
 git+ssh://git@git.prolibre.com:10022/alu/nobinobi-staff.git@develop#egg=nobinobi-staff
 git+ssh://git@git.prolibre.com:10022/alu/nobinobi-core.git@develop#egg=nobinobi-core
