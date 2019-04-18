@@ -36,6 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'phonenumber_field',
+    'nobinobi_core',
+    'nobinobi_staff',
     'nobinobi_child',
 
     # if your app has other dependencies that need to be added to the site
