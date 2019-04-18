@@ -32,6 +32,7 @@ Add it to your `INSTALLED_APPS`:
     INSTALLED_APPS = (
         ...
         'nobinobi_child.apps.NobinobiChildConfig',
+        'phonenumber_field',
         ...
     )
 
