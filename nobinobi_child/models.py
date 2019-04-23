@@ -4,13 +4,24 @@ import uuid
 
 from django.contrib.postgres.fields import DateTimeRangeField, DateRangeField
 from django.db import models
-from django.utils.text import slugify
 from django.utils.translation import gettext as _
 from model_utils import Choices
 from model_utils.fields import StatusField, SplitField
 from model_utils.models import TimeStampedModel, StatusModel
 from nobinobi_staff.models import Staff
 from phonenumber_field.modelfields import PhoneNumberField
+
+from nobinobi_child.utils import get_unique_slug
+
+WEEKDAY_CHOICES = Choices(
+    (1, "monday", _("Monday")),
+    (2, "tuesday", _("Tuesday")),
+    (3, "wednesday", _("Wednesday")),
+    (4, "thursday", _("Thursday")),
+    (5, "friday", _("Friday")),
+    (6, "saturday", _("Saturday")),
+    (7, "sunday", _("Sunday")),
+)
 
 
 class Child(StatusModel, TimeStampedModel):
@@ -20,9 +31,9 @@ class Child(StatusModel, TimeStampedModel):
         return '%s%s%s' % (upload_to, uuid.uuid4().hex, ext)
 
     STATUS = Choices(
-        ("archived", _('Archived')),
         ("in_progress", _('In progress')),
-        ("future", _('future'))
+        ("archived", _('Archived')),
+        ("future", _('Future'))
     )
     GENDER_CHOICES = Choices(
         ("boy", _("Boy")),
@@ -35,7 +46,7 @@ class Child(StatusModel, TimeStampedModel):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     first_name = models.CharField(_("First name"), max_length=100)
     last_name = models.CharField(_("Last name"), max_length=100)
-    usual_name = models.CharField(_("Last name"), max_length=100)
+    usual_name = models.CharField(_("Usual name"), max_length=100)
     gender = StatusField(_("Gender"), choices_name="GENDER_CHOICES", blank=False, null=True)
     slug = models.SlugField(_("Slug"))
     picture = models.ImageField(_("Picture"), upload_to=upload_picture_child, blank=True, null=True)
@@ -45,8 +56,8 @@ class Child(StatusModel, TimeStampedModel):
         verbose_name=_("Languages"),
         related_name="languages",
     )
-    red_list = models.CharField(_("Red list"), max_length=255)
-    comment = models.CharField(_("Comment"), max_length=255)
+    red_list = models.CharField(_("Red list"), max_length=255, blank=True, null=True)
+    comment = models.CharField(_("Comment"), max_length=255, blank=True, null=True)
     renewal_date = models.DateField(_("Renewal date"), blank=True, null=True)
 
     classroom = models.ForeignKey(
@@ -86,12 +97,14 @@ class Child(StatusModel, TimeStampedModel):
     food_restrictions = models.ManyToManyField(
         to="FoodRestriction",
         verbose_name=_("Food restrictions"),
-        related_name="food_restrictions"
+        related_name="food_restrictions",
+        blank=True,
     )
     allergies = models.ManyToManyField(
         to="Allergy",
         verbose_name=_("Allergies"),
-        related_name="allergies"
+        related_name="allergies",
+        blank=True,
     )
     periods = models.ManyToManyField(
         to="Period",
@@ -99,6 +112,7 @@ class Child(StatusModel, TimeStampedModel):
         through_fields=("child", "period"),
         verbose_name=_("Periods"),
         related_name="periods",
+        blank=True,
     )
     contacts = models.ManyToManyField(
         to="Contact",
@@ -106,6 +120,7 @@ class Child(StatusModel, TimeStampedModel):
         through_fields=("child", "contact"),
         verbose_name=_("Contacts"),
         related_name="contacts",
+        blank=True,
     )
 
     class Meta:
@@ -118,7 +133,7 @@ class Child(StatusModel, TimeStampedModel):
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         # set slug, title field
-        self.slug = slugify("{}".format(self.get_full_name))
+        self.slug = get_unique_slug(self, 'get_full_name', 'slug')
         self.first_name = self.first_name.title()
         self.last_name = self.last_name.title()
         self.usual_name = self.usual_name.title()
@@ -127,6 +142,8 @@ class Child(StatusModel, TimeStampedModel):
     @property
     def get_full_name(self):
         return "{} {}".format(self.first_name, self.last_name)
+
+    get_full_name.fget.short_description = _("Full name")
 
     @property
     def is_active(self):
@@ -217,7 +234,7 @@ class AgeGroup(TimeStampedModel):
     """
     name = models.CharField(_("Name"), max_length=50)
     slug = models.SlugField(_("Slug"))
-    order = models.PositiveIntegerField(_("Order"))
+    order = models.PositiveIntegerField(_("Order"), unique=True)
 
     class Meta:
         ordering = ('order', 'name',)
@@ -227,10 +244,12 @@ class AgeGroup(TimeStampedModel):
     def __str__(self):
         return self.name
 
-    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
-        # set slug, title field
-        self.slug = slugify("{}".format(self.name))
-        return super(AgeGroup, self).save()
+    def save(self, *args, **kwargs):
+        # set slug unique
+        self.slug = get_unique_slug(self, 'name', 'slug')
+        # set name in title
+        self.name = self.name.title()
+        super().save(*args, **kwargs)
 
 
 class Classroom(TimeStampedModel):
@@ -243,8 +262,8 @@ class Classroom(TimeStampedModel):
     )
 
     name = models.CharField(_("Name"), unique=True, max_length=50)
-    slug = models.SlugField(_("Slug"))
-    order = models.PositiveIntegerField(_("Order"))
+    slug = models.SlugField(_("Slug"), unique=True)
+    order = models.PositiveIntegerField(_("Order"), unique=True)
     capacity = models.PositiveIntegerField(_("Capacity"), default=20)
     mode = StatusField(verbose_name=_("Mode"), choices_name="OPERATION_MODE", default=OPERATION_MODE.creche,
                        max_length=15)
@@ -261,26 +280,20 @@ class Classroom(TimeStampedModel):
     def __str__(self):
         return self.name
 
-    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
-        # set slug, title field
-        self.slug = slugify("{}".format(self.name))
-        return super(Classroom, self).save()
+    def save(self, *args, **kwargs):
+        # set slug unique
+        self.slug = get_unique_slug(self, 'name', 'slug')
+        # set name in title
+        self.name = self.name.title()
+        super().save(*args, **kwargs)
 
 
 class ClassroomDayOff(TimeStampedModel):
     """
     Models to store the day off classroom
     """
-    WEEKDAY_CHOICES = Choices(
-        (1, "monday", _("Monday")),
-        (2, "tuesday", _("Tuesday")),
-        (3, "wednesday", _("Wednesday")),
-        (4, "thursday", _("Thursday")),
-        (5, "friday", _("Friday")),
-        (6, "saturday", _("Saturday")),
-        (7, "sunday", _("Sunday")),
-    )
-    weekday = StatusField(choices_name="WEEKDAY_CHOICES", verbose_name=_("Weekday"))
+
+    weekday = models.IntegerField(choices=WEEKDAY_CHOICES, verbose_name=_("Weekday"))
     classrooms = models.ManyToManyField(
         to=Classroom,
         verbose_name=_("Classroom"),
@@ -324,26 +337,20 @@ class Period(TimeStampedModel):
     """
     Models to store period
     """
-    WEEKDAY_CHOICES = Choices(
-        (1, "monday", _("Monday")),
-        (2, "tuesday", _("Tuesday")),
-        (3, "wednesday", _("Wednesday")),
-        (4, "thursday", _("Thursday")),
-        (5, "friday", _("Friday")),
-        (6, "saturday", _("Saturday")),
-        (7, "sunday", _("Sunday")),
-    )
     name = models.CharField(_("Name"), max_length=50)
-    weekday = StatusField(choices_name='WEEKDAY_CHOICES', verbose_name=_("Weekday"))
+    weekday = models.IntegerField(choices=WEEKDAY_CHOICES, verbose_name=_("Weekday"))
     order = models.PositiveIntegerField(_("Order"))
 
+    # TODO: MAX CHILD to implement future
+
     class Meta:
-        ordering = ('order', "name", "weekday")
+        ordering = ("weekday", 'order', "name",)
+        unique_together = ("weekday", "order")
         verbose_name = _('Period')
         verbose_name_plural = _('Periods')
 
     def __str__(self):
-        return self.name
+        return "{} {}".format(self.get_weekday_display(), self.name)
 
 
 class InformationOfTheDay(TimeStampedModel):
