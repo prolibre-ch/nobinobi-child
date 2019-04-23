@@ -179,7 +179,7 @@ class Absence(TimeStampedModel):
     date = DateTimeRangeField(verbose_name=_("Date"), help_text=_("Start date to end date"))
     type = models.ForeignKey(
         to="AbsenceType",
-        verbose_name=_("AbsenceType"),
+        verbose_name=_("Type"),
         on_delete=models.PROTECT,
     )
 
@@ -401,7 +401,7 @@ class ChildToContact(TimeStampedModel):
         on_delete=models.CASCADE,
     )
     link_with_child = models.CharField(verbose_name=_("Link with child"),
-                                       help_text=_("Type contact: Exemple Père, Mère etc..."), max_length=50)
+                                       help_text=_("Type contact: Example Father, Mother ..."), max_length=50)
     order = models.PositiveIntegerField(verbose_name=_('Order'))
 
     class Meta:

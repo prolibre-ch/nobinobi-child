@@ -1,0 +1,403 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-04-23 11:41+0200\n"
+"PO-Revision-Date: 2019-04-23 11:41+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 2.2.1\n"
+
+#: .\models.py:17
+msgid "Monday"
+msgstr "Lundi"
+
+#: .\models.py:18
+msgid "Tuesday"
+msgstr "Mardi"
+
+#: .\models.py:19
+msgid "Wednesday"
+msgstr "Mercredi"
+
+#: .\models.py:20
+msgid "Thursday"
+msgstr "Jeudi"
+
+#: .\models.py:21
+msgid "Friday"
+msgstr "Vendredi"
+
+#: .\models.py:22
+msgid "Saturday"
+msgstr "Samedi"
+
+#: .\models.py:23
+msgid "Sunday"
+msgstr "Dimanche"
+
+#: .\models.py:34
+msgid "In progress"
+msgstr "En cours"
+
+#: .\models.py:35
+msgid "Archived"
+msgstr "Archivé"
+
+#: .\models.py:36
+msgid "Future"
+msgstr "Futur"
+
+#: .\models.py:39
+msgid "Boy"
+msgstr "Garçon"
+
+#: .\models.py:40
+msgid "Girl"
+msgstr "Fille"
+
+#: .\models.py:41
+msgid "Other"
+msgstr "Autre"
+
+#: .\models.py:47 .\models.py:421
+msgid "First name"
+msgstr "Prénom"
+
+#: .\models.py:48 .\models.py:422
+msgid "Last name"
+msgstr "Nom"
+
+#: .\models.py:49
+msgid "Usual name"
+msgstr "Nom usuel"
+
+#: .\models.py:50
+msgid "Gender"
+msgstr "Sexe"
+
+#: .\models.py:51 .\models.py:236 .\models.py:265
+msgid "Slug"
+msgstr "Slug"
+
+#: .\models.py:52
+msgid "Picture"
+msgstr "Photo"
+
+#: .\models.py:53
+msgid "Birth date"
+msgstr "Date de naissance"
+
+#: .\models.py:56 .\models.py:163
+msgid "Languages"
+msgstr "Langues"
+
+#: .\models.py:59
+msgid "Red list"
+msgstr "Liste rouge"
+
+#: .\models.py:60
+msgid "Comment"
+msgstr "Commentaire"
+
+#: .\models.py:61
+msgid "Renewal date"
+msgstr "Date de renouvellement"
+
+#: .\models.py:65 .\models.py:277 .\models.py:299 .\models.py:359
+#: .\models.py:521
+msgid "Classroom"
+msgstr "Salle de classe"
+
+#: .\models.py:75 .\models.py:529
+msgid "Next classroom"
+msgstr "Prochaine salle de classe"
+
+#: .\models.py:81
+msgid "Date next classroom"
+msgstr "Date prochaine salle de classe"
+
+#: .\models.py:85 .\models.py:241
+msgid "Age group"
+msgstr "Groupe d'âge"
+
+#: .\models.py:92
+msgid "Staff"
+msgstr "Personnel"
+
+#: .\models.py:99 .\models.py:475
+msgid "Food restrictions"
+msgstr "Restrictions alimentaires"
+
+#: .\models.py:105 .\models.py:383
+msgid "Allergies"
+msgstr "Allergies"
+
+#: .\models.py:113 .\models.py:350
+msgid "Periods"
+msgstr "Périodes"
+
+#: .\models.py:121 .\models.py:438
+msgid "Contacts"
+msgstr "Contacts"
+
+#: .\models.py:128 .\models.py:176 .\models.py:317 .\models.py:395
+#: .\models.py:497 .\models.py:516
+msgid "Child"
+msgstr "Enfant"
+
+#: .\models.py:129
+msgid "Children"
+msgstr "Enfants"
+
+#: .\models.py:146
+msgid "Full name"
+msgstr "Nom complet"
+
+#: .\models.py:158 .\models.py:199 .\models.py:220 .\models.py:235
+#: .\models.py:264 .\models.py:340 .\models.py:378 .\models.py:470
+msgid "Name"
+msgstr "Nom"
+
+#: .\models.py:162
+msgid "Language"
+msgstr "Langue"
+
+#: .\models.py:179 .\models.py:325 .\models.py:362 .\models.py:535
+msgid "Date"
+msgstr "Date"
+
+#: .\models.py:179
+msgid "Start date to end date"
+msgstr "Date de début vers date de fin"
+
+#: .\models.py:182
+msgid "Type"
+msgstr "Type"
+
+#: .\models.py:188
+msgid "Absence"
+msgstr "Absence"
+
+#: .\models.py:189
+msgid "Absences"
+msgstr "Absences"
+
+#: .\models.py:202
+msgid "Group"
+msgstr "Groupe"
+
+#: .\models.py:205 .\models.py:237 .\models.py:266 .\models.py:342
+#: .\models.py:405
+msgid "Order"
+msgstr "Ordre"
+
+#: .\models.py:209
+msgid "Absence type"
+msgstr "Type d'absence"
+
+#: .\models.py:210
+msgid "Absence types"
+msgstr "Types d’absences"
+
+#: .\models.py:224
+msgid "Absence group"
+msgstr "Groupe d’absences"
+
+#: .\models.py:225
+msgid "Absence groups"
+msgstr "Groupes d’absences"
+
+#: .\models.py:242
+msgid "Age groups"
+msgstr "Groupes d'âge"
+
+#: .\models.py:260
+msgid "Creche"
+msgstr "Crèche"
+
+#: .\models.py:261
+msgid "Kindergarten"
+msgstr "Jardin d'enfant"
+
+#: .\models.py:267
+msgid "Capacity"
+msgstr "Capacité"
+
+#: .\models.py:268
+msgid "Mode"
+msgstr "Mode"
+
+#: .\models.py:272
+msgid "Allowed login"
+msgstr "Connexion autorisée"
+
+#: .\models.py:278
+msgid "Classrooms"
+msgstr "Salles de classes"
+
+#: .\models.py:296 .\models.py:341
+msgid "Weekday"
+msgstr "Jour de la semaine"
+
+#: .\models.py:304
+msgid "Classroom day off"
+msgstr "Jour de congé"
+
+#: .\models.py:305
+msgid "Classrooms days off"
+msgstr "Jours de congés"
+
+#: .\models.py:322 .\models.py:349
+msgid "Period"
+msgstr "Période"
+
+#: .\models.py:325
+msgid "Date range for period"
+msgstr "Plage de dates pour la période"
+
+#: .\models.py:329
+msgid "Child to period"
+msgstr "Enfant vers période"
+
+#: .\models.py:330
+msgid "Children to periods"
+msgstr "Enfants aux périodes"
+
+#: .\models.py:362
+msgid "Date time range for information"
+msgstr "Plage de date/temps pour l'information"
+
+#: .\models.py:363
+msgid "Content"
+msgstr "Contenu"
+
+#: .\models.py:367
+msgid "Information of the day"
+msgstr "Information du jour"
+
+#: .\models.py:368
+msgid "Information of the days"
+msgstr "Informations des jours"
+
+#: .\models.py:382
+msgid "Allergy"
+msgstr "Allergie"
+
+#: .\models.py:400 .\models.py:437
+msgid "Contact"
+msgstr "Contact"
+
+#: .\models.py:403
+msgid "Link with child"
+msgstr "Lien avec l'enfant"
+
+#: .\models.py:404
+msgid "Type contact: Example Father, Mother ..."
+msgstr "Type contact: Exemple Père, Mère ..."
+
+#: .\models.py:409
+msgid "Child to contact"
+msgstr "Enfant vers contact"
+
+#: .\models.py:410
+msgid "Children to contacts"
+msgstr "Enfants aux contacts"
+
+#: .\models.py:425 .\models.py:459
+msgid "Address"
+msgstr "Adresse"
+
+#: .\models.py:428
+msgid "Email"
+msgstr "E-mail"
+
+#: .\models.py:429
+msgid "Phone"
+msgstr "Téléphone"
+
+#: .\models.py:430
+msgid "Mobile phone"
+msgstr "Téléphone mobile"
+
+#: .\models.py:431
+msgid "Professional phone"
+msgstr "Téléphone professionnel"
+
+#: .\models.py:432
+msgid "Organisation"
+msgstr "Organisation"
+
+#: .\models.py:433
+msgid "Function"
+msgstr "Fonction"
+
+#: .\models.py:452
+msgid "Street"
+msgstr "Rue"
+
+#: .\models.py:453
+msgid "ZIP"
+msgstr "NPA"
+
+#: .\models.py:454
+msgid "City"
+msgstr "Ville"
+
+#: .\models.py:455
+msgid "Country"
+msgstr "Pays"
+
+#: .\models.py:455
+msgid "Switzerland"
+msgstr "Suisse"
+
+#: .\models.py:460
+msgid "Addresses"
+msgstr "Adresses"
+
+#: .\models.py:474
+msgid "Food restriction"
+msgstr "Restriction alimentaire"
+
+#: .\models.py:491
+msgid "Problem"
+msgstr "Problème"
+
+#: .\models.py:492
+msgid "Individual home project"
+msgstr "Project d'accueil individualisé"
+
+#: .\models.py:493
+msgid "Attachment"
+msgstr "Pièce jointe"
+
+#: .\models.py:494
+msgid "Measure to take"
+msgstr "Mesure à prendre"
+
+#: .\models.py:503
+msgid "Child specific need"
+msgstr "Besoins spécifiques de l’enfant"
+
+#: .\models.py:504
+msgid "Children specific needs"
+msgstr "Enfants à besoins spécifiques"
+
+#: .\models.py:540
+msgid "Log change classroom"
+msgstr "Journal de changement de classe"
+
+#: .\models.py:541
+msgid "Logs changed classrooms"
+msgstr "Journaux de changement de classe"
