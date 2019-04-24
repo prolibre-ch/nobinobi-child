@@ -1,12 +1,17 @@
 # -*- coding: utf-8 -*-
+import django.contrib.auth.views as auth_views
 from django.conf.urls import url
-from django.views.generic import TemplateView
+from django.urls import path
 
+from nobinobi_child.forms import LoginAuthenticationForm
 from . import views
-
 
 app_name = 'nobinobi_child'
 urlpatterns = [
+    path('accounts/login/', views.AuthLoginView.as_view(), name='login_view'),
+    path('accounts/logout/', auth_views.LogoutView.as_view(template_name='nobinobi_child/pages/login/logout.html'),
+         name='logout_view'),
+    path("", views.HomeView.as_view(), name="home"),
     url(
         regex="^Child/~create/$",
         view=views.ChildCreateView.as_view(),
@@ -32,7 +37,7 @@ urlpatterns = [
         view=views.ChildListView.as_view(),
         name='Child_list',
     ),
-	url(
+    url(
         regex="^Language/~create/$",
         view=views.LanguageCreateView.as_view(),
         name='Language_create',
@@ -57,7 +62,7 @@ urlpatterns = [
         view=views.LanguageListView.as_view(),
         name='Language_list',
     ),
-	url(
+    url(
         regex="^Absence/~create/$",
         view=views.AbsenceCreateView.as_view(),
         name='Absence_create',
@@ -82,7 +87,7 @@ urlpatterns = [
         view=views.AbsenceListView.as_view(),
         name='Absence_list',
     ),
-	url(
+    url(
         regex="^Classroom/~create/$",
         view=views.ClassroomCreateView.as_view(),
         name='Classroom_create',
@@ -107,7 +112,7 @@ urlpatterns = [
         view=views.ClassroomListView.as_view(),
         name='Classroom_list',
     ),
-	url(
+    url(
         regex="^AgeGroup/~create/$",
         view=views.AgeGroupCreateView.as_view(),
         name='AgeGroup_create',
@@ -132,7 +137,7 @@ urlpatterns = [
         view=views.AgeGroupListView.as_view(),
         name='AgeGroup_list',
     ),
-	url(
+    url(
         regex="^AbsenceType/~create/$",
         view=views.AbsenceTypeCreateView.as_view(),
         name='AbsenceType_create',
@@ -157,7 +162,7 @@ urlpatterns = [
         view=views.AbsenceTypeListView.as_view(),
         name='AbsenceType_list',
     ),
-	url(
+    url(
         regex="^AbsenceGroup/~create/$",
         view=views.AbsenceGroupCreateView.as_view(),
         name='AbsenceGroup_create',
@@ -182,7 +187,7 @@ urlpatterns = [
         view=views.AbsenceGroupListView.as_view(),
         name='AbsenceGroup_list',
     ),
-	url(
+    url(
         regex="^ClassroomDayOff/~create/$",
         view=views.ClassroomDayOffCreateView.as_view(),
         name='ClassroomDayOff_create',
@@ -207,7 +212,7 @@ urlpatterns = [
         view=views.ClassroomDayOffListView.as_view(),
         name='ClassroomDayOff_list',
     ),
-	url(
+    url(
         regex="^ChildToPeriod/~create/$",
         view=views.ChildToPeriodCreateView.as_view(),
         name='ChildToPeriod_create',
@@ -232,7 +237,7 @@ urlpatterns = [
         view=views.ChildToPeriodListView.as_view(),
         name='ChildToPeriod_list',
     ),
-	url(
+    url(
         regex="^Period/~create/$",
         view=views.PeriodCreateView.as_view(),
         name='Period_create',
@@ -257,7 +262,7 @@ urlpatterns = [
         view=views.PeriodListView.as_view(),
         name='Period_list',
     ),
-	url(
+    url(
         regex="^InformationOfTheDay/~create/$",
         view=views.InformationOfTheDayCreateView.as_view(),
         name='InformationOfTheDay_create',
@@ -282,7 +287,7 @@ urlpatterns = [
         view=views.InformationOfTheDayListView.as_view(),
         name='InformationOfTheDay_list',
     ),
-	url(
+    url(
         regex="^Allergy/~create/$",
         view=views.AllergyCreateView.as_view(),
         name='Allergy_create',
@@ -307,7 +312,7 @@ urlpatterns = [
         view=views.AllergyListView.as_view(),
         name='Allergy_list',
     ),
-	url(
+    url(
         regex="^ChildToContact/~create/$",
         view=views.ChildToContactCreateView.as_view(),
         name='ChildToContact_create',
@@ -332,7 +337,7 @@ urlpatterns = [
         view=views.ChildToContactListView.as_view(),
         name='ChildToContact_list',
     ),
-	url(
+    url(
         regex="^Contact/~create/$",
         view=views.ContactCreateView.as_view(),
         name='Contact_create',
@@ -357,7 +362,7 @@ urlpatterns = [
         view=views.ContactListView.as_view(),
         name='Contact_list',
     ),
-	url(
+    url(
         regex="^Address/~create/$",
         view=views.AddressCreateView.as_view(),
         name='Address_create',
@@ -382,7 +387,7 @@ urlpatterns = [
         view=views.AddressListView.as_view(),
         name='Address_list',
     ),
-	url(
+    url(
         regex="^FoodRestriction/~create/$",
         view=views.FoodRestrictionCreateView.as_view(),
         name='FoodRestriction_create',
@@ -407,7 +412,7 @@ urlpatterns = [
         view=views.FoodRestrictionListView.as_view(),
         name='FoodRestriction_list',
     ),
-	url(
+    url(
         regex="^ChildSpecificNeed/~create/$",
         view=views.ChildSpecificNeedCreateView.as_view(),
         name='ChildSpecificNeed_create',
@@ -432,4 +437,4 @@ urlpatterns = [
         view=views.ChildSpecificNeedListView.as_view(),
         name='ChildSpecificNeed_list',
     ),
-	]
+]

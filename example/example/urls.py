@@ -20,4 +20,5 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'', include('nobinobi_child.urls', namespace='nobinobi_child')),
+    url(r'', include('nobinobi_staff.urls', namespace='nobinobi_staff')),
 ]
