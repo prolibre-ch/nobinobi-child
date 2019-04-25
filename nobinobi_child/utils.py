@@ -1,4 +1,9 @@
+from django.conf import settings
 from django.utils.text import slugify
+
+
+def get_display_contact_address():
+    return getattr(settings, 'DISPLAY_CONTACT_ADDRESS', True)
 
 
 def get_unique_slug(model_instance, slugable_field_name, slug_field_name):

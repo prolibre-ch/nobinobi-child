@@ -352,6 +352,12 @@ class Period(TimeStampedModel):
     def __str__(self):
         return "{} {}".format(self.get_weekday_display(), self.name)
 
+    def save(self, force_insert=False, force_update=False, using=None,
+             update_fields=None):
+        self.name = self.name.title()
+        return super(Period, self).save(force_insert=False, force_update=False, using=None,
+                                        update_fields=None)
+
 
 class InformationOfTheDay(TimeStampedModel):
     classrooms = models.ManyToManyField(

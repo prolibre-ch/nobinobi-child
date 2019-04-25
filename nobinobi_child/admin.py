@@ -1,6 +1,5 @@
 from django.contrib import admin
 from django.contrib.admin import register
-from django.utils.translation import gettext as _
 
 from nobinobi_child.models import Period, Allergy, FoodRestriction, Language, Classroom, AgeGroup, Absence, AbsenceType, \
     AbsenceGroup, ClassroomDayOff, InformationOfTheDay, Contact, Address, ChildSpecificNeed, LogChangeClassroom, Child, \
@@ -211,6 +210,15 @@ class ChildToContactInline(admin.TabularInline):
     can_delete = True
 
 
+class ChildSpecificNeedInline(admin.TabularInline):
+    model = ChildSpecificNeed
+    min_num = 0
+    max_num = 1
+    extra = 0
+    show_change_link = True
+    can_delete = True
+
+
 @register(Child)
 class ChildAdmin(admin.ModelAdmin):
     """
@@ -221,9 +229,10 @@ class ChildAdmin(admin.ModelAdmin):
     inlines = [
         ChildToPeriodInline,
         ChildToContactInline,
+        ChildSpecificNeedInline,
     ]
     # raw_id_fields = ('',)
     readonly_fields = ('slug',)
     search_fields = (
-    'first_name', 'last_name', 'usual_name', 'birth_date', 'classroom', 'next_classroom', 'date_next_classroom',
-    'age_group', 'staff',)
+        'first_name', 'last_name', 'usual_name', 'birth_date', 'classroom', 'next_classroom', 'date_next_classroom',
+        'age_group', 'staff',)

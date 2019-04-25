@@ -14,6 +14,7 @@
   <link href="{% static "vendor/ionicons/ionicons.min.css" %}" rel="stylesheet">
   <!-- Theme style -->
   <link rel="stylesheet" href="{% static "vendor/adminLTE/dist/css/adminlte.min.css" %}">
+  {% block extrastyle %}{% endblock %}
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -211,7 +212,7 @@
           {#            </ul>#}
           {#          </li>#}
           <li class="nav-item">
-            <a href="{% url "nobinobi_child:home" %}" class="nav-link">
+            <a href="{% url "nobinobi_child:Child_list" %}" class="nav-link">
               <i class="nav-icon fa fa-child"></i>
               <p>
                 {% trans "Children" %}
@@ -239,12 +240,13 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Base</h1>
+            <h1>{% block content_title %}Base{% endblock %}</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Base</li>
+              {% block breadcrumb %}
+                <li class="breadcrumb-item"><a href="/">{% trans "Home" %}</a></li>
+              {% endblock %}
             </ol>
           </div>
         </div>
@@ -256,23 +258,22 @@
 
       <!-- Default box -->
       <div class="card">
-        <div class="card-header">
-          <h3 class="card-title">Title</h3>
+        {% block content_card %}
+          <div class="card-header">
+            <h3 class="card-title">{% block content_card_title %}Title{% endblock %}</h3>
 
-          <div class="card-tools">
-            <button type="button" class="btn btn-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-              <i class="fa fa-minus"></i></button>
-            <button type="button" class="btn btn-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-              <i class="fa fa-times"></i></button>
+            {#          <div class="card-tools">#}
+            {#            <button type="button" class="btn btn-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">#}
+            {#              <i class="fa fa-minus"></i></button>#}
+            {#            <button type="button" class="btn btn-tool" data-widget="remove" data-toggle="tooltip" title="Remove">#}
+            {#              <i class="fa fa-times"></i></button>#}
+            {#          </div>#}
           </div>
-        </div>
-        <div class="card-body">
-          Start creating your amazing application!
-        </div>
-        <!-- /.card-body -->
-        <div class="card-footer">
-          Footer
-        </div>
+          <div class="card-body">{% block content_card_body %}Start creating your amazing application!{% endblock %}
+          </div>
+          <!-- /.card-body -->
+          <div class="card-footer">{% block content_card_footer %}Footer{% endblock %}</div>
+        {% endblock %}
         <!-- /.card-footer-->
       </div>
       <!-- /.card -->
@@ -300,16 +301,19 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="{% static "vendor/adminLTE/plugins/jquery/jquery.min.js" %}"></script>
-<!-- Bootstrap 4 -->
-<script src="{% static "vendor/adminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
-<!-- SlimScroll -->
-<script src="{% static "vendor/adminLTE/plugins/slimScroll/jquery.slimscroll.min.js" %}"></script>
-<!-- FastClick -->
-<script src="{% static "vendor/adminLTE/plugins/fastclick/fastclick.js" %}"></script>
-<!-- AdminLTE App -->
-<script src="{% static "vendor/adminLTE/dist/js/adminlte.min.js" %}"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="{% static "vendor/adminLTE/dist/js/demo.js" %}"></script>
+{% block footerjs %}
+  <script src="{% static "vendor/adminLTE/plugins/jquery/jquery.min.js" %}"></script>
+  <!-- Bootstrap 4 -->
+  <script src="{% static "vendor/adminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
+  <!-- SlimScroll -->
+  <script src="{% static "vendor/adminLTE/plugins/slimScroll/jquery.slimscroll.min.js" %}"></script>
+  <!-- FastClick -->
+  <script src="{% static "vendor/adminLTE/plugins/fastclick/fastclick.js" %}"></script>
+  <!-- AdminLTE App -->
+  <script src="{% static "vendor/adminLTE/dist/js/adminlte.min.js" %}"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="{% static "vendor/adminLTE/dist/js/demo.js" %}"></script>
+{% endblock %}
+{% block extrajs %}{% endblock %}
 </body>
 </html>
