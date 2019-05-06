@@ -450,10 +450,10 @@ class Contact(TimeStampedModel):
         verbose_name_plural = _('Contacts')
 
     def __str__(self):
-        return self.get_full_name
+        return self.full_name
 
     @property
-    def get_full_name(self):
+    def full_name(self):
         return "{} {}".format(self.first_name, self.last_name)
 
 
