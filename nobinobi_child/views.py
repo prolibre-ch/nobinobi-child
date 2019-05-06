@@ -59,7 +59,7 @@ class ChildDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(ChildDetailView, self).get_context_data(**kwargs)
-        context['title'] = _("{}'s details").format(context['child'].get_full_name)
+        context['title'] = _("{}'s details").format(context['child'].full_name)
         context['display_contacts_address'] = get_display_contact_address()
         context['periods'] = Period.objects.all()
         child_periods = context['child'].childtoperiod_set.all()

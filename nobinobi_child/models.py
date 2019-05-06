@@ -128,21 +128,21 @@ class Child(StatusModel, TimeStampedModel):
         verbose_name_plural = _('Children')
 
     def __str__(self):
-        return "{}".format(self.get_full_name)
+        return "{}".format(self.full_name)
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         # set slug, title field
-        self.slug = get_unique_slug(self, 'get_full_name', 'slug')
+        self.slug = get_unique_slug(self, 'full_name', 'slug')
         self.first_name = self.first_name.title()
         self.last_name = self.last_name.title()
         self.usual_name = self.usual_name.title()
         return super(Child, self).save()
 
     @property
-    def get_full_name(self):
+    def full_name(self):
         return "{} {}".format(self.first_name, self.last_name)
 
-    get_full_name.fget.short_description = _("Full name")
+    full_name.fget.short_description = _("Full name")
 
     @property
     def is_active(self):
@@ -516,7 +516,7 @@ class ChildSpecificNeed(TimeStampedModel):
         verbose_name_plural = _('Children specific needs')
 
     def __str__(self):
-        return self.child.get_full_name
+        return self.child.full_name
 
 
 class LogChangeClassroom(TimeStampedModel):

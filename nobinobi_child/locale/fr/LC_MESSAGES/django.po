@@ -457,8 +457,8 @@ msgstr "Fiche de l'enfant"
 
 #: .\templates\nobinobi_child\child_detail.html:29
 #, python-format
-msgid "Image %(object.get_full_name)s - default"
-msgstr "Image %(object.get_full_name)s - par défaut"
+msgid "Image %(object.full_name)s - default"
+msgstr "Image %(object.full_name)s - par défaut"
 
 #: .\templates\nobinobi_child\child_detail.html:100
 msgid "Edit"

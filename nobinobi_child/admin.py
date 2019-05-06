@@ -154,7 +154,7 @@ class ContactAdmin(admin.ModelAdmin):
     """
         Admin View for InformationOfTheDay
     """
-    list_display = ('get_full_name', 'email', 'phone', 'organisation', 'function')
+    list_display = ('full_name', 'email', 'phone', 'organisation', 'function')
     list_filter = ('organisation', 'function')
     # /    inlines = [
     #         ClassroomInline,

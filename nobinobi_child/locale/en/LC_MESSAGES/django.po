@@ -457,7 +457,7 @@ msgstr ""
 
 #: .\templates\nobinobi_child\child_detail.html:29
 #, python-format
-msgid "Image %(object.get_full_name)s - default"
+msgid "Image %(object.full_name)s - default"
 msgstr ""
 
 #: .\templates\nobinobi_child\child_detail.html:100
