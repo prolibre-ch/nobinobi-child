@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('nobinobi_staff', '0007_auto_20190418_0742'),
+        ('nobinobi_staff', '0006_staff_working_base'),
     ]
 
     operations = [
