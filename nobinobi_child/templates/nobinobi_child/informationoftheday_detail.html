@@ -1,0 +1,15 @@
+{% extends "nobinobi_child/base.html" %}
+{% load i18n %}
+
+{% block content_title %}
+  {% trans "Information of the day" %} - ID: {{ object.id }}
+{% endblock %}
+{% block content_card_title %}
+  {{ object.title }}
+{% endblock %}
+{% block content_card_body %}
+  {{ object.content }}
+{% endblock %}
+{% block content_card_footer %}
+  {{ object.start_date|date:"d.m.Y H:i" }} => {{ object.end_date|date:"d.m.Y H:i" }}
+{% endblock %}

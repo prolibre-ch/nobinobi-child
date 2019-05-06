@@ -79,8 +79,8 @@ class AbsenceAdmin(admin.ModelAdmin):
     """
         Admin View for Absence
     """
-    list_display = ('child', 'date', 'type')
-    list_filter = ('date', 'type')
+    list_display = ('child', 'start_date', 'end_date', 'type')
+    list_filter = ('start_date', 'end_date', 'type')
     # inlines = [
     #     Inline,
     # ]
@@ -141,8 +141,8 @@ class InformationOfTheDayAdmin(admin.ModelAdmin):
     """
         Admin View for InformationOfTheDay
     """
-    list_display = ('date',)
-    list_filter = ('date',)
+    list_display = ('title', 'start_date', 'end_date',)
+    list_filter = ('start_date', 'end_date',)
     # /    inlines = [
     #         ClassroomInline,
     #     ]

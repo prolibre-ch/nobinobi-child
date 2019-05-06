@@ -2,8 +2,6 @@
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
-from django.core import serializers
-from django.http import JsonResponse
 from django.utils.translation import gettext as _
 from django.views.generic import (
     CreateView,
@@ -13,7 +11,6 @@ from django.views.generic import (
     ListView,
     TemplateView)
 from rest_framework import viewsets
-from rest_framework.response import Response
 
 from nobinobi_child.forms import LoginAuthenticationForm
 from nobinobi_child.serializers import ChildSerializer
@@ -62,7 +59,7 @@ class ChildDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(ChildDetailView, self).get_context_data(**kwargs)
-        context['title'] = _("{}'s detail").format(context['child'].get_full_name)
+        context['title'] = _("{}'s details").format(context['child'].get_full_name)
         context['display_contacts_address'] = get_display_contact_address()
         context['periods'] = Period.objects.all()
         child_periods = context['child'].childtoperiod_set.all()
@@ -87,15 +84,6 @@ class ChildUpdateView(UpdateView):
 
 class ChildListView(ListView):
     model = Child
-
-    def get(self, request, *args, **kwargs):
-        if request.is_ajax():
-            queryset = self.get_queryset()
-            data = serializers.serialize("json", queryset)
-            return_data = {"data": data}
-            return JsonResponse(return_data, status=200, safe=False)
-        else:
-            return super(ChildListView, self).get(request, *args, **kwargs)
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(ChildListView, self).get_context_data(object_list=None, **kwargs)

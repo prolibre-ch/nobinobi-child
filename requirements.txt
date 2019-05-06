@@ -10,3 +10,4 @@ django-crispy-forms
 
 git+ssh://git@git.prolibre.com:10022/alu/nobinobi-staff.git@develop#egg=nobinobi-staff
 git+ssh://git@git.prolibre.com:10022/alu/nobinobi-core.git@develop#egg=nobinobi-core
+git+https://github.com/jazzband/django-simple-menu.git@master#egg=django-simple-menu

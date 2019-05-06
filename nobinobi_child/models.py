@@ -2,7 +2,6 @@
 import os
 import uuid
 
-from django.contrib.postgres.fields import DateTimeRangeField, DateRangeField
 from django.db import models
 from django.utils.translation import gettext as _
 from model_utils import Choices
@@ -176,7 +175,8 @@ class Absence(TimeStampedModel):
         verbose_name=_("Child"),
         on_delete=models.CASCADE,
     )
-    date = DateTimeRangeField(verbose_name=_("Date"), help_text=_("Start date to end date"))
+    start_date = models.DateTimeField(verbose_name=_("Start date"))
+    end_date = models.DateTimeField(verbose_name=_("End date"))
     type = models.ForeignKey(
         to="AbsenceType",
         verbose_name=_("Type"),
@@ -184,12 +184,12 @@ class Absence(TimeStampedModel):
     )
 
     class Meta:
-        ordering = ('date', 'child',)
+        ordering = ('start_date', 'end_date', 'child',)
         verbose_name = _('Absence')
         verbose_name_plural = _('Absences')
 
     def __str__(self):
-        return "{} - {} - {}".format(self.date, self.child, self.type)
+        return "{} {} - {} - {}".format(self.start_date, self.end_date, self.child, self.type)
 
 
 class AbsenceType(TimeStampedModel):
@@ -322,15 +322,16 @@ class ChildToPeriod(TimeStampedModel):
         verbose_name=_("Period"),
         on_delete=models.CASCADE,
     )
-    date = DateRangeField(_("Date"), help_text=_("Date range for period"))
+    start_date = models.DateField(_("Start date"))
+    end_date = models.DateField(_("End date"))
 
     class Meta:
-        ordering = ('date', 'child', "period")
+        ordering = ('start_date', 'end_date', 'child', "period")
         verbose_name = _('Child to period')
         verbose_name_plural = _('Children to periods')
 
     def __str__(self):
-        return "{} - {} - {}".format(self.date, self.child, self.period)
+        return "{} {} - {} - {}".format(self.start_date, self.end_date, self.child, self.period)
 
 
 class Period(TimeStampedModel):
@@ -360,22 +361,27 @@ class Period(TimeStampedModel):
 
 
 class InformationOfTheDay(TimeStampedModel):
+    title = models.CharField(_("Title"), max_length=50)
     classrooms = models.ManyToManyField(
         to=Classroom,
         verbose_name=_("Classroom"),
         related_name="classrooms"
     )
-    date = DateTimeRangeField(_("Date"), help_text=_("Date time range for information"))
+    start_date = models.DateTimeField(_("Start date"))
+    end_date = models.DateTimeField(_("End date"))
     content = SplitField(_("Content"))
 
     class Meta:
-        ordering = ('date',)
+        ordering = ('start_date', 'end_date',)
         verbose_name = _('Information of the day')
-        verbose_name_plural = _('Information of the days')
+        verbose_name_plural = _('Informations of the day')
 
     def __str__(self):
-        return "IOTD: {}".format(self.date)
+        return "IOTD: {} - {} > {}".format(self.title, self.start_date, self.end_date)
 
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        self.title = self.title.title()
+        return super(InformationOfTheDay, self).save(force_insert=False, force_update=False, using=None, update_fields=None)
 
 class Allergy(TimeStampedModel):
     """
