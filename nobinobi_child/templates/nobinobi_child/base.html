@@ -19,6 +19,11 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini">
+{% block headerjs %}
+  <script src="{% static "vendor/adminLTE/plugins/jquery/jquery.min.js" %}"></script>
+  <!-- Bootstrap 4 -->
+  <script src="{% static "vendor/adminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
+{% endblock %}
 <!-- Site wrapper -->
 <div class="wrapper">
   <!-- Navbar -->
@@ -306,9 +311,7 @@
 
 <!-- jQuery -->
 {% block footerjs %}
-  <script src="{% static "vendor/adminLTE/plugins/jquery/jquery.min.js" %}"></script>
-  <!-- Bootstrap 4 -->
-  <script src="{% static "vendor/adminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
+
   <!-- SlimScroll -->
   <script src="{% static "vendor/adminLTE/plugins/slimScroll/jquery.slimscroll.min.js" %}"></script>
   <!-- FastClick -->
