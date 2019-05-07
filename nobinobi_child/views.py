@@ -54,7 +54,7 @@ class ChildDeleteView(DeleteView):
     model = Child
 
 
-class ChildDetailView(DetailView):
+class ChildDetailView(LoginRequiredMixin, DetailView):
     model = Child
 
     def get_context_data(self, **kwargs):
@@ -82,7 +82,7 @@ class ChildUpdateView(UpdateView):
     model = Child
 
 
-class ChildListView(ListView):
+class ChildListView(LoginRequiredMixin, ListView):
     model = Child
 
     def get_context_data(self, *, object_list=None, **kwargs):

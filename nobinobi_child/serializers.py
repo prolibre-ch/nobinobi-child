@@ -29,5 +29,5 @@ class ChildSerializer(serializers.ModelSerializer):
         representation['birth_date'] = instance.birth_date if instance.birth_date else "-"
         representation['classroom'] = instance.classroom.name if instance.classroom else "-"
         representation['age_group'] = instance.age_group.name if instance.age_group else "-"
-        representation['staff'] = instance.staff.get_full_name() if instance.staff else "-"
+        representation['staff'] = instance.staff.full_name if instance.staff else "-"
         return representation

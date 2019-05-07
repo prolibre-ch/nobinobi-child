@@ -22,11 +22,11 @@
         {% if object.image %}
           <img width="75%" class="img-fluid img-thumbnail img-orientation" style="margin:0 auto;"
                src="{{ object.picture.url }}"
-               alt="Image {{ object.get_full_name }}">
+               alt="Image {{ object.full_name }}">
         {% else %}
           <img width="75%" class="img-responsive img-thumbnail img-orientation"
                src="{% static "img/nobinobi.png" %}"
-               alt="{% blocktrans %}Image {{ object.get_full_name }} - default{% endblocktrans %}">
+               alt="{% blocktrans %}Image {{ object.full_name }} - default{% endblocktrans %}">
         {% endif %}
       </div>
       <div class="col-lg-5">
@@ -34,7 +34,7 @@
           <tbody>
           <tr>
             <th class="col-lg-4" scope="row">{% trans "Full name" %}</th>
-            <td class="col-lg-8">{{ object.get_full_name }}</td>
+            <td class="col-lg-8">{{ object.full_name }}</td>
           </tr>
           <tr>
             <th class="col-lg-4" scope="row">{% get_verbose_field_name object "usual_name" %}</th>
@@ -142,11 +142,11 @@
                     {% for ctc in object.childtocontact_set.all %}
                       <li class="nav-item">
                         <a class="nav-link {% if forloop.first %}active{% endif %}"
-                           id="{{ ctc.contact.get_full_name|slugify }}-tab"
-                           href="#{{ ctc.contact.get_full_name|slugify }}"
-                           data-toggle="tab" aria-controls="{{ ctc.contact.get_full_name|slugify }}" role="tab"
+                           id="{{ ctc.contact.full_name|slugify }}-tab"
+                           href="#{{ ctc.contact.full_name|slugify }}"
+                           data-toggle="tab" aria-controls="{{ ctc.contact.full_name|slugify }}" role="tab"
                            {% if forloop.first %}aria-selected="true"{% endif %}>
-                          {{ ctc.order }} - {{ ctc.contact.get_full_name }}</a>
+                          {{ ctc.order }} - {{ ctc.contact.full_name }}</a>
                       </li>
                     {% endfor %}
                   </ul>
@@ -154,16 +154,16 @@
                 <div class="card-body">
                   <div class="tab-content">
                     {% for ctc in object.childtocontact_set.all %}
-                      <div id="{{ ctc.contact.get_full_name|slugify }}"
+                      <div id="{{ ctc.contact.full_name|slugify }}"
                            class="tab-pane fade {% if forloop.first %}show active{% endif %}" role="tabpanel"
-                           aria-labelledby="{{ ctc.contact.get_full_name|slugify }}-tab">
+                           aria-labelledby="{{ ctc.contact.full_name|slugify }}-tab">
                         <div class="card text-dark">
                           <div class="card-body">
                             <table id="tableContactOrder" class="table table-bordered">
                               <tbody>
                               <tr>
                                 <th scope="row" style="width: 50%;">{% trans "Full name" %}</th>
-                                <td style="width: 50%;">{{ ctc.contact.get_full_name }}</td>
+                                <td style="width: 50%;">{{ ctc.contact.full_name }}</td>
                               </tr>
                               {% if ctc.contact.function %}
                                 <tr>

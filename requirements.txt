@@ -1,13 +1,14 @@
-djangorestframework
+djangorestframework>=3.9.3
 django>=2.0,<=2.2
 django-model-utils>=2.0
 # Additional requirements go here
 django-phonenumber-field>=2.3.1
 phonenumbers>=8.10.10
-psycopg2>=2.8.2
+psycopg2-binary>=2.8.2
 Pillow>=6.0.0
-django-crispy-forms
+django-crispy-forms>=1.7.2
+urllib3<1.25,>=1.21.1
 
-git+ssh://git@git.prolibre.com:10022/alu/nobinobi-staff.git@develop#egg=nobinobi-staff
-git+ssh://git@git.prolibre.com:10022/alu/nobinobi-core.git@develop#egg=nobinobi-core
+-e git+ssh://gitolite@homer.lan.prolibre.com:8022/nobinobi-staff/nobinobi-staff.git@develop#egg=nobinobi-staff
+-e git+ssh://gitolite@homer.lan.prolibre.com:8022/nobinobi-core/nobinobi-core.git@develop#egg=nobinobi-core
 git+https://github.com/jazzband/django-simple-menu.git@master#egg=django-simple-menu
