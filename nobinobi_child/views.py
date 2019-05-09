@@ -293,7 +293,7 @@ class InformationOfTheDayUpdateView(UpdateView):
     model = InformationOfTheDay
 
 
-class InformationOfTheDayListView(ListView):
+class InformationOfTheDayListView(LoginRequiredMixin, ListView):
     model = InformationOfTheDay
 
     def get_queryset(self):
