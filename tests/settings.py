@@ -22,7 +22,9 @@ INSTALLED_APPS = [
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sites",
-    "nobinobi_child",
+    'nobinobi_core',
+    'nobinobi_staff',
+    'nobinobi_child',
 ]
 
 SITE_ID = 1
