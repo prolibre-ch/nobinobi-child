@@ -1,7 +1,10 @@
 # -*- coding: utf-8
 from __future__ import unicode_literals, absolute_import
 
+import os
+
 import django
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 DEBUG = True
 USE_TZ = True
@@ -35,3 +38,7 @@ else:
     MIDDLEWARE_CLASSES = ()
 
 LANGUAGE_CODE = 'fr-fr'
+
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
