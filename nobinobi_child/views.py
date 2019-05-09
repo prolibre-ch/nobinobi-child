@@ -2,6 +2,7 @@
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
+from django.utils import timezone
 from django.utils.translation import gettext as _
 from django.views.generic import (
     CreateView,
@@ -294,6 +295,14 @@ class InformationOfTheDayUpdateView(UpdateView):
 
 class InformationOfTheDayListView(ListView):
     model = InformationOfTheDay
+
+    def get_queryset(self):
+        if self.request.user:
+            iotds = self.model.objects.filter(start_date__lte=timezone.now(), end_date__gte=timezone.now(),
+                                              classrooms__allowed_login=self.request.user)
+        else:
+            iotds = []
+        return iotds
 
 
 class AllergyCreateView(CreateView):

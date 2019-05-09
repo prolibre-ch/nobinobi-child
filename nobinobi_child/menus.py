@@ -13,9 +13,9 @@ Menu.add_item("main",
                           url=reverse("nobinobi_child:Child_list"),
                           icon="fas fa-list"),
                       MenuItem(
-                          title=_("IOTD"),
+                          title=_("List IOTD"),
                           url=reverse("nobinobi_child:InformationOfTheDay_list"),
-                          icon="far fa-circle"),
+                          icon="fas fa-list"),
                   ]
               )
               )
