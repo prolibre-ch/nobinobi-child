@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-
+from bootstrap_modal_forms.generic import BSModalCreateView, BSModalUpdateView, BSModalDeleteView, BSModalReadView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
+from django.urls import reverse_lazy
 from django.utils import timezone
 from django.utils.translation import gettext as _
 from django.views.generic import (
@@ -13,10 +14,8 @@ from django.views.generic import (
     TemplateView)
 from rest_framework import viewsets
 
-from nobinobi_child.forms import LoginAuthenticationForm
-from nobinobi_child.serializers import ChildSerializer
-from nobinobi_child.utils import get_display_contact_address
-from .models import (
+from nobinobi_child.forms import LoginAuthenticationForm, AbsenceCreateForm
+from nobinobi_child.models import (
     Child,
     Language,
     Absence,
@@ -35,6 +34,8 @@ from .models import (
     FoodRestriction,
     ChildSpecificNeed,
 )
+from nobinobi_child.serializers import ChildSerializer, AbsenceSerializer
+from nobinobi_child.utils import get_display_contact_address
 
 
 class HomeView(LoginRequiredMixin, TemplateView):
@@ -97,6 +98,11 @@ class ChildViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = ChildSerializer
 
 
+class AbsenceViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Absence.objects.all()
+    serializer_class = AbsenceSerializer
+
+
 class LanguageCreateView(CreateView):
     model = Language
 
@@ -117,24 +123,43 @@ class LanguageListView(ListView):
     model = Language
 
 
-class AbsenceCreateView(CreateView):
+class AbsenceCreateView(BSModalCreateView):
+    template_name = 'nobinobi_child/absence/absence_create.html'
+    form_class = AbsenceCreateForm
+    success_message = 'Success: Absence was created.'
+    success_url = reverse_lazy('nobinobi_child:Absence_list')
+
+
+# Read
+class AbsenceDetailView(BSModalReadView):
     model = Absence
+    template_name = 'nobinobi_child/absence/absence_detail.html'
 
 
-class AbsenceDeleteView(DeleteView):
+# Delete
+class AbsenceDeleteView(BSModalDeleteView):
     model = Absence
+    template_name = 'nobinobi_child/absence/absence_confirm_delete.html'
+    success_message = 'Success: Absence was deleted.'
+    success_url = reverse_lazy('nobinobi_child:Absence_list')
 
 
-class AbsenceDetailView(DetailView):
+class AbsenceUpdateView(BSModalUpdateView):
     model = Absence
-
-
-class AbsenceUpdateView(UpdateView):
-    model = Absence
+    template_name = 'nobinobi_child/absence/absence_update.html'
+    form_class = AbsenceCreateForm
+    success_message = 'Success: Absence was updated.'
+    success_url = reverse_lazy('nobinobi_child:Absence_list')
 
 
 class AbsenceListView(ListView):
     model = Absence
+    template_name = "nobinobi_child/absence/absence_list.html"
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(AbsenceListView, self).get_context_data(object_list=None, **kwargs)
+        context['title'] = _("Absences list")
+        return context
 
 
 class ClassroomCreateView(CreateView):

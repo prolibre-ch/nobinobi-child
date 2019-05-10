@@ -16,6 +16,10 @@ Menu.add_item("main",
                           title=_("List IOTD"),
                           url=reverse("nobinobi_child:InformationOfTheDay_list"),
                           icon="fas fa-list"),
+                      MenuItem(
+                          title=_("Absences"),
+                          url=reverse("nobinobi_child:Absence_list"),
+                          icon="fas fa-list"),
                   ]
               )
               )
