@@ -39,12 +39,12 @@
                   <a class="btn btn-sm btn-info"
                      href="{% url "nobinobi_child:InformationOfTheDay_detail" pk=iotd.pk %}"><i
                     class="fas fa-eye fa-sm"></i></a>
-                  {% if perms.nobinobi_child_informationoftheday.can_change %}
+                  {% if perms.nobinobi_child.change_informationoftheday %}
                     <a class="btn btn-sm btn-primary"
                        href="{% url "admin:nobinobi_child_informationoftheday_change" object_id=iotd.pk %}"><i
                       class="fas fa-edit fa-sm "></i></a>
                   {% endif %}
-                  {% if perms.nobinobi_child_informationoftheday.can_delete %}
+                  {% if perms.nobinobi_child.delete_informationoftheday %}
                     <a class="btn btn-sm btn-danger"
                        href="{% url "admin:nobinobi_child_informationoftheday_delete" object_id=iotd.pk %}"><i
                       class="fa fa-times"></i></a>

@@ -12,9 +12,10 @@
 #
 #      You should have received a copy of the GNU Affero General Public License
 #      along with this program.  If not, see <https://www.gnu.org/licenses/>.
+import arrow
 from rest_framework import serializers
 
-from nobinobi_child.models import Child
+from nobinobi_child.models import Child, Absence
 
 
 class ChildSerializer(serializers.ModelSerializer):
@@ -30,4 +31,18 @@ class ChildSerializer(serializers.ModelSerializer):
         representation['classroom'] = instance.classroom.name if instance.classroom else "-"
         representation['age_group'] = instance.age_group.name if instance.age_group else "-"
         representation['staff'] = instance.staff.full_name if instance.staff else "-"
+        return representation
+
+
+class AbsenceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Absence
+        fields = '__all__'
+
+    def to_representation(self, instance):
+        representation = super(AbsenceSerializer, self).to_representation(instance)
+        representation['child'] = instance.child.full_name
+        representation['start_date'] = arrow.get(instance.start_date).format("DD.MM.YYYY", locale="fr_fr")
+        representation['end_date'] = arrow.get(instance.start_date).format("DD.MM.YYYY", locale="fr_fr")
+        representation['type'] = "{0} ({1})".format(instance.type.name, instance.type.group.name)
         return representation

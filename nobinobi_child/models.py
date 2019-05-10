@@ -381,7 +381,9 @@ class InformationOfTheDay(TimeStampedModel):
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         self.title = self.title.title()
-        return super(InformationOfTheDay, self).save(force_insert=False, force_update=False, using=None, update_fields=None)
+        return super(InformationOfTheDay, self).save(force_insert=False, force_update=False, using=None,
+                                                     update_fields=None)
+
 
 class Allergy(TimeStampedModel):
     """

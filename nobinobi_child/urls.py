@@ -11,6 +11,7 @@ app_name = 'nobinobi_child'
 
 router = DefaultRouter()
 router.register(r'child', views.ChildViewSet, base_name="api-child")
+router.register(r'absence', views.AbsenceViewSet, base_name="api-absence")
 
 urlpatterns = [
                   path('api/', include(router.urls)),
@@ -52,6 +53,27 @@ urlpatterns = [
                               path("",
                                    view=views.InformationOfTheDayDetailView.as_view(),
                                    name='InformationOfTheDay_detail'),
+                          ])),
+                      ])),
+                      path("absence/", include([
+                          path("",
+                               view=views.AbsenceListView.as_view(),
+                               name='Absence_list'
+                               ),
+                          path("~create/",
+                               view=views.AbsenceCreateView.as_view(),
+                               name='Absence_create'
+                               ),
+                          path("<int:pk>/", include([
+                              path("",
+                                   view=views.AbsenceDetailView.as_view(),
+                                   name='Absence_detail'),
+                              path("~delete/",
+                                   view=views.AbsenceDeleteView.as_view(),
+                                   name='Absence_delete'),
+                              path("~update/",
+                                   view=views.AbsenceUpdateView.as_view(),
+                                   name='Absence_update'),
                           ])),
                       ])),
                   ])),
