@@ -42,7 +42,7 @@ class AbsenceSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         representation = super(AbsenceSerializer, self).to_representation(instance)
         representation['child'] = instance.child.full_name
-        representation['start_date'] = arrow.get(instance.start_date).format("DD.MM.YYYY", locale="fr_fr")
-        representation['end_date'] = arrow.get(instance.start_date).format("DD.MM.YYYY", locale="fr_fr")
+        representation['start_date'] = arrow.get(instance.start_date).format("DD.MM.YYYY HH:mm", locale="fr_fr")
+        representation['end_date'] = arrow.get(instance.end_date).format("DD.MM.YYYY HH:mm", locale="fr_fr")
         representation['type'] = "{0} ({1})".format(instance.type.name, instance.type.group.name)
         return representation

@@ -55,13 +55,14 @@ class AbsenceCreateForm(BSModalForm):
         self.helper.form_method = 'post'
         # self.label_class = "col-lg-2"
         # self.field_class = "col-lg-10"
+        self.helper.form_tag = False
         self.helper.layout = Layout(
             Div(
                 Field("child", wrapper_class="col-sm-12"),
                 Field("start_date", wrapper_class="col-sm-12 col-md-6"),
                 Field("end_date", wrapper_class="col-sm-12 col-md-6"),
                 Field("type", wrapper_class="col-sm-12"),
-                Submit('submit', _('Submit'), wrapper_class="col-sm-12"),
+                # Submit('submit', _('Submit'), wrapper_class="col-sm-12"),
                 css_class="row"
             )
         )
