@@ -13,6 +13,6 @@ django-select2>=7.0.3
 django-bootstrap-modal-forms>=1.3.1
 django-widget-tweaks>=1.4.3
 
--e git+ssh://gitolite@homer.lan.prolibre.com:8022/nobinobi-staff/nobinobi-staff.git@develop#egg=nobinobi-staff
--e git+ssh://gitolite@homer.lan.prolibre.com:8022/nobinobi-core/nobinobi-core.git@develop#egg=nobinobi-core
+git+ssh://gitolite@git.prolibre.com:8022/nobinobi-staff/nobinobi-staff.git@master#egg=nobinobi-staff
+git+ssh://gitolite@git.prolibre.com:8022/nobinobi-core/nobinobi-core.git@master#egg=nobinobi-core
 git+https://github.com/jazzband/django-simple-menu.git@master#egg=django-simple-menu
