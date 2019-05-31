@@ -341,8 +341,9 @@ class Period(TimeStampedModel):
     name = models.CharField(_("Name"), max_length=50)
     weekday = models.IntegerField(choices=WEEKDAY_CHOICES, verbose_name=_("Weekday"))
     order = models.PositiveIntegerField(_("Order"))
-
-    # TODO: MAX CHILD to implement future
+    start_time = models.TimeField(_("Start time"), blank=False, null=True)
+    end_time = models.TimeField(_("End time"), blank=False, null=True)
+    max_child = models.PositiveIntegerField(_("Max child"), blank=True, null=True)
 
     class Meta:
         ordering = ("weekday", 'order', "name",)
