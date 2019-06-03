@@ -269,7 +269,8 @@ class Classroom(TimeStampedModel):
                        max_length=15)
     allowed_login = models.ManyToManyField(
         to='auth.User',
-        verbose_name=_("Allowed login")
+        verbose_name=_("Allowed login"),
+        related_name="classroom_login"
     )
 
     class Meta:
