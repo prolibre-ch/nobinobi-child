@@ -5,7 +5,7 @@ from django.conf.urls.static import static
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
-from . import views
+from nobinobi_child import views
 
 app_name = 'nobinobi_child'
 
