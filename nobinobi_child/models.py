@@ -452,6 +452,7 @@ class Contact(TimeStampedModel):
 
     class Meta:
         ordering = ('first_name', 'last_name',)
+        unique_together = ("first_name", "last_name", "phone")
         verbose_name = _('Contact')
         verbose_name_plural = _('Contacts')
 
