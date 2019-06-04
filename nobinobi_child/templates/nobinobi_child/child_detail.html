@@ -195,21 +195,21 @@
                                 </tr>
                               {% endif %}
                               <tr>
-                                <th scope="row">{% get_verbose_field_name ctc.contact "email" %}</th>
-                                <td>{{ ctc.contact.email }} <a href="mailto:{{ ctc.contact.email }}"><i
+                                <th scope="row">{% trans "Email" %}</th>
+                                <td>{{ ctc.contact.email|default:"-" }} <a href="mailto:{{ ctc.contact.email }}"><i
                                   class="fa fa-envelope" aria-hidden="true"></i></a></td>
                               </tr>
                               <tr>
-                                <th scope="row">{% get_verbose_field_name ctc.contact "phone" %}</th>
-                                <td>{{ ctc.contact.phone }}</td>
+                                <th scope="row">{% trans "Phone" %}</th>
+                                <td>{{ ctc.contact.phone|default:"-" }}</td>
                               </tr>
                               <tr>
-                                <th scope="row">{% get_verbose_field_name ctc.contact "mobile_phone" %}</th>
-                                <td>{{ ctc.contact.mobile_phone }}</td>
+                                <th scope="row">{% trans "Mobile phone" %}</th>
+                                <td>{{ ctc.contact.mobile_phone|default:"-" }}</td>
                               </tr>
                               <tr>
-                                <th scope="row">{% get_verbose_field_name ctc.contact "professional_phone" %}</th>
-                                <td>{{ ctc.contact.professional_phone }}</td>
+                                <th scope="row">{% trans "Professional phone" %}</th>
+                                <td>{{ ctc.contact.professional_phone|default:"-" }}</td>
                               </tr>
                               </tbody>
                             </table>
