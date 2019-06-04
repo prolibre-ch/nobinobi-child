@@ -440,11 +440,13 @@ class Contact(TimeStampedModel):
         to="Address",
         verbose_name=_("Address"),
         on_delete=models.PROTECT,
+        blank=True,
+        null=True,
     )
-    email = models.EmailField(_("Email"))
+    email = models.EmailField(_("Email"), blank=True, null=True,)
     phone = PhoneNumberField(verbose_name=_("Phone"))
-    mobile_phone = PhoneNumberField(verbose_name=_("Mobile phone"), blank=True)
-    professional_phone = PhoneNumberField(verbose_name=_("Professional phone"), blank=True)
+    mobile_phone = PhoneNumberField(verbose_name=_("Mobile phone"), blank=True, null=True)
+    professional_phone = PhoneNumberField(verbose_name=_("Professional phone"), blank=True, null=True)
     organisation = models.CharField(_("Organisation"), max_length=100, blank=True, null=True)
     function = models.CharField(_("Function"), max_length=100, blank=True, null=True)
 
