@@ -155,7 +155,7 @@ class Language(TimeStampedModel):
     """
     Models to store language
     """
-    name = models.CharField(_("Name"), max_length=50)
+    name = models.CharField(_("Name"), max_length=50, unique=True)
 
     class Meta:
         ordering = ("name", "created",)
