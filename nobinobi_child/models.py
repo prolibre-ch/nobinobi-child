@@ -45,7 +45,7 @@ class Child(StatusModel, TimeStampedModel):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     first_name = models.CharField(_("First name"), max_length=100)
     last_name = models.CharField(_("Last name"), max_length=100)
-    usual_name = models.CharField(_("Usual name"), max_length=100)
+    usual_name = models.CharField(_("Usual name"), max_length=100, unique=True)
     gender = StatusField(_("Gender"), choices_name="GENDER_CHOICES", blank=False, null=True)
     slug = models.SlugField(_("Slug"))
     picture = models.ImageField(_("Picture"), upload_to=upload_picture_child, blank=True, null=True)
@@ -124,6 +124,7 @@ class Child(StatusModel, TimeStampedModel):
 
     class Meta:
         ordering = ('first_name', 'last_name', "created",)
+        unique_together = ("first_name", "last_name", "birth_date")
         verbose_name = _('Child')
         verbose_name_plural = _('Children')
 
