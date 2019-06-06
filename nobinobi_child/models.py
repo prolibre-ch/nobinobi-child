@@ -38,6 +38,7 @@ class Child(StatusModel, TimeStampedModel):
         ("boy", _("Boy")),
         ("girl", _("Girl")),
         ("other", _("Other")),
+        ("unknown", _("Unknown")),
     )
     """
     Model to store child
