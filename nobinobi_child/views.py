@@ -12,6 +12,7 @@ from django.views.generic import (
     UpdateView,
     ListView,
     TemplateView)
+from nobinobi_staff.models import Staff
 from rest_framework import viewsets
 
 from nobinobi_child.forms import LoginAuthenticationForm, AbsenceCreateForm
@@ -448,3 +449,13 @@ class ChildSpecificNeedUpdateView(UpdateView):
 
 class ChildSpecificNeedListView(ListView):
     model = ChildSpecificNeed
+
+
+class StaffListView(ListView):
+    model = Staff
+    template_name = "nobinobi_child/staff/staff_list.html"
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(StaffListView, self).get_context_data(object_list=None, **kwargs)
+        context['title'] = _("Staffs list")
+        return context

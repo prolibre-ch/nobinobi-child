@@ -20,10 +20,21 @@ Menu.add_item("main",
                           title=_("Absences"),
                           url=reverse("nobinobi_child:Absence_list"),
                           icon="fas fa-list"),
-                  ]
+                  ])
               )
+# staff
+Menu.add_item("main",
+              MenuItem(
+                  title=_("Staffs"),
+                  url="/staff/",
+                  icon="fa fa-user",
+                  children=[
+                      MenuItem(
+                          title=_("Staffs list"),
+                          url=reverse("nobinobi_child:Staff_list"),
+                          icon="fas fa-list"),
+                  ])
               )
-
 # Menu.add_item("main", MenuItem("Staff Only",
 #                                reverse("reports.views.staff"),
 #                                check=lambda request: request.user.is_staff))

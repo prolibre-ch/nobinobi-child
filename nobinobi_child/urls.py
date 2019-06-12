@@ -77,4 +77,10 @@ urlpatterns = [
                           ])),
                       ])),
                   ])),
+                  path("staff/", include([
+                      path("",
+                           view=views.StaffListView.as_view(),
+                           name='Staff_list'
+                           ),
+                  ])),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
