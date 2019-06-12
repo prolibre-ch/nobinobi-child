@@ -18,6 +18,24 @@
 
 
 {% block content_card %}
+  <div class="row">
+    <div class="col-lg-12 text-center"><h2>{% trans "Classroom" %}</h2></div>
+    <div class="col-lg-12">
+
+      <div class="center btn-toolbar" role="toolbar" aria-label="">
+        <div class="btn-group mx-auto" role="group" aria-label="">
+          {% for classroom in classrooms %}
+            <button type="button" onclick="filter_datatables_by_classroom(this);"
+                    id="{{ classroom|slugify }}_btn_choice" data-classroom="{{ classroom }}"
+                    class="btn btn-secondary">{{ classroom }}</button>
+          {% endfor %}
+          <button type="button" onclick="filter_datatables_by_classroom(this);"
+                  id="none_btn_choice" data-classroom="null"
+                  class="btn btn-dark">{% trans "All" %}</button>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="card-body">
     <table id="children_datatables" class="display table" style="width:100%">
       <thead>
@@ -118,6 +136,15 @@
       });
 
     });
+
+    function filter_datatables_by_classroom(obj) {
+      let classroom = obj.dataset.classroom;
+      if (classroom !== "null") {
+        table.columns(7).search(classroom).draw();
+      } else {
+        table.columns(7).search("").draw();
+      }
+    }
 
     {#$(window).load(function () {#}
     {#  setTimeout(create_event_button, 1500);#}

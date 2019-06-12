@@ -90,6 +90,7 @@ class ChildListView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(ChildListView, self).get_context_data(object_list=None, **kwargs)
+        context['classrooms'] = Classroom.objects.all().values_list("name", flat=True)
         context['title'] = _("Child list")
         return context
 
