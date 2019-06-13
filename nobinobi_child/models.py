@@ -151,6 +151,18 @@ class Child(StatusModel, TimeStampedModel):
         # return true if child is in progress else false
         return True if self.status == self.STATUS.in_progress else False
 
+    def get_contacts_phone(self):
+        dict_contacts = {}
+        for oc in self.childtocontact_set.all():
+            dict_contacts[oc] = {
+                "link_with_child": oc.link_with_child,
+                "phone": oc.contact.phone,
+                "mobile_phone": oc.contact.mobile_phone,
+                "professional_phone": oc.contact.professional_phone,
+                "order": oc.order
+            }
+        return dict_contacts
+
 
 class Language(TimeStampedModel):
     """
@@ -445,7 +457,7 @@ class Contact(TimeStampedModel):
         blank=True,
         null=True,
     )
-    email = models.EmailField(_("Email"), blank=True, null=True,)
+    email = models.EmailField(_("Email"), blank=True, null=True, )
     phone = PhoneNumberField(verbose_name=_("Phone"))
     mobile_phone = PhoneNumberField(verbose_name=_("Mobile phone"), blank=True, null=True)
     professional_phone = PhoneNumberField(verbose_name=_("Professional phone"), blank=True, null=True)
