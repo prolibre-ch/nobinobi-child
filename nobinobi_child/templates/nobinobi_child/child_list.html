@@ -42,14 +42,14 @@
       <tr>
         <th>{% trans "Status" %}</th>
         <th>{% trans "Picture" %}</th>
-        <th>{% trans "First name" %}</th>
-        <th>{% trans "Last name" %}</th>
+        <th>{% trans "Child" %}</th>
         <th>{% trans "Usual name" %}</th>
         <th>{% trans "Gender" %}</th>
         <th>{% trans "Birth date" %}</th>
         <th>{% trans "Classroom" %}</th>
         <th>{% trans "Age group" %}</th>
         <th>{% trans "Staff" %}</th>
+        <th>{% trans "Contacts Phones" %}</th>
         <th>{% trans "Actions" %}</th>
       </tr>
       </thead>
@@ -102,14 +102,36 @@
               return '<img class="thumbnail" height="100px" width="100px" src="' + row + '"/>';
             }
           },
-          {data: "first_name"},
-          {data: "last_name"},
+          {
+            data: null, render: function (data, type, row) {
+              // Combine the first and last names into a single table field
+              return data.first_name + ' ' + data.last_name;
+            }
+          },
           {data: "usual_name"},
           {data: "gender"},
           {data: "birth_date"},
           {data: "classroom"},
           {data: "age_group"},
           {data: "staff"},
+          {
+            data: null,
+            render: function (row, index, datatable) {
+              let text = "<p>";
+              {#if (row.snack_time) {#}
+              {#  text += "{% trans 'Snack time' %}: " + row.snack_time + "<br/>";#}
+              if (row.contacts && row.contacts.length > 0) {
+                for (let i = 0; i < row.contacts.length; i++) {
+                  text += i + ") " + row.contacts[i].first_name + " " + row.contacts[i].last_name + " - " + row.contacts[i].phone + " / " + row.contacts[i].mobile_phone + " / " + row.contacts[i].professional_phone + "<br>";
+                  {#if (row.medication_set[i].comment) {#}
+                  {#  text += "{% trans 'Comment' %} " + (i + 1) + ": " + row.medication_set[i].comment + "<br/>";#}
+                }
+              }
+              text += "</p>";
+              return text;
+            }
+          },
+
           {
             data: null,
             render: function (row, index, datatable) {
@@ -140,9 +162,9 @@
     function filter_datatables_by_classroom(obj) {
       let classroom = obj.dataset.classroom;
       if (classroom !== "null") {
-        table.columns(7).search(classroom).draw();
+        table.columns(6).search(classroom).draw();
       } else {
-        table.columns(7).search("").draw();
+        table.columns(6).search("").draw();
       }
     }
 

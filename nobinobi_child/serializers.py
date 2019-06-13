@@ -22,6 +22,7 @@ class ChildSerializer(serializers.ModelSerializer):
     class Meta:
         model = Child
         fields = '__all__'
+        depth = 2
 
     def to_representation(self, instance):
         representation = super(ChildSerializer, self).to_representation(instance)
