@@ -1,34 +1,7 @@
-{% load widget_tweaks i18n static crispy_forms_tags %}
-
-{{ form.media }}
-<link rel="stylesheet" type="text/css"
-      href="{% static 'admin/css/forms.css' %} "/>
-<link rel="stylesheet" type="text/css"
-      href="{% static 'admin/css/base.css' %} "/>
-<link rel="stylesheet" type="text/css"
-      href="{% static 'admin/css/widgets.css' %}"/>
-<link rel="stylesheet" href="{% static "vendor/adminLTE/dist/css/adminlte.min.css" %}">
-<style>
-  .select2-close-mask {
-    z-index: 2099;
-  }
-
-  .select2-dropdown {
-    z-index: 3051;
-  }
-</style>
-<script src="{% static "vendor/adminLTE/plugins/jquery/jquery.min.js" %}"></script>
-<!-- Bootstrap 4 -->
-<script src="{% static "vendor/adminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
-<script type="text/javascript"
-        src="/admin/jsi18n/"></script>
-<script type="text/javascript"
-        src="{% static 'admin/js/core.js' %}"></script>
-<script type="text/javascript"
-        src="{% static 'admin/js/calendar.js' %}"></script>
-<script type="text/javascript"
-        src="{% static 'admin/js/admin/DateTimeShortcuts.js' %}"></script>
-<form method="post" action="{% url 'nobinobi_child:Absence_create' %}">
+{% load static i18n crispy_forms_tags %}
+<script type="text/javascript" src="{% static 'js/moment-with-locales.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap-datetimepicker.min.js' %}"></script>
+<form method="post" action="">
   {% csrf_token %}
   <div class="modal-header">
     <h3 class="modal-title">{% trans "Create absence" %}</h3>
@@ -38,16 +11,11 @@
   </div>
 
   <div class="modal-body">
-    <div class="{% if form.non_field_errors %}invalid{% endif %} mb-2">
-      {% for error in form.non_field_errors %}
-        {{ error }}
-      {% endfor %}
-    </div>
     {% crispy form form.helper %}
   </div>
 
   <div class="modal-footer">
-    <input type="submit" value="{% trans "Submit" %}" name="submit" class="btn btn-primary" id="submit-id-submit">
+    <button type="button" class="submit-btn btn btn-primary">{% trans "Create" %}</button>
   </div>
-
 </form>
+

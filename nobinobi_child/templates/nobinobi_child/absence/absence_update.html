@@ -1,8 +1,8 @@
-{% load widget_tweaks static i18n %}
-
+{% load static i18n crispy_forms_tags %}
+<script type="text/javascript" src="{% static 'js/moment-with-locales.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap-datetimepicker.min.js' %}"></script>
 <form method="post" action="">
   {% csrf_token %}
-
   <div class="modal-header">
     <h3 class="modal-title">{% trans "Update absence" %}</h3>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -11,28 +11,11 @@
   </div>
 
   <div class="modal-body">
-
-    <div class="{% if form.non_field_errors %}invalid{% endif %} mb-2">
-      {% for error in form.non_field_errors %}
-        {{ error }}
-      {% endfor %}
-    </div>
-
-    {% for field in form %}
-      <div class="form-group">
-        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-        {% render_field field class="form-control" placeholder=field.label %}
-        <div class="{% if field.errors %} invalid{% endif %}">
-          {% for error in field.errors %}
-            <p class="help-block">{{ error }}</p>
-          {% endfor %}
-        </div>
-      </div>
-    {% endfor %}
+    {% crispy form form.helper %}
   </div>
 
   <div class="modal-footer">
     <button type="button" class="submit-btn btn btn-primary">{% trans "Update" %}</button>
   </div>
-
 </form>
+
