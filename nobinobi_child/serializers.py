@@ -28,10 +28,12 @@ class ChildSerializer(serializers.ModelSerializer):
         representation = super(ChildSerializer, self).to_representation(instance)
         representation['gender'] = instance.get_gender_display()
         representation['picture'] = instance.picture.url if instance.picture else None
-        representation['birth_date'] = instance.birth_date if instance.birth_date else "-"
+        representation['birth_date'] = arrow.get(instance.birth_date).format("DD.MM.YYYY", locale="fr_fr") if instance.birth_date else "-"
         representation['classroom'] = instance.classroom.name if instance.classroom else "-"
         representation['age_group'] = instance.age_group.name if instance.age_group else "-"
         representation['staff'] = instance.staff.full_name if instance.staff else "-"
+        representation['renewal_date'] = arrow.get(instance.renewal_date).format("DD.MM.YYYY", locale="fr_fr")
+
         return representation
 
 
