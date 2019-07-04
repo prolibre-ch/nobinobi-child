@@ -160,7 +160,7 @@ class ContactAdmin(admin.ModelAdmin):
     #         ClassroomInline,
     #     ]
     search_fields = (
-        'first_name', 'last_name', 'email', 'phone', 'mobile_phone', 'professional_phone', 'organisation', 'function')
+        'first_name', 'last_name', 'phone', 'mobile_phone', 'professional_phone', 'organisation', 'function')
 
 
 @register(Address)
@@ -234,5 +234,5 @@ class ChildAdmin(admin.ModelAdmin):
     # raw_id_fields = ('',)
     readonly_fields = ('slug',)
     search_fields = (
-        'first_name', 'last_name', 'usual_name', 'birth_date', 'classroom', 'next_classroom', 'date_next_classroom',
-        'age_group', 'staff',)
+        'first_name', 'last_name', 'usual_name', 'birth_date', 'classroom__name', 'next_classroom__name', 'date_next_classroom',
+        'age_group__name', 'staff__first_name','staff__last_name')
