@@ -435,7 +435,7 @@ class ChildToContact(TimeStampedModel):
     order = models.PositiveIntegerField(verbose_name=_('Order'))
 
     class Meta:
-        ordering = ("child", 'order',)
+        ordering = ('order', "child",)
         verbose_name = _('Child to contact')
         verbose_name_plural = _('Children to contacts')
 

@@ -234,5 +234,6 @@ class ChildAdmin(admin.ModelAdmin):
     # raw_id_fields = ('',)
     readonly_fields = ('slug',)
     search_fields = (
-        'first_name', 'last_name', 'usual_name', 'birth_date', 'classroom__name', 'next_classroom__name', 'date_next_classroom',
-        'age_group__name', 'staff__first_name','staff__last_name')
+        'first_name', 'last_name', 'usual_name', 'birth_date', 'classroom__name', 'next_classroom__name',
+        'date_next_classroom',
+        'age_group__name', 'staff__first_name', 'staff__last_name')

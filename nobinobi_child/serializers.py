@@ -15,10 +15,18 @@
 import arrow
 from rest_framework import serializers
 
-from nobinobi_child.models import Child, Absence
+from nobinobi_child.models import Child, Absence, Contact, ChildToContact
+
+
+class ContactSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Contact
+        fields = '__all__'
 
 
 class ChildSerializer(serializers.ModelSerializer):
+    contacts = ContactSerializer(many=True)
+
     class Meta:
         model = Child
         fields = '__all__'
@@ -28,7 +36,8 @@ class ChildSerializer(serializers.ModelSerializer):
         representation = super(ChildSerializer, self).to_representation(instance)
         representation['gender'] = instance.get_gender_display()
         representation['picture'] = instance.picture.url if instance.picture else None
-        representation['birth_date'] = arrow.get(instance.birth_date).format("DD.MM.YYYY", locale="fr_fr") if instance.birth_date else "-"
+        representation['birth_date'] = arrow.get(instance.birth_date).format("DD.MM.YYYY",
+                                                                             locale="fr_fr") if instance.birth_date else "-"
         representation['classroom'] = instance.classroom.name if instance.classroom else "-"
         representation['age_group'] = instance.age_group.name if instance.age_group else "-"
         representation['staff'] = instance.staff.full_name if instance.staff else "-"
