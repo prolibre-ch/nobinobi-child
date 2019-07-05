@@ -15,22 +15,29 @@
 import arrow
 from rest_framework import serializers
 
-from nobinobi_child.models import Child, Absence, Contact, ChildToContact
+from nobinobi_child.models import Child, Absence, ChildToContact
 
 
-class ContactSerializer(serializers.ModelSerializer):
+class ChildToContactSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Contact
-        fields = '__all__'
+        model = ChildToContact
+        fields = ('order', 'contact', 'link_with_child')
+        depth = 1
 
 
 class ChildSerializer(serializers.ModelSerializer):
-    contacts = ContactSerializer(many=True)
+    # contacts = ContactSerializer(many=True)
+
+    childtocontact_set = serializers.SerializerMethodField()
 
     class Meta:
         model = Child
         fields = '__all__'
         depth = 2
+
+    def get_childtocontact_set(self, instance):
+        songs = instance.childtocontact_set.all().order_by('order')
+        return ChildToContactSerializer(songs, many=True).data
 
     def to_representation(self, instance):
         representation = super(ChildSerializer, self).to_representation(instance)

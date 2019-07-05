@@ -122,9 +122,9 @@
               let text = "<p>";
               {#if (row.snack_time) {#}
               {#  text += "{% trans 'Snack time' %}: " + row.snack_time + "<br/>";#}
-              if (row.contacts && row.contacts.length > 0) {
-                for (let i = 0; i < row.contacts.length; i++) {
-                  text += i + ") " + row.contacts[i].first_name + " " + row.contacts[i].last_name + " - " + row.contacts[i].phone + " / " + row.contacts[i].mobile_phone + " / " + row.contacts[i].professional_phone + "<br>";
+              if (row.childtocontact_set && row.childtocontact_set.length > 0) {
+                for (let i = 0; i < row.childtocontact_set.length; i++) {
+                  text += i + ") " + row.childtocontact_set[i].contact.first_name + " " + row.childtocontact_set[i].contact.last_name + " - " + row.childtocontact_set[i].contact.phone + " / " + row.childtocontact_set[i].contact.mobile_phone + " / " + row.childtocontact_set[i].contact.professional_phone + "<br>";
                   {#if (row.medication_set[i].comment) {#}
                   {#  text += "{% trans 'Comment' %} " + (i + 1) + ": " + row.medication_set[i].comment + "<br/>";#}
                 }
