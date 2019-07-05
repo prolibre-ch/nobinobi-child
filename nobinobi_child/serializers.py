@@ -15,7 +15,7 @@
 import arrow
 from rest_framework import serializers
 
-from nobinobi_child.models import Child, Absence, ChildToContact
+from nobinobi_child.models import Child, Absence, ChildToContact, ChildSpecificNeed
 
 
 class ChildToContactSerializer(serializers.ModelSerializer):
@@ -25,10 +25,17 @@ class ChildToContactSerializer(serializers.ModelSerializer):
         depth = 1
 
 
+class ChildSpecificNeedSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ChildSpecificNeed
+        fields = '__all__'
+
+
 class ChildSerializer(serializers.ModelSerializer):
     # contacts = ContactSerializer(many=True)
 
     childtocontact_set = serializers.SerializerMethodField()
+    childspecificneed = ChildSpecificNeedSerializer(read_only=True)
 
     class Meta:
         model = Child
