@@ -249,6 +249,8 @@ class AgeGroup(TimeStampedModel):
     name = models.CharField(_("Name"), max_length=50)
     slug = models.SlugField(_("Slug"))
     order = models.PositiveIntegerField(_("Order"), unique=True)
+    from_date = models.DateField(_("From date"))
+    end_date = models.DateField(_("End date"))
 
     class Meta:
         ordering = ('order', 'name',)
