@@ -27,9 +27,10 @@ class Job(DailyJob):
         # executing empty sample job
         children = Child.objects.exclude(status=Child.STATUS.archived)
         for child in children:
-            new_age_group = AgeGroup.objects.filter(from_date__lte=child.birth_date, end_date__gte=child.birth_date).first()
-            child.age_group = new_age_group
-            child.save()
-            logger.info(_("The child {} changed age group.").format(child))
+            if child.birth_date:
+                new_age_group = AgeGroup.objects.filter(from_date__lte=child.birth_date, end_date__gte=child.birth_date).first()
+                child.age_group = new_age_group
+                child.save()
+                logger.info(_("The child {} changed age group.").format(child))
 
         logger.info(_("*** End of the change of age group year task. ***"))
