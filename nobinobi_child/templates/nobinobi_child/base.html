@@ -250,7 +250,7 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              {% block content_title_block %}<h1>{% block content_title %}Base{% endblock %}</h1>{% endblock %}
+              {% block content_title_block %}<h1>{% block content_title %}{% trans "Home" %}{% endblock %}</h1>{% endblock %}
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
@@ -272,7 +272,7 @@
           <div class="card">
             {% block content_card %}
               <div class="card-header">
-                <h3 class="card-title">{% block content_card_title %}Title{% endblock %}</h3>
+                <h3 class="card-title">{% block content_card_title %}{% trans "Welcome" %}{% endblock %}</h3>
 
                 {#          <div class="card-tools">#}
                 {#            <button type="button" class="btn btn-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">#}
@@ -281,10 +281,10 @@
                 {#              <i class="fa fa-times"></i></button>#}
                 {#          </div>#}
               </div>
-              <div class="card-body">{% block content_card_body %}Start creating your amazing application!{% endblock %}
+              <div class="card-body">{% block content_card_body %}{% trans "Please select a page from the menu on the left." %}{% endblock %}
               </div>
               <!-- /.card-body -->
-              <div class="card-footer">{% block content_card_footer %}Footer{% endblock %}</div>
+              <div class="card-footer">{% block content_card_footer %}{% trans "Thank you" %}{% endblock %}</div>
             {% endblock %}
             <!-- /.card-footer-->
           </div>
@@ -292,7 +292,7 @@
         {% endblock %}
       </section>
     {% endblock %}
-
+y
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
