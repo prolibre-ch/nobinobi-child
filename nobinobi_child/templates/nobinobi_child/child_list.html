@@ -91,6 +91,7 @@
           url: "{% url 'nobinobi_child:api-child-list' %}",
           dataSrc: ''
         },
+        "deferRender": true,
         "columns": [
           {data: "status", visible: false},
           {
@@ -164,6 +165,7 @@
     function filter_datatables_by_classroom(obj) {
       let classroom = obj.dataset.classroom;
       if (classroom !== "null") {
+        table.columns(6).search("").draw();
         table.columns(6).search(classroom).draw();
       } else {
         table.columns(6).search("").draw();
