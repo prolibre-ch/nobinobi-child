@@ -7,7 +7,7 @@ from django_extensions.management.jobs import DailyJob
 
 
 class Job(DailyJob):
-    help = _("Change of school year")
+    help = _("Change of agegroup auto")
 
     def execute(self):
         management.call_command("change_agegroup_auto")
