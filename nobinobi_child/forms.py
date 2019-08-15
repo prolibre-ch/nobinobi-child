@@ -48,8 +48,8 @@ class AbsenceCreateForm(BSModalForm):
         model = Absence
         fields = ["child", "start_date", "end_date", "type"]
         widgets = {
-            "start_date": DateTimePickerInput(options={"locale": "fr"}),
-            "end_date": DateTimePickerInput(options={"locale": "fr"}),
+            "start_date": DateTimePickerInput(options={"locale": "fr", "format": "DD/MM/YYYY HH:MM"}),
+            "end_date": DateTimePickerInput(options={"locale": "fr", "format": "DD/MM/YYYY HH:MM"}),
         }
 
     def __init__(self, *args, **kwargs):
