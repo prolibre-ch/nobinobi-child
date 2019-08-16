@@ -4,12 +4,10 @@ from crispy_forms.bootstrap import AppendedText
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Hidden, Div, Field
 from django import forms
-from django.contrib.admin import widgets
 from django.contrib.auth.forms import AuthenticationForm
 from django.utils.translation import gettext as _
-from django_select2.forms import ModelSelect2Widget
 
-from nobinobi_child.models import Absence, Child, AbsenceType
+from nobinobi_child.models import Absence, Child
 
 
 class LoginAuthenticationForm(AuthenticationForm):
@@ -29,13 +27,14 @@ class LoginAuthenticationForm(AuthenticationForm):
 
 
 class AbsenceCreateForm(BSModalForm):
-    child = forms.ModelChoiceField(
-        queryset=Child.objects.filter(status=Child.STATUS.in_progress),
-        # widget=ModelSelect2Widget(
-        #     model=Child,
-        #     search_fields=['first_name__icontains', 'last_name__icontains']
-        # ),
-    )
+    child = forms.ModelChoiceField(label=_("Child"),
+                                   queryset=Child.objects.filter(status=Child.STATUS.in_progress),
+                                   # widget=ModelSelect2Widget(
+                                   #     model=Child,
+                                   #     search_fields=['first_name__icontains', 'last_name__icontains']
+                                   # ),
+                                   )
+
     # type = forms.ModelChoiceField(
     #     queryset=AbsenceType.objects.all(),
     #     widget=ModelSelect2Widget(
