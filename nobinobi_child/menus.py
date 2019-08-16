@@ -25,7 +25,7 @@ Menu.add_item("main",
 # staff
 Menu.add_item("main",
               MenuItem(
-                  title=_("Staffs"),
+                  title=_("Staff"),
                   url="/staff/",
                   icon="fa fa-user",
                   children=[
