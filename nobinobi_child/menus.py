@@ -13,7 +13,7 @@ Menu.add_item("main",
                           url=reverse("nobinobi_child:Child_list"),
                           icon="fas fa-list"),
                       MenuItem(
-                          title=_("List IOTD"),
+                          title=_("Information of the day"),
                           url=reverse("nobinobi_child:InformationOfTheDay_list"),
                           icon="fas fa-list"),
                       MenuItem(

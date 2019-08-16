@@ -29,13 +29,13 @@ class LoginAuthenticationForm(AuthenticationForm):
 
 
 class AbsenceCreateForm(BSModalForm):
-    # child = forms.ModelChoiceField(
-    #     queryset=Child.objects.all(),
-    #     widget=ModelSelect2Widget(
-    #         model=Child,
-    #         search_fields=['first_name__icontains', 'last_name__icontains']
-    #     ),
-    # )
+    child = forms.ModelChoiceField(
+        queryset=Child.objects.filter(status=Child.STATUS.in_progress),
+        # widget=ModelSelect2Widget(
+        #     model=Child,
+        #     search_fields=['first_name__icontains', 'last_name__icontains']
+        # ),
+    )
     # type = forms.ModelChoiceField(
     #     queryset=AbsenceType.objects.all(),
     #     widget=ModelSelect2Widget(
