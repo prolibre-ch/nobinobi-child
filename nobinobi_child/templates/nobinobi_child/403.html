@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>{% block title %}{% blocktrans %}Page not found{% endblocktrans %}{% endblock %} | Nobinobi</title>
+  <title>{% block title %}{% trans "Forbidden" %} (403){% endblock %} | Nobinobi</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -253,7 +253,7 @@
           <div class="row mb-2">
             <div class="col-sm-6">
               {% block content_title_block %}
-                <h1>{% block content_title %}{% trans "404" %}{% endblock %}</h1>{% endblock %}
+                <h1>{% block content_title %}{% trans "403" %}{% endblock %}</h1>{% endblock %}
             </div>
           </div>
         </div><!-- /.container-fluid -->
@@ -268,7 +268,7 @@
           <div class="card">
             {% block content_card %}
               <div class="card-header">
-                <h3 class="card-title">{% block content_card_title %}{% trans "Error" %} 404{% endblock %}</h3>
+                <h3 class="card-title">{% block content_card_title %}{% trans "Forbidden" %} 403{% endblock %}</h3>
 
                 {#          <div class="card-tools">#}
                 {#            <button type="button" class="btn btn-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">#}
@@ -278,7 +278,7 @@
                 {#          </div>#}
               </div>
               <div class="card-body">
-                {% block content_card_body %}{% trans "The page you are looking for does not exist !" %}{% endblock %}
+                {% block content_card_body %}{% blocktrans %}<h1>Forbidden (403)</h1>{% endblocktrans %}{% endblock %}
               </div>
               <!-- /.card-body -->
               <div class="card-footer">{% block content_card_footer %}{% trans "Thank you" %}{% endblock %}</div>
