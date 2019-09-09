@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-08 10:11+0200\n"
-"PO-Revision-Date: 2019-08-15 16:05+0200\n"
+"POT-Creation-Date: 2019-09-09 12:01+0200\n"
+"PO-Revision-Date: 2019-09-09 12:03+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -18,44 +18,55 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 2.2.1\n"
 
-#: .\forms.py:24
+#: .\forms.py:22
 msgid "Username"
 msgstr "Nom d'utilisateur"
 
-#: .\forms.py:25
+#: .\forms.py:23
 msgid "Password"
 msgstr "Mot de passe"
 
-#: .\forms.py:27
+#: .\forms.py:25
 msgid "Sign In"
 msgstr "Se connecter"
 
-#: .\jobs\daily\change_auto_agegroup.py:14
+#: .\forms.py:30 .\models.py:129 .\models.py:189 .\models.py:334
+#: .\models.py:427 .\models.py:532 .\models.py:551
+#: .\templates\nobinobi_child\absence\absence_detail.html:14
+#: .\templates\nobinobi_child\absence\absence_list.html:25
+#: .\templates\nobinobi_child\child_list.html:45
+msgid "Child"
+msgstr "Enfant"
+
+#: .\jobs\daily\change_auto_agegroup.py:10
+msgid "Change of agegroup auto"
+msgstr "Changement d'auto des groupe d'âge"
+
 #: .\jobs\daily\change_auto_classroom.py:10
 msgid "Change of school year"
 msgstr "Changement d'année scolaire"
 
-#: .\jobs\daily\change_auto_agegroup.py:17
+#: .\management\commands\change_agegroup_auto.py:19
 msgid "*** Launch of the change of age group year task. ***"
 msgstr "*** Lancement de la tâche de changement de l’année scolaire. ***"
 
-#: .\jobs\daily\change_auto_agegroup.py:34
+#: .\management\commands\change_agegroup_auto.py:37
 msgid "The child {} changed age group."
 msgstr "L'enfant {} a changé de groupe d'âge."
 
-#: .\jobs\daily\change_auto_agegroup.py:36
+#: .\management\commands\change_agegroup_auto.py:39
 msgid "*** End of the change of age group year task. ***"
 msgstr "*** Fin de la tâche de changement de l’année scolaire. ***"
 
-#: .\jobs\daily\change_auto_classroom.py:13
+#: .\management\commands\change_classroom.py:18
 msgid "*** Launch of the change of school year task. ***"
 msgstr "*** Lancement de la tâche de changement de l’année scolaire. ***"
 
-#: .\jobs\daily\change_auto_classroom.py:36
+#: .\management\commands\change_classroom.py:41
 msgid "The child {} changed school year."
 msgstr "L’enfant {} a changé d’année scolaire."
 
-#: .\jobs\daily\change_auto_classroom.py:40
+#: .\management\commands\change_classroom.py:45
 msgid "*** End of the change of school year task. ***"
 msgstr "*** Fin de la tâche de changement de l’année scolaire. ***"
 
@@ -69,16 +80,18 @@ msgstr "Enfants"
 msgid "Children list"
 msgstr "Liste des enfants"
 
-#: .\menus.py:16
-msgid "List IOTD"
-msgstr "List IDJ"
+#: .\menus.py:16 .\models.py:394
+#: .\templates\nobinobi_child\informationoftheday_detail.html:5
+msgid "Information of the day"
+msgstr "Information du jour"
 
 #: .\menus.py:20 .\models.py:203
 msgid "Absences"
 msgstr "Absences"
 
-#: .\menus.py:28 .\templates\nobinobi_child\staff\staff_list.html:16
-msgid "Staffs"
+#: .\menus.py:28 .\models.py:92 .\templates\nobinobi_child\child_list.html:51
+#: .\templates\nobinobi_child\staff\staff_list.html:26
+msgid "Staff"
 msgstr "Personnel"
 
 #: .\menus.py:33 .\views.py:461
@@ -203,11 +216,6 @@ msgstr "Date prochaine salle de classe"
 msgid "Age group"
 msgstr "Groupe d'âge"
 
-#: .\models.py:92 .\templates\nobinobi_child\child_list.html:51
-#: .\templates\nobinobi_child\staff\staff_list.html:26
-msgid "Staff"
-msgstr "Personnel"
-
 #: .\models.py:99 .\models.py:510
 msgid "Food restrictions"
 msgstr "Restrictions alimentaires"
@@ -223,14 +231,6 @@ msgstr "Périodes"
 #: .\models.py:121 .\models.py:473
 msgid "Contacts"
 msgstr "Contacts"
-
-#: .\models.py:129 .\models.py:189 .\models.py:334 .\models.py:427
-#: .\models.py:532 .\models.py:551
-#: .\templates\nobinobi_child\absence\absence_detail.html:14
-#: .\templates\nobinobi_child\absence\absence_list.html:25
-#: .\templates\nobinobi_child\child_list.html:45
-msgid "Child"
-msgstr "Enfant"
 
 #: .\models.py:147 .\templates\nobinobi_child\child_detail.html:36
 #: .\templates\nobinobi_child\child_detail.html:165
@@ -369,10 +369,6 @@ msgstr "Titre"
 msgid "Content"
 msgstr "Contenu"
 
-#: .\models.py:394 .\templates\nobinobi_child\informationoftheday_detail.html:5
-msgid "Information of the day"
-msgstr "Information du jour"
-
 #: .\models.py:395
 #: .\templates\nobinobi_child\informationoftheday_detail.html:10
 msgid "Informations of the day"
@@ -408,17 +404,17 @@ msgid "Address"
 msgstr "Adresse"
 
 #: .\models.py:462 .\templates\nobinobi_child\child_detail.html:198
-#: .\templates\nobinobi_child\staff\staff_list.html:29
+#: .\templates\nobinobi_child\staff\staff_list.html:30
 msgid "Email"
 msgstr "E-mail"
 
 #: .\models.py:463 .\templates\nobinobi_child\child_detail.html:203
-#: .\templates\nobinobi_child\staff\staff_list.html:27
+#: .\templates\nobinobi_child\staff\staff_list.html:28
 msgid "Phone"
 msgstr "Téléphone"
 
 #: .\models.py:464 .\templates\nobinobi_child\child_detail.html:207
-#: .\templates\nobinobi_child\staff\staff_list.html:28
+#: .\templates\nobinobi_child\staff\staff_list.html:29
 msgid "Mobile phone"
 msgstr "Téléphone mobile"
 
@@ -498,6 +494,96 @@ msgstr "Journal de changement de classe"
 msgid "Logs changed classrooms"
 msgstr "Journaux de changement de classe"
 
+#: .\templates\403.html:7 .\templates\403.html:271 .\templates\403_csrf.html:7
+#: .\templates\403_csrf.html:271
+msgid "Forbidden"
+msgstr "Interdit"
+
+#: .\templates\403.html:37 .\templates\403_csrf.html:37 .\templates\404.html:37
+#: .\templates\500.html:39 .\templates\nobinobi_child\base.html:37
+#: .\templates\nobinobi_child\base.html:255
+#: .\templates\nobinobi_child\base.html:260
+msgid "Home"
+msgstr "Accueil"
+
+#: .\templates\403.html:43 .\templates\403_csrf.html:43 .\templates\404.html:43
+#: .\templates\500.html:45 .\templates\nobinobi_child\base.html:40
+msgid "Administration"
+msgstr "Administration"
+
+#: .\templates\403.html:66 .\templates\403_csrf.html:66 .\templates\404.html:66
+#: .\templates\500.html:68 .\templates\nobinobi_child\base.html:62
+msgid "Logout"
+msgstr "Déconnexion"
+
+#: .\templates\403.html:256 .\templates\403_csrf.html:256
+msgid "403"
+msgstr "403"
+
+#: .\templates\403.html:281
+msgid "<h1>Forbidden (403)</h1>"
+msgstr "<h1>Interdit (403)</h1>"
+
+#: .\templates\403.html:284 .\templates\403_csrf.html:286
+#: .\templates\404.html:284 .\templates\500.html:293
+#: .\templates\nobinobi_child\base.html:292
+msgid "Thank you"
+msgstr "Merci"
+
+#: .\templates\403_csrf.html:281
+msgid ""
+"<h1>Forbidden (403)</h1>\n"
+"\n"
+"                  <p>CSRF verification failed. Request aborted.</p>"
+msgstr ""
+"<h1>Interdit (403)</h1>\n"
+"\n"
+"                  <p>La vérification du CSRF a échoué. Demande avortée.</p>"
+
+#: .\templates\404.html:7
+msgid "Page not found"
+msgstr "Page non trouvée"
+
+#: .\templates\404.html:256
+msgid "404"
+msgstr "404"
+
+#: .\templates\404.html:271 .\templates\500.html:273
+msgid "Error"
+msgstr "Erreur"
+
+#: .\templates\404.html:281
+msgid "The page you are looking for does not exist !"
+msgstr "La page que vous recherchez n'existe pas !"
+
+#: .\templates\500.html:9
+msgid "Server error"
+msgstr "Erreur du serveur"
+
+#: .\templates\500.html:258
+msgid "500"
+msgstr "500"
+
+#: .\templates\500.html:283
+msgid ""
+"\n"
+"                  <h1>Ooops!!!</h1>\n"
+"\n"
+"                  <h3>Looks like something went wrong!</h3>\n"
+"\n"
+"                  <p>We track these errors automatically, but if the problem "
+"persists feel free to contact us. In the\n"
+"                    meantime, try refreshing.</p>"
+msgstr ""
+"\n"
+"<h1>Ooops!!!</h1>\n"
+"\n"
+"                  <h3>On dirait que quelque chose a mal tourné!</h3>\n"
+"\n"
+"                  <p>Nous suivons ces erreurs automatiquement, mais si le "
+"problème persiste n'hésitez pas à nous contacter. \n"
+"                    En attendant, essayez de rafraîchir.</p>"
+
 #: .\templates\includes\messages.html:10
 #: .\templates\nobinobi_child\absence\absence_detail.html:34
 msgid "Close"
@@ -511,11 +597,11 @@ msgstr "Supprimer l’absence"
 msgid "Delete"
 msgstr "Supprimer"
 
-#: .\templates\nobinobi_child\absence\absence_create.html:5
+#: .\templates\nobinobi_child\absence\absence_create.html:8
 msgid "Create absence"
 msgstr "Créer une absence"
 
-#: .\templates\nobinobi_child\absence\absence_create.html:16
+#: .\templates\nobinobi_child\absence\absence_create.html:36
 msgid "Create"
 msgstr "Créer"
 
@@ -529,47 +615,29 @@ msgstr "Détails de l'absence"
 msgid "Actions"
 msgstr "Actions"
 
-#: .\templates\nobinobi_child\absence\absence_list.html:88
+#: .\templates\nobinobi_child\absence\absence_list.html:90
 msgid "Add"
 msgstr "Ajouter"
 
-#: .\templates\nobinobi_child\absence\absence_list.html:93
+#: .\templates\nobinobi_child\absence\absence_list.html:95
 msgid "Your permission is insufficient."
 msgstr "Votre permission est insuffisante."
 
-#: .\templates\nobinobi_child\absence\absence_update.html:5
+#: .\templates\nobinobi_child\absence\absence_update.html:7
 msgid "Update absence"
 msgstr "Mise à jour de l’absence"
 
-#: .\templates\nobinobi_child\absence\absence_update.html:16
+#: .\templates\nobinobi_child\absence\absence_update.html:35
 msgid "Update"
 msgstr "Mettre à jour"
 
-#: .\templates\nobinobi_child\base.html:37
-#: .\templates\nobinobi_child\base.html:253
-#: .\templates\nobinobi_child\base.html:258
-msgid "Home"
-msgstr "Accueil"
-
-#: .\templates\nobinobi_child\base.html:40
-msgid "Administration"
-msgstr "Administration"
-
-#: .\templates\nobinobi_child\base.html:62
-msgid "Logout"
-msgstr "Déconnexion"
-
-#: .\templates\nobinobi_child\base.html:275
+#: .\templates\nobinobi_child\base.html:278
 msgid "Welcome"
 msgstr "Bienvenue"
 
-#: .\templates\nobinobi_child\base.html:284
+#: .\templates\nobinobi_child\base.html:288
 msgid "Please select a page from the menu on the left."
 msgstr "Veuillez s'il vous plaît sélectionnez une page du menu sur la gauche."
-
-#: .\templates\nobinobi_child\base.html:287
-msgid "Thank you"
-msgstr "Merci"
 
 #: .\templates\nobinobi_child\child_detail.html:17
 msgid "Child card"
@@ -638,6 +706,14 @@ msgstr "Merci d'avoir consulté notre site."
 msgid "Log in again"
 msgstr "Se connecter de nouveau"
 
+#: .\templates\nobinobi_child\staff\staff_list.html:16
+msgid "Staffs"
+msgstr "Personnel"
+
+#: .\templates\nobinobi_child\staff\staff_list.html:27
+msgid "Active"
+msgstr "Actif"
+
 #: .\views.py:65
 msgid "{}'s details"
 msgstr "Les détails de {}"
@@ -649,6 +725,9 @@ msgstr "Liste des enfants"
 #: .\views.py:163
 msgid "Absences list"
 msgstr "Liste des absences"
+
+#~ msgid "List IOTD"
+#~ msgstr "List IDJ"
 
 #~ msgid "Submit"
 #~ msgstr "Envoyer"
