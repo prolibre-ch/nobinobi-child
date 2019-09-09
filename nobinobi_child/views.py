@@ -154,7 +154,7 @@ class AbsenceUpdateView(BSModalUpdateView):
     success_url = reverse_lazy('nobinobi_child:Absence_list')
 
 
-class AbsenceListView(ListView):
+class AbsenceListView(LoginRequiredMixin, ListView):
     model = Absence
     template_name = "nobinobi_child/absence/absence_list.html"
 
