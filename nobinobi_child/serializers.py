@@ -13,6 +13,8 @@
 #      You should have received a copy of the GNU Affero General Public License
 #      along with this program.  If not, see <https://www.gnu.org/licenses/>.
 import arrow
+import pytz
+from django.conf import settings
 from rest_framework import serializers
 
 from nobinobi_child.models import Child, Absence, ChildToContact, ChildSpecificNeed
@@ -67,8 +69,10 @@ class AbsenceSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         representation = super(AbsenceSerializer, self).to_representation(instance)
+        format = "%d.%m.%Y %H:%M"
+        local_timezone = pytz.timezone(getattr(settings, 'TIME_ZONE', None))
         representation['child'] = instance.child.full_name
-        representation['start_date'] = arrow.get(instance.start_date).format("DD.MM.YYYY HH:mm", locale="fr_fr")
-        representation['end_date'] = arrow.get(instance.end_date).format("DD.MM.YYYY HH:mm", locale="fr_fr")
+        representation['start_date'] = instance.start_date.astimezone(local_timezone).strftime(format)
+        representation['end_date'] = instance.end_date.astimezone(local_timezone).strftime(format)
         representation['type'] = "{0} ({1})".format(instance.type.name, instance.type.group.name)
         return representation
