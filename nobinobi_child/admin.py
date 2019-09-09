@@ -86,7 +86,7 @@ class AbsenceAdmin(admin.ModelAdmin):
     # ]
     # raw_id_fields = ('',)
     # readonly_fields = ('',)
-    search_fields = ('child',)
+    search_fields = ('child__first_name', 'child__last_name')
 
 
 @register(AbsenceType)
