@@ -50,7 +50,7 @@ class ChildSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         representation = super(ChildSerializer, self).to_representation(instance)
-        representation['gender'] = instance.get_gender_display()
+        representation['gender'] = instance.gender
         representation['picture'] = instance.picture.url if instance.picture else None
         representation['birth_date'] = arrow.get(instance.birth_date).format("DD.MM.YYYY",
                                                                              locale="fr_fr") if instance.birth_date else "-"

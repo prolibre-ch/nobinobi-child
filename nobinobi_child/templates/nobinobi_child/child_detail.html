@@ -19,13 +19,13 @@
   <div class="object" id="object-{{ object.pk }}">
     <div class="row">
       <div class="col-lg-4 col-sm-12" style="text-align:center">
-        {% if object.image %}
+        {% if object.picture %}
           <img width="75%" class="img-fluid img-thumbnail img-orientation" style="margin:0 auto;"
                src="{{ object.picture.url }}"
                alt="Image {{ object.full_name }}">
         {% else %}
           <img width="75%" class="img-responsive img-thumbnail img-orientation"
-               src="{% static "img/nobinobi.png" %}"
+               src="{% if object.gender == "boy" %}{% static "img/avatar/default-avatar-boy.png" %}{% elif object.gender == "girl" %}{% static "img/avatar/default-avatar-girl.png" %}{% else %}{% static "img/avatar/default-avatar-other.png" %}{% endif %}"
                alt="{% blocktrans %}Image {{ object.full_name }} - default{% endblocktrans %}">
         {% endif %}
       </div>
