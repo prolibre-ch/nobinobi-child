@@ -19,11 +19,13 @@
 
 {% block content_card %}
     <div class="card-body">
-        <div class="btn-toolbar" role="toolbar" aria-label="">
-            <div class="btn-group" role="group" aria-label="">
-                <button type="button" class="btn btn-info absence-create">{% trans "Add" %}</button>
+        {% if perms.nobinobi_child.add_absence %}
+            <div class="btn-toolbar" role="toolbar" aria-label="">
+                <div class="btn-group" role="group" aria-label="">
+                    <button type="button" class="btn btn-info absence-create">{% trans "Add" %}</button>
+                </div>
             </div>
-        </div>
+        {% endif %}
         <table id="absences_datatables" class="display table" style="width:100%">
             <thead>
             <tr>
@@ -79,7 +81,7 @@
                         data: null,
                         render: function (row, index, datatable) {
                             return '<div class="btn-group">' +
-                                '{% if perms.nobinobi_child.delete_absence %}' +
+                                '{% if perms.nobinobi_child.view_absence %}' +
                                     '<button data-id="{% url "nobinobi_child:Absence_detail" pk=123 %}" class="absence-detail btn btn-info"><i class="fa fa-eye"></i></button>'.replace(123, row.id)
                                     +
                                     '{% endif %}' +
@@ -121,9 +123,6 @@
         });
 
         function create_event_button() {
-            // Create absence button
-            $(".absence-create").modalForm({formURL: "{% url 'nobinobi_child:Absence_create' %}"});
-
             // Update absence buttons
             $(".absence-update").each(function () {
                 $(this).modalForm({formURL: $(this).data('id')});
@@ -144,7 +143,7 @@
             {% if perms.nobinobi_child.add_absence %}
                 $(".absence-create").modalForm({formURL: "{% url 'nobinobi_child:Absence_create' %}"});
             {% else %}
-                alert("{% trans "Your permission is insufficient." %}");
+                console.log("{% trans "Your permission is insufficient." %}");
             {% endif %}
         });
     </script>

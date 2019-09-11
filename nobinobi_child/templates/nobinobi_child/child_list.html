@@ -159,7 +159,11 @@
                     {
                         data: null,
                         render: function (row, index, datatable) {
-                            return '<a href="{% url "nobinobi_child:Child_detail" pk="00000000-0000-0000-0000-000000000001" %}" class="btn btn-info"><i class="fa fa-eye"></i></a>'.replace("00000000-0000-0000-0000-000000000001", row.id);
+                            let r = '';
+                            {% if perms.nobinobi_child.view_child %}
+                                r += '<a href="{% url "nobinobi_child:Child_detail" pk="00000000-0000-0000-0000-000000000001" %}" class="btn btn-info"><i class="fa fa-eye"></i></a>'.replace("00000000-0000-0000-0000-000000000001", row.id);
+                            {% endif %}
+                            return r;
                         },
                     },
                 ],
