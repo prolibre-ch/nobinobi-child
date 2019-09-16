@@ -20,6 +20,11 @@ urlpatterns = [
                        auth_views.LogoutView.as_view(template_name='nobinobi_child/pages/login/logout.html'),
                        name='logout_view'),
                   path("", views.HomeView.as_view(), name="home"),
+
+                  path('api/dfu/all_count/', views.dfu_live_all_notification_count,
+                       name='dfu_live_all_notification_count'),
+                  path('api/dfu/all_list/', views.dfu_live_all_notification_list,
+                       name='dfu_live_all_notification_list'),
                   # child
                   path("child/", include([
                       path("child/", include([

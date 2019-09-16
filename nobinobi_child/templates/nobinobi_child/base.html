@@ -1,4 +1,4 @@
-{% load static i18n information_day_tags menu %}
+{% load static i18n information_day_tags menu notification_medic %}
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -66,6 +66,7 @@
 
             <!-- Messages Dropdown Menu -->
             {% block notification_menu %}
+                {% include_notif %}
             {% endblock %}
             {% block information_menu %}
                 {% show_iotd %}

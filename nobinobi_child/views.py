@@ -2,6 +2,7 @@
 from bootstrap_modal_forms.generic import BSModalCreateView, BSModalUpdateView, BSModalDeleteView, BSModalReadView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
+from django.forms import model_to_dict
 from django.urls import reverse_lazy
 from django.utils import timezone
 from django.utils.translation import gettext as _
@@ -13,6 +14,9 @@ from django.views.generic import (
     ListView,
     TemplateView)
 from nobinobi_staff.models import Staff
+from notifications.settings import get_config
+from notifications.utils import id2slug
+from notifications.views import JsonResponse
 from rest_framework import viewsets
 
 from nobinobi_child.forms import LoginAuthenticationForm, AbsenceCreateForm
@@ -460,3 +464,67 @@ class StaffListView(ListView):
         context = super(StaffListView, self).get_context_data(object_list=None, **kwargs)
         context['title'] = _("Staffs list")
         return context
+
+
+def dfu_live_all_notification_list(request):
+    ''' Return a json with a unread notification list '''
+    try:
+        user_is_authenticated = request.user.is_authenticated()
+    except TypeError:  # Django >= 1.11
+        user_is_authenticated = request.user.is_authenticated
+
+    if not user_is_authenticated:
+        data = {
+            'all_count': 0,
+            'all_list': []
+        }
+        return JsonResponse(data)
+
+    default_num_to_fetch = get_config()['NUM_TO_FETCH']
+    try:
+        # If they don't specify, make it 5.
+        num_to_fetch = request.GET.get('max', default_num_to_fetch)
+        num_to_fetch = int(num_to_fetch)
+        if not (1 <= num_to_fetch <= 100):
+            num_to_fetch = default_num_to_fetch
+    except ValueError:  # If casting to an int fails.
+        num_to_fetch = default_num_to_fetch
+
+    all_list = []
+
+    for notification in request.user.notifications.filter(timestamp__lte=timezone.localtime())[0:num_to_fetch]:
+        struct = model_to_dict(notification)
+        struct['slug'] = id2slug(notification.id)
+        if notification.actor:
+            struct['actor'] = str(notification.actor)
+        if notification.target:
+            struct['target'] = str(notification.target)
+        if notification.action_object:
+            struct['action_object'] = str(notification.action_object)
+        if notification.data:
+            struct['data'] = notification.data
+        all_list.append(struct)
+        if request.GET.get('mark_as_read'):
+            notification.mark_as_read()
+    data = {
+        'all_count': request.user.notifications.filter(timestamp__lte=timezone.localtime()).count(),
+        'all_list': all_list
+    }
+    return JsonResponse(data)
+
+
+def dfu_live_all_notification_count(request):
+    try:
+        user_is_authenticated = request.user.is_authenticated()
+    except TypeError:  # Django >= 1.11
+        user_is_authenticated = request.user.is_authenticated
+
+    if not user_is_authenticated:
+        data = {
+            'all_count': 0
+        }
+    else:
+        data = {
+            'all_count': request.user.notifications.filter(timestamp__lte=timezone.localtime()).count(),
+        }
+    return JsonResponse(data)
