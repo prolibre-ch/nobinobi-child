@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'bootstrap_modal_forms',
     'widget_tweaks',
     'django_select2',
-    'notifications',
     'bootstrap_datepicker_plus',
     'nobinobi_core',
     'nobinobi_staff',
