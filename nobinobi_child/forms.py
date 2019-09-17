@@ -1,3 +1,4 @@
+import arrow
 from bootstrap_datepicker_plus import DateTimePickerInput
 from bootstrap_modal_forms.forms import BSModalForm
 from crispy_forms.bootstrap import AppendedText
@@ -5,6 +6,7 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Hidden
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
+from django.utils import timezone
 from django.utils.translation import gettext as _
 
 from nobinobi_child.models import Absence, Child
@@ -43,13 +45,14 @@ class AbsenceCreateForm(BSModalForm):
         model = Absence
         fields = ["child", "start_date", "end_date", "type"]
         widgets = {
-            "start_date": DateTimePickerInput(options={"locale": "fr", "format": "DD/MM/YYYY HH:MM"}),
-            "end_date": DateTimePickerInput(options={"locale": "fr", "format": "DD/MM/YYYY HH:MM"}),
+            "start_date": DateTimePickerInput(options={"locale": "fr", "format": "DD/MM/YYYY HH:mm"}),
+            # "start_date": DateTimePickerInput(options={"locale": "fr", "format": "DD/MM/YYYY HH:MM"}),
+            "end_date": DateTimePickerInput(options={"locale": "fr", "format": "DD/MM/YYYY HH:mm"}),
+            # "end_date": DateTimePickerInput(options={"locale": "fr", "format": "DD/MM/YYYY HH:MM"}),
         }
 
-    # def __init__(self, *args, **kwargs):
-    #     super(AbsenceCreateForm, self).__init__(*args, **kwargs)
-    #     self.helper = FormHelper()
-    #     self.helper.form_method = 'post'
-    #     self.helper.form_show_labels = True
-    #     self.helper.form_tag = True
+    def __init__(self, *args, **kwargs):
+        kwargs['initial']['start_date'] = arrow.get(timezone.localtime()).replace(hour=6, minute=0, second=0).strftime("%d/%m/%Y %H:%M")
+        kwargs['initial']['end_date'] = arrow.get(timezone.localtime()).replace(hour=22, minute=0, second=0).strftime("%d/%m/%Y %H:%M")
+        super(AbsenceCreateForm, self).__init__(*args, **kwargs)
+
