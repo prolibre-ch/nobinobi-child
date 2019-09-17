@@ -11,7 +11,7 @@
   </div>
 
   <div class="modal-body">
-    <p>Are you sure you want to delete absence: <strong>{{ absence.start_date|date:"SHORT_DATETIME_FORMAT" }} - {{ absence.end_date|date:"SHORT_DATETIME_FORMAT" }}</strong> for child <strong>{{ absence.child.full_name }}</strong>?</p>
+    <p>{% blocktrans %}Are you sure you want to delete absence:{% endblocktrans %} <strong>{{ absence.start_date|date:"SHORT_DATETIME_FORMAT" }} - {{ absence.end_date|date:"SHORT_DATETIME_FORMAT" }}</strong> for child <strong>{{ absence.child.full_name }}</strong>?</p>
   </div>
 
   <div class="modal-footer">
