@@ -128,7 +128,7 @@ class LanguageListView(ListView):
 class AbsenceCreateView(BSModalCreateView):
     template_name = 'nobinobi_child/absence/absence_create.html'
     form_class = AbsenceCreateForm
-    success_message = 'Success: Absence was created.'
+    success_message = _('Success: Absence was created.')
     success_url = reverse_lazy('nobinobi_child:Absence_list')
 
 
@@ -142,7 +142,7 @@ class AbsenceDetailView(BSModalReadView):
 class AbsenceDeleteView(BSModalDeleteView):
     model = Absence
     template_name = 'nobinobi_child/absence/absence_confirm_delete.html'
-    success_message = 'Success: Absence was deleted.'
+    success_message = _('Success: Absence was deleted.')
     success_url = reverse_lazy('nobinobi_child:Absence_list')
 
 
@@ -150,7 +150,7 @@ class AbsenceUpdateView(BSModalUpdateView):
     model = Absence
     template_name = 'nobinobi_child/absence/absence_update.html'
     form_class = AbsenceCreateForm
-    success_message = 'Success: Absence was updated.'
+    success_message = _('Success: Absence was updated.')
     success_url = reverse_lazy('nobinobi_child:Absence_list')
 
 
