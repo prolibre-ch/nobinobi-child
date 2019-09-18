@@ -52,7 +52,13 @@ class AbsenceCreateForm(BSModalForm):
         }
 
     def __init__(self, *args, **kwargs):
-        kwargs['initial']['start_date'] = arrow.get(timezone.localtime()).replace(hour=6, minute=0, second=0).strftime("%d/%m/%Y %H:%M")
-        kwargs['initial']['end_date'] = arrow.get(timezone.localtime()).replace(hour=22, minute=0, second=0).strftime("%d/%m/%Y %H:%M")
         super(AbsenceCreateForm, self).__init__(*args, **kwargs)
+        if not kwargs.get('initial', None):
+            if not self.initial.get('start_date', None):
+                self.initial['start_date'] = arrow.get(timezone.localtime()).replace(hour=6, minute=0, second=0).strftime(
+                    "%d/%m/%Y %H:%M")
 
+            if not self.initial.get('end_date', None):
+                self.initial['end_date'] = arrow.get(timezone.localtime()).replace(hour=22, minute=0,
+                                                                                        second=0).strftime(
+                    "%d/%m/%Y %H:%M")
