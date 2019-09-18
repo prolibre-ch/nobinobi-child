@@ -170,10 +170,29 @@
                 }],
                 dom: 'Bfrtip',
                 buttons: [
-                    'copyHtml5',
-                    'print',
-                    'csvHtml5',
-                    'pdfHtml5'
+                    {
+                        extend: 'copyHtml5',
+                        exportOptions: {
+                            columns: [2, 3, 4, 5, 8]
+                        },
+                    },
+                                        {
+                        extend: 'print',
+                        exportOptions: {
+                            columns: [2, 3, 4, 5, 8]
+                        },
+                    },
+                                        {
+                        extend: 'csvHtml5',
+                        exportOptions: {
+                            columns: [2, 3, 4, 5, 8]
+                        },
+                    },                    {
+                        extend: 'pdfHtml5',
+                        exportOptions: {
+                            columns: [2, 3, 4, 5, 8]
+                        },
+                    },
                 ],
                 responsive: true,
                 "searchCols": [
