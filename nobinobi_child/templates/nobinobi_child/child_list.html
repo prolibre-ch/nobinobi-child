@@ -43,13 +43,11 @@
                 <th>{% trans "Status" %}</th>
                 <th>{% trans "Picture" %}</th>
                 <th>{% trans "Child" %}</th>
-                <th>{% trans "Usual name" %}</th>
                 <th>{% trans "Gender" %}</th>
                 <th>{% trans "Birth date" %}</th>
                 <th>{% trans "Classroom" %}</th>
                 <th>{% trans "Age group" %}</th>
                 <th>{% trans "Staff" %}</th>
-                <th>{% trans "Renewal date" %}</th>
                 <th>{% trans "Contacts Phones" %}</th>
                 <th>{% trans "Actions" %}</th>
             </tr>
@@ -117,7 +115,6 @@
                             return data.first_name + ' ' + data.last_name;
                         }
                     },
-                    {data: "usual_name"},
                     {
                         data: "gender",
                         "render": function (row, index, datatable) {
@@ -137,7 +134,6 @@
                     {data: "classroom"},
                     {data: "age_group"},
                     {data: "staff"},
-                    {data: "renewal_date"},
                     {
                         data: null,
                         render: function (row, index, datatable) {
@@ -190,10 +186,10 @@
         function filter_datatables_by_classroom(obj) {
             let classroom = obj.dataset.classroom;
             if (classroom !== "null") {
-                table.columns(6).search("").draw();
-                table.columns(6).search(classroom).draw();
+                table.columns(5).search("").draw();
+                table.columns(5).search(classroom).draw();
             } else {
-                table.columns(6).search("").draw();
+                table.columns(5).search("").draw();
             }
         }
 
