@@ -112,7 +112,11 @@
                     {
                         data: null, render: function (data, type, row) {
                             // Combine the first and last names into a single table field
-                            return data.first_name + ' ' + data.last_name;
+                            let text = data.first_name + ' ' + data.last_name;
+                            if(data.childspecificneed){
+                                text += " <i class='fas fa-exclamation-triangle'></i>"
+                            }
+                            return text;
                         }
                     },
                     {
@@ -176,18 +180,18 @@
                             columns: [2, 3, 4, 5, 8]
                         },
                     },
-                                        {
+                    {
                         extend: 'print',
                         exportOptions: {
                             columns: [2, 3, 4, 5, 8]
                         },
                     },
-                                        {
+                    {
                         extend: 'csvHtml5',
                         exportOptions: {
                             columns: [2, 3, 4, 5, 8]
                         },
-                    },                    {
+                    }, {
                         extend: 'pdfHtml5',
                         exportOptions: {
                             columns: [2, 3, 4, 5, 8]
