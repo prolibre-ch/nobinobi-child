@@ -11,36 +11,6 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AddField(
-            model_name='child',
-            name='good_development',
-            field=models.NullBooleanField(verbose_name='Good development'),
-        ),
-        migrations.AddField(
-            model_name='child',
-            name='health_insurance',
-            field=models.CharField(blank=True, max_length=255, null=True, verbose_name='Health Insurance'),
-        ),
-        migrations.AddField(
-            model_name='child',
-            name='healthy_child',
-            field=models.NullBooleanField(verbose_name='Healthy child'),
-        ),
-        migrations.AddField(
-            model_name='child',
-            name='specific_problem',
-            field=models.CharField(blank=True, max_length=255, null=True, verbose_name='Specific problem'),
-        ),
-        migrations.AddField(
-            model_name='child',
-            name='usage_paracetamol',
-            field=models.NullBooleanField(verbose_name='Usage paracetamol'),
-        ),
-        migrations.AddField(
-            model_name='child',
-            name='vaccination',
-            field=models.NullBooleanField(verbose_name='Vaccination'),
-        ),
-        migrations.AddField(
             model_name='contact',
             name='authorized_pick_up_child',
             field=models.NullBooleanField(verbose_name='Contact authorized to pick up the child.'),
@@ -49,10 +19,5 @@ class Migration(migrations.Migration):
             model_name='contact',
             name='to_contact_if_needed',
             field=models.NullBooleanField(verbose_name='To contact if needed.'),
-        ),
-        migrations.AlterField(
-            model_name='agegroup',
-            name='from_date',
-            field=models.DateField(verbose_name='Date de début'),
         ),
     ]

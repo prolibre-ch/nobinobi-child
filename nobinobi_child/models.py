@@ -60,14 +60,6 @@ class Child(StatusModel, TimeStampedModel):
     comment = models.CharField(_("Comment"), max_length=255, blank=True, null=True)
     renewal_date = models.DateField(_("Renewal date"), blank=True, null=True)
 
-    # Information sheet
-    usage_paracetamol = models.NullBooleanField(_("Usage paracetamol"), blank=False)
-    healthy_child = models.NullBooleanField(_("Healthy child"), blank=False)
-    good_development = models.NullBooleanField(_("Good development"), blank=False)
-    specific_problem = models.CharField(_("Specific problem"), max_length=255, blank=True, null=True)
-    vaccination = models.NullBooleanField(_("Vaccination"), blank=False)
-    health_insurance = models.CharField(_("Health Insurance"), max_length=255, blank=True, null=True)
-
     classroom = models.ForeignKey(
         to="Classroom",
         verbose_name=_("Classroom"),
