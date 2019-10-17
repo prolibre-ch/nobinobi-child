@@ -6,6 +6,7 @@ from nobinobi_child.models import Period, Allergy, FoodRestriction, Language, Cl
     ChildToPeriod, ChildToContact
 from django.utils.translation import gettext as _
 
+
 @register(Period)
 class PeriodAdmin(admin.ModelAdmin):
     """
@@ -219,20 +220,51 @@ class ChildSpecificNeedInline(admin.TabularInline):
     can_delete = True
 
 
+class ChildToFolder(admin.StackedInline):
+    try:
+        from nobinobi_sape_contract.models import Folder
+    except ModuleNotFoundError as err:
+        # Error handling
+        pass
+    else:
+        model = Folder
+
+
 @register(Child)
 class ChildAdmin(admin.ModelAdmin):
     """
         Admin View for Child
     """
-    list_display = ('first_name', 'last_name', 'usual_name', 'gender', 'birth_date', 'classroom', 'age_group', 'staff', "folder")
+    list_display = (
+        'first_name', 'last_name', 'usual_name', 'gender', 'birth_date', 'classroom', 'age_group', 'staff')
     list_filter = ('gender', 'classroom', 'status', 'age_group', 'staff')
+    fieldsets = (
+        (_('Standard info'), {
+            'fields': (
+                'first_name', 'last_name', 'usual_name', 'gender', 'picture', 'birth_date', 'languages', 'red_list',
+                'comment', 'renewal_date', 'staff')
+        }),
+        (_("Classroom"), {
+            'fields': ('classroom', 'next_classroom', 'date_next_classroom', 'age_group')
+        }),
+        # (_("Folders"), {
+        #     'fields': ('folder',)
+        # }),
+    )
     inlines = [
         ChildToPeriodInline,
         ChildToContactInline,
         ChildSpecificNeedInline,
     ]
+    try:
+        from nobinobi_sape_contract.models import Folder
+    except ModuleNotFoundError as err:
+        # Error handling
+        pass
+    else:
+        inlines += [ChildToFolder]
     # raw_id_fields = ('',)
-    readonly_fields = ('slug',)
+    readonly_fields = ('slug', "folder")
     search_fields = (
         'first_name', 'last_name', 'usual_name', 'birth_date', 'classroom__name', 'next_classroom__name',
         'date_next_classroom',
