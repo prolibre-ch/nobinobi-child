@@ -466,7 +466,7 @@ class Contact(TimeStampedModel):
     organisation = models.CharField(_("Organisation"), max_length=100, blank=True, null=True)
     function = models.CharField(_("Function"), max_length=100, blank=True, null=True)
     authorized_pick_up_child = models.NullBooleanField(_("Contact authorized to pick up the child."), blank=False)
-    to_contact_if_needed = models.NullBooleanField(_("To contact if needed."), blank=False)
+    to_contact_if_needed = models.NullBooleanField(_("To contact if needed"), blank=False)
 
     class Meta:
         ordering = ('first_name', 'last_name',)
