@@ -4,7 +4,7 @@ from django.contrib.admin import register
 from nobinobi_child.models import Period, Allergy, FoodRestriction, Language, Classroom, AgeGroup, Absence, AbsenceType, \
     AbsenceGroup, ClassroomDayOff, InformationOfTheDay, Contact, Address, ChildSpecificNeed, LogChangeClassroom, Child, \
     ChildToPeriod, ChildToContact
-
+from django.utils.translation import gettext as _
 
 @register(Period)
 class PeriodAdmin(admin.ModelAdmin):
@@ -224,7 +224,7 @@ class ChildAdmin(admin.ModelAdmin):
     """
         Admin View for Child
     """
-    list_display = ('first_name', 'last_name', 'usual_name', 'gender', 'birth_date', 'classroom', 'age_group', 'staff')
+    list_display = ('first_name', 'last_name', 'usual_name', 'gender', 'birth_date', 'classroom', 'age_group', 'staff', "folder")
     list_filter = ('gender', 'classroom', 'status', 'age_group', 'staff')
     inlines = [
         ChildToPeriodInline,
@@ -237,3 +237,14 @@ class ChildAdmin(admin.ModelAdmin):
         'first_name', 'last_name', 'usual_name', 'birth_date', 'classroom__name', 'next_classroom__name',
         'date_next_classroom',
         'age_group__name', 'staff__first_name', 'staff__last_name')
+
+    def folder(self, x):
+        try:
+            from nobinobi_sape_contract.models import Folder
+        except ModuleNotFoundError as err:
+            # Error handling
+            pass
+        else:
+            return Folder.objects.get(child=x)
+
+    folder.short_description = _('Folder')
