@@ -77,6 +77,15 @@ class ChildDetailView(LoginRequiredMixin, DetailView):
         for ctp in child_periods:
             table_periods_used[ctp.period.weekday][ctp.period.order] = True
 
+        context["folder"] = None
+        try:
+            from nobinobi_sape_contract.models import Folder
+            try:
+                context["folder"] = Folder.objects.get(child=context['child'])
+            except Folder.DoesNotExist:
+                pass
+        except ImportError:
+            pass
         context['table_periods_used'] = table_periods_used
         return context
 
