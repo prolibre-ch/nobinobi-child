@@ -31,6 +31,8 @@
 
 
 
+
+
 								 {% if object.gender == "boy" %}{% static "img/avatar/default-avatar-boy.png" %}{% elif object.gender == "girl" %}{% static "img/avatar/default-avatar-girl.png" %}{% else %}{% static "img/avatar/default-avatar-other.png" %}{% endif %}"
                          alt="{% blocktrans %}Image {{ object.full_name }} - default{% endblocktrans %}">
 				{% endif %}
@@ -93,13 +95,28 @@
 					{% if folder %}
                         <tr>
                             <th class="col-lg-4"
-                                scope="row">{% get_verbose_field_name folder.child_registration "usage_paracetamol" %}</th>
-                            <td class="col-lg-8">{{ folder.child_registration.usage_paracetamol|default:"-" }}</td>
+                                scope="row">{% trans "paracetamol" %}</th>
+                            <td class="col-lg-8">{{ folder.child_registration.usage_paracetamol|yesno:_("Yes,No,No information provided") }}</td>
                         </tr>
                         <tr>
                             <th class="col-lg-4"
                                 scope="row">{% get_verbose_field_name folder.child_registration "vaccination" %}</th>
-                            <td class="col-lg-8">{{ folder.child_registration.vaccination|default:"-" }}</td>
+                            <td class="col-lg-8">{{ folder.child_registration.vaccination|yesno:_("Yes,No,No information provided") }}</td>
+                        </tr>
+                        <tr>
+                            <th class="col-lg-4"
+                                scope="row">{% get_verbose_field_name folder.child_registration "healthy_child" %}</th>
+                            <td class="col-lg-8">{{ folder.child_registration.healthy_child|yesno:_("Yes,No,No information provided") }}</td>
+                        </tr>
+                        <tr>
+                            <th class="col-lg-4"
+                                scope="row">{% get_verbose_field_name folder.child_registration "good_development" %}</th>
+                            <td class="col-lg-8">{{ folder.child_registration.good_development|yesno:_("Yes,No,No information provided") }}</td>
+                        </tr>
+                        <tr>
+                            <th class="col-lg-4"
+                                scope="row">{% get_verbose_field_name folder.child_registration "specific_problem" %}</th>
+                            <td class="col-lg-8">{{ folder.child_registration.specific_problem|default_if_none:_("No") }}</td>
                         </tr>
 					{% endif %}
                     <tr>

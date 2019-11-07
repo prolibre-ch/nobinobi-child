@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-17 10:14+0200\n"
+"POT-Creation-Date: 2019-11-07 14:43+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,21 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\admin.py:242
+msgid "Standard info"
+msgstr ""
+
+#: .\admin.py:247 .\models.py:65 .\models.py:294 .\models.py:316
+#: .\models.py:385 .\models.py:558
+#: .\templates\nobinobi_child\child_list.html:22
+#: .\templates\nobinobi_child\child_list.html:48
+msgid "Classroom"
+msgstr ""
+
+#: .\admin.py:282
+msgid "Folder"
+msgstr ""
 
 #: .\forms.py:24
 msgid "Username"
@@ -206,12 +221,6 @@ msgstr ""
 msgid "Renewal date"
 msgstr ""
 
-#: .\models.py:65 .\models.py:294 .\models.py:316 .\models.py:385
-#: .\models.py:558 .\templates\nobinobi_child\child_list.html:22
-#: .\templates\nobinobi_child\child_list.html:48
-msgid "Classroom"
-msgstr ""
-
 #: .\models.py:75 .\models.py:566
 msgid "Next classroom"
 msgstr ""
@@ -240,8 +249,8 @@ msgstr ""
 msgid "Contacts"
 msgstr ""
 
-#: .\models.py:147 .\templates\nobinobi_child\child_detail.html:36
-#: .\templates\nobinobi_child\child_detail.html:165
+#: .\models.py:147 .\templates\nobinobi_child\child_detail.html:44
+#: .\templates\nobinobi_child\child_detail.html:203
 msgid "Full name"
 msgstr ""
 
@@ -407,26 +416,26 @@ msgid "Children to contacts"
 msgstr ""
 
 #: .\models.py:457 .\models.py:496
-#: .\templates\nobinobi_child\child_detail.html:190
+#: .\templates\nobinobi_child\child_detail.html:228
 msgid "Address"
 msgstr ""
 
-#: .\models.py:462 .\templates\nobinobi_child\child_detail.html:198
+#: .\models.py:462 .\templates\nobinobi_child\child_detail.html:236
 #: .\templates\nobinobi_child\staff\staff_list.html:30
 msgid "Email"
 msgstr ""
 
-#: .\models.py:463 .\templates\nobinobi_child\child_detail.html:203
+#: .\models.py:463 .\templates\nobinobi_child\child_detail.html:243
 #: .\templates\nobinobi_child\staff\staff_list.html:28
 msgid "Phone"
 msgstr ""
 
-#: .\models.py:464 .\templates\nobinobi_child\child_detail.html:207
+#: .\models.py:464 .\templates\nobinobi_child\child_detail.html:247
 #: .\templates\nobinobi_child\staff\staff_list.html:29
 msgid "Mobile phone"
 msgstr ""
 
-#: .\models.py:465 .\templates\nobinobi_child\child_detail.html:211
+#: .\models.py:465 .\templates\nobinobi_child\child_detail.html:251
 msgid "Professional phone"
 msgstr ""
 
@@ -438,11 +447,11 @@ msgstr ""
 msgid "Function"
 msgstr ""
 
-#: .\models.py:468 .\templates\nobinobi_child\child_detail.html:215
+#: .\models.py:468 .\templates\nobinobi_child\child_detail.html:255
 msgid "Contact authorized to pick up the child."
 msgstr ""
 
-#: .\models.py:469 .\templates\nobinobi_child\child_detail.html:219
+#: .\models.py:469 .\templates\nobinobi_child\child_detail.html:259
 msgid "To contact if needed"
 msgstr ""
 
@@ -482,7 +491,7 @@ msgstr ""
 msgid "Individual home project"
 msgstr ""
 
-#: .\models.py:530 .\templates\nobinobi_child\child_detail.html:124
+#: .\models.py:530 .\templates\nobinobi_child\child_detail.html:159
 msgid "Attachment"
 msgstr ""
 
@@ -490,7 +499,7 @@ msgstr ""
 msgid "Measure to take"
 msgstr ""
 
-#: .\models.py:540 .\templates\nobinobi_child\child_detail.html:110
+#: .\models.py:540 .\templates\nobinobi_child\child_detail.html:145
 msgid "Child specific need"
 msgstr ""
 
@@ -652,24 +661,39 @@ msgstr ""
 msgid "Please select a page from the menu on the left."
 msgstr ""
 
-#: .\templates\nobinobi_child\child_detail.html:17
+#: .\templates\nobinobi_child\child_detail.html:18
 msgid "Child card"
 msgstr ""
 
-#: .\templates\nobinobi_child\child_detail.html:29
+#: .\templates\nobinobi_child\child_detail.html:37
 #, python-format
 msgid "Image %(object.full_name)s - default"
 msgstr ""
 
-#: .\templates\nobinobi_child\child_detail.html:100
+#: .\templates\nobinobi_child\child_detail.html:98
+msgid "paracetamol"
+msgstr ""
+
+#: .\templates\nobinobi_child\child_detail.html:99
+#: .\templates\nobinobi_child\child_detail.html:104
+#: .\templates\nobinobi_child\child_detail.html:109
+#: .\templates\nobinobi_child\child_detail.html:114
+msgid "Yes,No,No information provided"
+msgstr ""
+
+#: .\templates\nobinobi_child\child_detail.html:119
+msgid "No"
+msgstr ""
+
+#: .\templates\nobinobi_child\child_detail.html:135
 msgid "Edit"
 msgstr ""
 
-#: .\templates\nobinobi_child\child_detail.html:137
+#: .\templates\nobinobi_child\child_detail.html:172
 msgid "Contact (s) of the child"
 msgstr ""
 
-#: .\templates\nobinobi_child\child_detail.html:241
+#: .\templates\nobinobi_child\child_detail.html:281
 msgid "Period(s)"
 msgstr ""
 
