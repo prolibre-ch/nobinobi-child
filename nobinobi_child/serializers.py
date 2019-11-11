@@ -43,6 +43,7 @@ class ChildSerializer(serializers.ModelSerializer):
         model = Child
         fields = '__all__'
         depth = 2
+        datatables_always_serialize = ("id", "first_name", "last_name")
 
     def get_childtocontact_set(self, instance):
         songs = instance.childtocontact_set.all().order_by('order')

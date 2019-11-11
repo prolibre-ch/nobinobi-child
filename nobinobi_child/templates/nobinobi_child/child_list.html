@@ -12,7 +12,7 @@
 {% endblock %}
 
 {% block breadcrumb %}
-    {{ block.super }}
+	{{ block.super }}
     <li class="breadcrumb-item active"><a href="{% url "nobinobi_child:Child_list" %}">{{ title }}</a></li>
 {% endblock %}
 
@@ -24,11 +24,11 @@
 
             <div class="center btn-toolbar" role="toolbar" aria-label="">
                 <div class="btn-group mx-auto" role="group" aria-label="">
-                    {% for classroom in classrooms %}
+					{% for classroom in classrooms %}
                         <button type="button" onclick="filter_datatables_by_classroom(this);"
                                 id="{{ classroom|slugify }}_btn_choice" data-classroom="{{ classroom }}"
                                 class="btn btn-secondary">{{ classroom }}</button>
-                    {% endfor %}
+					{% endfor %}
                     <button type="button" onclick="filter_datatables_by_classroom(this);"
                             id="none_btn_choice" data-classroom="null"
                             class="btn btn-dark">{% trans "All" %}</button>
@@ -55,47 +55,47 @@
         </table>
     </div>
 
-    {#  <table class="table table-hover table-bordered table-responsive">#}
-    {#    <thead>#}
-    {#    <tr>#}
-    {#      <th>Nom complet</th>#}
-    {#      <th>age</th>#}
-    {#      <th>usual name</th>#}
-    {#    </tr>#}
-    {#    </thead>#}
-    {#    <tbody>#}
-    {#    {% for child in object_list %}#}
-    {#      <tr>#}
-    {#        <td scope="row">{{ child.full_name }}</td>#}
-    {#        <td>{{ child.birth_date}}</td>#}
-    {#        <td>{{ child.usual_name }}</td>#}
-    {#      </tr>#}
-    {#    {% endfor %}#}
-    {#    </tbody>#}
-    {#  </table>#}
+	{#  <table class="table table-hover table-bordered table-responsive">#}
+	{#    <thead>#}
+	{#    <tr>#}
+	{#      <th>Nom complet</th>#}
+	{#      <th>age</th>#}
+	{#      <th>usual name</th>#}
+	{#    </tr>#}
+	{#    </thead>#}
+	{#    <tbody>#}
+	{#    {% for child in object_list %}#}
+	{#      <tr>#}
+	{#        <td scope="row">{{ child.full_name }}</td>#}
+	{#        <td>{{ child.birth_date}}</td>#}
+	{#        <td>{{ child.usual_name }}</td>#}
+	{#      </tr>#}
+	{#    {% endfor %}#}
+	{#    </tbody>#}
+	{#  </table>#}
 {% endblock %}
 
 {% block extrajs %}
     <script src="{% static 'vendor/DataTables/datatables.min.js' %}"></script>
     <script>
         let table = null;
+        let total_row;
         $(document).ready(function () {
             {#jQuery.noConflict();#}
             table = $('#children_datatables').DataTable({
                 "language": {
                     "url": "{% static 'vendor/DataTables/DataTables-1.10.18/i18n/French.json' %}"
                 },
-                "ajax": {
-                    url: "{% url 'nobinobi_child:api-child-list' %}",
-                    dataSrc: ''
-                },
-                "deferRender": true,
+                "processing": true,
+                "serverSide": true,
+                "ajax": "{% url 'nobinobi_child:api-child-list' %}?format=datatables",
                 "columns": [
                     {data: "status", visible: false},
                     {
                         data: "picture",
                         orderable: false,
                         "render": function (row, index, datatable) {
+
                             if (row == null) {
                                 console.log(datatable);
                                 if (datatable['gender'] === "boy") {
@@ -110,10 +110,12 @@
                         }
                     },
                     {
-                        data: null, render: function (data, type, row) {
+                        data: null,
+                        "render": function (row) {
+                            console.log(row);
                             // Combine the first and last names into a single table field
-                            let text = data.first_name + ' ' + data.last_name;
-                            if(data.childspecificneed){
+                            let text = row.first_name + ' ' + row.last_name;
+                            if (row.childspecificneed) {
                                 text += " <i class='fas fa-exclamation-triangle'></i>"
                             }
                             return text;
