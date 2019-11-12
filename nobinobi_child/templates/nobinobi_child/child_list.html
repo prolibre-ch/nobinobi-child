@@ -112,7 +112,6 @@
                     {
                         data: null,
                         "render": function (row) {
-                            console.log(row);
                             // Combine the first and last names into a single table field
                             let text = row.first_name + ' ' + row.last_name;
                             if (row.childspecificneed) {
@@ -171,7 +170,7 @@
                 ],
                 "columnDefs": [{
                     "targets": -1,
-                    "searchable": false,
+                    "searchable": true,
                     "orderable": false,
                 }],
                 dom: 'Bfrtip',
