@@ -113,8 +113,28 @@
                         }
                     },
                     {data: "birth_date"},
-                    {data: "classroom.name"},
-                    {data: "age_group.name"},
+                    {
+                        data: "classroom",
+                        name: "classroom__name",
+                        "render": function (data, type, row) {
+                            if (data) {
+                                return data.name;
+                            } else {
+                                return "-"
+                            }
+                        },
+                    },
+                    {
+                        data: "age_group",
+                        name: "age_group__name",
+                        "render": function (data, type, row) {
+                            if (data) {
+                                return data.name;
+                            } else {
+                                return "-"
+                            }
+                        },
+                    },
                     {
                         data: "staff",
                         name: "staff__first_name, staff__last_name",
