@@ -23,6 +23,7 @@ django-widget-tweaks = ">=1.4.3"
 django-bootstrap-datepicker-plus = ">=3.0.5"
 Django = ">=2.0,<=2.2"
 Pillow = ">=6.0.0"
+djangorestframework-datatables = "*"
 
 [requires]
 python_version = "3.7"

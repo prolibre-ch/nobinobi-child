@@ -148,14 +148,14 @@
                     },
 
                     {
-                        data: null,
+                        data: "childtocontact_set",
                         orderable: false,
                         searchable: false,
                         render: function (row, index, datatable) {
                             let text = "<p>";
-                            if (row.childtocontact_set && row.childtocontact_set.length > 0) {
-                                for (let i = 0; i < row.childtocontact_set.length; i++) {
-                                    text += i + ") " + row.childtocontact_set[i].contact.first_name + " " + row.childtocontact_set[i].contact.last_name + " - " + row.childtocontact_set[i].contact.phone + " / " + row.childtocontact_set[i].contact.mobile_phone + " / " + row.childtocontact_set[i].contact.professional_phone + "<br>";
+                            if (row && row.length > 0) {
+                                for (let i = 0; i < row.length; i++) {
+                                    text += i + ") " + row[i].contact.first_name + " " + row[i].contact.last_name + " - " + row[i].contact.phone + " / " + row[i].contact.mobile_phone + " / " + row[i].contact.professional_phone + "<br>";
                                 }
                             } else {
                                 text += "-";
