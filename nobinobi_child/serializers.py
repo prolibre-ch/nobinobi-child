@@ -18,7 +18,8 @@ from django.conf import settings
 from nobinobi_staff.serializers import StaffSerializer
 from rest_framework import serializers
 
-from nobinobi_child.models import Child, Absence, ChildToContact, ChildSpecificNeed, Classroom, AgeGroup
+from nobinobi_child.models import Child, Absence, ChildToContact, ChildSpecificNeed, Classroom, AgeGroup, AbsenceType, \
+    AbsenceGroup
 
 
 class ChildToContactSerializer(serializers.ModelSerializer):
@@ -70,29 +71,37 @@ class ChildSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         representation = super(ChildSerializer, self).to_representation(instance)
-    #     representation['gender'] = instance.gender
-    #     representation['picture'] = instance.picture.url if instance.picture else None
-    #     representation['birth_date'] = arrow.get(instance.birth_date).format("DD.MM.YYYY",
-    #                                                                          locale="fr_fr") if instance.birth_date else "-"
-    #     representation['classroom'] = instance.classroom.name if instance.classroom else "-"
-    #     representation['age_group'] = instance.age_group.name if instance.age_group else "-"
-    #     representation['staff'] = instance.staff.full_name if instance.staff else "-"
-    #     representation['renewal_date'] = arrow.get(instance.renewal_date).format("DD.MM.YYYY", locale="fr_fr")
-    #
+        #     representation['gender'] = instance.gender
+        #     representation['picture'] = instance.picture.url if instance.picture else None
+        #     representation['birth_date'] = arrow.get(instance.birth_date).format("DD.MM.YYYY",
+        #                                                                          locale="fr_fr") if instance.birth_date else "-"
+        #     representation['classroom'] = instance.classroom.name if instance.classroom else "-"
+        #     representation['age_group'] = instance.age_group.name if instance.age_group else "-"
+        #     representation['staff'] = instance.staff.full_name if instance.staff else "-"
+        #     representation['renewal_date'] = arrow.get(instance.renewal_date).format("DD.MM.YYYY", locale="fr_fr")
+        #
         return representation
+
+
+class AbsenceGroupSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AbsenceGroup
+        fields = "__all__"
+
+
+class AbsenceTypeSerializer(serializers.ModelSerializer):
+    group = AbsenceGroupSerializer(read_only=True)
+
+    class Meta:
+        model = AbsenceType
+        fields = "__all__"
 
 
 class AbsenceSerializer(serializers.ModelSerializer):
+    child = ChildSerializer(read_only=True)
+    type = AbsenceTypeSerializer(read_only=True)
+
     class Meta:
         model = Absence
         fields = '__all__'
-
-    def to_representation(self, instance):
-        representation = super(AbsenceSerializer, self).to_representation(instance)
-        format = "%d.%m.%Y %H:%M"
-        local_timezone = pytz.timezone(getattr(settings, 'TIME_ZONE', None))
-        representation['child'] = instance.child.full_name
-        representation['start_date'] = instance.start_date.astimezone(local_timezone).strftime(format)
-        representation['end_date'] = instance.end_date.astimezone(local_timezone).strftime(format)
-        representation['type'] = "{0} ({1})".format(instance.type.name, instance.type.group.name)
-        return representation
+        datatables_always_serialize = ("id", "child", "type")
