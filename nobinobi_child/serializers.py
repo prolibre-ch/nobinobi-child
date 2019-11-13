@@ -60,10 +60,10 @@ class ChildSerializer(serializers.ModelSerializer):
     class Meta:
         model = Child
         fields = (
-            "id", "status", "birth_date", "first_name", "last_name", "classroom", "age_group", "gender", "picture",
+            "id", "status", "birth_date", "first_name", "last_name", "usual_name", "classroom", "age_group", "gender", "picture",
             "staff", "childtocontact_set", "childspecificneed")
         # depth = 2
-        datatables_always_serialize = ("id", "first_name", "last_name")
+        datatables_always_serialize = ("id", "first_name", "last_name", "usual_name", "gender")
 
     def get_childtocontact_set(self, instance):
         songs = instance.childtocontact_set.all().order_by('order')
