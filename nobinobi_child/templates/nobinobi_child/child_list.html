@@ -25,13 +25,11 @@
             <div class="center btn-toolbar" role="toolbar" aria-label="">
                 <div class="btn-group mx-auto" role="group" aria-label="">
 					{% for classroom in classrooms %}
-                        <button type="button" onclick="filter_datatables_by_classroom(this);"
-                                id="{{ classroom|slugify }}_btn_choice" data-classroom="{{ classroom }}"
-                                class="btn btn-secondary">{{ classroom }}</button>
+                        <button type="button" id="{{ classroom|slugify }}_btn_choice" rel="{{ classroom }}"
+                                class="btn btn-secondary filter_datatable">{{ classroom }}</button>
 					{% endfor %}
-                    <button type="button" onclick="filter_datatables_by_classroom(this);"
-                            id="none_btn_choice" data-classroom="null"
-                            class="btn btn-dark">{% trans "All" %}</button>
+                    <button type="button" id="none_btn_choice"
+                            class="btn btn-dark filter_datatable">{% trans "All" %}</button>
                 </div>
             </div>
         </div>
@@ -55,34 +53,12 @@
         </table>
     </div>
 
-	{#  <table class="table table-hover table-bordered table-responsive">#}
-	{#    <thead>#}
-	{#    <tr>#}
-	{#      <th>Nom complet</th>#}
-	{#      <th>age</th>#}
-	{#      <th>usual name</th>#}
-	{#    </tr>#}
-	{#    </thead>#}
-	{#    <tbody>#}
-	{#    {% for child in object_list %}#}
-	{#      <tr>#}
-	{#        <td scope="row">{{ child.full_name }}</td>#}
-	{#        <td>{{ child.birth_date}}</td>#}
-	{#        <td>{{ child.usual_name }}</td>#}
-	{#      </tr>#}
-	{#    {% endfor %}#}
-	{#    </tbody>#}
-	{#  </table>#}
 {% endblock %}
-
 {% block extrajs %}
     <script src="{% static 'vendor/DataTables/datatables.min.js' %}"></script>
     <script>
-        let table = null;
-        let total_row;
         $(document).ready(function () {
-            {#jQuery.noConflict();#}
-            table = $('#children_datatables').DataTable({
+            let table = $('#children_datatables').DataTable({
                 "language": {
                     "url": "{% static 'vendor/DataTables/DataTables-1.10.18/i18n/French.json' %}"
                 },
@@ -94,10 +70,10 @@
                     {
                         data: "picture",
                         orderable: false,
+                        searchable: false,
                         "render": function (row, index, datatable) {
 
                             if (row == null) {
-                                console.log(datatable);
                                 if (datatable['gender'] === "boy") {
                                     row = "{% static 'img/avatar/default-avatar-boy.png' %}";
                                 } else if (datatable['gender'] === "girl") {
@@ -110,11 +86,12 @@
                         }
                     },
                     {
-                        data: null,
-                        "render": function (row) {
+                        data: "first_name",
+                        name: "first_name, last_name",
+                        "render": function (row, i, data) {
                             // Combine the first and last names into a single table field
-                            let text = row.first_name + ' ' + row.last_name;
-                            if (row.childspecificneed) {
+                            let text = data.first_name + ' ' + data.last_name;
+                            if (data.childspecificneed) {
                                 text += " <i class='fas fa-exclamation-triangle'></i>"
                             }
                             return text;
@@ -136,29 +113,43 @@
                         }
                     },
                     {data: "birth_date"},
-                    {data: "classroom"},
-                    {data: "age_group"},
-                    {data: "staff"},
+                    {data: "classroom.name"},
+                    {data: "age_group.name"},
+                    {
+                        data: "staff",
+                        name: "staff__first_name, staff__last_name",
+                        "render": function (data, type, row) {
+                            if (data) {
+                                return data.first_name + " " + data.last_name;
+                            } else {
+                                return "-"
+                            }
+                        },
+                    },
+
                     {
                         data: null,
+                        orderable: false,
+                        searchable: false,
                         render: function (row, index, datatable) {
                             let text = "<p>";
-                            {#if (row.snack_time) {#}
-                            {#  text += "{% trans 'Snack time' %}: " + row.snack_time + "<br/>";#}
                             if (row.childtocontact_set && row.childtocontact_set.length > 0) {
                                 for (let i = 0; i < row.childtocontact_set.length; i++) {
                                     text += i + ") " + row.childtocontact_set[i].contact.first_name + " " + row.childtocontact_set[i].contact.last_name + " - " + row.childtocontact_set[i].contact.phone + " / " + row.childtocontact_set[i].contact.mobile_phone + " / " + row.childtocontact_set[i].contact.professional_phone + "<br>";
-                                    {#if (row.medication_set[i].comment) {#}
-                                    {#  text += "{% trans 'Comment' %} " + (i + 1) + ": " + row.medication_set[i].comment + "<br/>";#}
                                 }
+                            } else {
+                                text += "-";
                             }
                             text += "</p>";
                             return text;
                         }
                     },
 
+
                     {
                         data: null,
+                        orderable: false,
+                        searchable: false,
                         render: function (row, index, datatable) {
                             let r = '';
                             {% if perms.nobinobi_child.view_child %}
@@ -168,11 +159,6 @@
                         },
                     },
                 ],
-                "columnDefs": [{
-                    "targets": -1,
-                    "searchable": true,
-                    "orderable": false,
-                }],
                 dom: 'Bfrtip',
                 buttons: [
                     {
@@ -204,18 +190,18 @@
                     {"search": 'in_progress'},
                 ],
             });
+            $('.filter_datatable').on('click', function (e) {
+                table.columns().search('');
+                let rel = $(this).attr('rel');
+                if (rel) {
+                    table.columns(5).search(rel).draw();
+                } else {
+                    table.draw();
+                }
+            });
 
         });
 
-        function filter_datatables_by_classroom(obj) {
-            let classroom = obj.dataset.classroom;
-            if (classroom !== "null") {
-                table.columns(5).search("").draw();
-                table.columns(5).search(classroom).draw();
-            } else {
-                table.columns(5).search("").draw();
-            }
-        }
 
         {#$(window).load(function () {#}
         {#  setTimeout(create_event_button, 1500);#}

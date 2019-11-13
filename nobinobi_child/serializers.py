@@ -15,9 +15,10 @@
 import arrow
 import pytz
 from django.conf import settings
+from nobinobi_staff.serializers import StaffSerializer
 from rest_framework import serializers
 
-from nobinobi_child.models import Child, Absence, ChildToContact, ChildSpecificNeed
+from nobinobi_child.models import Child, Absence, ChildToContact, ChildSpecificNeed, Classroom, AgeGroup
 
 
 class ChildToContactSerializer(serializers.ModelSerializer):
@@ -33,7 +34,23 @@ class ChildSpecificNeedSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class ClassroomSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Classroom
+        fields = "__all__"
+
+
+class AgeGroupSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AgeGroup
+        fields = "__all__"
+
+
 class ChildSerializer(serializers.ModelSerializer):
+    classroom = ClassroomSerializer(read_only=True)
+    age_group = AgeGroupSerializer(read_only=True)
+    staff = StaffSerializer(read_only=True)
+
     # contacts = ContactSerializer(many=True)
 
     childtocontact_set = serializers.SerializerMethodField()
@@ -41,8 +58,10 @@ class ChildSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Child
-        fields = '__all__'
-        depth = 2
+        fields = (
+            "id", "status", "birth_date", "first_name", "last_name", "classroom", "age_group", "gender", "picture",
+            "staff", "childtocontact_set", "childspecificneed")
+        # depth = 2
         datatables_always_serialize = ("id", "first_name", "last_name")
 
     def get_childtocontact_set(self, instance):
@@ -51,15 +70,15 @@ class ChildSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         representation = super(ChildSerializer, self).to_representation(instance)
-        representation['gender'] = instance.gender
-        representation['picture'] = instance.picture.url if instance.picture else None
-        representation['birth_date'] = arrow.get(instance.birth_date).format("DD.MM.YYYY",
-                                                                             locale="fr_fr") if instance.birth_date else "-"
-        representation['classroom'] = instance.classroom.name if instance.classroom else "-"
-        representation['age_group'] = instance.age_group.name if instance.age_group else "-"
-        representation['staff'] = instance.staff.full_name if instance.staff else "-"
-        representation['renewal_date'] = arrow.get(instance.renewal_date).format("DD.MM.YYYY", locale="fr_fr")
-
+    #     representation['gender'] = instance.gender
+    #     representation['picture'] = instance.picture.url if instance.picture else None
+    #     representation['birth_date'] = arrow.get(instance.birth_date).format("DD.MM.YYYY",
+    #                                                                          locale="fr_fr") if instance.birth_date else "-"
+    #     representation['classroom'] = instance.classroom.name if instance.classroom else "-"
+    #     representation['age_group'] = instance.age_group.name if instance.age_group else "-"
+    #     representation['staff'] = instance.staff.full_name if instance.staff else "-"
+    #     representation['renewal_date'] = arrow.get(instance.renewal_date).format("DD.MM.YYYY", locale="fr_fr")
+    #
         return representation
 
 
