@@ -214,9 +214,10 @@
                 table.columns().search('');
                 let rel = $(this).attr('rel');
                 if (rel) {
-                    table.columns(5).search(rel).draw();
+                    table.columns(0).search("in_progress").columns(5).search(rel).draw();
                 } else {
-                    table.draw();
+                    table.columns(0).search("in_progress").draw();
+
                 }
             });
 
