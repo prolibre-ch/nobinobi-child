@@ -165,6 +165,10 @@
             table.on('responsive-display', function (e, datatable, row, showHide, update) {
                 create_event_button();
             });
+            {# order by start_date desc #}
+            table.column('1:visible')
+                .order('desc')
+                .draw();
         });
 
         function create_event_button() {
