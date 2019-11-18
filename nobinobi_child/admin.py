@@ -237,9 +237,9 @@ class ChildAdmin(admin.ModelAdmin):
         (_("Classroom"), {
             'fields': ('classroom', 'next_classroom', 'date_next_classroom', 'age_group')
         }),
-        # (_("Folders"), {
-        #     'fields': ('folder',)
-        # }),
+        (_("Status"), {
+            'fields': ('status',)
+        }),
     )
     inlines = [
         ChildToPeriodInline,
@@ -252,6 +252,7 @@ class ChildAdmin(admin.ModelAdmin):
         'first_name', 'last_name', 'usual_name', 'birth_date', 'classroom__name', 'next_classroom__name',
         'date_next_classroom',
         'age_group__name', 'staff__first_name', 'staff__last_name')
+    actions = ["child_archived"]
 
     def folder(self, x):
         try:
@@ -263,3 +264,12 @@ class ChildAdmin(admin.ModelAdmin):
             return Folder.objects.get(child=x)
 
     folder.short_description = _('Folder')
+
+    def child_archived(self, request, queryset):
+        rows_updated = queryset.update(status=Child.STATUS.archived)
+        if rows_updated == 1:
+            message_bit = _("1 child was")
+        else:
+            message_bit = _("{} children were").format(rows_updated)
+        self.message_user(request, "%s successfully marked as archived." % message_bit)
+    child_archived.short_description = _('Put child in archive')
