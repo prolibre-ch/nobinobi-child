@@ -22,6 +22,12 @@ WEEKDAY_CHOICES = Choices(
     (7, "sunday", _("Sunday")),
 )
 
+TYPE_PERIOD_CHOICES = Choices(
+    ("morning", _("Morning")),
+    ("afternoon", _("Afternoon")),
+    ("day", _("Day")),
+)
+
 
 class Child(StatusModel, TimeStampedModel):
     def upload_picture_child(self, filename):
@@ -360,6 +366,7 @@ class Period(TimeStampedModel):
     order = models.PositiveIntegerField(_("Order"))
     start_time = models.TimeField(_("Start time"), blank=False, null=True)
     end_time = models.TimeField(_("End time"), blank=False, null=True)
+    type = models.CharField(max_length=20, choices=TYPE_PERIOD_CHOICES, verbose_name=_("Type"), default=TYPE_PERIOD_CHOICES.morning)
     max_child = models.PositiveIntegerField(_("Max child"), blank=True, null=True)
 
     class Meta:

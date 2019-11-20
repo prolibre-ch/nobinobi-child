@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-18 11:52+0100\n"
-"PO-Revision-Date: 2019-11-18 11:53+0100\n"
+"POT-Creation-Date: 2019-11-20 11:35+0100\n"
+"PO-Revision-Date: 2019-11-20 11:35+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -22,8 +22,8 @@ msgstr ""
 msgid "Standard info"
 msgstr "Informations standard"
 
-#: .\admin.py:237 .\models.py:65 .\models.py:294 .\models.py:316
-#: .\models.py:385 .\models.py:558
+#: .\admin.py:237 .\models.py:71 .\models.py:300 .\models.py:322
+#: .\models.py:392 .\models.py:565
 #: .\templates\nobinobi_child\child_list.html:22
 #: .\templates\nobinobi_child\child_list.html:46
 msgid "Classroom"
@@ -61,8 +61,8 @@ msgstr "Mot de passe"
 msgid "Sign In"
 msgstr "Se connecter"
 
-#: .\forms.py:32 .\models.py:129 .\models.py:189 .\models.py:334
-#: .\models.py:427 .\models.py:534 .\models.py:553
+#: .\forms.py:32 .\models.py:135 .\models.py:195 .\models.py:340
+#: .\models.py:434 .\models.py:541 .\models.py:560
 #: .\templates\nobinobi_child\absence\absence_detail.html:14
 #: .\templates\nobinobi_child\absence\absence_list.html:38
 #: .\templates\nobinobi_child\child_list.html:43
@@ -109,7 +109,7 @@ msgstr "Groupes {} créés avec succès."
 msgid "Permission {} added to {} successfully."
 msgstr "Permission {} ajoutée à {} avec succès."
 
-#: .\menus.py:7 .\models.py:130 .\templates\nobinobi_child\child_detail.html:11
+#: .\menus.py:7 .\models.py:136 .\templates\nobinobi_child\child_detail.html:11
 #: .\templates\nobinobi_child\home.html:4
 #: .\templates\nobinobi_child\home.html:8
 msgid "Children"
@@ -119,16 +119,16 @@ msgstr "Enfants"
 msgid "Children list"
 msgstr "Liste des enfants"
 
-#: .\menus.py:16 .\models.py:394
+#: .\menus.py:16 .\models.py:401
 #: .\templates\nobinobi_child\informationoftheday_detail.html:5
 msgid "Information of the day"
 msgstr "Information du jour"
 
-#: .\menus.py:20 .\models.py:203
+#: .\menus.py:20 .\models.py:209
 msgid "Absences"
 msgstr "Absences"
 
-#: .\menus.py:28 .\models.py:92 .\templates\nobinobi_child\child_list.html:48
+#: .\menus.py:28 .\models.py:98 .\templates\nobinobi_child\child_list.html:48
 #: .\templates\nobinobi_child\staff\staff_list.html:26
 msgid "Staff"
 msgstr "Personnel"
@@ -165,373 +165,386 @@ msgstr "Samedi"
 msgid "Sunday"
 msgstr "Dimanche"
 
-#: .\models.py:33
+#: .\models.py:26
+msgid "Morning"
+msgstr "Matin"
+
+#: .\models.py:27
+msgid "Afternoon"
+msgstr "Après-midi"
+
+#: .\models.py:28
+msgid "Day"
+msgstr "Journée"
+
+#: .\models.py:39
 msgid "In progress"
 msgstr "En cours"
 
-#: .\models.py:34
+#: .\models.py:40
 msgid "Archived"
 msgstr "Archivé"
 
-#: .\models.py:35
+#: .\models.py:41
 msgid "Future"
 msgstr "Futur"
 
-#: .\models.py:38 .\templates\nobinobi_child\child_list.html:104
+#: .\models.py:44 .\templates\nobinobi_child\child_list.html:104
 msgid "Boy"
 msgstr "Garçon"
 
-#: .\models.py:39 .\templates\nobinobi_child\child_list.html:106
+#: .\models.py:45 .\templates\nobinobi_child\child_list.html:106
 msgid "Girl"
 msgstr "Fille"
 
-#: .\models.py:40 .\templates\nobinobi_child\child_list.html:108
+#: .\models.py:46 .\templates\nobinobi_child\child_list.html:108
 msgid "Other"
 msgstr "Autre"
 
-#: .\models.py:41 .\templates\nobinobi_child\child_list.html:110
+#: .\models.py:47 .\templates\nobinobi_child\child_list.html:110
 msgid "Unknown"
 msgstr "Inconnu"
 
-#: .\models.py:47 .\models.py:453
+#: .\models.py:53 .\models.py:460
 msgid "First name"
 msgstr "Prénom"
 
-#: .\models.py:48 .\models.py:454
+#: .\models.py:54 .\models.py:461
 msgid "Last name"
 msgstr "Nom"
 
-#: .\models.py:49
+#: .\models.py:55
 msgid "Usual name"
 msgstr "Nom usuel"
 
-#: .\models.py:50 .\templates\nobinobi_child\child_list.html:44
+#: .\models.py:56 .\templates\nobinobi_child\child_list.html:44
 msgid "Gender"
 msgstr "Sexe"
 
-#: .\models.py:51 .\models.py:250 .\models.py:281
+#: .\models.py:57 .\models.py:256 .\models.py:287
 msgid "Slug"
 msgstr "Slug"
 
-#: .\models.py:52 .\templates\nobinobi_child\child_list.html:42
+#: .\models.py:58 .\templates\nobinobi_child\child_list.html:42
 msgid "Picture"
 msgstr "Photo"
 
-#: .\models.py:53 .\templates\nobinobi_child\child_list.html:45
+#: .\models.py:59 .\templates\nobinobi_child\child_list.html:45
 msgid "Birth date"
 msgstr "Date de naissance"
 
-#: .\models.py:56 .\models.py:176
+#: .\models.py:62 .\models.py:182
 msgid "Languages"
 msgstr "Langues"
 
-#: .\models.py:59
+#: .\models.py:65
 msgid "Red list"
 msgstr "Liste rouge"
 
-#: .\models.py:60
+#: .\models.py:66
 msgid "Comment"
 msgstr "Commentaire"
 
-#: .\models.py:61
+#: .\models.py:67
 msgid "Renewal date"
 msgstr "Date de renouvellement"
 
-#: .\models.py:75 .\models.py:566
+#: .\models.py:81 .\models.py:573
 msgid "Next classroom"
 msgstr "Prochaine salle de classe"
 
-#: .\models.py:81
+#: .\models.py:87
 msgid "Date next classroom"
 msgstr "Date prochaine salle de classe"
 
-#: .\models.py:85 .\models.py:257 .\templates\nobinobi_child\child_list.html:47
+#: .\models.py:91 .\models.py:263 .\templates\nobinobi_child\child_list.html:47
 msgid "Age group"
 msgstr "Groupe d'âge"
 
-#: .\models.py:99 .\models.py:512
+#: .\models.py:105 .\models.py:519
 msgid "Food restrictions"
 msgstr "Restrictions alimentaires"
 
-#: .\models.py:105 .\models.py:415
+#: .\models.py:111 .\models.py:422
 msgid "Allergies"
 msgstr "Allergies"
 
-#: .\models.py:113 .\models.py:369
+#: .\models.py:119 .\models.py:376
 msgid "Periods"
 msgstr "Périodes"
 
-#: .\models.py:121 .\models.py:475
+#: .\models.py:127 .\models.py:482
 msgid "Contacts"
 msgstr "Contacts"
 
-#: .\models.py:147 .\templates\nobinobi_child\child_detail.html:44
+#: .\models.py:153 .\templates\nobinobi_child\child_detail.html:44
 #: .\templates\nobinobi_child\child_detail.html:203
 msgid "Full name"
 msgstr "Nom complet"
 
-#: .\models.py:171 .\models.py:213 .\models.py:234 .\models.py:249
-#: .\models.py:280 .\models.py:358 .\models.py:410 .\models.py:507
+#: .\models.py:177 .\models.py:219 .\models.py:240 .\models.py:255
+#: .\models.py:286 .\models.py:364 .\models.py:417 .\models.py:514
 msgid "Name"
 msgstr "Nom"
 
-#: .\models.py:175
+#: .\models.py:181
 msgid "Language"
 msgstr "Langue"
 
-#: .\models.py:192 .\models.py:342 .\models.py:388
+#: .\models.py:198 .\models.py:348 .\models.py:395
 #: .\templates\nobinobi_child\absence\absence_detail.html:18
 #: .\templates\nobinobi_child\absence\absence_list.html:39
 #: .\templates\nobinobi_child\informationoftheday_list.html:20
 msgid "Start date"
 msgstr "Date de début"
 
-#: .\models.py:193 .\models.py:253 .\models.py:343 .\models.py:389
+#: .\models.py:199 .\models.py:259 .\models.py:349 .\models.py:396
 #: .\templates\nobinobi_child\absence\absence_detail.html:22
 #: .\templates\nobinobi_child\absence\absence_list.html:40
 #: .\templates\nobinobi_child\informationoftheday_list.html:21
 msgid "End date"
 msgstr "Date de fin"
 
-#: .\models.py:196 .\templates\nobinobi_child\absence\absence_list.html:41
+#: .\models.py:202 .\models.py:369
+#: .\templates\nobinobi_child\absence\absence_list.html:41
 msgid "Type"
 msgstr "Type"
 
-#: .\models.py:202
+#: .\models.py:208
 msgid "Absence"
 msgstr "Absence"
 
-#: .\models.py:216
+#: .\models.py:222
 msgid "Group"
 msgstr "Groupe"
 
-#: .\models.py:219 .\models.py:251 .\models.py:282 .\models.py:360
-#: .\models.py:437
+#: .\models.py:225 .\models.py:257 .\models.py:288 .\models.py:366
+#: .\models.py:444
 msgid "Order"
 msgstr "Ordre"
 
-#: .\models.py:223 .\templates\nobinobi_child\absence\absence_detail.html:26
+#: .\models.py:229 .\templates\nobinobi_child\absence\absence_detail.html:26
 msgid "Absence type"
 msgstr "Type d'absence"
 
-#: .\models.py:224
+#: .\models.py:230
 msgid "Absence types"
 msgstr "Types d’absences"
 
-#: .\models.py:238
+#: .\models.py:244
 msgid "Absence group"
 msgstr "Groupe d’absences"
 
-#: .\models.py:239
+#: .\models.py:245
 msgid "Absence groups"
 msgstr "Groupes d’absences"
 
-#: .\models.py:252
+#: .\models.py:258
 msgid "From date"
 msgstr "Date de début"
 
-#: .\models.py:258
+#: .\models.py:264
 msgid "Age groups"
 msgstr "Groupes d'âge"
 
-#: .\models.py:276
+#: .\models.py:282
 msgid "Creche"
 msgstr "Crèche"
 
-#: .\models.py:277
+#: .\models.py:283
 msgid "Kindergarten"
 msgstr "Jardin d'enfant"
 
-#: .\models.py:283
+#: .\models.py:289
 msgid "Capacity"
 msgstr "Capacité"
 
-#: .\models.py:284
+#: .\models.py:290
 msgid "Mode"
 msgstr "Mode"
 
-#: .\models.py:288
+#: .\models.py:294
 msgid "Allowed login"
 msgstr "Connexion autorisée"
 
-#: .\models.py:295 .\templates\nobinobi_child\informationoftheday_list.html:22
+#: .\models.py:301 .\templates\nobinobi_child\informationoftheday_list.html:22
 msgid "Classrooms"
 msgstr "Salles de classes"
 
-#: .\models.py:313 .\models.py:359
+#: .\models.py:319 .\models.py:365
 msgid "Weekday"
 msgstr "Jour de la semaine"
 
-#: .\models.py:321
+#: .\models.py:327
 msgid "Classroom day off"
 msgstr "Jour de congé"
 
-#: .\models.py:322
+#: .\models.py:328
 msgid "Classrooms days off"
 msgstr "Jours de congés"
 
-#: .\models.py:339 .\models.py:368
+#: .\models.py:345 .\models.py:375
 msgid "Period"
 msgstr "Période"
 
-#: .\models.py:347
+#: .\models.py:353
 msgid "Child to period"
 msgstr "Enfant vers période"
 
-#: .\models.py:348
+#: .\models.py:354
 msgid "Children to periods"
 msgstr "Enfants aux périodes"
 
-#: .\models.py:361
+#: .\models.py:367
 msgid "Start time"
 msgstr "Heure de début"
 
-#: .\models.py:362
+#: .\models.py:368
 msgid "End time"
 msgstr "Heure de fin"
 
-#: .\models.py:363
+#: .\models.py:370
 msgid "Max child"
 msgstr "Max enfant"
 
-#: .\models.py:382 .\templates\nobinobi_child\informationoftheday_list.html:19
+#: .\models.py:389 .\templates\nobinobi_child\informationoftheday_list.html:19
 msgid "Title"
 msgstr "Titre"
 
-#: .\models.py:390 .\templates\nobinobi_child\informationoftheday_list.html:23
+#: .\models.py:397 .\templates\nobinobi_child\informationoftheday_list.html:23
 msgid "Content"
 msgstr "Contenu"
 
-#: .\models.py:395
+#: .\models.py:402
 #: .\templates\nobinobi_child\informationoftheday_detail.html:10
 msgid "Informations of the day"
 msgstr "Informations du jour"
 
-#: .\models.py:414
+#: .\models.py:421
 msgid "Allergy"
 msgstr "Allergie"
 
-#: .\models.py:432 .\models.py:474
+#: .\models.py:439 .\models.py:481
 msgid "Contact"
 msgstr "Contact"
 
-#: .\models.py:435
+#: .\models.py:442
 msgid "Link with child"
 msgstr "Lien avec l'enfant"
 
-#: .\models.py:436
+#: .\models.py:443
 msgid "Type contact: Example Father, Mother ..."
 msgstr "Type contact: Exemple Père, Mère ..."
 
-#: .\models.py:441
+#: .\models.py:448
 msgid "Child to contact"
 msgstr "Enfant vers contact"
 
-#: .\models.py:442
+#: .\models.py:449
 msgid "Children to contacts"
 msgstr "Enfants aux contacts"
 
-#: .\models.py:457 .\models.py:496
+#: .\models.py:464 .\models.py:503
 #: .\templates\nobinobi_child\child_detail.html:228
 msgid "Address"
 msgstr "Adresse"
 
-#: .\models.py:462 .\templates\nobinobi_child\child_detail.html:236
+#: .\models.py:469 .\templates\nobinobi_child\child_detail.html:236
 #: .\templates\nobinobi_child\staff\staff_list.html:30
 msgid "Email"
 msgstr "E-mail"
 
-#: .\models.py:463 .\templates\nobinobi_child\child_detail.html:243
+#: .\models.py:470 .\templates\nobinobi_child\child_detail.html:243
 #: .\templates\nobinobi_child\staff\staff_list.html:28
 msgid "Phone"
 msgstr "Téléphone"
 
-#: .\models.py:464 .\templates\nobinobi_child\child_detail.html:247
+#: .\models.py:471 .\templates\nobinobi_child\child_detail.html:247
 #: .\templates\nobinobi_child\staff\staff_list.html:29
 msgid "Mobile phone"
 msgstr "Téléphone mobile"
 
-#: .\models.py:465 .\templates\nobinobi_child\child_detail.html:251
+#: .\models.py:472 .\templates\nobinobi_child\child_detail.html:251
 msgid "Professional phone"
 msgstr "Téléphone professionnel"
 
-#: .\models.py:466
+#: .\models.py:473
 msgid "Organisation"
 msgstr "Organisation"
 
-#: .\models.py:467
+#: .\models.py:474
 msgid "Function"
 msgstr "Fonction"
 
-#: .\models.py:468 .\templates\nobinobi_child\child_detail.html:255
+#: .\models.py:475 .\templates\nobinobi_child\child_detail.html:255
 msgid "Contact authorized to pick up the child."
 msgstr "Autorisé à venir chercher l'enfant."
 
-#: .\models.py:469 .\templates\nobinobi_child\child_detail.html:259
+#: .\models.py:476 .\templates\nobinobi_child\child_detail.html:259
 msgid "To contact if needed"
 msgstr "A contacter en cas de besoin"
 
-#: .\models.py:489
+#: .\models.py:496
 msgid "Street"
 msgstr "Rue"
 
-#: .\models.py:490
+#: .\models.py:497
 msgid "ZIP"
 msgstr "NPA"
 
-#: .\models.py:491
+#: .\models.py:498
 msgid "City"
 msgstr "Ville"
 
-#: .\models.py:492
+#: .\models.py:499
 msgid "Country"
 msgstr "Pays"
 
-#: .\models.py:492
+#: .\models.py:499
 msgid "Switzerland"
 msgstr "Suisse"
 
-#: .\models.py:497
+#: .\models.py:504
 msgid "Addresses"
 msgstr "Adresses"
 
-#: .\models.py:511
+#: .\models.py:518
 msgid "Food restriction"
 msgstr "Restriction alimentaire"
 
-#: .\models.py:528
+#: .\models.py:535
 msgid "Problem"
 msgstr "Problème"
 
-#: .\models.py:529
+#: .\models.py:536
 msgid "Individual home project"
 msgstr "Project d'accueil individualisé"
 
-#: .\models.py:530 .\templates\nobinobi_child\child_detail.html:159
+#: .\models.py:537 .\templates\nobinobi_child\child_detail.html:159
 msgid "Attachment"
 msgstr "Pièce jointe"
 
-#: .\models.py:531
+#: .\models.py:538
 msgid "Measure to take"
 msgstr "Mesure à prendre"
 
-#: .\models.py:540 .\templates\nobinobi_child\child_detail.html:145
+#: .\models.py:547 .\templates\nobinobi_child\child_detail.html:145
 msgid "Child specific need"
 msgstr "Besoins spécifiques de l’enfant"
 
-#: .\models.py:541
+#: .\models.py:548
 msgid "Children specific needs"
 msgstr "Enfants à besoins spécifiques"
 
-#: .\models.py:572
+#: .\models.py:579
 msgid "Date"
 msgstr "Date"
 
-#: .\models.py:577
+#: .\models.py:584
 msgid "Log change classroom"
 msgstr "Journal de changement de classe"
 
-#: .\models.py:578
+#: .\models.py:585
 msgid "Logs changed classrooms"
 msgstr "Journaux de changement de classe"
 
@@ -668,7 +681,7 @@ msgstr "Ajouter"
 msgid "Actions"
 msgstr "Actions"
 
-#: .\templates\nobinobi_child\absence\absence_list.html:191
+#: .\templates\nobinobi_child\absence\absence_list.html:195
 msgid "Your permission is insufficient."
 msgstr "Votre permission est insuffisante."
 
