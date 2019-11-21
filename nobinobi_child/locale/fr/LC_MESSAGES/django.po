@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-20 11:35+0100\n"
-"PO-Revision-Date: 2019-11-20 11:35+0100\n"
+"POT-Creation-Date: 2019-11-21 11:40+0100\n"
+"PO-Revision-Date: 2019-11-21 11:42+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -61,13 +61,18 @@ msgstr "Mot de passe"
 msgid "Sign In"
 msgstr "Se connecter"
 
-#: .\forms.py:32 .\models.py:135 .\models.py:195 .\models.py:340
+#: .\forms.py:32 .\forms.py:70 .\models.py:135 .\models.py:195 .\models.py:340
 #: .\models.py:434 .\models.py:541 .\models.py:560
 #: .\templates\nobinobi_child\absence\absence_detail.html:14
 #: .\templates\nobinobi_child\absence\absence_list.html:38
 #: .\templates\nobinobi_child\child_list.html:43
 msgid "Child"
 msgstr "Enfant"
+
+#: .\forms.py:88 .\forms.py:108
+#: .\templates\nobinobi_child\child_picture.html:49
+msgid "Submit"
+msgstr "Envoyer"
 
 #: .\jobs\daily\change_auto_agegroup.py:10
 msgid "Change of agegroup auto"
@@ -119,21 +124,25 @@ msgstr "Enfants"
 msgid "Children list"
 msgstr "Liste des enfants"
 
-#: .\menus.py:16 .\models.py:401
+#: .\menus.py:16
+msgid "Child picture"
+msgstr "Photo d'enfant"
+
+#: .\menus.py:20 .\models.py:401
 #: .\templates\nobinobi_child\informationoftheday_detail.html:5
 msgid "Information of the day"
 msgstr "Information du jour"
 
-#: .\menus.py:20 .\models.py:209
+#: .\menus.py:24 .\models.py:209
 msgid "Absences"
 msgstr "Absences"
 
-#: .\menus.py:28 .\models.py:98 .\templates\nobinobi_child\child_list.html:48
+#: .\menus.py:32 .\models.py:98 .\templates\nobinobi_child\child_list.html:48
 #: .\templates\nobinobi_child\staff\staff_list.html:26
 msgid "Staff"
 msgstr "Personnel"
 
-#: .\menus.py:33 .\views.py:470
+#: .\menus.py:37 .\views.py:473
 msgid "Staffs list"
 msgstr "Liste du personnel"
 
@@ -745,6 +754,27 @@ msgstr "Tout"
 msgid "Contacts Phones"
 msgstr "Téléphone des contacts"
 
+#: .\templates\nobinobi_child\child_picture.html:14
+#: .\templates\nobinobi_child\child_picture.html:19
+#, python-format
+msgid "%(child)s's picture"
+msgstr "Photo de %(child)s"
+
+#: .\templates\nobinobi_child\child_picture.html:26
+msgid "picture"
+msgstr "photo"
+
+#: .\templates\nobinobi_child\child_picture.html:30
+#: .\templates\nobinobi_child\child_picture.html:33
+#: .\templates\nobinobi_child\child_picture.html:36
+msgid "Default picture"
+msgstr "Image par défaut"
+
+#: .\templates\nobinobi_child\child_picture_select.html:11
+#: .\templates\nobinobi_child\child_picture_select.html:16
+msgid "Child picture select"
+msgstr "Choix de la photo de l'enfant"
+
 #: .\templates\nobinobi_child\includes\show_iotd.html:20
 msgid "See all Informations of the day"
 msgstr "Voir toutes les informations du jour"
@@ -783,38 +813,53 @@ msgstr "Se connecter de nouveau"
 msgid "Staffs"
 msgstr "Personnel"
 
-#: .\views.py:65
+#: .\views.py:68
 msgid "{}'s details"
 msgstr "Les détails de {}"
 
-#: .\views.py:103
+#: .\views.py:106
 msgid "Child list"
 msgstr "Liste des enfants"
 
-#: .\views.py:140
+#: .\views.py:143
 msgid "Success: Absence was created."
 msgstr "Succès : L'absence a été créée."
 
-#: .\views.py:154
+#: .\views.py:157
 msgid "Success: Absence was deleted."
 msgstr "Succès : L'absence a été supprimée."
 
-#: .\views.py:162
+#: .\views.py:165
 msgid "Success: Absence was updated."
 msgstr "Succès : L'absence a été mise à jour."
 
-#: .\views.py:172
+#: .\views.py:175
 msgid "Absences list"
 msgstr "Liste des absences"
+
+#: .\views.py:505
+msgid "Photo modification form"
+msgstr "Formulaire de modification de photo"
+
+#: .\views.py:509
+msgid "The child's photo has been modified."
+msgstr "La photo de l'enfant a été modifiée."
+
+#, fuzzy
+#~| msgid "Child card"
+#~ msgid "Child picture {}"
+#~ msgstr "Fiche de l'enfant"
+
+#, fuzzy
+#~| msgid "Picture"
+#~ msgid "Picture default"
+#~ msgstr "Photo"
 
 #~ msgid "Active"
 #~ msgstr "Actif"
 
 #~ msgid "List IOTD"
 #~ msgstr "List IDJ"
-
-#~ msgid "Submit"
-#~ msgstr "Envoyer"
 
 #~ msgid "Start date to end date"
 #~ msgstr "Date de début vers date de fin"

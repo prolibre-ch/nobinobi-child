@@ -3,7 +3,7 @@ from bootstrap_datepicker_plus import DateTimePickerInput
 from bootstrap_modal_forms.forms import BSModalForm
 from crispy_forms.bootstrap import AppendedText
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Submit, Hidden
+from crispy_forms.layout import Layout, Submit, Hidden, Field
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
 from django.utils import timezone
@@ -55,10 +55,55 @@ class AbsenceCreateForm(BSModalForm):
         super(AbsenceCreateForm, self).__init__(*args, **kwargs)
         if not kwargs.get('initial', None):
             if not self.initial.get('start_date', None):
-                self.initial['start_date'] = arrow.get(timezone.localtime()).replace(hour=6, minute=0, second=0).strftime(
+                self.initial['start_date'] = arrow.get(timezone.localtime()).replace(hour=6, minute=0,
+                                                                                     second=0).strftime(
                     "%d/%m/%Y %H:%M")
 
             if not self.initial.get('end_date', None):
                 self.initial['end_date'] = arrow.get(timezone.localtime()).replace(hour=22, minute=0,
-                                                                                        second=0).strftime(
+                                                                                   second=0).strftime(
                     "%d/%m/%Y %H:%M")
+
+
+class ChildPictureSelectForm(forms.ModelForm):
+    child = forms.ModelChoiceField(
+        label=_("Child"),
+        queryset=Child.objects.filter(status=Child.STATUS.in_progress),
+    )
+
+    class Meta:
+        model = Child
+        fields = ("child",)
+
+    def __init__(self, *args, **kwargs):
+
+        super(ChildPictureSelectForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_id = 'id-child-picture-select'
+        self.helper.form_class = 'form-horizontal blueForms'
+        self.helper.form_method = 'post'
+        self.helper.label_class = "col-lg-2"
+        self.helper.field_class = "col-lg-10"
+
+        self.helper.add_input(Submit('submit', _("Submit")))
+
+
+class ChildPictureForm(forms.ModelForm):
+    class Meta:
+        model = Child
+        fields = ("picture",)
+
+    def __init__(self, *args, **kwargs):
+
+        super(ChildPictureForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_id = 'id-child-picture-select'
+        self.helper.form_class = 'form-horizontal blueForms'
+        self.helper.form_method = 'post'
+        self.helper.label_class = "col-lg-2"
+        self.helper.field_class = "col-lg-10"
+        self.helper.attrs['enctype'] = "multipart/form-data"
+        self.helper.layout = Layout(
+            Field("picture"),
+            Submit('submit', _("Submit"))
+        )

@@ -31,6 +31,10 @@ urlpatterns = [
                                view=views.ChildCreateView.as_view(),
                                name='Child_create'
                                ),
+                          path("~picture/select/",
+                               view=views.ChildPictureSelectView.as_view(),
+                               name='child_picture_select'
+                               ),
                           path("<uuid:pk>/", include([
                               path("",
                                    view=views.ChildDetailView.as_view(),
@@ -41,6 +45,9 @@ urlpatterns = [
                               path("~update/",
                                    view=views.ChildUpdateView.as_view(),
                                    name='Child_update'),
+                              path("~picture/",
+                                   view=views.ChildPictureView.as_view(),
+                                   name='child_picture'),
                           ])
                                ),
                       ])),

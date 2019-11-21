@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 from bootstrap_modal_forms.generic import BSModalCreateView, BSModalUpdateView, BSModalDeleteView, BSModalReadView
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
-from django.urls import reverse_lazy
+from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404
+from django.urls import reverse_lazy, reverse
 from django.utils import timezone
 from django.utils.translation import gettext as _
 from django.views.generic import (
@@ -11,11 +14,11 @@ from django.views.generic import (
     DetailView,
     UpdateView,
     ListView,
-    TemplateView)
+    TemplateView, FormView)
 from nobinobi_staff.models import Staff
 from rest_framework import viewsets
 
-from nobinobi_child.forms import LoginAuthenticationForm, AbsenceCreateForm
+from nobinobi_child.forms import LoginAuthenticationForm, AbsenceCreateForm, ChildPictureSelectForm, ChildPictureForm
 from nobinobi_child.models import (
     Child,
     Language,
@@ -469,3 +472,42 @@ class StaffListView(ListView):
         context = super(StaffListView, self).get_context_data(object_list=None, **kwargs)
         context['title'] = _("Staffs list")
         return context
+
+
+class ChildPictureSelectView(LoginRequiredMixin, FormView):
+    """Vue qui permet de choisir un enfant pour lui ajouter un photo"""
+    form_class = ChildPictureSelectForm
+    template_name = "nobinobi_child/child_picture_select.html"
+
+    child = None
+
+    def get_context_data(self, **kwargs):
+        context = super(ChildPictureSelectView, self).get_context_data(**kwargs)
+        return context
+
+    def form_valid(self, form):
+        self.child = form.cleaned_data['child']
+        return super(ChildPictureSelectView, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse("nobinobi_child:child_picture", kwargs={"pk": self.child.pk})
+
+
+class ChildPictureView(LoginRequiredMixin, UpdateView):
+    """Vue qui permet de mettre à jour la photo de l'enfant"""
+    model = Child
+    form_class = ChildPictureForm
+    template_name = "nobinobi_child/child_picture.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(ChildPictureView, self).get_context_data(**kwargs)
+        context["child"] = get_object_or_404(Child, pk=self.kwargs.get("pk"))
+        context["title"] = _("Photo modification form")
+        return context
+
+    def form_valid(self, form):
+        messages.success(self.request, _("The child's photo has been modified."))
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse("nobinobi_child:child_picture", kwargs={"pk": self.kwargs.get("pk")})

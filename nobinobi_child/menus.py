@@ -13,6 +13,10 @@ Menu.add_item("main",
                           url=reverse("nobinobi_child:Child_list"),
                           icon="fas fa-list"),
                       MenuItem(
+                          title=_("Child picture"),
+                          url=reverse("nobinobi_child:child_picture_select"),
+                          icon="fas fa-camera"),
+                      MenuItem(
                           title=_("Information of the day"),
                           url=reverse("nobinobi_child:InformationOfTheDay_list"),
                           icon="fas fa-list"),
