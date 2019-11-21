@@ -18,7 +18,8 @@ from django.views.generic import (
 from nobinobi_staff.models import Staff
 from rest_framework import viewsets
 
-from nobinobi_child.forms import LoginAuthenticationForm, AbsenceCreateForm, ChildPictureSelectForm, ChildPictureForm
+from nobinobi_child.forms import LoginAuthenticationForm, AbsenceCreateForm, ChildPictureSelectForm, ChildPictureForm, \
+    ChildPictureUpdateForm
 from nobinobi_child.models import (
     Child,
     Language,
@@ -511,3 +512,19 @@ class ChildPictureView(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return reverse("nobinobi_child:child_picture", kwargs={"pk": self.kwargs.get("pk")})
+
+
+class ChildPictureUpdateView(LoginRequiredMixin, BSModalUpdateView):
+    """Vue qui permet de mettre à jour la photo de l'enfant"""
+    model = Child
+    form_class = ChildPictureUpdateForm
+    template_name = "nobinobi_child/child_picture_update.html"
+    success_message = _("Success: The child's photo has been modified.")
+
+    def get_context_data(self, **kwargs):
+        context = super(ChildPictureUpdateView, self).get_context_data(**kwargs)
+        context["child"] = get_object_or_404(Child, pk=self.kwargs.get("pk"))
+        return context
+
+    def get_success_url(self):
+        return reverse("nobinobi_child:Child_detail", kwargs={"pk": self.kwargs.get("pk")})

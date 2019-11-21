@@ -48,6 +48,9 @@ urlpatterns = [
                               path("~picture/",
                                    view=views.ChildPictureView.as_view(),
                                    name='child_picture'),
+                              path("~picture/modal/",
+                                   view=views.ChildPictureUpdateView.as_view(),
+                                   name='child_picture_modal'),
                           ])
                                ),
                       ])),

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-21 11:40+0100\n"
+"POT-Creation-Date: 2019-11-21 14:12+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -69,7 +69,7 @@ msgstr ""
 msgid "Child"
 msgstr ""
 
-#: .\forms.py:88 .\forms.py:108
+#: .\forms.py:87 .\forms.py:106
 #: .\templates\nobinobi_child\child_picture.html:49
 msgid "Submit"
 msgstr ""
@@ -142,7 +142,7 @@ msgstr ""
 msgid "Staff"
 msgstr ""
 
-#: .\menus.py:37 .\views.py:473
+#: .\menus.py:37 .\views.py:474
 msgid "Staffs list"
 msgstr ""
 
@@ -287,7 +287,7 @@ msgid "Contacts"
 msgstr ""
 
 #: .\models.py:153 .\templates\nobinobi_child\child_detail.html:44
-#: .\templates\nobinobi_child\child_detail.html:203
+#: .\templates\nobinobi_child\child_detail.html:207
 msgid "Full name"
 msgstr ""
 
@@ -454,26 +454,26 @@ msgid "Children to contacts"
 msgstr ""
 
 #: .\models.py:464 .\models.py:503
-#: .\templates\nobinobi_child\child_detail.html:228
+#: .\templates\nobinobi_child\child_detail.html:232
 msgid "Address"
 msgstr ""
 
-#: .\models.py:469 .\templates\nobinobi_child\child_detail.html:236
+#: .\models.py:469 .\templates\nobinobi_child\child_detail.html:240
 #: .\templates\nobinobi_child\staff\staff_list.html:30
 msgid "Email"
 msgstr ""
 
-#: .\models.py:470 .\templates\nobinobi_child\child_detail.html:243
+#: .\models.py:470 .\templates\nobinobi_child\child_detail.html:247
 #: .\templates\nobinobi_child\staff\staff_list.html:28
 msgid "Phone"
 msgstr ""
 
-#: .\models.py:471 .\templates\nobinobi_child\child_detail.html:247
+#: .\models.py:471 .\templates\nobinobi_child\child_detail.html:251
 #: .\templates\nobinobi_child\staff\staff_list.html:29
 msgid "Mobile phone"
 msgstr ""
 
-#: .\models.py:472 .\templates\nobinobi_child\child_detail.html:251
+#: .\models.py:472 .\templates\nobinobi_child\child_detail.html:255
 msgid "Professional phone"
 msgstr ""
 
@@ -485,11 +485,11 @@ msgstr ""
 msgid "Function"
 msgstr ""
 
-#: .\models.py:475 .\templates\nobinobi_child\child_detail.html:255
+#: .\models.py:475 .\templates\nobinobi_child\child_detail.html:259
 msgid "Contact authorized to pick up the child."
 msgstr ""
 
-#: .\models.py:476 .\templates\nobinobi_child\child_detail.html:259
+#: .\models.py:476 .\templates\nobinobi_child\child_detail.html:263
 msgid "To contact if needed"
 msgstr ""
 
@@ -529,7 +529,7 @@ msgstr ""
 msgid "Individual home project"
 msgstr ""
 
-#: .\models.py:537 .\templates\nobinobi_child\child_detail.html:159
+#: .\models.py:537 .\templates\nobinobi_child\child_detail.html:163
 msgid "Attachment"
 msgstr ""
 
@@ -537,7 +537,7 @@ msgstr ""
 msgid "Measure to take"
 msgstr ""
 
-#: .\models.py:547 .\templates\nobinobi_child\child_detail.html:145
+#: .\models.py:547 .\templates\nobinobi_child\child_detail.html:149
 msgid "Child specific need"
 msgstr ""
 
@@ -688,6 +688,7 @@ msgid "Update Absence"
 msgstr ""
 
 #: .\templates\nobinobi_child\absence\absence_update.html:40
+#: .\templates\nobinobi_child\child_picture_update.html:64
 msgid "Update"
 msgstr ""
 
@@ -723,15 +724,15 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: .\templates\nobinobi_child\child_detail.html:135
+#: .\templates\nobinobi_child\child_detail.html:136
 msgid "Edit"
 msgstr ""
 
-#: .\templates\nobinobi_child\child_detail.html:172
+#: .\templates\nobinobi_child\child_detail.html:176
 msgid "Contact (s) of the child"
 msgstr ""
 
-#: .\templates\nobinobi_child\child_detail.html:281
+#: .\templates\nobinobi_child\child_detail.html:285
 msgid "Period(s)"
 msgstr ""
 
@@ -750,18 +751,27 @@ msgid "%(child)s's picture"
 msgstr ""
 
 #: .\templates\nobinobi_child\child_picture.html:26
+#: .\templates\nobinobi_child\child_picture_update.html:21
 msgid "picture"
 msgstr ""
 
 #: .\templates\nobinobi_child\child_picture.html:30
 #: .\templates\nobinobi_child\child_picture.html:33
 #: .\templates\nobinobi_child\child_picture.html:36
+#: .\templates\nobinobi_child\child_picture_update.html:25
+#: .\templates\nobinobi_child\child_picture_update.html:29
+#: .\templates\nobinobi_child\child_picture_update.html:33
 msgid "Default picture"
 msgstr ""
 
 #: .\templates\nobinobi_child\child_picture_select.html:11
 #: .\templates\nobinobi_child\child_picture_select.html:16
 msgid "Child picture select"
+msgstr ""
+
+#: .\templates\nobinobi_child\child_picture_update.html:7
+#, python-format
+msgid "Update %(child)s's picture"
 msgstr ""
 
 #: .\templates\nobinobi_child\includes\show_iotd.html:20
@@ -802,34 +812,38 @@ msgstr ""
 msgid "Staffs"
 msgstr ""
 
-#: .\views.py:68
+#: .\views.py:69
 msgid "{}'s details"
 msgstr ""
 
-#: .\views.py:106
+#: .\views.py:107
 msgid "Child list"
 msgstr ""
 
-#: .\views.py:143
+#: .\views.py:144
 msgid "Success: Absence was created."
 msgstr ""
 
-#: .\views.py:157
+#: .\views.py:158
 msgid "Success: Absence was deleted."
 msgstr ""
 
-#: .\views.py:165
+#: .\views.py:166
 msgid "Success: Absence was updated."
 msgstr ""
 
-#: .\views.py:175
+#: .\views.py:176
 msgid "Absences list"
 msgstr ""
 
-#: .\views.py:505
+#: .\views.py:506
 msgid "Photo modification form"
 msgstr ""
 
-#: .\views.py:509
+#: .\views.py:510
 msgid "The child's photo has been modified."
+msgstr ""
+
+#: .\views.py:522
+msgid "Success: The child's photo has been modified."
 msgstr ""

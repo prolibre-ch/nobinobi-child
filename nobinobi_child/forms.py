@@ -76,7 +76,6 @@ class ChildPictureSelectForm(forms.ModelForm):
         fields = ("child",)
 
     def __init__(self, *args, **kwargs):
-
         super(ChildPictureSelectForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_id = 'id-child-picture-select'
@@ -94,7 +93,6 @@ class ChildPictureForm(forms.ModelForm):
         fields = ("picture",)
 
     def __init__(self, *args, **kwargs):
-
         super(ChildPictureForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_id = 'id-child-picture-select'
@@ -107,3 +105,9 @@ class ChildPictureForm(forms.ModelForm):
             Field("picture"),
             Submit('submit', _("Submit"))
         )
+
+
+class ChildPictureUpdateForm(BSModalForm):
+    class Meta:
+        model = Child
+        fields = ("picture",)

@@ -17,6 +17,7 @@
 
 {% block content_card_title %}{% trans "Child card" %}{% endblock %}
 {% block content_card_body %}
+	{% include "includes/messages.html" %}
     <div class="object" id="object-{{ object.pk }}">
         <div class="row">
             <div class="col-lg-4 col-sm-12" style="text-align:center">
@@ -26,14 +27,13 @@
                          alt="Image {{ object.full_name }}">
 				{% else %}
                     <img width="75%" class="img-responsive img-thumbnail img-orientation"
-                         src="
-
-
-
-
-
-
-								 {% if object.gender == "boy" %}{% static "img/avatar/default-avatar-boy.png" %}{% elif object.gender == "girl" %}{% static "img/avatar/default-avatar-girl.png" %}{% else %}{% static "img/avatar/default-avatar-other.png" %}{% endif %}"
+                         src="{% if object.gender == "boy" %}
+                                {% static "img/avatar/default-avatar-boy.png" %}
+                            {% elif object.gender == "girl" %}
+                                {% static "img/avatar/default-avatar-girl.png" %}
+                            {% else %}
+                                {% static "img/avatar/default-avatar-other.png" %}
+                            {% endif %}"
                          alt="{% blocktrans %}Image {{ object.full_name }} - default{% endblocktrans %}">
 				{% endif %}
             </div>
@@ -127,15 +127,19 @@
                     </tbody>
                 </table>
             </div>
-			{% if user.is_superuser or user|has_group:'direction' %}
-                <div class="col-lg-3 col-xs-12">
-                    <div class="btn-group col-xs-12">
+            <div class="col-lg-3 col-xs-12">
+                <div class="btn-group col-xs-12">
+					{% if user.is_superuser or user|has_group:'direction' %}
+
                         <a class="btn btn-primary col-lg-12 col-xs-12 "
                            href="{% url "admin:nobinobi_child_child_change" object.pk %}"
-                           role="button" target="_blank"><i class="fa fa-user-edit"></i>{% trans "Edit" %}</a>
-                    </div>
+                           role="button" target="_blank"><i class="fa fa-user-edit"></i> {% trans "Edit" %}</a>
+					{% endif %}
+
+                    <button data-id="{% url "nobinobi_child:child_picture_modal" pk=object.pk %}"
+                            class="picture-update btn btn-secondary"><i class="fa fa-camera"></i></button>
                 </div>
-			{% endif %}
+            </div>
         </div>
 		{#  if child specific need #}
 		{% if object.childspecificneed %}
@@ -311,9 +315,19 @@
             </div>
 		{% endif %}
     </div>
-
+	<!-- modal instanstiation -->
+	{% include "includes/modal.html" %}
 {% endblock %}
 {% block content_card_footer %}{% endblock %}
 
 {% block extrajs %}
+    <script src="{% static 'js/jquery.bootstrap.modal.forms.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/moment-with-locales.min.js' %}"></script>
+    <script>
+        $(document).ready(function () {
+            $(".picture-update").each(function () {
+                $(this).modalForm({formURL: $(this).data('id')});
+            });
+        })
+    </script>
 {% endblock %}
