@@ -234,6 +234,10 @@ class ChildAdmin(admin.ModelAdmin):
                 'first_name', 'last_name', 'usual_name', 'gender', 'picture', 'birth_date', 'languages', 'red_list',
                 'comment', 'renewal_date', 'staff')
         }),
+        (_('Health info'), {
+            'fields': ("usage_paracetamol", "healthy_child", "good_development", "specific_problem", "vaccination",
+                       "health_insurance")
+        }),
         (_("Classroom"), {
             'fields': ('classroom', 'next_classroom', 'date_next_classroom', 'age_group')
         }),
@@ -272,4 +276,5 @@ class ChildAdmin(admin.ModelAdmin):
         else:
             message_bit = _("{} children were").format(rows_updated)
         self.message_user(request, "%s successfully marked as archived." % message_bit)
+
     child_archived.short_description = _('Put child in archive')

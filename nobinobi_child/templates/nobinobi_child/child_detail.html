@@ -98,33 +98,31 @@
                             </ul>
                         </td>
                     </tr>
-					{% if folder %}
-                        <tr>
-                            <th class="col-lg-4"
-                                scope="row">{% trans "paracetamol" %}</th>
-                            <td class="col-lg-8">{{ folder.child_registration.usage_paracetamol|yesno:_("Yes,No,No information provided") }}</td>
-                        </tr>
-                        <tr>
-                            <th class="col-lg-4"
-                                scope="row">{% get_verbose_field_name folder.child_registration "vaccination" %}</th>
-                            <td class="col-lg-8">{{ folder.child_registration.vaccination|yesno:_("Yes,No,No information provided") }}</td>
-                        </tr>
-                        <tr>
-                            <th class="col-lg-4"
-                                scope="row">{% get_verbose_field_name folder.child_registration "healthy_child" %}</th>
-                            <td class="col-lg-8">{{ folder.child_registration.healthy_child|yesno:_("Yes,No,No information provided") }}</td>
-                        </tr>
-                        <tr>
-                            <th class="col-lg-4"
-                                scope="row">{% get_verbose_field_name folder.child_registration "good_development" %}</th>
-                            <td class="col-lg-8">{{ folder.child_registration.good_development|yesno:_("Yes,No,No information provided") }}</td>
-                        </tr>
-                        <tr>
-                            <th class="col-lg-4"
-                                scope="row">{% get_verbose_field_name folder.child_registration "specific_problem" %}</th>
-                            <td class="col-lg-8">{{ folder.child_registration.specific_problem|default_if_none:_("No") }}</td>
-                        </tr>
-					{% endif %}
+                    <tr>
+                        <th class="col-lg-4"
+                            scope="row">{% trans "Paracetamol" %}</th>
+                        <td class="col-lg-8">{{ object.usage_paracetamol|yesno:_("Yes,No,No information provided") }}</td>
+                    </tr>
+                    <tr>
+                        <th class="col-lg-4"
+                            scope="row">{% get_verbose_field_name object "vaccination" %}</th>
+                        <td class="col-lg-8">{{ object.vaccination|yesno:_("Yes,No,No information provided") }}</td>
+                    </tr>
+                    <tr>
+                        <th class="col-lg-4"
+                            scope="row">{% get_verbose_field_name object "healthy_child" %}</th>
+                        <td class="col-lg-8">{{ object.healthy_child|yesno:_("Yes,No,No information provided") }}</td>
+                    </tr>
+                    <tr>
+                        <th class="col-lg-4"
+                            scope="row">{% get_verbose_field_name object "good_development" %}</th>
+                        <td class="col-lg-8">{{ object.good_development|yesno:_("Yes,No,No information provided") }}</td>
+                    </tr>
+                    <tr>
+                        <th class="col-lg-4"
+                            scope="row">{% get_verbose_field_name object "specific_problem" %}</th>
+                        <td class="col-lg-8">{{ object.specific_problem|default_if_none:_("No") }}</td>
+                    </tr>
                     <tr>
                         <th class="col-lg-4" scope="row">{% get_verbose_field_name object "comment" %}</th>
                         <td class="col-lg-8">{% if object.comment %}{{ object.comment }}{% endif %}</td>
