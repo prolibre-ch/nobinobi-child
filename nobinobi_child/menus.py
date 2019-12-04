@@ -27,7 +27,7 @@ Menu.add_item("main",
                   ])
               )
 # staff
-Menu.add_item("main",
+Menu.add_item("staff",
               MenuItem(
                   title=_("Staff"),
                   url="/staff/",
