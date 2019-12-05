@@ -155,7 +155,20 @@
                             let text = "<p>";
                             if (row && row.length > 0) {
                                 for (let i = 0; i < row.length; i++) {
-                                    text += i + ") " + row[i].contact.first_name + " " + row[i].contact.last_name + " - " + row[i].contact.phone + " / " + row[i].contact.mobile_phone + " / " + row[i].contact.professional_phone + "<br>";
+                                    let phone = "";
+                                    let mobile_phone = "";
+                                    let professional_phone = "";
+
+                                    if(row[i].contact.phone){
+                                        phone = row[i].contact.phone;
+                                    }
+                                    if(row[i].contact.mobile_phone){
+                                        mobile_phone = " / " + row[i].contact.mobile_phone;
+                                    }
+                                    if(row[i].contact.professional_phone){
+                                        professional_phone = " / " + row[i].contact.professional_phone;
+                                    }
+                                    text += i + ") " + row[i].contact.first_name + " " + row[i].contact.last_name + " - " + phone + " / " + mobile_phone + " / " + professional_phone + "<br>";
                                 }
                             } else {
                                 text += "-";
