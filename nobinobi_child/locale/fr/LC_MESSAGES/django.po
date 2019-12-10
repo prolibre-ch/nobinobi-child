@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-27 12:02+0100\n"
-"PO-Revision-Date: 2019-11-27 12:03+0100\n"
+"POT-Creation-Date: 2019-12-10 09:09+0100\n"
+"PO-Revision-Date: 2019-12-10 09:10+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -596,8 +596,8 @@ msgstr "Interdit"
 
 #: .\templates\403.html:37 .\templates\403_csrf.html:37 .\templates\404.html:37
 #: .\templates\500.html:39 .\templates\nobinobi_child\base.html:37
-#: .\templates\nobinobi_child\base.html:255
-#: .\templates\nobinobi_child\base.html:260
+#: .\templates\nobinobi_child\base.html:258
+#: .\templates\nobinobi_child\base.html:263
 msgid "Home"
 msgstr "Accueil"
 
@@ -621,7 +621,7 @@ msgstr "<h1>Interdit (403)</h1>"
 
 #: .\templates\403.html:284 .\templates\403_csrf.html:286
 #: .\templates\404.html:284 .\templates\500.html:293
-#: .\templates\nobinobi_child\base.html:292
+#: .\templates\nobinobi_child\base.html:295
 msgid "Thank you"
 msgstr "Merci"
 
@@ -690,7 +690,11 @@ msgstr "Supprimer l’absence"
 
 #: .\templates\nobinobi_child\absence\absence_confirm_delete.html:14
 msgid "Are you sure you want to delete absence:"
-msgstr "Êtes-vous sûr de vouloir supprimer l'absence ?"
+msgstr "Etes-vous sûr que vous voulez supprimer l'absence:"
+
+#: .\templates\nobinobi_child\absence\absence_confirm_delete.html:14
+msgid "for child"
+msgstr "pour l'enfant"
 
 #: .\templates\nobinobi_child\absence\absence_confirm_delete.html:18
 msgid "Delete"
@@ -731,11 +735,11 @@ msgstr "Mise à jour de l’absence"
 msgid "Update"
 msgstr "Mettre à jour"
 
-#: .\templates\nobinobi_child\base.html:278
+#: .\templates\nobinobi_child\base.html:281
 msgid "Welcome"
 msgstr "Bienvenue"
 
-#: .\templates\nobinobi_child\base.html:288
+#: .\templates\nobinobi_child\base.html:291
 msgid "Please select a page from the menu on the left."
 msgstr "Veuillez s'il vous plaît sélectionnez une page du menu sur la gauche."
 
