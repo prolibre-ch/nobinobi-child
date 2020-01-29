@@ -10,8 +10,8 @@ from nobinobi_child import views
 app_name = 'nobinobi_child'
 
 router = DefaultRouter()
-router.register(r'child', views.ChildViewSet, base_name="api-child")
-router.register(r'absence', views.AbsenceViewSet, base_name="api-absence")
+router.register(r'child', views.ChildViewSet, basename="api-child")
+router.register(r'absence', views.AbsenceViewSet, basename="api-absence")
 
 urlpatterns = [
                   path('api/', include(router.urls)),
