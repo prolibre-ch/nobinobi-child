@@ -334,7 +334,7 @@ class ClassroomDayOff(TimeStampedModel):
         verbose_name_plural = _('Classrooms days off')
 
     def __str__(self):
-        return self._get_FIELD_display("weekday")
+        return self.get_weekday_display()
 
 
 class ChildToPeriod(TimeStampedModel):
