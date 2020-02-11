@@ -18,9 +18,9 @@ GROUP_NAME = getattr(settings, "GROUP_NAME_USERS", "Users")
 
 @receiver(post_save, sender=Child, dispatch_uid="update_image_child")
 def update_image(sender, instance, **kwargs):
-    if instance.image:
+    if instance.picture:
         BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        full_path = BASE_DIR + instance.image.url
+        full_path = BASE_DIR + instance.picture.url
         rotate_image(full_path)
 
 
