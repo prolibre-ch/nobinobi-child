@@ -1,15 +1,27 @@
 import logging
+import os
 from sys import stdout
 
 from django.conf import settings
 from django.contrib.auth.models import Group
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django.utils.translation import gettext as _
 
 from nobinobi_child.models import Absence, Child
+from nobinobi_child.utils import rotate_image
 
 GROUP_NAME = getattr(settings, "GROUP_NAME_USERS", "Users")
+
+
+@receiver(post_save, sender=Child, dispatch_uid="update_image_child")
+def update_image(sender, instance, **kwargs):
+    if instance.image:
+        BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        full_path = BASE_DIR + instance.image.url
+        rotate_image(full_path)
 
 
 def create_group_nobinobi_child(sender, **kwargs):
