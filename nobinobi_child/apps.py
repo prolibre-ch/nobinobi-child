@@ -7,5 +7,6 @@ class NobinobiChildConfig(AppConfig):
     name = 'nobinobi_child'
 
     def ready(self):
-        from nobinobi_child.signals import create_group_nobinobi_child
+        from nobinobi_child.signals import create_group_nobinobi_child, create_group_admin_nobinobi_child
         post_migrate.connect(create_group_nobinobi_child, sender=self)
+        post_migrate.connect(create_group_admin_nobinobi_child, sender=self)
