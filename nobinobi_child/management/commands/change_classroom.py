@@ -18,21 +18,21 @@ class Command(BaseCommand):
         logger.info(_("*** Launch of the change of school year task. ***"))
 
         # executing empty sample job
-        children = Child.objects.filter(next_classroom__isnull=False, next_classroom_date__isnull=False)
+        children = Child.objects.filter(next_classroom__isnull=False, date_next_classroom__isnull=False)
 
         for child in children:
             # if child class =/= next_Classroom
-            if child.classroom != child.prochaine_classe:
+            if child.classroom != child.next_classroom:
                 # if date to change
-                if child.prochaine_classe_date:
+                if child.date_next_classroom:
                     now_date = arrow.now().date()
-                    if now_date >= child.prochaine_classe_date:
+                    if now_date >= child.date_next_classroom:
                         LogChangeClassroom.objects.create(child=child, classroom=child.classroom,
                                                           next_classroom=child.next_classroom,
-                                                          date_changement=now_date)
+                                                          date=now_date)
                         child.classroom = child.next_classroom
                         child.next_classroom = None
-                        child.next_classroom_date = None
+                        child.date_next_classroom = None
 
                         if child.status == Child.STATUS.future:
                             child.status = Child.STATUS.in_progress
