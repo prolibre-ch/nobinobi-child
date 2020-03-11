@@ -71,7 +71,7 @@ class Command(BaseCommand):
                 self.stdout.write(self.style.SUCCESS(_("*** Options : Classroom ***")))
             except Classroom.DoesNotExist:
                 try:
-                    classroom = Classroom.objects.get(slug__iexact=classroom)
+                    classroom = Classroom.objects.get(slug__icontains=classroom)
                     self.stdout.write(self.style.SUCCESS(_("*** Options : Classroom ***")))
                 except Classroom.DoesNotExist:
                     raise CommandError('Classroom "%s" does not exist' % classroom)
@@ -85,7 +85,7 @@ class Command(BaseCommand):
                 self.stdout.write(self.style.SUCCESS(_("*** Options : Age group ***")))
             except AgeGroup.DoesNotExist:
                 try:
-                    age_group = AgeGroup.objects.get(name__iexact=age_group)
+                    age_group = AgeGroup.objects.get(slug__icontains=age_group)
                     self.stdout.write(self.style.SUCCESS(_("*** Options : Age group ***")))
                 except AgeGroup.DoesNotExist:
                     raise CommandError(_('Age group "{}" does not exist').format(age_group))
