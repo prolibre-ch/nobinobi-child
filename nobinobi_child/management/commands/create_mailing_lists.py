@@ -1,4 +1,7 @@
 # from config.wsgi import logger
+import os
+
+from django.conf import settings
 from django.core.handlers.base import logger
 from django.core.management.base import BaseCommand, CommandError
 from django.utils import timezone
@@ -9,7 +12,9 @@ import csv
 
 def write_csv_from_children(children, date, type):
     type = str(type)
-    with open('mailing_lists_{}_{}.csv'.format(type, date), mode='w', encoding="UTF8") as csv_file:
+    mailing_file = os.path.join(getattr(settings, "MEDIA_ROOT"), "mailing/mailing_lists_{}_{}.csv".format(type, date))
+    os.makedirs(os.path.dirname(mailing_file), exist_ok=True)
+    with open(mailing_file, mode='w', encoding="UTF8") as csv_file:
         fieldnames = ['email', 'first_name', 'last_name']
         writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
         writer.writeheader()
