@@ -70,7 +70,11 @@ class Command(BaseCommand):
                 classroom = Classroom.objects.get(name__iexact=classroom)
                 self.stdout.write(self.style.SUCCESS(_("*** Options : Classroom ***")))
             except Classroom.DoesNotExist:
-                raise CommandError('Classroom "%s" does not exist' % classroom)
+                try:
+                    classroom = Classroom.objects.get(slug__iexact=classroom)
+                    self.stdout.write(self.style.SUCCESS(_("*** Options : Classroom ***")))
+                except Classroom.DoesNotExist:
+                    raise CommandError('Classroom "%s" does not exist' % classroom)
 
             children = Child.objects.filter(status__exact=Child.STATUS.in_progress, classroom=classroom)
             write_csv_from_children(children, date, classroom)
@@ -80,7 +84,11 @@ class Command(BaseCommand):
                 age_group = AgeGroup.objects.get(name__iexact=age_group)
                 self.stdout.write(self.style.SUCCESS(_("*** Options : Age group ***")))
             except AgeGroup.DoesNotExist:
-                raise CommandError(_('Age group "{}" does not exist').format(age_group))
+                try:
+                    age_group = AgeGroup.objects.get(name__iexact=age_group)
+                    self.stdout.write(self.style.SUCCESS(_("*** Options : Age group ***")))
+                except AgeGroup.DoesNotExist:
+                    raise CommandError(_('Age group "{}" does not exist').format(age_group))
 
             children = Child.objects.filter(status__exact=Child.STATUS.in_progress,
                                             age_group=age_group)
