@@ -531,7 +531,7 @@ class ChildPictureUpdateView(LoginRequiredMixin, BSModalUpdateView):
         return reverse("nobinobi_child:Child_detail", kwargs={"pk": self.kwargs.get("pk")})
 
 
-class ChildAdminPrintHealCardView(WeasyTemplateResponseMixin, DetailView):
+class ChildAdminPrintHealCardView(WeasyTemplateResponseMixin, DetailView, LoginRequiredMixin):
     """"""
     model = Child
     template_name = 'admin/nobinobi_child/child/print_heal_card_pdf.html'
