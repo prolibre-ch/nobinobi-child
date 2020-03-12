@@ -15,6 +15,7 @@ from django.views.generic import (
     UpdateView,
     ListView,
     TemplateView, FormView)
+from django_weasyprint import WeasyTemplateResponseMixin
 from nobinobi_staff.models import Staff
 from rest_framework import viewsets
 
@@ -528,3 +529,19 @@ class ChildPictureUpdateView(LoginRequiredMixin, BSModalUpdateView):
 
     def get_success_url(self):
         return reverse("nobinobi_child:Child_detail", kwargs={"pk": self.kwargs.get("pk")})
+
+
+class ChildAdminPrintHealCardView(WeasyTemplateResponseMixin, DetailView):
+    """"""
+    model = Child
+    template_name = 'admin/nobinobi_child/child/print_heal_card_pdf.html'
+    filename = 'heal_card.pdf'
+
+    def get_context_data(self, **kwargs):
+        context = super(ChildAdminPrintHealCardView, self).get_context_data(**kwargs)
+        context['now'] = timezone.localtime()
+        return context
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()  # assign the object to the view
+        return super(ChildAdminPrintHealCardView, self).get(request)
