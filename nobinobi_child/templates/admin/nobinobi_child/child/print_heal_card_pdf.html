@@ -151,7 +151,8 @@
     </table>
     <br>
     <p>{% blocktrans %}For any health need requiring special measures in the institution, the nurse and the doctor
-        of the Child and Youth Health Service, which collaborate closely with our IEC (institution from early childhood), are at your disposal. <br> Do not hesitate to contact them.
+        of the Child and Youth Health Service, which collaborate closely with our IEC (institution from early
+        childhood), are at your disposal. <br> Do not hesitate to contact them.
         <br>
         <br>
         <b> The IEC refers to the recommendations and ad hoc directives of the YHS for its
@@ -167,15 +168,17 @@
         <tbody>
         <tr>
             <th>{% blocktrans %}Last name and first name{% endblocktrans %}</th>
-            <td>{{ object.pediatric_last_name|default_if_none:"&nbsp;" }} {{ object.pediatric_first_name|default_if_none:"&nbsp;" }}</td>
+            <td>{{ object.pediatrician.full_name|default_if_none:"&nbsp;" }}</td>
         </tr>
         <tr>
             <th>{% blocktrans %}Address<br>(Street, ZIP, City){% endblocktrans %}</th>
-            <td>{{ object.pediatric_address|default_if_none:"&nbsp;" }}</td>
+            <td>{{ object.pediatrician.address|default_if_none:"&nbsp;" }}</td>
         </tr>
         <tr>
             <th>{% trans "Phone" %}</th>
-            <td>{{ object.pediatric_phone|default_if_none:"&nbsp;" }}</td>
+            <td>{{ object.pediatrician.phone|default_if_none:"&nbsp;" }} |
+                {{ object.pediatrician.mobile_phone|default_if_none:"&nbsp;" }} |
+                {{ object.pediatrician.professional_phone|default_if_none:"&nbsp;" }}</td>
         </tr>
         </tbody>
     </table>
@@ -186,10 +189,10 @@
             <td><b>{% blocktrans %}Do you agree that your child's pediatrician will be contacted in case you are not
                 reachable
                 ?{% endblocktrans %}</b></td>
-            {% if object.pediatric_contact is True %}
+            {% if object.pediatrician_contact is True %}
                 <td class="yesno"><b>{% trans "YES" %}</b></td>
                 <td class="yesno">&nbsp;</td>
-            {% elif object.pediatric_contact is False %}
+            {% elif object.pediatrician_contact is False %}
                 <td class="yesno">&nbsp;</td>
                 <td class="yesno"><b>{% trans "NO" %}</b></td>
             {% else %}
@@ -300,7 +303,7 @@
     <br>
     <br>
     <div class="sign_creche">
-        <p><b>{% blocktrans %}Place and date :{% endblocktrans %}</b></p>
+        <p><b>{% blocktrans %}Address and date:{% endblocktrans %}</b></p>
         <br>
         <p><b>{% blocktrans %}Signature of legal representative (s):{% endblocktrans %}</b></p>
     </div>
