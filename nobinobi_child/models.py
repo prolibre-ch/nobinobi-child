@@ -72,6 +72,17 @@ class Child(StatusModel, TimeStampedModel):
     vaccination = models.NullBooleanField(_("Vaccination"), blank=False)
     health_insurance = models.CharField(_("Health Insurance"), max_length=255, blank=True, null=True)
 
+    pediatrician_contact = models.NullBooleanField(_("Pediatrician contact"), blank=True, null=True)
+
+    pediatrician = models.ForeignKey(
+        to="Contact",
+        verbose_name=_("Pediatrician"),
+        on_delete=models.PROTECT,
+        related_name="pediatrician",
+        blank=True,
+        null=True
+    )
+
     classroom = models.ForeignKey(
         to="Classroom",
         verbose_name=_("Classroom"),

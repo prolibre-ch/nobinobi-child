@@ -237,8 +237,11 @@ class ChildAdmin(admin.ModelAdmin):
                 'comment', 'renewal_date', 'staff')
         }),
         (_('Health info'), {
-            'fields': ("usage_paracetamol", "healthy_child", "good_development", "specific_problem", "vaccination",
-                       "health_insurance")
+            'fields': (
+                "pediatrician", "pediatrician_contact", "usage_paracetamol", "healthy_child", "good_development", "specific_problem",
+                "vaccination",
+                "health_insurance"
+            )
         }),
         (_("Classroom"), {
             'fields': ('classroom', 'next_classroom', 'date_next_classroom', 'age_group')
