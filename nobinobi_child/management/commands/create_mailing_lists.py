@@ -23,7 +23,7 @@ def write_csv_from_children(children, date, type):
             ctc_parents = ChildToContact.objects.filter(child=child)
             for ctc_contact in ctc_parents:
                 contact = ctc_contact.contact
-                if contact.email:
+                if contact.email and contact.first_name and contact.last_name:
                     writer.writerow(
                         {'email': contact.email, 'first_name': contact.first_name, 'last_name': contact.last_name})
 
@@ -68,28 +68,26 @@ class Command(BaseCommand):
         if classroom:
             try:
                 classroom = Classroom.objects.get(name__iexact=classroom)
-                self.stdout.write(self.style.SUCCESS(_("*** Options : Classroom ***")))
             except Classroom.DoesNotExist:
                 try:
                     classroom = Classroom.objects.get(slug__icontains=classroom)
-                    self.stdout.write(self.style.SUCCESS(_("*** Options : Classroom ***")))
                 except Classroom.DoesNotExist:
                     raise CommandError('Classroom "%s" does not exist' % classroom)
 
+            self.stdout.write(self.style.SUCCESS(_("*** Options : Classroom ***")))
             children = Child.objects.filter(status__exact=Child.STATUS.in_progress, classroom=classroom)
             write_csv_from_children(children, date, classroom)
 
         if age_group:
             try:
                 age_group = AgeGroup.objects.get(name__iexact=age_group)
-                self.stdout.write(self.style.SUCCESS(_("*** Options : Age group ***")))
             except AgeGroup.DoesNotExist:
                 try:
                     age_group = AgeGroup.objects.get(slug__icontains=age_group)
-                    self.stdout.write(self.style.SUCCESS(_("*** Options : Age group ***")))
                 except AgeGroup.DoesNotExist:
                     raise CommandError(_('Age group "{}" does not exist').format(age_group))
 
+            self.stdout.write(self.style.SUCCESS(_("*** Options : Age group ***")))
             children = Child.objects.filter(status__exact=Child.STATUS.in_progress,
                                             age_group=age_group)
             write_csv_from_children(children, date, age_group)
