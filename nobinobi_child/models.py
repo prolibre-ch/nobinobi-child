@@ -64,6 +64,12 @@ class Child(StatusModel, TimeStampedModel):
     )
     red_list = models.CharField(_("Red list"), max_length=255, blank=True, null=True)
     comment = models.CharField(_("Comment"), max_length=255, blank=True, null=True)
+
+    # Sibling
+    sibling_name = models.CharField(_("Sibling's name and first name"), max_length=50, blank=True, null=True)
+    sibling_birth_date = models.DateField(_("Sibling birth date"), null=True, blank=True)
+    sibling_institution = models.CharField(_("Sibling's institution"), max_length=100, blank=True, null=True)
+
     renewal_date = models.DateField(_("Renewal date"), blank=True, null=True)
     usage_paracetamol = models.NullBooleanField(_("Usage paracetamol"), blank=False)
     healthy_child = models.NullBooleanField(_("Healthy child"), blank=False)
