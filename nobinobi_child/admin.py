@@ -234,11 +234,12 @@ class ChildAdmin(admin.ModelAdmin):
         (_('Standard info'), {
             'fields': (
                 'first_name', 'last_name', 'usual_name', 'gender', 'picture', 'birth_date', 'languages', 'red_list',
-                'comment', 'renewal_date', 'staff')
+                'food_restrictions', 'comment', 'renewal_date', 'staff')
         }),
         (_('Health info'), {
             'fields': (
-                "pediatrician", "pediatrician_contact", "usage_paracetamol", "healthy_child", "good_development", "specific_problem",
+                "pediatrician", "pediatrician_contact", "usage_paracetamol", "healthy_child", "good_development",
+                "specific_problem",
                 "vaccination",
                 "health_insurance"
             )
