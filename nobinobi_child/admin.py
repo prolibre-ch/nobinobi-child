@@ -233,8 +233,11 @@ class ChildAdmin(admin.ModelAdmin):
     fieldsets = (
         (_('Standard info'), {
             'fields': (
-                'first_name', 'last_name', 'usual_name', 'gender', 'picture', 'birth_date', 'languages', 'red_list',
-                'food_restrictions', 'comment', 'renewal_date', 'staff')
+                'first_name', 'last_name', 'usual_name', 'gender', 'picture', 'birth_date', 'languages', 'nationality',
+                'red_list',
+                'food_restrictions',
+                'sibling_name', 'sibling_birth_date', 'sibling_institution',
+                'comment', 'renewal_date', 'staff')
         }),
         (_('Health info'), {
             'fields': (
