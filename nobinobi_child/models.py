@@ -64,6 +64,7 @@ class Child(StatusModel, TimeStampedModel):
     )
     red_list = models.CharField(_("Red list"), max_length=255, blank=True, null=True)
     comment = models.CharField(_("Comment"), max_length=255, blank=True, null=True)
+    nationality = models.CharField(_("Child nationality"), max_length=255, blank=True, null=True)
 
     # Sibling
     sibling_name = models.CharField(_("Sibling's name and first name"), max_length=50, blank=True, null=True)
