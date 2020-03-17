@@ -390,7 +390,8 @@ class Period(TimeStampedModel):
     order = models.PositiveIntegerField(_("Order"))
     start_time = models.TimeField(_("Start time"), blank=False, null=True)
     end_time = models.TimeField(_("End time"), blank=False, null=True)
-    type = models.CharField(max_length=20, choices=TYPE_PERIOD_CHOICES, verbose_name=_("Type"), default=TYPE_PERIOD_CHOICES.morning)
+    type = models.CharField(max_length=20, choices=TYPE_PERIOD_CHOICES, verbose_name=_("Type"),
+                            default=TYPE_PERIOD_CHOICES.morning)
     max_child = models.PositiveIntegerField(_("Max child"), blank=True, null=True)
 
     class Meta:
@@ -498,6 +499,8 @@ class Contact(TimeStampedModel):
     function = models.CharField(_("Function"), max_length=100, blank=True, null=True)
     authorized_pick_up_child = models.NullBooleanField(_("Contact authorized to pick up the child."), blank=False)
     to_contact_if_needed = models.NullBooleanField(_("To contact if needed"), blank=False)
+    reside_with_child = models.BooleanField(_('Reside with child'), default=True)
+    parental_authority = models.BooleanField(_("Parental authority"), default=True)
 
     class Meta:
         ordering = ('first_name', 'last_name',)
