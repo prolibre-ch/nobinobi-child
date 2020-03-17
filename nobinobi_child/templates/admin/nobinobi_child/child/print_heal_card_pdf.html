@@ -140,7 +140,7 @@
 
 <div class="mycontainer break">
     <h4>{% blocktrans %}INFORMATION SHEET - information for the use of the team{% endblocktrans %}</h4>
-    <h5>{% blocktrans %}School year{% endblocktrans %} {{ year_0 }} - {{ year_1 }}</h5>
+    <h5>{% blocktrans %}School year{% endblocktrans %} {{ current_academic_year_start_date|date:"Y" }} - {{ current_academic_year_end_date|date:"Y" }}</h5>
     <table>
         <thead>
         <tr>
@@ -260,52 +260,52 @@
         <tr>
             <th>{% blocktrans %}Last name and first name of authorized person{% endblocktrans %}</th>
             <th>{% blocktrans %}Relationship with the child (family, friends, neighbors){% endblocktrans %}</th>
-            <th>{% trans "Phone (s)"%}</th>
+            <th>{% trans "Phone (s)" %}</th>
         </tr>
         </thead>
         <tbody>
         <tr>
-            <td>{{ c_pickup1.first_name }}&nbsp;{{ c_pickup1.last_name }}</td>
-            <td>{{ c_pickup1.link_child|default_if_none:"&nbsp;" }}&nbsp;</td>
-            <td>{{ c_pickup1.private_phone|default_if_none:"&nbsp;" }}&nbsp;{{ c_pickup1.mobile_phone|default_if_none:"&nbsp;" }}</td>
+            <td>{{ c_pickup1.contact.first_name }}&nbsp;{{ c_pickup1.contact.last_name }}</td>
+            <td>{{ c_pickup1.link_with_child|default_if_none:"&nbsp;" }}&nbsp;</td>
+            <td>{{ c_pickup1.contact.phone|default_if_none:"&nbsp;" }}&nbsp;{{ c_pickup1.contact.mobile_phone|default_if_none:"&nbsp;" }}</td>
         </tr>
         <tr>
-            <td>{{ c_pickuparent_2.first_name }}&nbsp;{{ c_pickup2.last_name }}</td>
-            <td>{{ c_pickup2.link_child|default_if_none:"&nbsp;" }}&nbsp;</td>
-            <td>{{ c_pickup2.private_phone|default_if_none:"&nbsp;" }}&nbsp;{{ c_pickup2.mobile_phone|default_if_none:"&nbsp;" }}</td>
+            <td>{{ c_pickup2.contact.first_name }}&nbsp;{{ c_pickup2.contact.last_name }}</td>
+            <td>{{ c_pickup2.link_with_child|default_if_none:"&nbsp;" }}&nbsp;</td>
+            <td>{{ c_pickup2.contact.phone|default_if_none:"&nbsp;" }}&nbsp;{{ c_pickup2.mobile_phone|default_if_none:"&nbsp;" }}</td>
         </tr>
         <tr>
-            <td>{{ c_pickup3.first_name }}&nbsp;{{ c_pickup3.last_name }}</td>
-            <td>{{ c_pickup3.link_child|default_if_none:"&nbsp;" }}&nbsp;</td>
-            <td>{{ c_pickup3.private_phone|default_if_none:"&nbsp;" }}&nbsp;{{ c_pickup3.mobile_phone|default_if_none:"&nbsp;" }}</td>
+            <td>{{ c_pickup3.contact.first_name }}&nbsp;{{ c_pickup3.contact.last_name }}</td>
+            <td>{{ c_pickup3.link_with_child|default_if_none:"&nbsp;" }}&nbsp;</td>
+            <td>{{ c_pickup3.contact.phone|default_if_none:"&nbsp;" }}&nbsp;{{ c_pickup3.contact.mobile_phone|default_if_none:"&nbsp;" }}</td>
         </tr>
         </tbody>
     </table>
     <br>
-    <h4>AUTRES PERSONNES POUVANT ETRE CONTACTEES EN CAS DE BESOIN</h4>
+    <h4>{% blocktrans %}OTHER PEOPLE WHO MAY BE CONTACTED IF NECESSARY{% endblocktrans %}</h4>
     <table>
         <thead>
         <tr>
-            <th>Nom et prénom de la personne autorisée</th>
-            <th>Lien avec l’enfant (famille, amis, voisins)</th>
-            <th>Téléphone(s)</th>
+            <th>{% blocktrans %}Surname and first name of authorized person{% endblocktrans %}</th>
+            <th>{% blocktrans %}Relationship to the child (family, friends, neighbours){% endblocktrans %}</th>
+            <th>{% trans "Phone(s)" %}</th>
         </tr>
         </thead>
         <tbody>
         <tr>
-            <td>{{ c_contact1.first_name }}&nbsp;{{ c_contact1.last_name }}</td>
-            <td>{{ c_contact1.link_child|default_if_none:"&nbsp;" }}&nbsp;</td>
-            <td>{{ c_contact1.private_phone|default_if_none:"&nbsp;" }}&nbsp;{{ c_contact1.mobile_phone|default_if_none:"&nbsp;" }}</td>
+            <td>{{ c_contact1.contact.first_name }}&nbsp;{{ c_contact1.contact.last_name }}</td>
+            <td>{{ c_contact1.link_with_child|default_if_none:"&nbsp;" }}&nbsp;</td>
+            <td>{{ c_contact1.contact.phone|default_if_none:"&nbsp;" }}&nbsp;{{ c_contact1.contact.mobile_phone|default_if_none:"&nbsp;" }}</td>
         </tr>
         <tr>
-            <td>{{ c_contact2.first_name }}&nbsp;{{ c_contact2.last_name }}</td>
-            <td>{{ c_contact2.link_child|default_if_none:"&nbsp;" }}&nbsp;</td>
-            <td>{{ c_contact2.private_phone|default_if_none:"&nbsp;" }}&nbsp;{{ c_contact2.mobile_phone|default_if_none:"&nbsp;" }}</td>
+            <td>{{ c_contact2.contact.first_name }}&nbsp;{{ c_contact2.contact.last_name }}</td>
+            <td>{{ c_contact2.link_with_child|default_if_none:"&nbsp;" }}&nbsp;</td>
+            <td>{{ c_contact2.contact.phone|default_if_none:"&nbsp;" }}&nbsp;{{ c_contact2.contact.mobile_phone|default_if_none:"&nbsp;" }}</td>
         </tr>
         <tr>
-            <td>{{ c_contact3.first_name }}&nbsp;{{ c_contact3.last_name }}</td>
-            <td>{{ c_contact3.link_child|default_if_none:"&nbsp;" }}&nbsp;</td>
-            <td>{{ c_contact3.private_phone|default_if_none:"&nbsp;" }}&nbsp;{{ c_contact3.mobile_phone|default_if_none:"&nbsp;" }}</td>
+            <td>{{ c_contact3.contact.first_name }}&nbsp;{{ c_contact3.contact.last_name }}</td>
+            <td>{{ c_contact3.link_with_child|default_if_none:"&nbsp;" }}&nbsp;</td>
+            <td>{{ c_contact3.contact.phone|default_if_none:"&nbsp;" }}&nbsp;{{ c_contact3.contact.mobile_phone|default_if_none:"&nbsp;" }}</td>
         </tr>
         </tbody>
     </table>

@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import datetime
+
 from bootstrap_modal_forms.generic import BSModalCreateView, BSModalUpdateView, BSModalDeleteView, BSModalReadView
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -8,6 +10,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.utils import timezone
+from django.utils.timezone import make_aware
 from django.utils.translation import gettext as _
 from django.views.generic import (
     CreateView,
@@ -541,19 +544,66 @@ class ChildAdminPrintHealCardView(WeasyTemplateResponseMixin, DetailView, LoginR
     def get_context_data(self, **kwargs):
         context = super(ChildAdminPrintHealCardView, self).get_context_data(**kwargs)
         context['now'] = timezone.localtime()
+
+        # Parents
+        parents_name_list = ["pere", "mere", "mother", "father", "père", "mère", "Father", "Mother", "Père", "Mère"]
         try:
-            context['parent_1'] = self.object.childtocontact_set.get(order=0)
+
+            context['parent_1'] = self.object.childtocontact_set.get(order=0, link_with_child__in=parents_name_list)
         except ChildToContact.DoesNotExist:
-            context['parent_1'] = self.object.childtocontact_set.get(order=1)
+            context['parent_1'] = self.object.childtocontact_set.get(order=1, link_with_child__in=parents_name_list)
             try:
-                context['parent_2'] = self.object.childtocontact_set.get(order=2)
+                context['parent_2'] = self.object.childtocontact_set.get(order=2, link_with_child__in=parents_name_list)
             except ChildToContact.DoesNotExist:
                 context['parent_2'] = None
         else:
             try:
-                context['parent_2'] = self.object.childtocontact_set.get(order=1)
+                context['parent_2'] = self.object.childtocontact_set.get(order=1, link_with_child__in=parents_name_list)
             except ChildToContact.DoesNotExist:
                 context['parent_2'] = None
+
+        parents_exclude = []
+        if context['parent_1']:
+            parents_exclude.append(context['parent_1'].id)
+        if context['parent_2']:
+            parents_exclude.append(context["parent_2"].id)
+
+        # Pickups
+        cpickups = self.object.childtocontact_set.filter(contact__authorized_pick_up_child=True).exclude(
+            id__in=parents_exclude)
+
+        cpickup_nbr = 1
+        for cpickup in cpickups:
+            context['c_pickup{}'.format(cpickup_nbr)] = cpickup
+            cpickup_nbr += 1
+
+        cpickups_exclude = []
+        for cpickup in cpickups:
+            cpickups_exclude.append(cpickup.id)
+
+        # Other contacts only
+        c_contacts = self.object.childtocontact_set.filter(contact__to_contact_if_needed=True).exclude(
+            id__in=parents_exclude).exclude(id__in=cpickups_exclude)
+
+        c_contact_nbr = 1
+        for c_contact in c_contacts:
+            context['c_contact{}'.format(c_contact_nbr)] = c_contact
+            c_contact_nbr += 1
+
+        # Set current academic year.
+        # No need to use timezone.localtime(timezone.now()) here.
+        current_academic_year_start_date = None
+        current_academic_year_end_date = None
+        # +1 for accept 12 in range
+        day_date = timezone.localdate()
+        if day_date.month in range(9, 12 + 1):
+            current_academic_year_start_date = make_aware(datetime.datetime(day_date.year, 9, 1))
+            current_academic_year_end_date = make_aware(datetime.datetime(day_date.year + 1, 8, 31, 23, 59, 59, 999999))
+        else:
+            current_academic_year_start_date = make_aware(datetime.datetime(day_date.year - 1, 9, 1))
+            current_academic_year_end_date = make_aware(datetime.datetime(day_date.year, 8, 31, 23, 59, 59, 999999))
+        context['current_academic_year_start_date'] = current_academic_year_start_date
+        context['current_academic_year_end_date'] = current_academic_year_end_date
         return context
 
     def get(self, request, *args, **kwargs):
