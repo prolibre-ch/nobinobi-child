@@ -3,6 +3,7 @@ from bootstrap_modal_forms.generic import BSModalCreateView, BSModalUpdateView, 
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
+from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy, reverse
@@ -540,6 +541,19 @@ class ChildAdminPrintHealCardView(WeasyTemplateResponseMixin, DetailView, LoginR
     def get_context_data(self, **kwargs):
         context = super(ChildAdminPrintHealCardView, self).get_context_data(**kwargs)
         context['now'] = timezone.localtime()
+        try:
+            context['parent_1'] = self.object.childtocontact_set.get(order=0)
+        except ChildToContact.DoesNotExist:
+            context['parent_1'] = self.object.childtocontact_set.get(order=1)
+            try:
+                context['parent_2'] = self.object.childtocontact_set.get(order=2)
+            except ChildToContact.DoesNotExist:
+                context['parent_2'] = None
+        else:
+            try:
+                context['parent_2'] = self.object.childtocontact_set.get(order=1)
+            except ChildToContact.DoesNotExist:
+                context['parent_2'] = None
         return context
 
     def get(self, request, *args, **kwargs):

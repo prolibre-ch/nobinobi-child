@@ -137,19 +137,182 @@
 </head>
 
 <body>
-<div class="mycontainer break">
 
-    <h1 class="">{% blocktrans %}Child health{% endblocktrans %}</h1>
-    <br>
+<div class="mycontainer break">
+    <h4>{% blocktrans %}INFORMATION SHEET - information for the use of the team{% endblocktrans %}</h4>
+    <h5>{% blocktrans %}School year{% endblocktrans %} {{ year_0 }} - {{ year_1 }}</h5>
     <table>
-        <tbody>
+        <thead>
         <tr>
             <th colspan="2">{% trans "Child" %}</th>
-            <td>{{ object.full_name|default_if_none:"&nbsp;" }}</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th>{% blocktrans %}Last name{% endblocktrans %}</th>
+            <td>{{ object.last_name }}</td>
+        </tr>
+        <tr>
+            <th>{% blocktrans %}first name (s){% endblocktrans %}</th>
+            <td>{{ object.first_name }}</td>
+        </tr>
+        <tr>
+            <th>{% blocktrans %}Birth date{% endblocktrans %}</th>
+            <td>{{ object.birth_date|date:"d.m.Y" }}</td>
+        </tr>
+        <tr>
+            <th>{% trans "Gender" %}</th>
+            <td>{{ object.get_gender_display|default_if_none:"&nbsp;" }}</td>
+        </tr>
+        <tr>
+            <th>{% trans "Nationality (s)" %}</th>
+            <td>{{ object.nationality|default_if_none:"&nbsp;" }}</td>
+        </tr>
+        <tr>
+            <th>{% blocktrans %}Spoken languages{% endblocktrans %}</th>
+            <td>{% if object.languages %}
+                {% for language in object.languages.values %}
+                    {{ language.name }},
+                {% endfor %}
+            {% else %}
+                &nbsp;
+            {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <th>{% blocktrans %}Siblings (last name, first name, date of birth){% endblocktrans %}</th>
+            <td>{{ object.sibling_name|default_if_none:"&nbsp;" }} {{ object.sibling_birth_date|date:"d.m.Y" }} </td>
+        </tr>
+        <tr>
+            <th>{% trans "Foods restrictions" %}</th>
+            <td>{% if object.food_restrictions %}
+                {% for fr in object.food_restrictions.values %}
+                    {{ fr.name }},
+                {% endfor %}
+            {% else %}
+                &nbsp;
+            {% endif %}
+            </td>
         </tr>
         </tbody>
     </table>
     <br>
+    <table>
+        <thead>
+        <tr>
+            <th colspan="3">{% trans "Parents" %}</th>
+        </tr>
+        <tr>
+            <th>&nbsp;</th>
+            <th>{% trans "Parent" %} 1</th>
+            <th>{% trans "Parent" %} 2</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th>{% trans "Last name" %}</th>
+
+            <td> {{ parent_1.contact.last_name }} </td>
+            <td> {{ parent_2.contact.last_name }} </td>
+        </tr>
+        <tr>
+            <th>{% trans "First name" %}</th>
+            <td> {{ parent_1.contact.first_name }} </td>
+            <td> {{ parent_2.contact.first_name }} </td>
+        </tr>
+        <tr>
+            <th>{% trans "Link with child" %}</th>
+            <td> {{ parent_1.link_with_child|default_if_none:"&nbsp;" }} </td>
+            <td> {{ parent_2.link_with_child|default_if_none:"&nbsp;" }} </td>
+        </tr>
+        <tr>
+            <th>{% trans "Reside with the child" %}</th>
+            <td>{{ parent_1.contact.reside_with_child | yesno }}</td>
+            <td>{{ parent_2.contact.reside_with_child | yesno }}</td>
+        </tr>
+        <tr>
+            <th>{% trans "Parental authority" %}</th>
+            <td>{{ parent_1.contact.parental_authority | yesno }}</td>
+            <td>{{ parent_2.contact.parental_authority | yesno }}</td>
+        </tr>
+        <tr>
+            <th>{% trans "Phone" %}</th>
+            <td>{{ parent_1.contact.phone|default_if_none:"&nbsp;" }}</td>
+            <td>{{ parent_2.contact.phone|default_if_none:"&nbsp;" }}</td>
+        </tr>
+        <tr>
+            <th>{% trans "Mobile phone" %}</th>
+            <td>{{ parent_1.contact.mobile_phone|default_if_none:"&nbsp;" }}</td>
+            <td>{{ parent_2.contact.mobile_phone|default_if_none:"&nbsp;" }}</td>
+        </tr>
+        <tr>
+            <th>{% trans "Professional phone" %}</th>
+            <td>{{ parent_1.contact.professional_phone|default_if_none:"&nbsp;" }}</td>
+            <td>{{ parent_2.contact.professional_phone|default_if_none:"&nbsp;" }}</td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <h4>{% blocktrans %}OTHER PERSONS AUTHORIZED TO COME TO SEARCH FOR THE CHILD{% endblocktrans %}</h4>
+    <p>{% blocktrans %}All authorized persons must be at least 12 years of age{% endblocktrans %}</p>
+    <table>
+        <thead>
+        <tr>
+            <th>{% blocktrans %}Last name and first name of authorized person{% endblocktrans %}</th>
+            <th>{% blocktrans %}Relationship with the child (family, friends, neighbors){% endblocktrans %}</th>
+            <th>{% trans "Phone (s)"%}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>{{ c_pickup1.first_name }}&nbsp;{{ c_pickup1.last_name }}</td>
+            <td>{{ c_pickup1.link_child|default_if_none:"&nbsp;" }}&nbsp;</td>
+            <td>{{ c_pickup1.private_phone|default_if_none:"&nbsp;" }}&nbsp;{{ c_pickup1.mobile_phone|default_if_none:"&nbsp;" }}</td>
+        </tr>
+        <tr>
+            <td>{{ c_pickuparent_2.first_name }}&nbsp;{{ c_pickup2.last_name }}</td>
+            <td>{{ c_pickup2.link_child|default_if_none:"&nbsp;" }}&nbsp;</td>
+            <td>{{ c_pickup2.private_phone|default_if_none:"&nbsp;" }}&nbsp;{{ c_pickup2.mobile_phone|default_if_none:"&nbsp;" }}</td>
+        </tr>
+        <tr>
+            <td>{{ c_pickup3.first_name }}&nbsp;{{ c_pickup3.last_name }}</td>
+            <td>{{ c_pickup3.link_child|default_if_none:"&nbsp;" }}&nbsp;</td>
+            <td>{{ c_pickup3.private_phone|default_if_none:"&nbsp;" }}&nbsp;{{ c_pickup3.mobile_phone|default_if_none:"&nbsp;" }}</td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <h4>AUTRES PERSONNES POUVANT ETRE CONTACTEES EN CAS DE BESOIN</h4>
+    <table>
+        <thead>
+        <tr>
+            <th>Nom et prénom de la personne autorisée</th>
+            <th>Lien avec l’enfant (famille, amis, voisins)</th>
+            <th>Téléphone(s)</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>{{ c_contact1.first_name }}&nbsp;{{ c_contact1.last_name }}</td>
+            <td>{{ c_contact1.link_child|default_if_none:"&nbsp;" }}&nbsp;</td>
+            <td>{{ c_contact1.private_phone|default_if_none:"&nbsp;" }}&nbsp;{{ c_contact1.mobile_phone|default_if_none:"&nbsp;" }}</td>
+        </tr>
+        <tr>
+            <td>{{ c_contact2.first_name }}&nbsp;{{ c_contact2.last_name }}</td>
+            <td>{{ c_contact2.link_child|default_if_none:"&nbsp;" }}&nbsp;</td>
+            <td>{{ c_contact2.private_phone|default_if_none:"&nbsp;" }}&nbsp;{{ c_contact2.mobile_phone|default_if_none:"&nbsp;" }}</td>
+        </tr>
+        <tr>
+            <td>{{ c_contact3.first_name }}&nbsp;{{ c_contact3.last_name }}</td>
+            <td>{{ c_contact3.link_child|default_if_none:"&nbsp;" }}&nbsp;</td>
+            <td>{{ c_contact3.private_phone|default_if_none:"&nbsp;" }}&nbsp;{{ c_contact3.mobile_phone|default_if_none:"&nbsp;" }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+<div class="mycontainer break">
+
     <p>{% blocktrans %}For any health need requiring special measures in the institution, the nurse and the doctor
         of the Child and Youth Health Service, which collaborate closely with our IEC (institution from early
         childhood), are at your disposal. <br> Do not hesitate to contact them.
