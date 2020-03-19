@@ -73,6 +73,7 @@ class Child(StatusModel, TimeStampedModel):
 
     renewal_date = models.DateField(_("Renewal date"), blank=True, null=True)
     usage_paracetamol = models.NullBooleanField(_("Usage paracetamol"), blank=False)
+    usage_homeopathy = models.NullBooleanField(_("Usage homeopathy"), blank=False)
     healthy_child = models.NullBooleanField(_("Healthy child"), blank=False)
     good_development = models.NullBooleanField(_("Good development"), blank=False)
     specific_problem = models.CharField(_("Specific problem"), max_length=255, blank=True, null=True)
