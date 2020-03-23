@@ -1,5 +1,7 @@
 from django.contrib import admin
 from django.contrib.admin import register
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 from nobinobi_child.models import Period, Allergy, FoodRestriction, Language, Classroom, AgeGroup, Absence, AbsenceType, \
     AbsenceGroup, ClassroomDayOff, InformationOfTheDay, Contact, Address, ChildSpecificNeed, LogChangeClassroom, Child, \
@@ -231,12 +233,19 @@ class ChildAdmin(admin.ModelAdmin):
     fieldsets = (
         (_('Standard info'), {
             'fields': (
-                'first_name', 'last_name', 'usual_name', 'gender', 'picture', 'birth_date', 'languages', 'red_list',
+                'first_name', 'last_name', 'usual_name', 'gender', 'picture', 'birth_date', 'languages', 'nationality',
+                'red_list',
+                'food_restrictions',
+                'sibling_name', 'sibling_birth_date', 'sibling_institution',
                 'comment', 'renewal_date', 'staff')
         }),
         (_('Health info'), {
-            'fields': ("usage_paracetamol", "healthy_child", "good_development", "specific_problem", "vaccination",
-                       "health_insurance")
+            'fields': (
+                "pediatrician", "pediatrician_contact", "usage_paracetamol", "healthy_child", "good_development",
+                "specific_problem",
+                "vaccination",
+                "health_insurance"
+            )
         }),
         (_("Classroom"), {
             'fields': ('classroom', 'next_classroom', 'date_next_classroom', 'age_group')
@@ -257,6 +266,9 @@ class ChildAdmin(admin.ModelAdmin):
         'date_next_classroom',
         'age_group__name', 'staff__first_name', 'staff__last_name')
     actions = ["child_archived"]
+    save_as = True
+    save_as_continue = True
+    save_on_top = True
 
     def folder(self, x):
         try:
@@ -278,3 +290,8 @@ class ChildAdmin(admin.ModelAdmin):
         self.message_user(request, "%s successfully marked as archived." % message_bit)
 
     child_archived.short_description = _('Put child in archive')
+
+    def response_change(self, request, obj):
+        if "_printhealcard" in request.POST:
+            return HttpResponseRedirect(reverse("nobinobi_child:print_heal_card", kwargs={"pk": obj.pk}))
+        return super().response_change(request, obj)

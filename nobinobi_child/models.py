@@ -64,13 +64,32 @@ class Child(StatusModel, TimeStampedModel):
     )
     red_list = models.CharField(_("Red list"), max_length=255, blank=True, null=True)
     comment = models.CharField(_("Comment"), max_length=255, blank=True, null=True)
+    nationality = models.CharField(_("Child nationality"), max_length=255, blank=True, null=True)
+
+    # Sibling
+    sibling_name = models.CharField(_("Sibling's name and first name"), max_length=50, blank=True, null=True)
+    sibling_birth_date = models.DateField(_("Sibling birth date"), null=True, blank=True)
+    sibling_institution = models.CharField(_("Sibling's institution"), max_length=100, blank=True, null=True)
+
     renewal_date = models.DateField(_("Renewal date"), blank=True, null=True)
     usage_paracetamol = models.NullBooleanField(_("Usage paracetamol"), blank=False)
+    usage_homeopathy = models.NullBooleanField(_("Usage homeopathy"), blank=False)
     healthy_child = models.NullBooleanField(_("Healthy child"), blank=False)
     good_development = models.NullBooleanField(_("Good development"), blank=False)
     specific_problem = models.CharField(_("Specific problem"), max_length=255, blank=True, null=True)
     vaccination = models.NullBooleanField(_("Vaccination"), blank=False)
     health_insurance = models.CharField(_("Health Insurance"), max_length=255, blank=True, null=True)
+
+    pediatrician_contact = models.NullBooleanField(_("Pediatrician contact"), blank=True, null=True)
+
+    pediatrician = models.ForeignKey(
+        to="Contact",
+        verbose_name=_("Pediatrician"),
+        on_delete=models.PROTECT,
+        related_name="pediatrician",
+        blank=True,
+        null=True
+    )
 
     classroom = models.ForeignKey(
         to="Classroom",
@@ -372,7 +391,8 @@ class Period(TimeStampedModel):
     order = models.PositiveIntegerField(_("Order"))
     start_time = models.TimeField(_("Start time"), blank=False, null=True)
     end_time = models.TimeField(_("End time"), blank=False, null=True)
-    type = models.CharField(max_length=20, choices=TYPE_PERIOD_CHOICES, verbose_name=_("Type"), default=TYPE_PERIOD_CHOICES.morning)
+    type = models.CharField(max_length=20, choices=TYPE_PERIOD_CHOICES, verbose_name=_("Type"),
+                            default=TYPE_PERIOD_CHOICES.morning)
     max_child = models.PositiveIntegerField(_("Max child"), blank=True, null=True)
 
     class Meta:
@@ -480,6 +500,8 @@ class Contact(TimeStampedModel):
     function = models.CharField(_("Function"), max_length=100, blank=True, null=True)
     authorized_pick_up_child = models.NullBooleanField(_("Contact authorized to pick up the child."), blank=False)
     to_contact_if_needed = models.NullBooleanField(_("To contact if needed"), blank=False)
+    reside_with_child = models.BooleanField(_('Reside with child'), default=True)
+    parental_authority = models.BooleanField(_("Parental authority"), default=True)
 
     class Meta:
         ordering = ('first_name', 'last_name',)

@@ -21,6 +21,7 @@ urlpatterns = [
                        name='logout_view'),
                   path("", views.HomeView.as_view(), name="home"),
                   # child
+                  path("admin/child/printhealcard/<uuid:pk>/", view=views.ChildAdminPrintHealCardView.as_view(), name="print_heal_card"),
                   path("child/", include([
                       path("child/", include([
                           path("",
