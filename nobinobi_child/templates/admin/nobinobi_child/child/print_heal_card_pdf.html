@@ -139,8 +139,9 @@
 <body>
 
 <div class="mycontainer break">
-    <h4>{% blocktrans %}INFORMATION SHEET - information for the use of the team{% endblocktrans %}</h4>
-    <h5>{% blocktrans %}School year{% endblocktrans %} {{ current_academic_year_start_date|date:"Y" }} - {{ current_academic_year_end_date|date:"Y" }}</h5>
+    <h3 style="text-align: center">{% trans "INFORMATION SHEET - information for the use of the team" %}</h3>
+    <h5 style="text-align: center">{% trans "School year" %} {{ current_academic_year_start_date|date:"Y" }}
+        - {{ current_academic_year_end_date|date:"Y" }}</h5>
     <table>
         <thead>
         <tr>
@@ -149,15 +150,15 @@
         </thead>
         <tbody>
         <tr>
-            <th>{% blocktrans %}Last name{% endblocktrans %}</th>
+            <th>{% trans "Last name" %}</th>
             <td>{{ object.last_name }}</td>
         </tr>
         <tr>
-            <th>{% blocktrans %}first name (s){% endblocktrans %}</th>
+            <th>{% trans "First name (s)" %}</th>
             <td>{{ object.first_name }}</td>
         </tr>
         <tr>
-            <th>{% blocktrans %}Birth date{% endblocktrans %}</th>
+            <th>{% trans "Birth date" %}</th>
             <td>{{ object.birth_date|date:"d.m.Y" }}</td>
         </tr>
         <tr>
@@ -169,7 +170,7 @@
             <td>{{ object.nationality|default_if_none:"&nbsp;" }}</td>
         </tr>
         <tr>
-            <th>{% blocktrans %}Spoken languages{% endblocktrans %}</th>
+            <th>{% trans "Spoken languages" %}</th>
             <td>{% if object.languages %}
                 {% for language in object.languages.values %}
                     {{ language.name }},
@@ -180,7 +181,7 @@
             </td>
         </tr>
         <tr>
-            <th>{% blocktrans %}Siblings (last name, first name, date of birth){% endblocktrans %}</th>
+            <th>{% trans "Siblings (last name, first name, date of birth)" %}</th>
             <td>{{ object.sibling_name|default_if_none:"&nbsp;" }} {{ object.sibling_birth_date|date:"d.m.Y" }} </td>
         </tr>
         <tr>
@@ -253,14 +254,14 @@
         </tbody>
     </table>
     <br>
-    <h4>{% blocktrans %}OTHER PERSONS AUTHORIZED TO COME TO SEARCH FOR THE CHILD{% endblocktrans %}</h4>
-    <p>{% blocktrans %}All authorized persons must be at least 12 years of age{% endblocktrans %}</p>
+    <h4>{% trans "OTHER PERSONS AUTHORIZED TO COME TO SEARCH FOR THE CHILD" %}</h4>
+    <p>{% trans "All authorized persons must be at least 14 years of age" %}</p>
     <table>
         <thead>
         <tr>
-            <th>{% blocktrans %}Last name and first name of authorized person{% endblocktrans %}</th>
-            <th>{% blocktrans %}Relationship with the child (family, friends, neighbors){% endblocktrans %}</th>
-            <th>{% trans "Phone (s)" %}</th>
+            <th>{% trans "Last name and first name of authorized person" %}</th>
+            <th>{% trans "Relationship with the child (family, friends, neighbors)" %}</th>
+            <th>{% trans "Phone(s)" %}</th>
         </tr>
         </thead>
         <tbody>
@@ -282,12 +283,12 @@
         </tbody>
     </table>
     <br>
-    <h4>{% blocktrans %}OTHER PEOPLE WHO MAY BE CONTACTED IF NECESSARY{% endblocktrans %}</h4>
+    <h4>{% trans "OTHER PEOPLE WHO MAY BE CONTACTED IF NECESSARY" %}</h4>
     <table>
         <thead>
         <tr>
-            <th>{% blocktrans %}Surname and first name of authorized person{% endblocktrans %}</th>
-            <th>{% blocktrans %}Relationship to the child (family, friends, neighbours){% endblocktrans %}</th>
+            <th>{% trans "Surname and first name of authorized person" %}</th>
+            <th>{% trans "Relationship to the child (family, friends, neighbours)" %}</th>
             <th>{% trans "Phone(s)" %}</th>
         </tr>
         </thead>
@@ -312,15 +313,8 @@
 
 </div>
 <div class="mycontainer break">
-
-    <p>{% blocktrans %}For any health need requiring special measures in the institution, the nurse and the doctor
-        of the Child and Youth Health Service, which collaborate closely with our IEC (institution from early
-        childhood), are at your disposal. <br> Do not hesitate to contact them.
-        <br>
-        <br>
-        <b> The IEC refers to the recommendations and ad hoc directives of the YHS for its
-            professional practices in the areas of food, breastfeeding in nursery, health and
-            sleep of children welcomed. </b>{% endblocktrans %}</p>
+    <h3 style="text-align: center">{% trans "Child health" %}</h3>
+    <p>{% trans "For any health need requiring special measures in the institution, the nurse and the doctor of the Child and Youth Health Service, which collaborate closely with our IEC (institution from early childhood), are at your disposal. <br> Do not hesitate to contact them. <br><br><b> The IEC refers to the recommendations and ad hoc directives of the YHS for its professional practices in the areas of food, breastfeeding in nursery, health and sleep of children welcomed. </b>" %}</p>
     <br>
     <table>
         <thead>
@@ -330,18 +324,26 @@
         </thead>
         <tbody>
         <tr>
-            <th>{% blocktrans %}Last name and first name{% endblocktrans %}</th>
+            <th>{% trans "Last name and first name" %}</th>
             <td>{{ object.pediatrician.full_name|default_if_none:"&nbsp;" }}</td>
         </tr>
         <tr>
-            <th>{% blocktrans %}Address<br>(Street, ZIP, City){% endblocktrans %}</th>
+            <th>{% trans "Address<br>(Street, ZIP, City)" %}</th>
             <td>{{ object.pediatrician.address|default_if_none:"&nbsp;" }}</td>
         </tr>
         <tr>
             <th>{% trans "Phone" %}</th>
-            <td>{{ object.pediatrician.phone|default_if_none:"&nbsp;" }} |
-                {{ object.pediatrician.mobile_phone|default_if_none:"&nbsp;" }} |
-                {{ object.pediatrician.professional_phone|default_if_none:"&nbsp;" }}</td>
+            <td>
+                {% if object.pediatrician.phone %}
+                    {{ object.pediatrician.phone }} -
+                {% endif %}
+                {% if object.pediatrician.mobile_phone %}
+                    {{ object.pediatrician.mobile_phone }} -
+                {% endif %}
+                {% if object.pediatrician.professional_phone %}
+                    {{ object.pediatrician.professional_phone }}
+                {% endif %}
+            </td>
         </tr>
         </tbody>
     </table>
@@ -349,9 +351,7 @@
     <table>
         <tbody>
         <tr>
-            <td><b>{% blocktrans %}Do you agree that your child's pediatrician will be contacted in case you are not
-                reachable
-                ?{% endblocktrans %}</b></td>
+            <td><b>{% trans "Do you agree that your child's pediatrician will be contacted in case you are not reachable ?" %}</b></td>
             {% if object.pediatrician_contact is True %}
                 <td class="yesno"><b>{% trans "YES" %}</b></td>
                 <td class="yesno">&nbsp;</td>
@@ -370,9 +370,7 @@
         <tbody>
         <tr>
 
-            <td><b>{% blocktrans %}Do you authorize the administration of Paracetamol (Ben-u-ron, Tylenol, Dafalgan) in
-                case of fever more
-                38.5?{% endblocktrans %}</b></td>
+            <td><b>{% trans "Do you authorize the administration of Paracetamol (Ben-u-ron, Tylenol, Dafalgan) in case of fever more 38.5?" %}</b></td>
             {% if object.usage_paracetamol is True %}
                 <td class="yesno"><b>{% trans "YES" %}</b></td>
                 <td class="yesno">&nbsp;</td>
@@ -387,12 +385,31 @@
         </tr>
         </tbody>
     </table>
+    <table>
+        <tbody>
+        <tr>
+
+            <td><b>{% trans "Do you authorize the administration of granules of Arnica (homeopathy) in the event of hematoma?" %}</b></td>
+            {% if object.usage_homeopathy is True %}
+                <td class="yesno"><b>{% trans "YES" %}</b></td>
+                <td class="yesno">&nbsp;</td>
+            {% elif object.usage_homeopathy is False %}
+                <td class="yesno">&nbsp;</td>
+                <td class="yesno"><b>{% trans "NO" %}</b></td>
+            {% else %}
+                <td class="yesno">{% trans "YES" %}</td>
+                <td class="yesno">{% trans "NO" %}</td>
+            {% endif %}
+
+        </tr>
+        </tbody>
+    </table>
 
     <br>
     <table>
         <tbody>
         <tr>
-            <td>{% blocktrans %}Do you think your child is in good health?{% endblocktrans %}</td>
+            <td>{% trans "Do you think your child is in good health?" %}</td>
             {% if object.healthy_child is True %}
                 <td class="yesno"><b>{% trans "YES" %}</b></td>
                 <td class="yesno">&nbsp;</td>
@@ -405,7 +422,7 @@
             {% endif %}
         </tr>
         <tr>
-            <td>{% blocktrans %}Do you think it is developing well? (communication, movement…){% endblocktrans %}</td>
+            <td>{% trans "Do you think it is developing well? (communication, movement…)" %}</td>
             {% if object.good_development is True %}
                 <td class="yesno"><b>{% trans "YES" %}</b></td>
                 <td class="yesno">&nbsp;</td>
@@ -419,8 +436,7 @@
 
         </tr>
         <tr>
-            <td>{% blocktrans %}Does your child currently have a health, development or allergy problem that requires
-                special attention of the educational team or the SSEJ nurse?{% endblocktrans %}</td>
+            <td>{% trans "Does your child currently have a health, development or allergy problem that requires special attention of the educational team or the SSEJ nurse?" %}</td>
             {% if object.specific_problem %}
                 <td class="yesno"><b>{% trans "YES" %}</b></td>
                 <td class="yesno">&nbsp;</td>
@@ -433,9 +449,7 @@
             {% endif %}
         </tr>
         <tr>
-            <td colspan="3">{% blocktrans %}If yes, what problem does your child have (illness, allergies, medication,
-                particularity?
-                in its development, particularity at birth ...){% endblocktrans %}</td>
+            <td colspan="3">{% trans "If yes, what problem does your child have (illness, allergies, medication, particularity? in its development, particularity at birth ...)" %}</td>
         </tr>
         <tr>
             <td colspan="3">{{ object.specific_problem|default_if_none:"&nbsp;<br>&nbsp;<br>" }}</td>
@@ -447,8 +461,7 @@
     <table>
         <tbody>
         <tr>
-            <td>{% blocktrans %}Is your child vaccinated according to the Swiss vaccination
-                plan?{% endblocktrans %}</td>
+            <td>{% trans "Is your child vaccinated according to the Swiss vaccination plan?" %}</td>
             {% if object.vaccination is True %}
                 <td class="yesno"><b>{% trans "YES" %}</b></td>
                 <td class="yesno">&nbsp;</td>
@@ -462,13 +475,13 @@
         </tr>
         </tbody>
     </table>
-
+    <p style="font-style: italic"><small>{% trans "In the event of an emergency, we inform you that the team will take all the measures necessary for the health of your child, including those recommended by the doctor consulted or 144. The costs incurred are the responsibility of parents." %}</small></p>
     <br>
     <br>
     <div class="sign_creche">
-        <p><b>{% blocktrans %}Address and date:{% endblocktrans %}</b></p>
+        <p><b>{% trans "Address and date:" %}</b></p>
         <br>
-        <p><b>{% blocktrans %}Signature of legal representative (s):{% endblocktrans %}</b></p>
+        <p><b>{% trans "Signature of legal representative (s):" %}</b></p>
     </div>
 
 </div>
