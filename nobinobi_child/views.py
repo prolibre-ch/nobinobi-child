@@ -74,7 +74,8 @@ class ChildDetailView(LoginRequiredMixin, DetailView):
         context['title'] = _("{}'s details").format(context['child'].full_name)
         context['display_contacts_address'] = get_display_contact_address()
         context['periods'] = Period.objects.all()
-        child_periods = context['child'].childtoperiod_set.all()
+        now = timezone.localdate()
+        child_periods = context['child'].childtoperiod_set.filter(start_date__lte=now, end_date__gte=now)
         table_periods_used = {}
         # construction table
         for period in context['periods']:
