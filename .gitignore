@@ -29,7 +29,7 @@ nosetests.xml
 htmlcov
 
 # Translations
-*.mo
+#*.mo
 
 # Mr Developer
 .mr.developer.cfg
@@ -45,3 +45,4 @@ output/*/index.html
 
 # Sphinx
 docs/_build
+!/nobinobi_child/static/vendor/adminLTE/dist/
