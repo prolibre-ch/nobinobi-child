@@ -241,7 +241,8 @@ class ChildAdmin(admin.ModelAdmin):
         }),
         (_('Health info'), {
             'fields': (
-                "pediatrician", "pediatrician_contact", "usage_paracetamol", "healthy_child", "good_development",
+                "allergies", "pediatrician", "pediatrician_contact", "usage_paracetamol", "healthy_child",
+                "good_development",
                 "specific_problem",
                 "vaccination",
                 "health_insurance"
