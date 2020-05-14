@@ -562,7 +562,7 @@ class ChildSpecificNeed(TimeStampedModel):
 
     problem = SplitField(_("Problem"))
     ihp = models.BooleanField(_("Individual home project"), default=True)
-    attachment = models.FileField(_("Attachment"), upload_to=upload_attachment_child)
+    attachment = models.FileField(_("Attachment"), upload_to=upload_attachment_child, blank=True, null=True)
     measure_take = SplitField(_("Measure to take"))
     child = models.OneToOneField(
         to="Child",
