@@ -1,6 +1,6 @@
 import arrow
 from bootstrap_datepicker_plus import DateTimePickerInput
-from bootstrap_modal_forms.forms import BSModalForm
+from bootstrap_modal_forms.forms import BSModalModelForm
 from crispy_forms.bootstrap import AppendedText
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Hidden, Field
@@ -28,7 +28,7 @@ class LoginAuthenticationForm(AuthenticationForm):
         )
 
 
-class AbsenceCreateForm(BSModalForm):
+class AbsenceCreateForm(BSModalModelForm):
     child = forms.ModelChoiceField(label=_("Child"),
                                    queryset=Child.objects.filter(status=Child.STATUS.in_progress),
                                    )
@@ -107,7 +107,7 @@ class ChildPictureForm(forms.ModelForm):
         )
 
 
-class ChildPictureUpdateForm(BSModalForm):
+class ChildPictureUpdateForm(BSModalModelForm):
     class Meta:
         model = Child
         fields = ("picture",)
