@@ -203,6 +203,7 @@ class ChildToPeriodInline(admin.TabularInline):
     sortable_by = "period__order"
     show_change_link = False
     can_delete = True
+    suit_classes = 'suit-tab suit-tab-periods'
 
 
 class ChildToContactInline(admin.TabularInline):
@@ -211,6 +212,7 @@ class ChildToContactInline(admin.TabularInline):
     extra = 1
     show_change_link = True
     can_delete = True
+    suit_classes = 'suit-tab suit-tab-contact'
 
 
 class ChildSpecificNeedInline(admin.TabularInline):
@@ -220,6 +222,7 @@ class ChildSpecificNeedInline(admin.TabularInline):
     extra = 0
     show_change_link = True
     can_delete = True
+    suit_classes = 'suit-tab suit-tab-general'
 
 
 @register(Child)
@@ -230,16 +233,19 @@ class ChildAdmin(admin.ModelAdmin):
     list_display = (
         'first_name', 'last_name', 'usual_name', 'gender', 'birth_date', 'classroom', 'age_group', 'staff')
     list_filter = ('gender', 'classroom', 'status', 'age_group', 'staff')
-    fieldsets = (
-        (_('Standard info'), {
-            'fields': (
-                'first_name', 'last_name', 'usual_name', 'gender', 'picture', 'birth_date', 'languages', 'nationality',
-                'red_list',
-                'food_restrictions',
-                'sibling_name', 'sibling_birth_date', 'sibling_institution',
-                'comment', 'renewal_date', 'staff')
+
+    fieldsets = [
+        (_("Personal information"), {
+            'classes': ('suit-tab', 'suit-tab-general',),
+            'fields': ['first_name', 'last_name', 'usual_name', 'gender', 'picture', 'birth_date', 'languages',
+                       'nationality',
+                       'red_list',
+                       'food_restrictions',
+                       'sibling_name', 'sibling_birth_date', 'sibling_institution',
+                       'comment', 'renewal_date', ]
         }),
         (_('Health info'), {
+            'classes': ('suit-tab', 'suit-tab-general',),
             'fields': (
                 "allergies", "pediatrician", "pediatrician_contact", "usage_paracetamol", "healthy_child",
                 "good_development",
@@ -248,20 +254,30 @@ class ChildAdmin(admin.ModelAdmin):
                 "health_insurance"
             )
         }),
-        (_("Classroom"), {
+        (_('Classroom'), {
+            'classes': ('suit-tab', 'suit-tab-grp_edu',),
             'fields': ('classroom', 'next_classroom', 'date_next_classroom', 'age_group')
         }),
-        (_("Status"), {
-            'fields': ('status',)
+        (_('Staff'), {
+            'classes': ('suit-tab', 'suit-tab-grp_edu',),
+            'fields': ['staff']
         }),
-    )
+        (_('Other'), {
+            'classes': ('suit-tab', 'suit-tab-general',),
+            'fields': ['status', 'slug', 'created', 'modified']
+        })]
+
+    suit_form_tabs = (
+        ('general', _('General')), ('grp_edu', _('Classroom & Staff')), ('contact', _('Contacts')),
+        ('periods', _('Periods')),
+        )
     inlines = [
         ChildToPeriodInline,
         ChildToContactInline,
         ChildSpecificNeedInline,
     ]
     # raw_id_fields = ('',)
-    readonly_fields = ('slug', "folder")
+    readonly_fields = ('slug', "folder", "created", "modified")
     search_fields = (
         'first_name', 'last_name', 'usual_name', 'birth_date', 'classroom__name', 'next_classroom__name',
         'date_next_classroom',
