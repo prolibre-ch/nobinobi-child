@@ -21,10 +21,11 @@ class Command(BaseCommand):
         age_groups = AgeGroup.objects.all()
         now_year = now_date.year
         for age_group in age_groups:
-            if now_date == datetime.datetime.strptime("31/07/{}".format(now_year), "%d/%m/%Y"):
+            if now_date == datetime.datetime.strptime("31/07/{}".format(now_year), "%d/%m/%Y").date():
                 age_group.from_date = arrow.get(age_group.from_date).shift(years=+1).date()
                 age_group.end_date = arrow.get(age_group.end_date).shift(years=+1).date()
                 age_group.save()
+                logger.info(_("Age group {} changed year +1.").format(age_group))
 
         # executing empty sample job
         children = Child.objects.exclude(status=Child.STATUS.archived)

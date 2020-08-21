@@ -597,7 +597,7 @@ class ChildAdminPrintHealCardView(WeasyTemplateResponseMixin, DetailView, LoginR
         current_academic_year_end_date = None
         # +1 for accept 12 in range
         day_date = timezone.localdate()
-        if day_date.month in range(9, 12 + 1):
+        if day_date.month in range(8, 12 + 1):
             current_academic_year_start_date = make_aware(datetime.datetime(day_date.year, 8, 1))
             current_academic_year_end_date = make_aware(datetime.datetime(day_date.year + 1, 7, 31, 23, 59, 59, 999999))
         else:
