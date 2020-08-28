@@ -1,10 +1,17 @@
-/*!
- * Stylesheet for the Date Range Picker, for use with Bootstrap 3.x
+/*
+ * Copyright (C) 2020 <Florian Alu - Prolibre - https://prolibre.com
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
  *
- * Copyright 2013-2015 Dan Grossman ( http://www.dangrossman.info )
- * Licensed under the MIT license. See http://www.opensource.org/licenses/mit-license.php
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
  *
- * Built for http://www.improvely.com
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
  .daterangepicker.dropdown-menu {
@@ -168,7 +175,7 @@
 .daterangepicker.openscenter:before {
   position: absolute;
   top: -7px;
-  left: 0;  
+  left: 0;
   right: 0;
   width: 0;
   margin-left: auto;
@@ -184,8 +191,8 @@
 .daterangepicker.openscenter:after {
   position: absolute;
   top: -6px;
-  left: 0;  
-  right: 0;  
+  left: 0;
+  right: 0;
   width: 0;
   margin-left: auto;
   margin-right: auto;
@@ -326,7 +333,7 @@
 }
 
 .daterangepicker_end_input {
-  float: left; 
+  float: left;
   padding-left: 11px
 }
 

@@ -1,24 +1,21 @@
-/*! AutoFill 1.2.1
- * ©2008-2014 SpryMedia Ltd - datatables.net/license
+/*
+ * Copyright (C) 2020 <Florian Alu - Prolibre - https://prolibre.com
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/**
- * @summary     AutoFill
- * @description Add Excel like click and drag auto-fill options to DataTables
- * @version     1.2.1
- * @file        dataTables.autoFill.js
- * @author      SpryMedia Ltd (www.sprymedia.co.uk)
- * @contact     www.sprymedia.co.uk/contact
- * @copyright   Copyright 2010-2014 SpryMedia Ltd.
- *
- * This source file is free software, available under the following license:
- *   MIT license - http://datatables.net/license/mit
- *
- * This source file is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
- * or FITNESS FOR A PARTICULAR PURPOSE. See the license files for details.
- *
- * For details please refer to: http://www.datatables.net
+/*! AutoFill 1.2.1
+ * ©2008-2014 SpryMedia Ltd - datatables.net/license
  */
 
 (function( window, document, undefined ) {
@@ -26,7 +23,7 @@
 var factory = function( $, DataTable ) {
 "use strict";
 
-/** 
+/**
  * AutoFill provides Excel like auto-fill features for a DataTable
  *
  * @class AutoFill
@@ -330,7 +327,7 @@ AutoFill.prototype = {
 			height = offsetEnd.top + $(nEnd).outerHeight() - offsetStart.top + (2*border),
 			oStyle;
 
-		// Recalculate start and end (when dragging "backwards")  
+		// Recalculate start and end (when dragging "backwards")
 		if( offsetStart.left > offsetEnd.left) {
 			x1 = offsetEnd.left - border;
 			x2 = offsetStart.left + $(nStart).outerWidth();

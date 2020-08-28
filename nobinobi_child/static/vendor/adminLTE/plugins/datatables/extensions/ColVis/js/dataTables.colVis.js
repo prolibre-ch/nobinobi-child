@@ -1,24 +1,21 @@
-/*! ColVis 1.1.2
- * ©2010-2015 SpryMedia Ltd - datatables.net/license
+/*
+ * Copyright (C) 2020 <Florian Alu - Prolibre - https://prolibre.com
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/**
- * @summary     ColVis
- * @description Controls for column visibility in DataTables
- * @version     1.1.2
- * @file        dataTables.colReorder.js
- * @author      SpryMedia Ltd (www.sprymedia.co.uk)
- * @contact     www.sprymedia.co.uk/contact
- * @copyright   Copyright 2010-2015 SpryMedia Ltd.
- *
- * This source file is free software, available under the following license:
- *   MIT license - http://datatables.net/license/mit
- *
- * This source file is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
- * or FITNESS FOR A PARTICULAR PURPOSE. See the license files for details.
- *
- * For details please refer to: http://www.datatables.net
+/*! ColVis 1.1.2
+ * ©2010-2015 SpryMedia Ltd - datatables.net/license
  */
 
 (function(window, document, undefined) {
@@ -328,7 +325,7 @@ ColVis.prototype = {
 			this.s.restore = this.s.sRestore;
 		}
 
-		// CamelCase to Hungarian for the column groups 
+		// CamelCase to Hungarian for the column groups
 		var groups = this.s.groups;
 		var hungarianGroups = this.s.aoGroups;
 		if ( groups ) {

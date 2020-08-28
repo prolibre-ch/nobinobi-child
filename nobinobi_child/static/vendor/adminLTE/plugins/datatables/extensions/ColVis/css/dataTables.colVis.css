@@ -1,3 +1,19 @@
+/*
+ * Copyright (C) 2020 <Florian Alu - Prolibre - https://prolibre.com
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * ColVis styles
@@ -67,12 +83,12 @@ button.ColVis_Button {
 	padding: 3px 8px;
 }
 
-button.ColVis_Button::-moz-focus-inner { 
+button.ColVis_Button::-moz-focus-inner {
 	border: none !important;
 	padding: 0;
 }
 
-button.ColVis_Button:active { 
+button.ColVis_Button:active {
 	outline: none;
 }
 
@@ -104,7 +120,7 @@ ul.ColVis_collection {
 	    -ms-border-radius: 5px;
 	     -o-border-radius: 5px;
 	        border-radius: 5px;
-	
+
 	-webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
 	   -moz-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
 	    -ms-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
@@ -122,7 +138,7 @@ ul.ColVis_collection li {
 	display: block;
 	float: none;
 	margin-bottom: 4px;
-	
+
 	-webkit-box-shadow: 1px 1px 3px #999;
 	   -moz-box-shadow: 1px 1px 3px #999;
 	    -ms-box-shadow: 1px 1px 3px #999;

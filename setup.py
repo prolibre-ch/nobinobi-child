@@ -23,10 +23,10 @@ def get_version(*file_paths):
 
 version = '0.1.0'
 
-
 if sys.argv[-1] == 'publish':
     try:
         import wheel
+
         print("Wheel version: ", wheel.__version__)
     except ImportError:
         print('Wheel library missing. Please run "pip install wheel"')
@@ -51,39 +51,28 @@ setup(
     long_description=readme + '\n\n' + history,
     author='Florian Alu',
     author_email='alu@prolibre.com',
-    url='https://homer.lan.prolibre.com:8400/projects/nobinobi-child/',
+    url='https://github.com/prolibre-ch/nobinobi-child',
     packages=[
         'nobinobi_child',
     ],
     include_package_data=True,
     install_requires=[
-        "django-model-utils>=2.0",
-        "django-phonenumber-field>=2.3.1",
-        "phonenumbers>=8.10.10",
-        "djangorestframework>=3.9.3",
-        "django>=2.0,<=2.2",
-        "psycopg2-binary>=2.8.2",
-        "Pillow>=6.0.0",
-        "django-crispy-forms>=1.7.2",
-        "urllib3<1.25,>=1.21.1",
-        "django-select2>=7.0.3",
-        "django-bootstrap-modal-forms>=1.3.1",
-        "django-widget-tweaks>=1.4.3",
-    ],
-    dependency_links=[
-        'git+ssh://gitolite@homer.lan.prolibre.com:8022/nobinobi-staff/nobinobi-staff.git@develop#egg=nobinobi-staff',
-        'git+ssh://gitolite@homer.lan.prolibre.com:8022/nobinobi-core/nobinobi-core.git@develop#egg=nobinobi-core',
-        'git+https://github.com/jazzband/django-simple-menu.git@master#egg=django-simple-menu',
+        "djangorestframework==3.11.1", "django==3.1", "django-model-utils==4.0.0", "django-phonenumber-field==5.0.0",
+        "phonenumbers==8.12.8", "Pillow==7.2.0", "django-crispy-forms==1.9.2", "urllib3==1.25.10",
+        "django-select2==7.4.2", "django-bootstrap-modal-forms==2.0.0", "django-widget-tweaks==1.4.8",
+        "django-bootstrap-datepicker-plus==3.0.5", "django-simple-menu==1.2.1", "django-extensions==3.0.5",
+        "nobinobi-staff==0.1.3", "nobinobi-core==0.1.0"
     ],
     zip_safe=False,
     keywords='nobinobi-child',
     classifiers=[
-        'Development Status :: 3 - Alpha',
-        'Framework :: Django :: 2.0',
+        'Development Status :: 4 - Beta',
+        'Framework :: Django :: 3.1',
         'Intended Audience :: Developers',
-        'License :: OSI Approved :: BSD License',
+        'License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)',
         'Natural Language :: English',
-        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
     ],
 )

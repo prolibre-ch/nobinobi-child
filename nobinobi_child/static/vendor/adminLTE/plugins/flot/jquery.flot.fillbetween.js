@@ -1,33 +1,18 @@
-/* Flot plugin for computing bottoms for filled line and bar charts.
-
-Copyright (c) 2007-2013 IOLA and Ole Laursen.
-Licensed under the MIT license.
-
-The case: you've got two series that you want to fill the area between. In Flot
-terms, you need to use one as the fill bottom of the other. You can specify the
-bottom of each data point as the third coordinate manually, or you can use this
-plugin to compute it for you.
-
-In order to name the other series, you need to give it an id, like this:
-
-	var dataset = [
-		{ data: [ ... ], id: "foo" } ,         // use default bottom
-		{ data: [ ... ], fillBetween: "foo" }, // use first dataset as bottom
-	];
-
-	$.plot($("#placeholder"), dataset, { lines: { show: true, fill: true }});
-
-As a convenience, if the id given is a number that doesn't appear as an id in
-the series, it is interpreted as the index in the array instead (so fillBetween:
-0 can also mean the first series).
-
-Internally, the plugin modifies the datapoints in each series. For line series,
-extra data points might be inserted through interpolation. Note that at points
-where the bottom line is not defined (due to a null point or start/end of line),
-the current line will show a gap too. The algorithm comes from the
-jquery.flot.stack.js plugin, possibly some code could be shared.
-
-*/
+/*
+ * Copyright (C) 2020 <Florian Alu - Prolibre - https://prolibre.com
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
 
 (function ( $ ) {
 

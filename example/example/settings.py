@@ -88,18 +88,10 @@ WSGI_APPLICATION = 'example.wsgi.application'
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
 DATABASES = {
-    'sqlite': {
+    'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     },
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'nobinobi_child',
-        'USER': 'admin',
-        'PASSWORD': 'Admin123',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-    }
 }
 
 # Password validation
@@ -123,9 +115,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
-LANGUAGE_CODE = 'fr-fr'
+LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Europe/Paris'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 

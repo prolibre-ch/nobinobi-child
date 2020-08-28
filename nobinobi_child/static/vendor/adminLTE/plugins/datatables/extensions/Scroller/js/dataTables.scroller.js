@@ -1,24 +1,21 @@
-/*! Scroller 1.2.2
- * ©2011-2014 SpryMedia Ltd - datatables.net/license
+/*
+ * Copyright (C) 2020 <Florian Alu - Prolibre - https://prolibre.com
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/**
- * @summary     Scroller
- * @description Virtual rendering for DataTables
- * @version     1.2.2
- * @file        dataTables.scroller.js
- * @author      SpryMedia Ltd (www.sprymedia.co.uk)
- * @contact     www.sprymedia.co.uk/contact
- * @copyright   Copyright 2011-2014 SpryMedia Ltd.
- *
- * This source file is free software, available under the following license:
- *   MIT license - http://datatables.net/license/mit
- *
- * This source file is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
- * or FITNESS FOR A PARTICULAR PURPOSE. See the license files for details.
- *
- * For details please refer to: http://www.datatables.net
+/*! Scroller 1.2.2
+ * ©2011-2014 SpryMedia Ltd - datatables.net/license
  */
 
 (function(window, document, undefined){
@@ -58,7 +55,7 @@ var factory = function( $, DataTable ) {
  *  @constructor
  *  @global
  *  @param {object} oDT DataTables settings object
- *  @param {object} [oOpts={}] Configuration object for FixedColumns. Options 
+ *  @param {object} [oOpts={}] Configuration object for FixedColumns. Options
  *    are defined by {@link Scroller.defaults}
  *
  *  @requires jQuery 1.7+
@@ -318,7 +315,7 @@ Scroller.prototype = /** @lends Scroller.prototype */{
 	 *          o.oScroller.fnScrollToRow( 1000 );
 	 *        }
 	 *      } );
-	 *     
+	 *
 	 *      // Sometime later on use the following to scroll to row 500...
 	 *          var oSettings = $('#example').dataTable().fnSettings();
 	 *      oSettings.oScroller.fnScrollToRow( 500 );
@@ -388,7 +385,7 @@ Scroller.prototype = /** @lends Scroller.prototype */{
 	 *          o.oScroller.fnScrollToRow( 1000 );
 	 *        }
 	 *      } );
-	 *     
+	 *
 	 *      setTimeout( function () {
 	 *        // Make the example container visible and recalculate the scroller sizes
 	 *        document.getElementById('container').style.display = "block";
@@ -670,7 +667,7 @@ Scroller.prototype = /** @lends Scroller.prototype */{
 	 * had scrolling containers of infinite height (i.e. the absolute value)
 	 *
 	 *  @param {string} dir Domain transform direction, `virtualToPhysical` or
-	 *    `physicalToVirtual` 
+	 *    `physicalToVirtual`
 	 *  @returns {number} Calculated transform
 	 *  @private
 	 */

@@ -1,3 +1,19 @@
+/*
+ * Copyright (C) 2020 <Florian Alu - Prolibre - https://prolibre.com
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
 /*! Select for DataTables 1.3.0
  * 2015-2018 SpryMedia Ltd - datatables.net/license/mit
  */
@@ -180,7 +196,7 @@ The `_select` object contains the following properties:
 
 ```
 {
-	items:string     - Can be `rows`, `columns` or `cells`. Defines what item 
+	items:string     - Can be `rows`, `columns` or `cells`. Defines what item
 	                   will be selected if the user is allowed to activate row
 	                   selection using the mouse.
 	style:string     - Can be `none`, `single`, `multi` or `os`. Defines the
@@ -217,7 +233,7 @@ handler that will select the items using the API methods.
  * in the visible grid rather than by index in sequence. For example, if you
  * click first in cell 1-1 and then shift click in 2-2 - cells 1-2 and 2-1
  * should also be selected (and not 1-3, 1-4. etc)
- * 
+ *
  * @param  {DataTable.Api} dt   DataTable
  * @param  {object}        idx  Cell index to select to
  * @param  {object}        last Cell index to select from
@@ -234,13 +250,13 @@ function cellRange( dt, idx, last )
 			end = start;
 			start = tmp;
 		}
-		
+
 		var record = false;
 		return dt.columns( ':visible' ).indexes().filter( function (i) {
 			if ( i === start ) {
 				record = true;
 			}
-			
+
 			if ( i === end ) { // not else if, as start might === end
 				record = false;
 				return true;
@@ -265,7 +281,7 @@ function cellRange( dt, idx, last )
 			if ( i === start ) {
 				record = true;
 			}
-			
+
 			if ( i === end ) {
 				record = false;
 				return true;
@@ -461,7 +477,7 @@ function eventTrigger ( api, type, args, any )
 /**
  * Update the information element of the DataTable showing information about the
  * items selected. This is done by adding tags to the existing text
- * 
+ *
  * @param {DataTable.Api} api DataTable to update
  * @private
  */
@@ -525,7 +541,7 @@ function init ( ctx ) {
 	// Row callback so that classes can be added to rows and cells if the item
 	// was selected before the element was created. This will happen with the
 	// `deferRender` option enabled.
-	// 
+	//
 	// This method of attaching to `aoRowCreatedCallback` is a hack until
 	// DataTables has proper events for row manipulation If you are reviewing
 	// this code to create your own plug-ins, please do not do this!
@@ -650,7 +666,7 @@ function clear( ctx, force )
 {
 	if ( force || ctx._select.style === 'single' ) {
 		var api = new DataTable.Api( ctx );
-		
+
 		api.rows( { selected: true } ).deselect();
 		api.columns( { selected: true } ).deselect();
 		api.cells( { selected: true } ).deselect();
@@ -849,7 +865,7 @@ apiRegister( 'select.style()', function ( style ) {
 		// API selection is available
 		var dt = new DataTable.Api( ctx );
 		disableMouseSelection( dt );
-		
+
 		if ( style !== 'api' ) {
 			enableMouseSelection( dt );
 		}

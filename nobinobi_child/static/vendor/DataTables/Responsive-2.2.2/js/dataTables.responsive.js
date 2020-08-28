@@ -1,3 +1,19 @@
+/*
+ * Copyright (C) 2020 <Florian Alu - Prolibre - https://prolibre.com
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
 /*! Responsive 2.2.2
  * 2014-2018 SpryMedia Ltd - datatables.net/license
  */
@@ -765,7 +781,7 @@ $.extend( Responsive.prototype, {
 				break;
 			}
 		}
-		
+
 		// Show the columns for that break point
 		var columnsVis = this._columnsVisiblity( breakpoint );
 		this.s.current = columnsVis;
@@ -896,7 +912,7 @@ $.extend( Responsive.prototype, {
 		if ( this.c.details.type === 'inline' ) {
 			$(clonedTable).addClass( 'dtr-inline collapsed' );
 		}
-		
+
 		// It is unsafe to insert elements with the same name into the DOM
 		// multiple times. For example, cloning and inserting a checked radio
 		// clears the chcecked state of the original radio.
@@ -905,7 +921,7 @@ $.extend( Responsive.prototype, {
 		// A position absolute table would take the table out of the flow of
 		// our container element, bypassing the height and width (Scroller)
 		$( clonedTable ).css( 'position', 'relative' )
-		
+
 		var inserted = $('<div/>')
 			.css( {
 				width: 1,

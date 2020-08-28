@@ -1,3 +1,19 @@
+/*
+ * Copyright (C) 2020 <Florian Alu - Prolibre - https://prolibre.com
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
 /*! DataTables Bootstrap 4 integration
  * ©2011-2017 SpryMedia Ltd - datatables.net/license
  */
@@ -157,7 +173,7 @@ DataTable.ext.renderer.pageButton.bootstrap = function ( settings, host, idx, bu
 	};
 
 	// IE9 throws an 'unknown error' if document.activeElement is used
-	// inside an iframe or frame. 
+	// inside an iframe or frame.
 	var activeEl;
 
 	try {
