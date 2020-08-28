@@ -1,3 +1,19 @@
+/*
+ * Copyright (C) 2020 <Florian Alu - Prolibre - https://prolibre.com
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
 /*! KeyTable 1.2.1
  * ©2010-2014 SpryMedia Ltd - datatables.net/license
  */
@@ -141,8 +157,8 @@ KeyTable = function ( oInit )
 	var _nBody = null;
 
 	/*
-	 * Variable: 
-	 * Purpose:  
+	 * Variable:
+	 * Purpose:
 	 * Scope:    KeyTable - private
 	 */
 	var _nOldFocus = null;
@@ -190,7 +206,7 @@ KeyTable = function ( oInit )
 
 	/*
 	 * Variable: _oDatatable
-	 * Purpose:  DataTables settings object for if we are actually using a 
+	 * Purpose:  DataTables settings object for if we are actually using a
 	 *           DataTables table
 	 * Scope:    KeyTable - private
 	 */
@@ -661,7 +677,7 @@ KeyTable = function ( oInit )
 		/* Get table height and width - done here so as to be dynamic (if table is updated) */
 		if ( _oDatatable )
 		{
-			/* 
+			/*
 			 * Locate the current node in the DataTable overriding the old positions - the reason for
 			 * is is that there might have been some DataTables interaction between the last focus and
 			 * now
@@ -722,7 +738,7 @@ KeyTable = function ( oInit )
 						_bInputFocused = true;
 						_nInput.focus();
 
-						/* This timeout is a little nasty - but IE appears to have some asyhnc behaviour for 
+						/* This timeout is a little nasty - but IE appears to have some asyhnc behaviour for
 						 * focus
 						 */
 						setTimeout( function(){ _bInputFocused = false; }, 0 );
@@ -777,7 +793,7 @@ KeyTable = function ( oInit )
 						_bInputFocused = true;
 						_nInput.focus();
 
-						/* This timeout is a little nasty - but IE appears to have some asyhnc behaviour for 
+						/* This timeout is a little nasty - but IE appears to have some asyhnc behaviour for
 						 * focus
 						 */
 						setTimeout( function(){ _bInputFocused = false; }, 0 );

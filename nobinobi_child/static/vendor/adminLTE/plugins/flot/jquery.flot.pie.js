@@ -1,59 +1,18 @@
-/* Flot plugin for rendering pie charts.
-
-Copyright (c) 2007-2013 IOLA and Ole Laursen.
-Licensed under the MIT license.
-
-The plugin assumes that each series has a single data value, and that each
-value is a positive integer or zero.  Negative numbers don't make sense for a
-pie chart, and have unpredictable results.  The values do NOT need to be
-passed in as percentages; the plugin will calculate the total and per-slice
-percentages internally.
-
-* Created by Brian Medendorp
-
-* Updated with contributions from btburnett3, Anthony Aragues and Xavi Ivars
-
-The plugin supports these options:
-
-	series: {
-		pie: {
-			show: true/false
-			radius: 0-1 for percentage of fullsize, or a specified pixel length, or 'auto'
-			innerRadius: 0-1 for percentage of fullsize or a specified pixel length, for creating a donut effect
-			startAngle: 0-2 factor of PI used for starting angle (in radians) i.e 3/2 starts at the top, 0 and 2 have the same result
-			tilt: 0-1 for percentage to tilt the pie, where 1 is no tilt, and 0 is completely flat (nothing will show)
-			offset: {
-				top: integer value to move the pie up or down
-				left: integer value to move the pie left or right, or 'auto'
-			},
-			stroke: {
-				color: any hexidecimal color value (other formats may or may not work, so best to stick with something like '#FFF')
-				width: integer pixel width of the stroke
-			},
-			label: {
-				show: true/false, or 'auto'
-				formatter:  a user-defined function that modifies the text/style of the label text
-				radius: 0-1 for percentage of fullsize, or a specified pixel length
-				background: {
-					color: any hexidecimal color value (other formats may or may not work, so best to stick with something like '#000')
-					opacity: 0-1
-				},
-				threshold: 0-1 for the percentage value at which to hide labels (if they're too small)
-			},
-			combine: {
-				threshold: 0-1 for the percentage value at which to combine slices (if they're too small)
-				color: any hexidecimal color value (other formats may or may not work, so best to stick with something like '#CCC'), if null, the plugin will automatically use the color of the first slice to be combined
-				label: any text value of what the combined slice should be labeled
-			}
-			highlight: {
-				opacity: 0-1
-			}
-		}
-	}
-
-More detail and specific examples can be found in the included HTML file.
-
-*/
+/*
+ * Copyright (C) 2020 <Florian Alu - Prolibre - https://prolibre.com
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
 
 (function($) {
 

@@ -11,6 +11,14 @@ Nobinobi Child
 .. image:: https://codecov.io/gh/alu/nobinobi-child/branch/master/graph/badge.svg
     :target: https://codecov.io/gh/alu/nobinobi-child
 
+.. image:: https://pyup.io/repos/github/prolibre-ch/nobinobi-child/shield.svg
+     :target: https://pyup.io/repos/github/prolibre-ch/nobinobi-child/
+     :alt: Updates
+
+.. image:: https://pyup.io/repos/github/prolibre-ch/nobinobi-child/python-3-shield.svg
+     :target: https://pyup.io/repos/github/prolibre-ch/nobinobi-child/
+     :alt: Python 3
+
 Application Child for Nobinobi
 
 Documentation
@@ -31,8 +39,20 @@ Add it to your `INSTALLED_APPS`:
 
     INSTALLED_APPS = (
         ...
-        'nobinobi_child.apps.NobinobiChildConfig',
         'phonenumber_field',
+        'crispy_forms',
+        'django_extensions',
+        'rest_framework',
+        'rest_framework.authtoken',
+        'rest_framework_datatables',
+        'menu',
+        'bootstrap_modal_forms',
+        'widget_tweaks',
+        'django_select2',
+        'bootstrap_datepicker_plus',
+        'nobinobi_core',
+        'nobinobi_staff',
+        'nobinobi_child.apps.NobinobiChildConfig',
         ...
     )
 
@@ -40,12 +60,16 @@ Add Nobinobi Child's URL patterns:
 
 .. code-block:: python
 
+    from nobinobi_core import urls as nobinobi_core_urls
+    from nobinobi_staff import urls as nobinobi_staff_urls
     from nobinobi_child import urls as nobinobi_child_urls
 
 
     urlpatterns = [
         ...
-        url(r'^', include(nobinobi_child_urls)),
+        path('', include(nobinobi_core_urls)),
+        path('', include(nobinobi_staff_urls)),
+        path('', include(nobinobi_child_urls)),
         ...
     ]
 

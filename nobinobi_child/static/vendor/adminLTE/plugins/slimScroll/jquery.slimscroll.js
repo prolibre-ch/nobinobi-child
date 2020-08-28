@@ -1,9 +1,17 @@
-/*! Copyright (c) 2011 Piotr Rochala (http://rocha.la)
- * Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php)
- * and GPL (http://www.opensource.org/licenses/gpl-license.php) licenses.
+/*
+ * Copyright (C) 2020 <Florian Alu - Prolibre - https://prolibre.com
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
  *
- * Version: 1.3.3
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
  *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 (function ($) {
 
@@ -245,7 +253,7 @@
           hideBar();
         });
 
-        if (window.navigator.msPointerEnabled) {          
+        if (window.navigator.msPointerEnabled) {
           // support for mobile
           me.bind('MSPointerDown', function (e, b) {
             if (e.originalEvent.targetTouches.length)
@@ -265,7 +273,7 @@
               // scroll content
               scrollContent(diff, true);
               touchDif = e.originalEvent.targetTouches[0].pageY;
-              
+
             }
           });
         } else {
