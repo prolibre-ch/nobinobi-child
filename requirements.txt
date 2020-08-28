@@ -18,4 +18,5 @@ django_weasyprint==1.0.1
 
 nobinobi-staff==0.1.3
 nobinobi-core==0.1.0
+-e .
 
