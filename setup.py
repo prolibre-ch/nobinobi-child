@@ -61,7 +61,7 @@ setup(
         "phonenumbers==8.12.8", "Pillow==7.2.0", "django-crispy-forms==1.9.2", "urllib3==1.25.10",
         "django-select2==7.4.2", "django-bootstrap-modal-forms==2.0.0", "django-widget-tweaks==1.4.8",
         "django-bootstrap-datepicker-plus==3.0.5", "django-simple-menu==1.2.1", "django-extensions==3.0.5",
-        "nobinobi-staff==0.1.3", "nobinobi-core==0.1.0"
+        "django_weasyprint==1.0.1", "nobinobi-staff==0.1.3", "nobinobi-core==0.1.0"
     ],
     zip_safe=False,
     keywords='nobinobi-child',
