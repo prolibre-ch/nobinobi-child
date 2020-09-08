@@ -21,7 +21,7 @@ def get_version(*file_paths):
     raise RuntimeError('Unable to find version string.')
 
 
-version = '0.1.0'
+version = get_version("nobinobi_child", "__init__.py")
 
 if sys.argv[-1] == 'publish':
     try:
@@ -31,8 +31,9 @@ if sys.argv[-1] == 'publish':
     except ImportError:
         print('Wheel library missing. Please run "pip install wheel"')
         sys.exit()
-    os.system('python setup.py sdist upload')
-    os.system('python setup.py bdist_wheel upload')
+    os.system('python setup.py sdist')
+    os.system('python setup.py bdist_wheel')
+    os.system('twine upload dist/*')
     sys.exit()
 
 if sys.argv[-1] == 'tag':
