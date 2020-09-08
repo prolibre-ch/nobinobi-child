@@ -5,11 +5,11 @@ Nobinobi Child
 .. image:: https://badge.fury.io/py/nobinobi-child.svg
     :target: https://badge.fury.io/py/nobinobi-child
 
-.. image:: https://travis-ci.org/alu/nobinobi-child.svg?branch=master
-    :target: https://travis-ci.org/alu/nobinobi-child
+.. image:: https://travis-ci.org/prolibre-ch/nobinobi-child.svg?branch=master
+    :target: https://travis-ci.org/prolibre-ch/nobinobi-child
 
-.. image:: https://codecov.io/gh/alu/nobinobi-child/branch/master/graph/badge.svg
-    :target: https://codecov.io/gh/alu/nobinobi-child
+.. image:: https://codecov.io/gh/prolibre-ch/nobinobi-child/branch/master/graph/badge.svg
+    :target: https://codecov.io/gh/prolibre-ch/nobinobi-child
 
 .. image:: https://pyup.io/repos/github/prolibre-ch/nobinobi-child/shield.svg
      :target: https://pyup.io/repos/github/prolibre-ch/nobinobi-child/
