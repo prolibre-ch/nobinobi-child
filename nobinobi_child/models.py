@@ -17,6 +17,7 @@
 import os
 import uuid
 
+from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext as _
 from model_utils import Choices
@@ -87,15 +88,15 @@ class Child(StatusModel, TimeStampedModel):
     sibling_institution = models.CharField(_("Sibling's institution"), max_length=100, blank=True, null=True)
 
     renewal_date = models.DateField(_("Renewal date"), blank=True, null=True)
-    usage_paracetamol = models.NullBooleanField(_("Usage paracetamol"), blank=False)
-    usage_homeopathy = models.NullBooleanField(_("Usage homeopathy"), blank=False)
-    healthy_child = models.NullBooleanField(_("Healthy child"), blank=False)
-    good_development = models.NullBooleanField(_("Good development"), blank=False)
+    usage_paracetamol = models.BooleanField(_("Usage paracetamol"), blank=False, null=True)
+    usage_homeopathy = models.BooleanField(_("Usage homeopathy"), blank=False, null=True)
+    healthy_child = models.BooleanField(_("Healthy child"), blank=False, null=True)
+    good_development = models.BooleanField(_("Good development"), blank=False, null=True)
     specific_problem = models.CharField(_("Specific problem"), max_length=255, blank=True, null=True)
-    vaccination = models.NullBooleanField(_("Vaccination"), blank=False)
+    vaccination = models.BooleanField(_("Vaccination"), blank=False, null=True)
     health_insurance = models.CharField(_("Health Insurance"), max_length=255, blank=True, null=True)
 
-    pediatrician_contact = models.NullBooleanField(_("Pediatrician contact"), blank=True, null=True)
+    pediatrician_contact = models.BooleanField(_("Pediatrician contact"), blank=True, null=True)
 
     pediatrician = models.ForeignKey(
         to="Contact",
@@ -330,7 +331,7 @@ class Classroom(TimeStampedModel):
     mode = StatusField(verbose_name=_("Mode"), choices_name="OPERATION_MODE", default=OPERATION_MODE.creche,
                        max_length=15)
     allowed_login = models.ManyToManyField(
-        to='auth.User',
+        to=settings.AUTH_USER_MODEL,
         verbose_name=_("Allowed login"),
         related_name="classroom_login"
     )
@@ -513,8 +514,8 @@ class Contact(TimeStampedModel):
     professional_phone = PhoneNumberField(verbose_name=_("Professional phone"), blank=True, null=True)
     organisation = models.CharField(_("Organisation"), max_length=100, blank=True, null=True)
     function = models.CharField(_("Function"), max_length=100, blank=True, null=True)
-    authorized_pick_up_child = models.NullBooleanField(_("Contact authorized to pick up the child."), blank=False)
-    to_contact_if_needed = models.NullBooleanField(_("To contact if needed"), blank=False)
+    authorized_pick_up_child = models.BooleanField(_("Contact authorized to pick up the child."), blank=False, null=True)
+    to_contact_if_needed = models.BooleanField(_("To contact if needed"), blank=False, null=True)
     reside_with_child = models.BooleanField(_('Reside with child'), default=True)
     parental_authority = models.BooleanField(_("Parental authority"), default=True)
 
