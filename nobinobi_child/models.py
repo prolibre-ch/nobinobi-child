@@ -17,6 +17,7 @@
 import os
 import uuid
 
+from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext as _
 from model_utils import Choices
@@ -330,7 +331,7 @@ class Classroom(TimeStampedModel):
     mode = StatusField(verbose_name=_("Mode"), choices_name="OPERATION_MODE", default=OPERATION_MODE.creche,
                        max_length=15)
     allowed_login = models.ManyToManyField(
-        to='auth.User',
+        to=settings.AUTH_USER_MODEL,
         verbose_name=_("Allowed login"),
         related_name="classroom_login"
     )
