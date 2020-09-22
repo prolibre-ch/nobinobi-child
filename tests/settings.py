@@ -37,7 +37,7 @@ if django.VERSION >= (1, 10):
 else:
     MIDDLEWARE_CLASSES = ()
 
-LANGUAGE_CODE = 'fr-fr'
+LANGUAGE_CODE = 'en-us'
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
