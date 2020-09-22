@@ -1,9 +1,16 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals, absolute_import
+from django.contrib import admin
+from django.urls import path, include
+from nobinobi_core import urls as nobinobi_core_urls
+from nobinobi_staff import urls as nobinobi_staff_urls
 
-from django.conf.urls import url, include
-
+from nobinobi_child import urls as nobinobi_child_urls
 
 urlpatterns = [
-    url(r'^', include('nobinobi_child.urls', namespace='nobinobi_child')),
+    path('admin/', admin.site.urls),
+    path('', include(nobinobi_core_urls, namespace="nobinobi_core")),
+    path('', include(nobinobi_staff_urls, namespace="nobinobi_staff")),
+    path('', include(nobinobi_child_urls, namespace="nobinobi_child")),
+    path('select2/', include('django_select2.urls')),
+
 ]

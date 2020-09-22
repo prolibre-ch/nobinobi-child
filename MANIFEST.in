@@ -3,4 +3,5 @@ include CONTRIBUTING.rst
 include HISTORY.rst
 include LICENSE
 include README.rst
+include requirements*.txt
 recursive-include nobinobi_child *.html *.png *.gif *js *.css *jpg *jpeg *svg *py *json *woff *woff2 *ttf *ico
