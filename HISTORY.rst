@@ -3,7 +3,13 @@
 History
 -------
 
-0.1.1.2 (2020-09-22)
+0.1.3 (2020-10-12)
+++++++++++++++++++++
+
+* Add local in package
+* Update requirements
+
+0.1.2 (2020-09-22)
 ++++++++++++++++++++
 
 * Fix migrations and support for django 4
