@@ -4,7 +4,7 @@ django-model-utils==4.0.0
 # Additional requirements go here
 django-phonenumber-field==5.0.0
 phonenumbers==8.12.11
-Pillow==8.0.0
+Pillow==8.0.1
 django-crispy-forms==1.9.2
 urllib3==1.25.11
 django-select2==7.4.2
