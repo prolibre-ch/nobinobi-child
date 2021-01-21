@@ -16,11 +16,11 @@ from django.contrib import admin
 from django.contrib.admin import register
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.utils.translation import gettext as _
 
 from nobinobi_child.models import Period, Allergy, FoodRestriction, Language, Classroom, AgeGroup, Absence, AbsenceType, \
     AbsenceGroup, ClassroomDayOff, InformationOfTheDay, Contact, Address, ChildSpecificNeed, LogChangeClassroom, Child, \
     ChildToPeriod, ChildToContact
-from django.utils.translation import gettext as _
 
 
 @register(Period)
@@ -217,7 +217,6 @@ class ChildToPeriodInline(admin.TabularInline):
     sortable_by = "period__order"
     show_change_link = False
     can_delete = True
-    suit_classes = 'suit-tab suit-tab-periods'
 
 
 class ChildToContactInline(admin.TabularInline):
@@ -226,7 +225,6 @@ class ChildToContactInline(admin.TabularInline):
     extra = 1
     show_change_link = True
     can_delete = True
-    suit_classes = 'suit-tab suit-tab-contact'
 
 
 class ChildSpecificNeedInline(admin.TabularInline):
@@ -236,7 +234,6 @@ class ChildSpecificNeedInline(admin.TabularInline):
     extra = 0
     show_change_link = True
     can_delete = True
-    suit_classes = 'suit-tab suit-tab-general'
 
 
 @register(Child)
@@ -276,10 +273,6 @@ class ChildAdmin(admin.ModelAdmin):
             'fields': ['status', 'slug', 'created', 'modified']
         })]
 
-    suit_form_tabs = (
-        ('general', _('General')), ('grp_edu', _('Classroom & Staff')), ('contact', _('Contacts')),
-        ('periods', _('Periods')),
-        )
     inlines = [
         ChildToPeriodInline,
         ChildToContactInline,

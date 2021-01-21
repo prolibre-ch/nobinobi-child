@@ -12,9 +12,9 @@
 #  You should have received a copy of the GNU Affero General Public License
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+from PIL import Image, ExifTags
 from django.conf import settings
 from django.utils.text import slugify
-from PIL import Image, ExifTags
 
 
 def get_display_contact_address():
@@ -60,3 +60,11 @@ def rotate_image(filepath):
     except (AttributeError, KeyError, IndexError):
         # cases: image don't have getexif
         pass
+
+
+def has_view_child(request):
+    return request.user.has_perm('nobinobi_child.view_child')
+
+
+def has_view_staff(request):
+    return request.user.has_perm('nobinobi_staff.view_staff')
