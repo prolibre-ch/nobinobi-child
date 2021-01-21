@@ -3,6 +3,13 @@
 History
 -------
 
+0.1.3.1 (2021-21-01)
+++++++++++++++++++++
+
+* Remove dependency for django-suit
+* Add check for display menu from permission
+* Update requirements
+
 0.1.3 (2020-10-12)
 ++++++++++++++++++++
 
