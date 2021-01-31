@@ -5,7 +5,7 @@ django-model-utils==4.1.1
 django-phonenumber-field==5.0.0
 phonenumbers==8.12.17
 Pillow==8.1.0
-django-crispy-forms==1.10.0
+django-crispy-forms==1.11.0
 urllib3==1.26.2
 django-select2==7.6.1
 # modalajax
