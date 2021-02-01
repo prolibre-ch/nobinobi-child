@@ -3,6 +3,13 @@
 History
 -------
 
+0.1.3.2 (2021-01-02)
+++++++++++++++++++++
+
+* 37be1c1 - Display phone as international for contact
+* da16e4a - Removing the display of homeopathy [DEPRECATED]
+* Update requirements
+
 0.1.3.1 (2021-21-01)
 ++++++++++++++++++++
 
