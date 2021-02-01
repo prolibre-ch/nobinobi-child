@@ -12,17 +12,31 @@
 #  You should have received a copy of the GNU Affero General Public License
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import arrow
-import pytz
-from django.conf import settings
 from nobinobi_staff.serializers import StaffSerializer
 from rest_framework import serializers
 
 from nobinobi_child.models import Child, Absence, ChildToContact, ChildSpecificNeed, Classroom, AgeGroup, AbsenceType, \
-    AbsenceGroup
+    AbsenceGroup, Contact
+
+
+class ContactSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Contact
+        fields = '__all__'
+
+    def to_representation(self, instance):
+        representation = super(ContactSerializer, self).to_representation(instance)
+
+        representation["phone"] = instance.phone.as_international if instance.phone else None
+        representation["mobile_phone"] = instance.mobile_phone.as_international if instance.mobile_phone else None
+        representation[
+            "professional_phone"] = instance.professional_phone.as_international if instance.professional_phone else None
+        return representation
 
 
 class ChildToContactSerializer(serializers.ModelSerializer):
+    contact = ContactSerializer()
+
     class Meta:
         model = ChildToContact
         fields = ('order', 'contact', 'link_with_child')
@@ -60,7 +74,8 @@ class ChildSerializer(serializers.ModelSerializer):
     class Meta:
         model = Child
         fields = (
-            "id", "status", "birth_date", "first_name", "last_name", "usual_name", "classroom", "age_group", "gender", "picture",
+            "id", "status", "birth_date", "first_name", "last_name", "usual_name", "classroom", "age_group", "gender",
+            "picture",
             "staff", "childtocontact_set", "childspecificneed")
         # depth = 2
         datatables_always_serialize = ("id", "first_name", "last_name", "usual_name", "gender")

@@ -249,15 +249,15 @@
                                                             </tr>
                                                             <tr>
                                                                 <th scope="row">{% trans "Phone" %}</th>
-                                                                <td>{{ ctc.contact.phone|default:"-" }}</td>
+                                                                <td>{{ ctc.contact.phone.as_international|default:"-" }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <th scope="row">{% trans "Mobile phone" %}</th>
-                                                                <td>{{ ctc.contact.mobile_phone|default:"-" }}</td>
+                                                                <td>{{ ctc.contact.mobile_phone.as_international|default:"-" }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <th scope="row">{% trans "Professional phone" %}</th>
-                                                                <td>{{ ctc.contact.professional_phone|default:"-" }}</td>
+                                                                <td>{{ ctc.contact.professional_phone.as_international|default:"-" }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <th scope="row">{% trans "Contact authorized to pick up the child." %}</th>
