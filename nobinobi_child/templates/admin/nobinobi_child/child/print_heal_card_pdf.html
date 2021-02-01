@@ -385,26 +385,6 @@
         </tr>
         </tbody>
     </table>
-    <table>
-        <tbody>
-        <tr>
-
-            <td><b>{% trans "Do you authorize the administration of granules of Arnica (homeopathy) in the event of hematoma?" %}</b></td>
-            {% if object.usage_homeopathy is True %}
-                <td class="yesno"><b>{% trans "YES" %}</b></td>
-                <td class="yesno">&nbsp;</td>
-            {% elif object.usage_homeopathy is False %}
-                <td class="yesno">&nbsp;</td>
-                <td class="yesno"><b>{% trans "NO" %}</b></td>
-            {% else %}
-                <td class="yesno">{% trans "YES" %}</td>
-                <td class="yesno">{% trans "NO" %}</td>
-            {% endif %}
-
-        </tr>
-        </tbody>
-    </table>
-
     <br>
     <table>
         <tbody>
