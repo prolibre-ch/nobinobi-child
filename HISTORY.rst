@@ -3,6 +3,12 @@
 History
 -------
 
+0.1.3.3 (2021-02-23)
+++++++++++++++++++++
+
+* 069d4cf - Added the ability to specify the group for the classes allowed to log in.
+* b7c0194, aafe110 - Fix requirements
+
 0.1.3.2 (2021-01-02)
 ++++++++++++++++++++
 
