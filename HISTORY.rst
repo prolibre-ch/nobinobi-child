@@ -3,6 +3,12 @@
 History
 -------
 
+0.1.3.4 (2021-02-24)
+++++++++++++++++++++
+
+* e0bda4d - Set the allowed_login and allowed_group fields to blank.
+* e758626 - Update pylint from 2.7.0 to 2.7.1
+
 0.1.3.3 (2021-02-23)
 ++++++++++++++++++++
 
