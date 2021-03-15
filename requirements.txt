@@ -6,7 +6,7 @@ django-phonenumber-field==5.0.0
 phonenumbers==8.12.19
 Pillow==8.1.2
 django-crispy-forms==1.11.1
-django-select2==7.6.1
+django-select2==7.6.2
 # modalajax
 django-bootstrap-modal-forms==2.0.1
 django-widget-tweaks==1.4.8
