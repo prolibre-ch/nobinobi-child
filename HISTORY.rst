@@ -3,6 +3,12 @@
 History
 -------
 
+0.1.3.5 (2021-03-31)
+++++++++++++++++++++
+
+* 7c0ee7b - Add link to Organisation for classroom
+* Update requirements
+
 0.1.3.4 (2021-02-24)
 ++++++++++++++++++++
 
