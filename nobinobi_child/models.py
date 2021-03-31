@@ -24,6 +24,7 @@ from django.utils.translation import gettext as _
 from model_utils import Choices
 from model_utils.fields import StatusField, SplitField
 from model_utils.models import TimeStampedModel, StatusModel
+from nobinobi_core.models import Organisation
 from nobinobi_staff.models import Staff
 from phonenumber_field.modelfields import PhoneNumberField
 
@@ -342,6 +343,13 @@ class Classroom(TimeStampedModel):
         verbose_name=_("Allowed group login"),
         related_name="classroom_group_login",
         blank=True
+    )
+    organisation = models.ForeignKey(
+        to=Organisation,
+        verbose_name=_("Organisation"),
+        on_delete=models.PROTECT,
+        blank=False,
+        null=True
     )
 
     class Meta:
