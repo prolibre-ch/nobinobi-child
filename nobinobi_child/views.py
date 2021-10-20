@@ -21,7 +21,6 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.db.models import Q
-from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.utils import timezone
@@ -37,6 +36,7 @@ from django.views.generic import (
 from django_weasyprint import WeasyTemplateResponseMixin
 from nobinobi_staff.models import Staff
 from rest_framework import viewsets
+from rest_framework.response import Response
 
 from nobinobi_child.forms import LoginAuthenticationForm, AbsenceCreateForm, ChildPictureSelectForm, ChildPictureForm, \
     ChildPictureUpdateForm
@@ -124,14 +124,34 @@ class ChildListView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(ChildListView, self).get_context_data(object_list=None, **kwargs)
-        context['classrooms'] = Classroom.objects.all().values_list("name", flat=True)
+        classroom_allowed = self.request.user.classroom_login.all().values_list("id", flat=True)
+        group_classroom_allowed = self.request.user.groups.all().values_list("classroom_group_login", flat=True)
+        context['classrooms'] = Classroom.objects.filter(
+            Q(id__in=classroom_allowed) | Q(id__in=group_classroom_allowed)
+        ).values_list("name", flat=True)
         context['title'] = _("Child list")
         return context
 
 
 class ChildViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Child.objects.all()
+    queryset = Child.objects.filter(status__in=['in_progress', 'future'])
     serializer_class = ChildSerializer
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+        classroom_allowed = self.request.user.classroom_login.all().values_list("id", flat=True)
+        group_classroom_allowed = self.request.user.groups.all().values_list("classroom_group_login", flat=True)
+        new_queryset = self.queryset.filter(
+            Q(classroom__in=classroom_allowed) | Q(classroom__in=group_classroom_allowed)
+        )
+
+        page = self.paginate_queryset(new_queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(new_queryset, many=True)
+        return Response(serializer.data)
 
 
 class AbsenceViewSet(viewsets.ReadOnlyModelViewSet):

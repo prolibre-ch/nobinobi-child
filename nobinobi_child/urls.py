@@ -27,7 +27,6 @@ app_name = 'nobinobi_child'
 router = DefaultRouter()
 router.register(r'child', views.ChildViewSet, basename="api-child")
 router.register(r'absence', views.AbsenceViewSet, basename="api-absence")
-
 urlpatterns = [
                   path('api/', include(router.urls)),
                   path('accounts/login/', views.AuthLoginView.as_view(), name='login_view'),
@@ -36,7 +35,8 @@ urlpatterns = [
                        name='logout_view'),
                   path("", views.HomeView.as_view(), name="home"),
                   # child
-                  path("admin/child/printhealcard/<uuid:pk>/", view=views.ChildAdminPrintHealCardView.as_view(), name="print_heal_card"),
+                  path("admin/child/printhealcard/<uuid:pk>/", view=views.ChildAdminPrintHealCardView.as_view(),
+                       name="print_heal_card"),
                   path("child/", include([
                       path("child/", include([
                           path("",
