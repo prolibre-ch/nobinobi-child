@@ -1,4 +1,4 @@
-coverage==5.5
+coverage==6.2
 mock==4.0.3
 flake8==3.9.2
 tox==3.24.4
