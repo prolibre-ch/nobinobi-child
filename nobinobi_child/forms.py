@@ -13,7 +13,7 @@
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import arrow
-from bootstrap_datepicker_plus import DateTimePickerInput
+from bootstrap_datepicker_plus.widgets import DateTimePickerInput
 from bootstrap_modal_forms.forms import BSModalModelForm
 from crispy_forms.bootstrap import AppendedText
 from crispy_forms.helper import FormHelper
