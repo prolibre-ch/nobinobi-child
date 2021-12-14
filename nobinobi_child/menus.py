@@ -16,7 +16,7 @@ from django.urls import reverse
 from django.utils.translation import gettext as _
 from menu import Menu, MenuItem
 
-from nobinobi_child.utils import has_view_child, has_view_staff
+from nobinobi_child.utils import has_view_child, has_view_staff, has_view_iotd
 
 Menu.add_item(
     "main",
@@ -36,6 +36,7 @@ Menu.add_item(
             MenuItem(
                 title=_("Information of the day"),
                 url=reverse("nobinobi_child:InformationOfTheDay_list"),
+                check=lambda request: has_view_iotd(request),
                 icon="fas fa-list"),
             MenuItem(
                 title=_("Absences"),

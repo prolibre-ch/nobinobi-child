@@ -12,7 +12,7 @@
 {% endblock %}
 
 {% block breadcrumb %}
-	{{ block.super }}
+    {{ block.super }}
     <li class="breadcrumb-item active"><a href="{% url "nobinobi_child:Child_list" %}">{{ title }}</a></li>
 {% endblock %}
 
@@ -24,10 +24,10 @@
 
             <div class="center btn-toolbar" role="toolbar" aria-label="">
                 <div class="btn-group mx-auto" role="group" aria-label="">
-					{% for classroom in classrooms %}
+                    {% for classroom in classrooms %}
                         <button type="button" id="{{ classroom|slugify }}_btn_choice" rel="{{ classroom }}"
                                 class="btn btn-secondary filter_datatable">{{ classroom }}</button>
-					{% endfor %}
+                    {% endfor %}
                     <button type="button" id="none_btn_choice"
                             class="btn btn-dark filter_datatable">{% trans "All" %}</button>
                 </div>
@@ -63,7 +63,7 @@
                     "url": "{% static 'vendor/DataTables/DataTables-1.10.18/i18n/French.json' %}"
                 },
                 "processing": true,
-                "serverSide": true,
+                "serverSide": false,
                 "ajax": "{% url 'nobinobi_child:api-child-list' %}?format=datatables",
                 "columns": [
                     {data: "status", visible: false},
@@ -159,13 +159,13 @@
                                     let mobile_phone = "";
                                     let professional_phone = "";
 
-                                    if(row[i].contact.phone){
+                                    if (row[i].contact.phone) {
                                         phone = row[i].contact.phone;
                                     }
-                                    if(row[i].contact.mobile_phone){
+                                    if (row[i].contact.mobile_phone) {
                                         mobile_phone = " / " + row[i].contact.mobile_phone;
                                     }
-                                    if(row[i].contact.professional_phone){
+                                    if (row[i].contact.professional_phone) {
                                         professional_phone = " / " + row[i].contact.professional_phone;
                                     }
                                     text += i + ") " + row[i].contact.first_name + " " + row[i].contact.last_name + " - " + phone + " / " + mobile_phone + " / " + professional_phone + "<br>";
@@ -219,17 +219,17 @@
                     },
                 ],
                 responsive: true,
-                "searchCols": [
-                    {"search": 'in_progress'},
-                ],
+                {#"searchCols": [#}
+                {#    {"search": 'in_progress'},#}
+                {#],#}
             });
             $('.filter_datatable').on('click', function (e) {
                 table.columns().search('');
                 let rel = $(this).attr('rel');
                 if (rel) {
-                    table.columns(0).search("in_progress").columns(5).search(rel).draw();
+                    table.columns(5).search(rel).draw();
                 } else {
-                    table.columns(0).search("in_progress").draw();
+                    table.draw();
 
                 }
             });

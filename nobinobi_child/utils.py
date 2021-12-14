@@ -68,3 +68,7 @@ def has_view_child(request):
 
 def has_view_staff(request):
     return request.user.has_perm('nobinobi_staff.view_staff')
+
+
+def has_view_iotd(request):
+    return request.user.has_perm('nobinobi_child.view_informationoftheday')
