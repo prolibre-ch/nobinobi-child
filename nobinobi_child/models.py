@@ -173,7 +173,7 @@ class Child(StatusModel, TimeStampedModel):
     )
 
     class Meta:
-        ordering = ('first_name', 'last_name', "created",)
+        ordering = ('last_name', 'first_name', "created",)
         unique_together = ("first_name", "last_name", "birth_date")
         verbose_name = _('Child')
         verbose_name_plural = _('Children')
@@ -191,7 +191,7 @@ class Child(StatusModel, TimeStampedModel):
 
     @property
     def full_name(self):
-        return "{} {}".format(self.first_name, self.last_name)
+        return "{} {}".format(self.last_name, self.first_name)
 
     full_name.fget.short_description = _("Full name")
 
