@@ -3,6 +3,13 @@
 History
 -------
 
+0.1.3.8 (2021-12-14)
+++++++++++++++++++++
+
+* c5a4b25 - Change display and ordering in full name of child
+* 2a0c8ea - Update import from django bootstrap plus
+* Update requirements
+
 0.1.3.7 (2021-06-07)
 ++++++++++++++++++++
 
