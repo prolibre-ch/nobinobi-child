@@ -79,6 +79,7 @@ class Child(StatusModel, TimeStampedModel):
         to="Language",
         verbose_name=_("Languages"),
         related_name="languages",
+        blank=True
     )
     red_list = models.CharField(_("Red list"), max_length=255, blank=True, null=True)
     comment = models.CharField(_("Comment"), max_length=255, blank=True, null=True)
