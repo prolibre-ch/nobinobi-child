@@ -3,6 +3,15 @@
 History
 -------
 
+0.1.3.9 (2021-12-20)
+++++++++++++++++++++
+
+* f3e824c - allow blank field language in child
+* 8f3d622 - Fix requirements bug
+* 01add3f - Set queryset staff in child for use only active staff in dropdown
+* 4aecb4c - Display by default only child in progress in admin page for children.
+* eb9ca31 - Update text for contact in child list with yes, no
+
 0.1.3.8 (2021-12-14)
 ++++++++++++++++++++
 

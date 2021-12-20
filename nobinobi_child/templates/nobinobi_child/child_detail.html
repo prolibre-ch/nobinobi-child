@@ -261,11 +261,11 @@
                                                             </tr>
                                                             <tr>
                                                                 <th scope="row">{% trans "Contact authorized to pick up the child." %}</th>
-                                                                <td>{{ ctc.contact.authorized_pick_up_child|default:"-" }}</td>
+                                                                <td>{{ ctc.contact.authorized_pick_up_child|yesno:_("Yes,No")|default_if_none:"-" }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <th scope="row">{% trans "To contact if needed" %}</th>
-                                                                <td>{{ ctc.contact.to_contact_if_needed|default:"-" }}</td>
+                                                                <td>{{ ctc.contact.to_contact_if_needed|yesno:_("Yes,No")|default_if_none:"-" }}</td>
                                                             </tr>
                                                             </tbody>
                                                         </table>
