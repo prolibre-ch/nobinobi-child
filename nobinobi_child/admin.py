@@ -18,6 +18,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.utils.encoding import force_text
 from django.utils.translation import gettext as _
+from nobinobi_staff.models import Staff
 
 from nobinobi_child.models import Period, Allergy, FoodRestriction, Language, Classroom, AgeGroup, Absence, AbsenceType, \
     AbsenceGroup, ClassroomDayOff, InformationOfTheDay, Contact, Address, ChildSpecificNeed, LogChangeClassroom, Child, \
@@ -359,3 +360,8 @@ class ChildAdmin(admin.ModelAdmin):
         if "_printhealcard" in request.POST:
             return HttpResponseRedirect(reverse("nobinobi_child:print_heal_card", kwargs={"pk": obj.pk}))
         return super().response_change(request, obj)
+
+    def get_form(self, request, obj=None, **kwargs):
+        form = super(ChildAdmin, self).get_form(request, obj, **kwargs)
+        form.base_fields['staff'].queryset = Staff.objects.filter(status__exact='active')
+        return form
