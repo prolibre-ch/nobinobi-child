@@ -17,6 +17,7 @@
 import datetime
 
 from bootstrap_modal_forms.generic import BSModalCreateView, BSModalUpdateView, BSModalDeleteView, BSModalReadView
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
@@ -124,6 +125,7 @@ class ChildListView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(ChildListView, self).get_context_data(object_list=None, **kwargs)
+        context["name_classroom_display"] = getattr(settings, 'NAME_CLASSROOM_DISPLAY', _("Classroom"))
         classroom_allowed = self.request.user.classroom_login.all().values_list("id", flat=True)
         group_classroom_allowed = self.request.user.groups.all().values_list("classroom_group_login", flat=True)
         context['classrooms'] = Classroom.objects.filter(
@@ -376,6 +378,12 @@ class InformationOfTheDayUpdateView(UpdateView):
 
 class InformationOfTheDayListView(LoginRequiredMixin, ListView):
     model = InformationOfTheDay
+
+    def get_context_data(self, **kwargs):
+        context = super(InformationOfTheDayListView, self).get_context_data(**kwargs)
+        context["name_classroom_display"] = getattr(settings, "NAME_CLASSROOM_DISPLAY", _("Classroom"))
+        return context
+
 
     def get_queryset(self):
         if self.request.user:
