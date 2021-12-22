@@ -3,6 +3,12 @@
 History
 -------
 
+0.1.3.10 (2021-12-22)
++++++++++++++++++++++
+
+* 99c3d1c - Reverse order and display of child
+* d11a73c - Add system to change display of classroom by settings variable
+
 0.1.3.9 (2021-12-20)
 ++++++++++++++++++++
 
