@@ -142,3 +142,6 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework_datatables.pagination.DatatablesPageNumberPagination',
     'PAGE_SIZE': 50,
 }
+
+# NAME_CLASSROOM_DISPLAY = "Salle de classe"
+# NAME_CLASSROOM_DISPLAYS = "Salles de classes"

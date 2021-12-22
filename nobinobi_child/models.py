@@ -112,7 +112,7 @@ class Child(StatusModel, TimeStampedModel):
 
     classroom = models.ForeignKey(
         to="Classroom",
-        verbose_name=_("Classroom"),
+        verbose_name=getattr(settings, 'NAME_CLASSROOM_DISPLAY', _("Classroom")),
         on_delete=models.SET_NULL,
         related_name="classroom",
         db_index=True,
@@ -355,8 +355,8 @@ class Classroom(TimeStampedModel):
 
     class Meta:
         ordering = ('order', 'name',)
-        verbose_name = _('Classroom')
-        verbose_name_plural = _('Classrooms')
+        verbose_name = getattr(settings, 'NAME_CLASSROOM_DISPLAY', _("Classroom"))
+        verbose_name_plural = getattr(settings, 'NAME_CLASSROOMS_DISPLAY', _("Classrooms"))
 
     def __str__(self):
         return self.name
@@ -377,7 +377,7 @@ class ClassroomDayOff(TimeStampedModel):
     weekday = models.IntegerField(choices=WEEKDAY_CHOICES, verbose_name=_("Weekday"))
     classrooms = models.ManyToManyField(
         to=Classroom,
-        verbose_name=_("Classroom"),
+        verbose_name=getattr(settings, 'NAME_CLASSROOM_DISPLAY', _("Classroom")),
     )
 
     class Meta:
@@ -448,7 +448,7 @@ class InformationOfTheDay(TimeStampedModel):
     title = models.CharField(_("Title"), max_length=50)
     classrooms = models.ManyToManyField(
         to=Classroom,
-        verbose_name=_("Classroom"),
+        verbose_name=getattr(settings, 'NAME_CLASSROOM_DISPLAY', _("Classroom")),
         related_name="classrooms"
     )
     start_date = models.DateTimeField(_("Start date"))
@@ -624,7 +624,7 @@ class LogChangeClassroom(TimeStampedModel):
     )
     classroom = models.ForeignKey(
         to=Classroom,
-        verbose_name=_("Classroom"),
+        verbose_name=getattr(settings, 'NAME_CLASSROOM_DISPLAY', _("Classroom")),
         on_delete=models.SET_NULL,
         related_name="log_change_classroom",
         blank=True,
