@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-16 14:30+0100\n"
-"PO-Revision-Date: 2021-12-16 14:31+0100\n"
+"POT-Creation-Date: 2022-01-13 11:29+0100\n"
+"PO-Revision-Date: 2022-01-13 11:27+0100\n"
 "Last-Translator: Florian Alu <fla@grapps.fr>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -18,44 +18,50 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 3.0\n"
 
-#: .\admin.py:250
+#: .\admin.py:47 .\templates\nobinobi_child\child_list.html:32
+msgid "All"
+msgstr "Tout"
+
+#: .\admin.py:275 .\templates\nobinobi_child\child_list.html:41
+msgid "Status"
+msgstr "Statut"
+
+#: .\admin.py:295
 msgid "Personal information"
 msgstr "Information personnelle"
 
-#: .\admin.py:258
+#: .\admin.py:303
 msgid "Health info"
 msgstr "Informations sur la santé"
 
-#: .\admin.py:267 .\models.py:115 .\models.py:358 .\models.py:380
-#: .\models.py:451 .\models.py:627
-#: .\templates\nobinobi_child\child_list.html:22
-#: .\templates\nobinobi_child\child_list.html:46
+#: .\admin.py:312 .\models.py:115 .\models.py:358 .\models.py:380
+#: .\models.py:451 .\models.py:627 .\views.py:128 .\views.py:384
 msgid "Classroom"
 msgstr "Salle de classe"
 
-#: .\admin.py:270 .\menus.py:54 .\models.py:142
+#: .\admin.py:315 .\menus.py:54 .\models.py:142
 #: .\templates\nobinobi_child\child_list.html:48
 #: .\templates\nobinobi_child\staff\staff_list.html:26
 msgid "Staff"
 msgstr "Personnel"
 
-#: .\admin.py:273 .\models.py:64 .\templates\nobinobi_child\child_list.html:108
+#: .\admin.py:318 .\models.py:64 .\templates\nobinobi_child\child_list.html:108
 msgid "Other"
 msgstr "Autre"
 
-#: .\admin.py:302
+#: .\admin.py:347
 msgid "Folder"
 msgstr "Dossier"
 
-#: .\admin.py:307
+#: .\admin.py:352
 msgid "1 child was"
 msgstr "1 enfant a été"
 
-#: .\admin.py:309
+#: .\admin.py:354
 msgid "{} children were"
 msgstr "enfants ont"
 
-#: .\admin.py:312
+#: .\admin.py:357
 msgid "Put child in archive"
 msgstr "Mettre l'enfant dans les archives"
 
@@ -209,7 +215,7 @@ msgstr "Information du jour"
 msgid "Absences"
 msgstr "Absences"
 
-#: .\menus.py:59 .\views.py:515
+#: .\menus.py:59 .\views.py:523
 msgid "Staffs list"
 msgstr "Liste du personnel"
 
@@ -508,7 +514,7 @@ msgstr "Login de groupe autorisé"
 msgid "Organisation"
 msgstr "Organisation"
 
-#: .\models.py:359 .\templates\nobinobi_child\informationoftheday_list.html:22
+#: .\models.py:359
 msgid "Classrooms"
 msgstr "Salles de classes"
 
@@ -712,19 +718,19 @@ msgid "Forbidden"
 msgstr "Interdit"
 
 #: .\templates\403.html:37 .\templates\403_csrf.html:37 .\templates\404.html:37
-#: .\templates\500.html:39 .\templates\nobinobi_child\base.html:37
-#: .\templates\nobinobi_child\base.html:258
-#: .\templates\nobinobi_child\base.html:263
+#: .\templates\500.html:39 .\templates\nobinobi_child\base.html:7
+#: .\templates\nobinobi_child\base.html:260
+#: .\templates\nobinobi_child\base.html:265
 msgid "Home"
 msgstr "Accueil"
 
 #: .\templates\403.html:43 .\templates\403_csrf.html:43 .\templates\404.html:43
-#: .\templates\500.html:45 .\templates\nobinobi_child\base.html:40
+#: .\templates\500.html:45
 msgid "Administration"
 msgstr "Administration"
 
 #: .\templates\403.html:66 .\templates\403_csrf.html:66 .\templates\404.html:66
-#: .\templates\500.html:68 .\templates\nobinobi_child\base.html:62
+#: .\templates\500.html:68
 msgid "Logout"
 msgstr "Déconnexion"
 
@@ -738,7 +744,7 @@ msgstr "<h1>Interdit (403)</h1>"
 
 #: .\templates\403.html:284 .\templates\403_csrf.html:286
 #: .\templates\404.html:284 .\templates\500.html:293
-#: .\templates\nobinobi_child\base.html:295
+#: .\templates\nobinobi_child\base.html:297
 msgid "Thank you"
 msgstr "Merci"
 
@@ -1074,11 +1080,11 @@ msgstr "Mise à jour de l’absence"
 msgid "Update"
 msgstr "Mettre à jour"
 
-#: .\templates\nobinobi_child\base.html:281
+#: .\templates\nobinobi_child\base.html:283
 msgid "Welcome"
 msgstr "Bienvenue"
 
-#: .\templates\nobinobi_child\base.html:291
+#: .\templates\nobinobi_child\base.html:293
 msgid "Please select a page from the menu on the left."
 msgstr "Veuillez s'il vous plaît sélectionnez une page du menu sur la gauche."
 
@@ -1123,14 +1129,6 @@ msgstr "Oui,Non"
 msgid "Period(s)"
 msgstr "Période (s)"
 
-#: .\templates\nobinobi_child\child_list.html:32
-msgid "All"
-msgstr "Tout"
-
-#: .\templates\nobinobi_child\child_list.html:41
-msgid "Status"
-msgstr "Statut"
-
 #: .\templates\nobinobi_child\child_list.html:49
 msgid "Contacts Phones"
 msgstr "Téléphone des contacts"
@@ -1165,7 +1163,21 @@ msgstr "Choix de la photo de l'enfant"
 msgid "Update %(child)s's picture"
 msgstr "Mise à jour de la photo de %(child)s"
 
-#: .\templates\nobinobi_child\includes\show_iotd.html:20
+#: .\templates\nobinobi_child\includes\show_iotd.html:7
+#, python-format
+msgid "Information%(iotds_pl)s of the day"
+msgstr "Info%(iotds_pl)s du jour"
+
+#: .\templates\nobinobi_child\includes\show_iotd.html:11
+#, python-format
+msgid ""
+"\n"
+"                %(iotds_len)s information%(iotds_pl)s of the day"
+msgstr ""
+"\n"
+"                %(iotds_len)s info%(iotds_pl)s du jour"
+
+#: .\templates\nobinobi_child\includes\show_iotd.html:23
 msgid "See all Informations of the day"
 msgstr "Voir toutes les informations du jour"
 
@@ -1203,39 +1215,39 @@ msgstr "Se connecter de nouveau"
 msgid "Staffs"
 msgstr "Personnel"
 
-#: .\views.py:89
+#: .\views.py:90
 msgid "{}'s details"
 msgstr "Les détails de {}"
 
-#: .\views.py:132
+#: .\views.py:134
 msgid "Child list"
 msgstr "Liste des enfants"
 
-#: .\views.py:185
+#: .\views.py:187
 msgid "Success: Absence was created."
 msgstr "Succès : L'absence a été créée."
 
-#: .\views.py:199
+#: .\views.py:201
 msgid "Success: Absence was deleted."
 msgstr "Succès : L'absence a été supprimée."
 
-#: .\views.py:207
+#: .\views.py:209
 msgid "Success: Absence was updated."
 msgstr "Succès : L'absence a été mise à jour."
 
-#: .\views.py:217
+#: .\views.py:219
 msgid "Absences list"
 msgstr "Liste des absences"
 
-#: .\views.py:547
+#: .\views.py:555
 msgid "Photo modification form"
 msgstr "Formulaire de modification de photo"
 
-#: .\views.py:551
+#: .\views.py:559
 msgid "The child's photo has been modified."
 msgstr "La photo de l'enfant a été modifiée."
 
-#: .\views.py:563
+#: .\views.py:571
 msgid "Success: The child's photo has been modified."
 msgstr "Succès : La photo de l'enfant a été modifiée."
 
