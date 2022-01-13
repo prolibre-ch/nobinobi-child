@@ -1,5 +1,5 @@
 djangorestframework==3.13.1
-django==4.0.1
+django==3.2.11
 django-model-utils==4.2.0
 # Additional requirements go here
 django-phonenumber-field==6.0.0
