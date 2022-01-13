@@ -3,6 +3,12 @@
 History
 -------
 
+0.1.3.12 (2022-01-13)
++++++++++++++++++++++
+
+* e5def55 - Change display of information of the day in template page
+* Update traduction
+
 0.1.3.11 (2021-12-22)
 +++++++++++++++++++++
 
