@@ -3,6 +3,12 @@
 History
 -------
 
+0.1.3.13 (2022-01-20)
++++++++++++++++++++++
+
+* a472861 - Add new system for replacement classroom
+* Update traduction
+
 0.1.3.12 (2022-01-13)
 +++++++++++++++++++++
 
