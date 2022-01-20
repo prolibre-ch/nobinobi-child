@@ -16,7 +16,7 @@ from nobinobi_staff.serializers import StaffSerializer
 from rest_framework import serializers
 
 from nobinobi_child.models import Child, Absence, ChildToContact, ChildSpecificNeed, Classroom, AgeGroup, AbsenceType, \
-    AbsenceGroup, Contact
+    AbsenceGroup, Contact, ReplacementClassroom
 
 
 class ContactSerializer(serializers.ModelSerializer):
@@ -54,6 +54,12 @@ class ClassroomSerializer(serializers.ModelSerializer):
         model = Classroom
         fields = "__all__"
 
+class ReplacementClassroomSerializer(serializers.ModelSerializer):
+    classroom = ClassroomSerializer(read_only=True)
+    class Meta:
+        model = ReplacementClassroom
+        fields = ("classroom",)
+
 
 class AgeGroupSerializer(serializers.ModelSerializer):
     class Meta:
@@ -70,19 +76,24 @@ class ChildSerializer(serializers.ModelSerializer):
 
     childtocontact_set = serializers.SerializerMethodField()
     childspecificneed = ChildSpecificNeedSerializer(read_only=True)
+    replacementclassroom_set = serializers.SerializerMethodField()
 
     class Meta:
         model = Child
         fields = (
             "id", "status", "birth_date", "first_name", "last_name", "usual_name", "classroom", "age_group", "gender",
             "picture",
-            "staff", "childtocontact_set", "childspecificneed")
+            "staff", "childtocontact_set", "childspecificneed", "replacementclassroom_set")
         # depth = 2
         datatables_always_serialize = ("id", "first_name", "last_name", "usual_name", "gender")
 
     def get_childtocontact_set(self, instance):
         songs = instance.childtocontact_set.all().order_by('order')
         return ChildToContactSerializer(songs, many=True).data
+
+    def get_replacementclassroom_set(self, instance):
+        inst = instance.get_now_classroom()
+        return ClassroomSerializer(inst).data
 
     def to_representation(self, instance):
         representation = super(ChildSerializer, self).to_representation(instance)

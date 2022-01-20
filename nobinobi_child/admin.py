@@ -18,11 +18,10 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.utils.encoding import force_text
 from django.utils.translation import gettext as _
-from nobinobi_staff.models import Staff
-
 from nobinobi_child.models import Period, Allergy, FoodRestriction, Language, Classroom, AgeGroup, Absence, AbsenceType, \
     AbsenceGroup, ClassroomDayOff, InformationOfTheDay, Contact, Address, ChildSpecificNeed, LogChangeClassroom, Child, \
-    ChildToPeriod, ChildToContact
+    ChildToPeriod, ChildToContact, ReplacementClassroom
+from nobinobi_staff.models import Staff
 
 
 class DefaultListFilter(SimpleListFilter):
@@ -245,6 +244,16 @@ class LogChangeClassroomAdmin(admin.ModelAdmin):
     search_fields = ('child', 'classroom', 'next_classroom', 'date',)
 
 
+@register(ReplacementClassroom)
+class ReplacementClassroomAdmin(admin.ModelAdmin):
+    """
+        Admin View for RemplacementClassroom
+    """
+    list_display = ('from_date', 'end_date', 'child', 'classroom', 'archived')
+    list_filter = ('from_date', 'end_date', 'classroom', 'archived')
+    search_fields = ('from_date', 'end_date', 'classroom', 'child',)
+
+
 class ChildToPeriodInline(admin.TabularInline):
     model = ChildToPeriod
     min_num = 0
@@ -256,6 +265,14 @@ class ChildToPeriodInline(admin.TabularInline):
 
 class ChildToContactInline(admin.TabularInline):
     model = ChildToContact
+    min_num = 0
+    extra = 1
+    show_change_link = True
+    can_delete = True
+
+
+class ReplacementClassroomInline(admin.TabularInline):
+    model = ReplacementClassroom
     min_num = 0
     extra = 1
     show_change_link = True
@@ -320,6 +337,7 @@ class ChildAdmin(admin.ModelAdmin):
         })]
 
     inlines = [
+        ReplacementClassroomInline,
         ChildToPeriodInline,
         ChildToContactInline,
         ChildSpecificNeedInline,
