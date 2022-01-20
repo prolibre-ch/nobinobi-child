@@ -14,7 +14,7 @@
 
 {% block breadcrumb %}
 	{{ block.super }}
-    <li class="breadcrumb-item active"><a href="{% url "nobinobi_child:Child_list" %}">{% trans "Children" %}</a></li>
+    <li class="breadcrumb-item active"><a href="{% url 'nobinobi_child:Child_list' %}">{% trans "Children" %}</a></li>
     <li class="breadcrumb-item active"><a href="{% url "nobinobi_child:Child_detail" pk=object.id %}">{{ title }}</a>
     </li>
 {% endblock %}
@@ -68,7 +68,7 @@
                     </tr>
                     <tr>
                         <th class="col-lg-4" scope="row">{% get_verbose_field_name object "classroom" %}</th>
-                        <td class="col-lg-8">{{ object.classroom|default_if_none:"-" }}</td>
+                        <td class="col-lg-8">{{ object.get_now_classroom|default_if_none:"-" }}</td>
                     </tr>
                     <tr>
                         <th class="col-lg-4" scope="row">{% get_verbose_field_name object "staff" %}</th>

@@ -20,15 +20,15 @@ import uuid
 from django.conf import settings
 from django.contrib.auth.models import Group
 from django.db import models
+from django.utils import timezone
 from django.utils.translation import gettext as _
 from model_utils import Choices
 from model_utils.fields import StatusField, SplitField
 from model_utils.models import TimeStampedModel, StatusModel
+from nobinobi_child.utils import get_unique_slug
 from nobinobi_core.models import Organisation
 from nobinobi_staff.models import Staff
 from phonenumber_field.modelfields import PhoneNumberField
-
-from nobinobi_child.utils import get_unique_slug
 
 WEEKDAY_CHOICES = Choices(
     (1, "monday", _("Monday")),
@@ -213,6 +213,40 @@ class Child(StatusModel, TimeStampedModel):
             }
         return dict_contacts
 
+    def get_now_classroom(self):
+        now = timezone.localdate()
+        if self.has_replacement_classroom(now):
+            classroom = self.get_replacement_classroom(now)
+        else:
+            classroom = self.classroom
+        return classroom
+
+    def has_replacement_classroom(self, date):
+        from django.db.models import Q
+        rc = self.replacementclassroom_set.filter(
+            Q(end_date__gte=date) | Q(end_date__isnull=True),
+            archived=False,
+            from_date__lte=date,
+        )
+        if rc.count() == 0:
+            return False
+        else:
+            return True
+
+    def get_replacement_classroom(self, date):
+        from django.db.models import Q
+        try:
+            rc = self.replacementclassroom_set.get(
+                Q(end_date__gte=date) | Q(end_date__isnull=True),
+                archived=False,
+                from_date__lte=date,
+            )
+        except self.replacementclassroom_set.DoesNotExist:
+            return False
+        except self.replacementclassroom_set.MultipleObjectsReturned:
+            return False
+        else:
+            return rc.classroom
 
 class Language(TimeStampedModel):
     """
@@ -648,3 +682,42 @@ class LogChangeClassroom(TimeStampedModel):
 
     def __str__(self):  # __unicode__ on Python 2
         return '%s | %s -> %s | %s' % (self.child, self.classroom, self.next_classroom, self.date)
+
+
+class ReplacementClassroom(TimeStampedModel):
+    """
+    Models to store the remplacement for classroom for child
+    """
+    from_date = models.DateField(_("From date"))
+    end_date = models.DateField(_("End date"), blank=True, null=True)
+    archived = models.BooleanField(_("Archived"), default=False)
+    classroom = models.ForeignKey(
+        to=Classroom,
+        verbose_name=getattr(settings, 'NAME_CLASSROOM_DISPLAY', _("Classroom")),
+        on_delete=models.CASCADE,
+        blank=False,
+        null=False
+    )
+    child = models.ForeignKey(
+        to=Child,
+        verbose_name=_("Child"),
+        on_delete=models.CASCADE,
+        blank=False,
+        null=False
+    )
+
+    class Meta:
+        ordering = ('from_date', "classroom")
+        verbose_name = _('Remplacement Classroom')
+        verbose_name_plural = _('Remplacements Classroom')
+
+    def __str__(self):
+        return "{} - {} | {}".format(self.from_date, self.end_date, self.classroom.name)
+
+    def save(self, *args, **kwargs):
+        now = timezone.localdate()
+        if (self.from_date and self.end_date) and self.end_date < now:
+            self.archived = True
+        elif (self.archived and not self.end_date) or (self.archived and self.end_date > now):
+            self.archived = False
+        super(ReplacementClassroom, self).save(*args, *kwargs)
