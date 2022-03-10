@@ -70,7 +70,7 @@ class Absence(TimeStampedModel):
     Models to store child absence
     """
     child = models.ForeignKey(
-        to=Child,
+        to="Child",
         verbose_name=_("Child"),
         on_delete=models.CASCADE,
     )
