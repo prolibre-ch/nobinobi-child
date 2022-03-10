@@ -13,9 +13,10 @@
 #
 #  You should have received a copy of the GNU Affero General Public License
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
+import datetime
 import os
 import uuid
+from typing import Union
 
 from django.conf import settings
 from django.contrib.auth.models import Group
@@ -25,6 +26,7 @@ from django.utils.translation import gettext as _
 from model_utils import Choices
 from model_utils.fields import StatusField, SplitField
 from model_utils.models import TimeStampedModel, StatusModel
+
 from nobinobi_child.utils import get_unique_slug
 from nobinobi_core.models import Organisation
 from nobinobi_staff.models import Staff
@@ -46,207 +48,6 @@ TYPE_PERIOD_CHOICES = Choices(
     ("day", _("Day")),
 )
 
-
-class Child(StatusModel, TimeStampedModel):
-    def upload_picture_child(self, filename):
-        f, ext = os.path.splitext(filename)
-        upload_to = "child/%s/" % self.slug
-        return '%s%s%s' % (upload_to, uuid.uuid4().hex, ext)
-
-    STATUS = Choices(
-        ("in_progress", _('In progress')),
-        ("archived", _('Archived')),
-        ("future", _('Future'))
-    )
-    GENDER_CHOICES = Choices(
-        ("boy", _("Boy")),
-        ("girl", _("Girl")),
-        ("other", _("Other")),
-        ("unknown", _("Unknown")),
-    )
-    """
-    Model to store child
-    """
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    first_name = models.CharField(_("First name"), max_length=100)
-    last_name = models.CharField(_("Last name"), max_length=100)
-    usual_name = models.CharField(_("Usual name"), max_length=100, unique=True)
-    gender = StatusField(_("Gender"), choices_name="GENDER_CHOICES", blank=False, null=True)
-    slug = models.SlugField(_("Slug"))
-    picture = models.ImageField(_("Picture"), upload_to=upload_picture_child, blank=True, null=True)
-    birth_date = models.DateField(_("Birth date"), blank=True, null=True)
-    languages = models.ManyToManyField(
-        to="Language",
-        verbose_name=_("Languages"),
-        related_name="languages",
-        blank=True
-    )
-    red_list = models.CharField(_("Red list"), max_length=255, blank=True, null=True)
-    comment = models.CharField(_("Comment"), max_length=255, blank=True, null=True)
-    nationality = models.CharField(_("Child nationality"), max_length=255, blank=True, null=True)
-
-    # Sibling
-    sibling_name = models.CharField(_("Sibling's name and first name"), max_length=50, blank=True, null=True)
-    sibling_birth_date = models.DateField(_("Sibling birth date"), null=True, blank=True)
-    sibling_institution = models.CharField(_("Sibling's institution"), max_length=100, blank=True, null=True)
-
-    renewal_date = models.DateField(_("Renewal date"), blank=True, null=True)
-    usage_paracetamol = models.BooleanField(_("Usage paracetamol"), blank=False, null=True)
-    usage_homeopathy = models.BooleanField(_("Usage homeopathy"), blank=False, null=True)
-    healthy_child = models.BooleanField(_("Healthy child"), blank=False, null=True)
-    good_development = models.BooleanField(_("Good development"), blank=False, null=True)
-    specific_problem = models.CharField(_("Specific problem"), max_length=255, blank=True, null=True)
-    vaccination = models.BooleanField(_("Vaccination"), blank=False, null=True)
-    health_insurance = models.CharField(_("Health Insurance"), max_length=255, blank=True, null=True)
-
-    pediatrician_contact = models.BooleanField(_("Pediatrician contact"), blank=True, null=True)
-
-    pediatrician = models.ForeignKey(
-        to="Contact",
-        verbose_name=_("Pediatrician"),
-        on_delete=models.PROTECT,
-        related_name="pediatrician",
-        blank=True,
-        null=True
-    )
-
-    classroom = models.ForeignKey(
-        to="Classroom",
-        verbose_name=getattr(settings, 'NAME_CLASSROOM_DISPLAY', _("Classroom")),
-        on_delete=models.SET_NULL,
-        related_name="classroom",
-        db_index=True,
-        blank=True,
-        null=True,
-    )
-
-    next_classroom = models.ForeignKey(
-        to="Classroom",
-        verbose_name=_("Next classroom"),
-        on_delete=models.SET_NULL,
-        related_name="next_classroom",
-        blank=True,
-        null=True,
-    )
-    date_next_classroom = models.DateField(verbose_name=_("Date next classroom"), blank=True, null=True)
-
-    age_group = models.ForeignKey(
-        to="AgeGroup",
-        verbose_name=_("Age group"),
-        on_delete=models.SET_NULL,
-        blank=True,
-        null=True
-    )
-    staff = models.ForeignKey(
-        to=Staff,
-        verbose_name=_("Staff"),
-        on_delete=models.SET_NULL,
-        blank=True,
-        null=True
-    )
-    food_restrictions = models.ManyToManyField(
-        to="FoodRestriction",
-        verbose_name=_("Food restrictions"),
-        related_name="food_restrictions",
-        blank=True,
-    )
-    allergies = models.ManyToManyField(
-        to="Allergy",
-        verbose_name=_("Allergies"),
-        related_name="allergies",
-        blank=True,
-    )
-    periods = models.ManyToManyField(
-        to="Period",
-        through="ChildToPeriod",
-        through_fields=("child", "period"),
-        verbose_name=_("Periods"),
-        related_name="periods",
-        blank=True,
-    )
-    contacts = models.ManyToManyField(
-        to="Contact",
-        through="ChildToContact",
-        through_fields=("child", "contact"),
-        verbose_name=_("Contacts"),
-        related_name="contacts",
-        blank=True,
-    )
-
-    class Meta:
-        ordering = ('first_name', 'last_name', "created",)
-        unique_together = ("first_name", "last_name", "birth_date")
-        verbose_name = _('Child')
-        verbose_name_plural = _('Children')
-
-    def __str__(self):
-        return "{}".format(self.full_name)
-
-    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
-        # set slug, title field
-        self.slug = get_unique_slug(self, 'full_name', 'slug')
-        self.first_name = self.first_name.title()
-        self.last_name = self.last_name.title()
-        self.usual_name = self.usual_name.title()
-        return super(Child, self).save()
-
-    @property
-    def full_name(self):
-        return "{} {}".format(self.first_name, self.last_name)
-
-    full_name.fget.short_description = _("Full name")
-
-    @property
-    def is_active(self):
-        # return true if child is in progress else false
-        return True if self.status == self.STATUS.in_progress else False
-
-    def get_contacts_phone(self):
-        dict_contacts = {}
-        for oc in self.childtocontact_set.all():
-            dict_contacts[oc] = {
-                "link_with_child": oc.link_with_child,
-                "phone": oc.contact.phone,
-                "mobile_phone": oc.contact.mobile_phone,
-                "professional_phone": oc.contact.professional_phone,
-                "order": oc.order
-            }
-        return dict_contacts
-
-    def get_now_classroom(self):
-        now = timezone.localdate()
-        if self.has_replacement_classroom(now):
-            classroom = self.get_replacement_classroom(now)
-        else:
-            classroom = self.classroom
-        return classroom
-
-    def has_replacement_classroom(self, date):
-        from django.db.models import Q
-        rc = self.replacementclassroom_set.filter(
-            Q(end_date__gte=date) | Q(end_date__isnull=True),
-            archived=False,
-            from_date__lte=date,
-        )
-        if rc.count() == 0:
-            return False
-        else:
-            return True
-
-    def get_replacement_classroom(self, date):
-        from django.db.models import Q
-        try:
-            rc = self.replacementclassroom_set.get(
-                Q(end_date__gte=date) | Q(end_date__isnull=True),
-                archived=False,
-                from_date__lte=date,
-            )
-        except self.replacementclassroom_set.DoesNotExist:
-            return False
-        except self.replacementclassroom_set.MultipleObjectsReturned:
-            return False
-        else:
-            return rc.classroom
 
 class Language(TimeStampedModel):
     """
@@ -421,6 +222,221 @@ class ClassroomDayOff(TimeStampedModel):
 
     def __str__(self):
         return self.get_weekday_display()
+
+
+class Child(StatusModel, TimeStampedModel):
+    def upload_picture_child(self, filename):
+        f, ext = os.path.splitext(filename)
+        upload_to = "child/%s/" % self.slug
+        return '%s%s%s' % (upload_to, uuid.uuid4().hex, ext)
+
+    STATUS = Choices(
+        ("in_progress", _('In progress')),
+        ("archived", _('Archived')),
+        ("future", _('Future'))
+    )
+    GENDER_CHOICES = Choices(
+        ("boy", _("Boy")),
+        ("girl", _("Girl")),
+        ("other", _("Other")),
+        ("unknown", _("Unknown")),
+    )
+    """
+    Model to store child
+    """
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    first_name = models.CharField(_("First name"), max_length=100)
+    last_name = models.CharField(_("Last name"), max_length=100)
+    usual_name = models.CharField(_("Usual name"), max_length=100, unique=True)
+    gender = StatusField(_("Gender"), choices_name="GENDER_CHOICES", blank=False, null=True)
+    slug = models.SlugField(_("Slug"))
+    picture = models.ImageField(_("Picture"), upload_to=upload_picture_child, blank=True, null=True)
+    birth_date = models.DateField(_("Birth date"), blank=True, null=True)
+    languages = models.ManyToManyField(
+        to="Language",
+        verbose_name=_("Languages"),
+        related_name="languages",
+        blank=True
+    )
+    red_list = models.CharField(_("Red list"), max_length=255, blank=True, null=True)
+    comment = models.CharField(_("Comment"), max_length=255, blank=True, null=True)
+    nationality = models.CharField(_("Child nationality"), max_length=255, blank=True, null=True)
+
+    # Sibling
+    sibling_name = models.CharField(_("Sibling's name and first name"), max_length=50, blank=True, null=True)
+    sibling_birth_date = models.DateField(_("Sibling birth date"), null=True, blank=True)
+    sibling_institution = models.CharField(_("Sibling's institution"), max_length=100, blank=True, null=True)
+
+    renewal_date = models.DateField(_("Renewal date"), blank=True, null=True)
+    usage_paracetamol = models.BooleanField(_("Usage paracetamol"), blank=False, null=True)
+    usage_homeopathy = models.BooleanField(_("Usage homeopathy"), blank=False, null=True)
+    healthy_child = models.BooleanField(_("Healthy child"), blank=False, null=True)
+    good_development = models.BooleanField(_("Good development"), blank=False, null=True)
+    specific_problem = models.CharField(_("Specific problem"), max_length=255, blank=True, null=True)
+    vaccination = models.BooleanField(_("Vaccination"), blank=False, null=True)
+    health_insurance = models.CharField(_("Health Insurance"), max_length=255, blank=True, null=True)
+
+    pediatrician_contact = models.BooleanField(_("Pediatrician contact"), blank=True, null=True)
+
+    pediatrician = models.ForeignKey(
+        to="Contact",
+        verbose_name=_("Pediatrician"),
+        on_delete=models.PROTECT,
+        related_name="pediatrician",
+        blank=True,
+        null=True
+    )
+
+    classroom = models.ForeignKey(
+        to="Classroom",
+        verbose_name=getattr(settings, 'NAME_CLASSROOM_DISPLAY', _("Classroom")),
+        on_delete=models.SET_NULL,
+        related_name="classroom",
+        db_index=True,
+        blank=True,
+        null=True,
+    )
+
+    next_classroom = models.ForeignKey(
+        to="Classroom",
+        verbose_name=_("Next classroom"),
+        on_delete=models.SET_NULL,
+        related_name="next_classroom",
+        blank=True,
+        null=True,
+    )
+    date_next_classroom = models.DateField(verbose_name=_("Date next classroom"), blank=True, null=True)
+
+    age_group = models.ForeignKey(
+        to="AgeGroup",
+        verbose_name=_("Age group"),
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True
+    )
+    staff = models.ForeignKey(
+        to=Staff,
+        verbose_name=_("Staff"),
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True
+    )
+    food_restrictions = models.ManyToManyField(
+        to="FoodRestriction",
+        verbose_name=_("Food restrictions"),
+        related_name="food_restrictions",
+        blank=True,
+    )
+    allergies = models.ManyToManyField(
+        to="Allergy",
+        verbose_name=_("Allergies"),
+        related_name="allergies",
+        blank=True,
+    )
+    periods = models.ManyToManyField(
+        to="Period",
+        through="ChildToPeriod",
+        through_fields=("child", "period"),
+        verbose_name=_("Periods"),
+        related_name="periods",
+        blank=True,
+    )
+    contacts = models.ManyToManyField(
+        to="Contact",
+        through="ChildToContact",
+        through_fields=("child", "contact"),
+        verbose_name=_("Contacts"),
+        related_name="contacts",
+        blank=True,
+    )
+
+    class Meta:
+        ordering = ('first_name', 'last_name', "created",)
+        unique_together = ("first_name", "last_name", "birth_date")
+        verbose_name = _('Child')
+        verbose_name_plural = _('Children')
+
+    def __str__(self):
+        return "{}".format(self.full_name)
+
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        # set slug, title field
+        self.slug = get_unique_slug(self, 'full_name', 'slug')
+        self.first_name = self.first_name.title()
+        self.last_name = self.last_name.title()
+        self.usual_name = self.usual_name.title()
+        return super(Child, self).save()
+
+    @property
+    def full_name(self):
+        return "{} {}".format(self.first_name, self.last_name)
+
+    full_name.fget.short_description = _("Full name")
+
+    @property
+    def is_active(self):
+        # return true if child is in progress else false
+        return True if self.status == self.STATUS.in_progress else False
+
+    def get_contacts_phone(self):
+        dict_contacts = {}
+        for oc in self.childtocontact_set.all():
+            dict_contacts[oc] = {
+                "link_with_child": oc.link_with_child,
+                "phone": oc.contact.phone,
+                "mobile_phone": oc.contact.mobile_phone,
+                "professional_phone": oc.contact.professional_phone,
+                "order": oc.order
+            }
+        return dict_contacts
+
+    def get_now_classroom(self, date: datetime.date = timezone.localdate()) -> Classroom:
+        """
+        Method to get child classroom
+        :param date: datetime.date
+        :return: Classroom | ""
+        """
+        if self.has_replacement_classroom(date):
+            return self.get_replacement_classroom(date)
+        return self.classroom if self.classroom else ""
+
+    def has_replacement_classroom(self, date: datetime.date) -> bool:
+        """
+        Method to get in child has a replacement classroom
+        :param date:
+        :return: bool
+        :rtype: bool
+        """
+        from django.db.models import Q
+        rc = self.replacementclassroom_set.filter(
+            Q(end_date__gte=date) | Q(end_date__isnull=True),
+            archived=False,
+            from_date__lte=date,
+        )
+        if rc.count() == 0:
+            return False
+        else:
+            return True
+
+    def get_replacement_classroom(self, date: datetime.date = timezone.localdate()) -> Union[bool, Classroom]:
+        """
+        Method to get the replacement classroom
+        :param date: datetime.date
+        :return: Union[bool, Classroom]
+        """
+        from django.db.models import Q
+        try:
+            rc = self.replacementclassroom_set.get(
+                Q(end_date__gte=date) | Q(end_date__isnull=True),
+                archived=False,
+                from_date__lte=date,
+            )
+        except self.replacementclassroom_set.DoesNotExist:
+            return False
+        except self.replacementclassroom_set.MultipleObjectsReturned:
+            return False
+        else:
+            return rc.classroom
 
 
 class ChildToPeriod(TimeStampedModel):
