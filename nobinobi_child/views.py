@@ -37,7 +37,9 @@ from django.views.generic import (
 from django_weasyprint import WeasyTemplateResponseMixin
 from nobinobi_staff.models import Staff
 from rest_framework import viewsets
+from rest_framework.decorators import action
 from rest_framework.response import Response
+from rest_framework_datatables.renderers import DatatablesRenderer
 
 from nobinobi_child.forms import LoginAuthenticationForm, AbsenceCreateForm, ChildPictureSelectForm, ChildPictureForm, \
     ChildPictureUpdateForm
@@ -130,7 +132,7 @@ class ChildListView(LoginRequiredMixin, ListView):
         group_classroom_allowed = self.request.user.groups.all().values_list("classroom_group_login", flat=True)
         context['classrooms'] = Classroom.objects.filter(
             Q(id__in=classroom_allowed) | Q(id__in=group_classroom_allowed)
-        ).values_list("name", flat=True)
+        )
         context['title'] = _("Child list")
         return context
 
@@ -153,6 +155,25 @@ class ChildViewSet(viewsets.ReadOnlyModelViewSet):
             return self.get_paginated_response(serializer.data)
 
         serializer = self.get_serializer(new_queryset, many=True)
+        return Response(serializer.data)
+
+    @action(detail=False, renderer_classes=[DatatablesRenderer])
+    def presence_by_classroom(self, request, **kwargs):
+        presence_day_sorting = getattr(settings, "PRESENCE_DAY_SORTING", "usual_name")
+        qs_order = "usual_name"
+        if presence_day_sorting == "birth_date":
+            qs_order = "-birth_date"
+        child_in_classroom = Child.objects.filter(
+            status__in=['in_progress', 'future'],
+            classroom_id=kwargs.get("classroom_id")
+        ).order_by(qs_order)
+
+        page = self.paginate_queryset(child_in_classroom)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(child_in_classroom, many=True)
         return Response(serializer.data)
 
 
@@ -383,7 +404,6 @@ class InformationOfTheDayListView(LoginRequiredMixin, ListView):
         context = super(InformationOfTheDayListView, self).get_context_data(**kwargs)
         context["name_classroom_display"] = getattr(settings, "NAME_CLASSROOM_DISPLAY", _("Classroom"))
         return context
-
 
     def get_queryset(self):
         if self.request.user:

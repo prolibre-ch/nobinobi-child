@@ -54,8 +54,10 @@ class ClassroomSerializer(serializers.ModelSerializer):
         model = Classroom
         fields = "__all__"
 
+
 class ReplacementClassroomSerializer(serializers.ModelSerializer):
     classroom = ClassroomSerializer(read_only=True)
+
     class Meta:
         model = ReplacementClassroom
         fields = ("classroom",)
