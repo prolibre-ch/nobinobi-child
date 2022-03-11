@@ -3,6 +3,14 @@
 History
 -------
 
+0.1.3.14 (2022-03-11)
++++++++++++++++++++++
+
+* d55eaf1 - Fix load list of child and filter
+* 9c494ad - Fix import in models.py
+* b013423 - Fix for new system for specify date in method to check if has a classroom
+* Update traduction
+
 0.1.3.13 (2022-01-20)
 +++++++++++++++++++++
 
