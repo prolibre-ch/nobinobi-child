@@ -13,9 +13,10 @@
 #
 #  You should have received a copy of the GNU Affero General Public License
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
+import datetime
 import os
 import uuid
+from typing import Union
 
 from django.conf import settings
 from django.contrib.auth.models import Group
@@ -25,6 +26,7 @@ from django.utils.translation import gettext as _
 from model_utils import Choices
 from model_utils.fields import StatusField, SplitField
 from model_utils.models import TimeStampedModel, StatusModel
+
 from nobinobi_child.utils import get_unique_slug
 from nobinobi_core.models import Organisation
 from nobinobi_staff.models import Staff
@@ -45,6 +47,181 @@ TYPE_PERIOD_CHOICES = Choices(
     ("afternoon", _("Afternoon")),
     ("day", _("Day")),
 )
+
+
+class Language(TimeStampedModel):
+    """
+    Models to store language
+    """
+    name = models.CharField(_("Name"), max_length=50, unique=True)
+
+    class Meta:
+        ordering = ("name", "created",)
+        verbose_name = _("Language")
+        verbose_name_plural = _("Languages")
+
+    def __str__(self):
+        # return name of language
+        return self.name
+
+
+class Absence(TimeStampedModel):
+    """
+    Models to store child absence
+    """
+    child = models.ForeignKey(
+        to="Child",
+        verbose_name=_("Child"),
+        on_delete=models.CASCADE,
+    )
+    start_date = models.DateTimeField(verbose_name=_("Start date"))
+    end_date = models.DateTimeField(verbose_name=_("End date"))
+    type = models.ForeignKey(
+        to="AbsenceType",
+        verbose_name=_("Type"),
+        on_delete=models.PROTECT,
+    )
+
+    class Meta:
+        ordering = ('start_date', 'end_date', 'child',)
+        verbose_name = _('Absence')
+        verbose_name_plural = _('Absences')
+
+    def __str__(self):
+        return "{} {} - {} - {}".format(self.start_date, self.end_date, self.child, self.type)
+
+
+class AbsenceType(TimeStampedModel):
+    """
+    Models to store type of absence
+    """
+    name = models.CharField(_("Name"), max_length=50)
+    group = models.ForeignKey(
+        to="AbsenceGroup",
+        verbose_name=_("Group"),
+        on_delete=models.PROTECT,
+    )
+    order = models.PositiveIntegerField(_("Order"))
+
+    class Meta:
+        ordering = ('order', "group", "name")
+        verbose_name = _('Absence type')
+        verbose_name_plural = _('Absence types')
+
+    def __str__(self):
+        return self.name
+
+
+class AbsenceGroup(TimeStampedModel):
+    """
+    Models to store group for absence type
+    """
+    name = models.CharField(_("Name"), max_length=50)
+
+    class Meta:
+        ordering = ('name',)
+        verbose_name = _('Absence group')
+        verbose_name_plural = _('Absence groups')
+
+    def __str__(self):
+        return self.name
+
+
+class AgeGroup(TimeStampedModel):
+    """
+    Models to store age group
+    """
+    name = models.CharField(_("Name"), max_length=50)
+    slug = models.SlugField(_("Slug"))
+    order = models.PositiveIntegerField(_("Order"), unique=True)
+    from_date = models.DateField(_("From date"))
+    end_date = models.DateField(_("End date"))
+
+    class Meta:
+        ordering = ('order', 'name',)
+        verbose_name = _('Age group')
+        verbose_name_plural = _('Age groups')
+
+    def __str__(self):
+        return self.name
+
+    def save(self, *args, **kwargs):
+        # set slug unique
+        self.slug = get_unique_slug(self, 'name', 'slug')
+        # set name in title
+        self.name = self.name.title()
+        super().save(*args, **kwargs)
+
+
+class Classroom(TimeStampedModel):
+    """
+    Models to store classroom
+    """
+    OPERATION_MODE = Choices(
+        ("creche", _("Creche")),
+        ("kindergarten", _("Kindergarten"))
+    )
+
+    name = models.CharField(_("Name"), unique=True, max_length=50)
+    slug = models.SlugField(_("Slug"), unique=True)
+    order = models.PositiveIntegerField(_("Order"), unique=True)
+    capacity = models.PositiveIntegerField(_("Capacity"), default=20)
+    mode = StatusField(verbose_name=_("Mode"), choices_name="OPERATION_MODE", default=OPERATION_MODE.creche,
+                       max_length=15)
+    allowed_login = models.ManyToManyField(
+        to=settings.AUTH_USER_MODEL,
+        verbose_name=_("Allowed login"),
+        related_name="classroom_login",
+        blank=True
+    )
+    allowed_group_login = models.ManyToManyField(
+        to=Group,
+        verbose_name=_("Allowed group login"),
+        related_name="classroom_group_login",
+        blank=True
+    )
+    organisation = models.ForeignKey(
+        to=Organisation,
+        verbose_name=_("Organisation"),
+        on_delete=models.PROTECT,
+        blank=False,
+        null=True
+    )
+
+    class Meta:
+        ordering = ('order', 'name',)
+        verbose_name = getattr(settings, 'NAME_CLASSROOM_DISPLAY', _("Classroom"))
+        verbose_name_plural = getattr(settings, 'NAME_CLASSROOMS_DISPLAY', _("Classrooms"))
+
+    def __str__(self):
+        return self.name
+
+    def save(self, *args, **kwargs):
+        # set slug unique
+        self.slug = get_unique_slug(self, 'name', 'slug')
+        # set name in title
+        self.name = self.name.title()
+        super().save(*args, **kwargs)
+
+
+class ClassroomDayOff(TimeStampedModel):
+    """
+    Models to store the day off classroom
+    """
+
+    weekday = models.IntegerField(choices=WEEKDAY_CHOICES, verbose_name=_("Weekday"))
+    classrooms = models.ManyToManyField(
+        to=Classroom,
+        verbose_name=getattr(settings, 'NAME_CLASSROOM_DISPLAY', _("Classroom")),
+    )
+
+    class Meta:
+        ordering = ('weekday',)
+        verbose_name = _('Classroom day off')
+        verbose_name_plural = _('Classrooms days off')
+
+    def __str__(self):
+        return self.get_weekday_display()
 
 
 class Child(StatusModel, TimeStampedModel):
@@ -213,15 +390,23 @@ class Child(StatusModel, TimeStampedModel):
             }
         return dict_contacts
 
-    def get_now_classroom(self):
-        now = timezone.localdate()
-        if self.has_replacement_classroom(now):
-            classroom = self.get_replacement_classroom(now)
-        else:
-            classroom = self.classroom
-        return classroom
+    def get_now_classroom(self, date: datetime.date = timezone.localdate()) -> Classroom:
+        """
+        Method to get child classroom
+        :param date: datetime.date
+        :return: Classroom | ""
+        """
+        if self.has_replacement_classroom(date):
+            return self.get_replacement_classroom(date)
+        return self.classroom if self.classroom else ""
 
-    def has_replacement_classroom(self, date):
+    def has_replacement_classroom(self, date: datetime.date) -> bool:
+        """
+        Method to get in child has a replacement classroom
+        :param date:
+        :return: bool
+        :rtype: bool
+        """
         from django.db.models import Q
         rc = self.replacementclassroom_set.filter(
             Q(end_date__gte=date) | Q(end_date__isnull=True),
@@ -233,7 +418,12 @@ class Child(StatusModel, TimeStampedModel):
         else:
             return True
 
-    def get_replacement_classroom(self, date):
+    def get_replacement_classroom(self, date: datetime.date = timezone.localdate()) -> Union[bool, Classroom]:
+        """
+        Method to get the replacement classroom
+        :param date: datetime.date
+        :return: Union[bool, Classroom]
+        """
         from django.db.models import Q
         try:
             rc = self.replacementclassroom_set.get(
@@ -247,180 +437,6 @@ class Child(StatusModel, TimeStampedModel):
             return False
         else:
             return rc.classroom
-
-class Language(TimeStampedModel):
-    """
-    Models to store language
-    """
-    name = models.CharField(_("Name"), max_length=50, unique=True)
-
-    class Meta:
-        ordering = ("name", "created",)
-        verbose_name = _("Language")
-        verbose_name_plural = _("Languages")
-
-    def __str__(self):
-        # return name of language
-        return self.name
-
-
-class Absence(TimeStampedModel):
-    """
-    Models to store child absence
-    """
-    child = models.ForeignKey(
-        to=Child,
-        verbose_name=_("Child"),
-        on_delete=models.CASCADE,
-    )
-    start_date = models.DateTimeField(verbose_name=_("Start date"))
-    end_date = models.DateTimeField(verbose_name=_("End date"))
-    type = models.ForeignKey(
-        to="AbsenceType",
-        verbose_name=_("Type"),
-        on_delete=models.PROTECT,
-    )
-
-    class Meta:
-        ordering = ('start_date', 'end_date', 'child',)
-        verbose_name = _('Absence')
-        verbose_name_plural = _('Absences')
-
-    def __str__(self):
-        return "{} {} - {} - {}".format(self.start_date, self.end_date, self.child, self.type)
-
-
-class AbsenceType(TimeStampedModel):
-    """
-    Models to store type of absence
-    """
-    name = models.CharField(_("Name"), max_length=50)
-    group = models.ForeignKey(
-        to="AbsenceGroup",
-        verbose_name=_("Group"),
-        on_delete=models.PROTECT,
-    )
-    order = models.PositiveIntegerField(_("Order"))
-
-    class Meta:
-        ordering = ('order', "group", "name")
-        verbose_name = _('Absence type')
-        verbose_name_plural = _('Absence types')
-
-    def __str__(self):
-        return self.name
-
-
-class AbsenceGroup(TimeStampedModel):
-    """
-    Models to store group for absence type
-    """
-    name = models.CharField(_("Name"), max_length=50)
-
-    class Meta:
-        ordering = ('name',)
-        verbose_name = _('Absence group')
-        verbose_name_plural = _('Absence groups')
-
-    def __str__(self):
-        return self.name
-
-
-class AgeGroup(TimeStampedModel):
-    """
-    Models to store age group
-    """
-    name = models.CharField(_("Name"), max_length=50)
-    slug = models.SlugField(_("Slug"))
-    order = models.PositiveIntegerField(_("Order"), unique=True)
-    from_date = models.DateField(_("From date"))
-    end_date = models.DateField(_("End date"))
-
-    class Meta:
-        ordering = ('order', 'name',)
-        verbose_name = _('Age group')
-        verbose_name_plural = _('Age groups')
-
-    def __str__(self):
-        return self.name
-
-    def save(self, *args, **kwargs):
-        # set slug unique
-        self.slug = get_unique_slug(self, 'name', 'slug')
-        # set name in title
-        self.name = self.name.title()
-        super().save(*args, **kwargs)
-
-
-class Classroom(TimeStampedModel):
-    """
-    Models to store classroom
-    """
-    OPERATION_MODE = Choices(
-        ("creche", _("Creche")),
-        ("kindergarten", _("Kindergarten"))
-    )
-
-    name = models.CharField(_("Name"), unique=True, max_length=50)
-    slug = models.SlugField(_("Slug"), unique=True)
-    order = models.PositiveIntegerField(_("Order"), unique=True)
-    capacity = models.PositiveIntegerField(_("Capacity"), default=20)
-    mode = StatusField(verbose_name=_("Mode"), choices_name="OPERATION_MODE", default=OPERATION_MODE.creche,
-                       max_length=15)
-    allowed_login = models.ManyToManyField(
-        to=settings.AUTH_USER_MODEL,
-        verbose_name=_("Allowed login"),
-        related_name="classroom_login",
-        blank=True
-    )
-    allowed_group_login = models.ManyToManyField(
-        to=Group,
-        verbose_name=_("Allowed group login"),
-        related_name="classroom_group_login",
-        blank=True
-    )
-    organisation = models.ForeignKey(
-        to=Organisation,
-        verbose_name=_("Organisation"),
-        on_delete=models.PROTECT,
-        blank=False,
-        null=True
-    )
-
-    class Meta:
-        ordering = ('order', 'name',)
-        verbose_name = getattr(settings, 'NAME_CLASSROOM_DISPLAY', _("Classroom"))
-        verbose_name_plural = getattr(settings, 'NAME_CLASSROOMS_DISPLAY', _("Classrooms"))
-
-    def __str__(self):
-        return self.name
-
-    def save(self, *args, **kwargs):
-        # set slug unique
-        self.slug = get_unique_slug(self, 'name', 'slug')
-        # set name in title
-        self.name = self.name.title()
-        super().save(*args, **kwargs)
-
-
-class ClassroomDayOff(TimeStampedModel):
-    """
-    Models to store the day off classroom
-    """
-
-    weekday = models.IntegerField(choices=WEEKDAY_CHOICES, verbose_name=_("Weekday"))
-    classrooms = models.ManyToManyField(
-        to=Classroom,
-        verbose_name=getattr(settings, 'NAME_CLASSROOM_DISPLAY', _("Classroom")),
-    )
-
-    class Meta:
-        ordering = ('weekday',)
-        verbose_name = _('Classroom day off')
-        verbose_name_plural = _('Classrooms days off')
-
-    def __str__(self):
-        return self.get_weekday_display()
 
 
 class ChildToPeriod(TimeStampedModel):

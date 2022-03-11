@@ -29,6 +29,11 @@ router.register(r'child', views.ChildViewSet, basename="api-child")
 router.register(r'absence', views.AbsenceViewSet, basename="api-absence")
 urlpatterns = [
                   path('api/', include(router.urls)),
+                  path('api/child/childs_by_classroom/<int:classroom_id>/',
+                       views.ChildViewSet.as_view({'get': 'presence_by_classroom', }),
+                       name='api-child-by-classroom'
+                       ),
+
                   path('accounts/login/', views.AuthLoginView.as_view(), name='login_view'),
                   path('accounts/logout/',
                        auth_views.LogoutView.as_view(template_name='nobinobi_child/pages/login/logout.html'),
