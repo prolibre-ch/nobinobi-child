@@ -3,6 +3,13 @@
 History
 -------
 
+0.1.3.15 (2022-03-15)
++++++++++++++++++++++
+
+* 0c89a78 - Add showing length for display child list
+* Update traduction
+* Update requirements
+
 0.1.3.14 (2022-03-11)
 +++++++++++++++++++++
 
