@@ -295,6 +295,12 @@ class ChildTrackingLogInline(admin.TabularInline):
     extra = 1
     # show_change_link = True
     can_delete = True
+    ordering = ("-date",)
+
+    def formfield_for_dbfield(self, db_field, **kwargs):
+        if db_field.name == 'user':
+            kwargs['initial'] = kwargs['request'].user
+        return super(ChildTrackingLogInline, self).formfield_for_dbfield(db_field, **kwargs)
 
 
 class StatusFilter(DefaultListFilter):
@@ -403,4 +409,3 @@ class ChildTrackingLogAdmin(admin.ModelAdmin):
     list_display = ('date', 'user', 'child',)
     list_filter = ('date',)
     search_fields = ('date', "body")
-
