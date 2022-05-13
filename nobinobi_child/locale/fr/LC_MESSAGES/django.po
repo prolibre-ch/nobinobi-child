@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-15 11:30+0100\n"
-"PO-Revision-Date: 2022-03-15 11:31+0100\n"
+"POT-Creation-Date: 2022-05-13 13:37+0200\n"
+"PO-Revision-Date: 2022-05-13 13:38+0200\n"
 "Last-Translator: Florian Alu <fla@grapps.fr>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -18,52 +18,52 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 3.0\n"
 
-#: .\admin.py:46 .\templates\nobinobi_child\child_list.html:33
+#: .\admin.py:47 .\templates\nobinobi_child\child_list.html:33
 msgid "All"
 msgstr "Tout"
 
-#: .\admin.py:292 .\templates\nobinobi_child\child_list.html:43
+#: .\admin.py:301 .\templates\nobinobi_child\child_list.html:43
 msgid "Status"
 msgstr "Statut"
 
-#: .\admin.py:312
+#: .\admin.py:321
 msgid "Personal information"
 msgstr "Information personnelle"
 
-#: .\admin.py:320
+#: .\admin.py:329
 msgid "Health info"
 msgstr "Informations sur la santé"
 
-#: .\admin.py:329 .\models.py:193 .\models.py:215 .\models.py:292
+#: .\admin.py:338 .\models.py:193 .\models.py:215 .\models.py:292
 #: .\models.py:501 .\models.py:677 .\models.py:712 .\views.py:130
 #: .\views.py:405
 msgid "Classroom"
 msgstr "Salle de classe"
 
-#: .\admin.py:332 .\menus.py:54 .\models.py:319
+#: .\admin.py:341 .\menus.py:54 .\models.py:319
 #: .\templates\nobinobi_child\child_list.html:50
 #: .\templates\nobinobi_child\staff\staff_list.html:26
 msgid "Staff"
 msgstr "Personnel"
 
-#: .\admin.py:335 .\models.py:241
+#: .\admin.py:344 .\models.py:241
 #: .\templates\nobinobi_child\child_list.html:121
 msgid "Other"
 msgstr "Autre"
 
-#: .\admin.py:365
+#: .\admin.py:375
 msgid "Folder"
 msgstr "Dossier"
 
-#: .\admin.py:370
+#: .\admin.py:380
 msgid "1 child was"
 msgstr "1 enfant a été"
 
-#: .\admin.py:372
+#: .\admin.py:382
 msgid "{} children were"
 msgstr "enfants ont"
 
-#: .\admin.py:375
+#: .\admin.py:385
 msgid "Put child in archive"
 msgstr "Mettre l'enfant dans les archives"
 
@@ -81,6 +81,7 @@ msgstr "Se connecter"
 
 #: .\forms.py:46 .\forms.py:84 .\models.py:74 .\models.py:356 .\models.py:448
 #: .\models.py:543 .\models.py:653 .\models.py:672 .\models.py:719
+#: .\models.py:747
 #: .\templates\admin\nobinobi_child\child\print_heal_card_pdf.html:148
 #: .\templates\nobinobi_child\absence\absence_detail.html:14
 #: .\templates\nobinobi_child\absence\absence_list.html:38
@@ -698,7 +699,7 @@ msgstr "Besoins spécifiques de l’enfant"
 msgid "Children specific needs"
 msgstr "Enfants à besoins spécifiques"
 
-#: .\models.py:691
+#: .\models.py:691 .\models.py:761
 msgid "Date"
 msgstr "Date"
 
@@ -717,6 +718,22 @@ msgstr "Classe de remplacement"
 #: .\models.py:728
 msgid "Remplacements Classroom"
 msgstr "Classe de remplacements"
+
+#: .\models.py:754
+msgid "User"
+msgstr "Utilisateur"
+
+#: .\models.py:760
+msgid "Body"
+msgstr "Message"
+
+#: .\models.py:765
+msgid "Tracking log"
+msgstr "Journal de suivi"
+
+#: .\models.py:766
+msgid "Tracking logs"
+msgstr "Journal des suivis"
 
 #: .\signals.py:68 .\signals.py:196
 msgid "Permission {} added to {} successfully.\n"
