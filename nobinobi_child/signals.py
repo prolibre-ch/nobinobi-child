@@ -13,13 +13,11 @@
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import logging
-import os
 from sys import stdout
 
-from django.conf import settings
-from django.contrib.auth.models import Group
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
+from django.db.models import Q
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils.translation import gettext as _
@@ -39,6 +37,22 @@ def update_image(sender, instance, **kwargs):
             rotate_image(full_path)
         except FileNotFoundError:
             pass
+
+
+@receiver(post_save, sender=Child, dispatch_uid="close_period_child_after_date_end")
+def close_period_child_after_date_end(sender, instance, **kwargs):
+    # if the child is in progress
+    if instance.status == Child.STATUS.in_progress:
+        # if there is an end date
+        if instance.date_end_child:
+            # we retrieve the periods with an end date that is only after or empty.
+            periods = instance.periods.filter(
+                Q(end_date__gt=instance.date_end_child) or Q(end_date__is_null=True)
+            )
+            # we put them on the end date and we save
+            for period in periods:
+                period.end_date = instance.date_end_child
+                period.save()
 
 
 def create_group_nobinobi_child(sender, **kwargs):
