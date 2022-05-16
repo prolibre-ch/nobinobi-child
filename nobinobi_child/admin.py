@@ -18,10 +18,11 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.utils.encoding import force_text
 from django.utils.translation import gettext as _
+from nobinobi_staff.models import Staff
+
 from nobinobi_child.models import Period, Allergy, FoodRestriction, Language, Classroom, AgeGroup, Absence, AbsenceType, \
     AbsenceGroup, ClassroomDayOff, InformationOfTheDay, Contact, Address, ChildSpecificNeed, LogChangeClassroom, Child, \
-    ChildToPeriod, ChildToContact, ReplacementClassroom
-from nobinobi_staff.models import Staff
+    ChildToPeriod, ChildToContact, ReplacementClassroom, ChildTrackingLog
 
 
 class DefaultListFilter(SimpleListFilter):
@@ -288,6 +289,20 @@ class ChildSpecificNeedInline(admin.TabularInline):
     can_delete = True
 
 
+class ChildTrackingLogInline(admin.TabularInline):
+    model = ChildTrackingLog
+    min_num = 0
+    extra = 1
+    # show_change_link = True
+    can_delete = True
+    ordering = ("-date",)
+
+    def formfield_for_dbfield(self, db_field, **kwargs):
+        if db_field.name == 'user':
+            kwargs['initial'] = kwargs['request'].user
+        return super(ChildTrackingLogInline, self).formfield_for_dbfield(db_field, **kwargs)
+
+
 class StatusFilter(DefaultListFilter):
     title = _('Status')
     parameter_name = 'status__exact'
@@ -333,7 +348,7 @@ class ChildAdmin(admin.ModelAdmin):
             'fields': ['staff']
         }),
         (_('Other'), {
-            'fields': ['status', 'slug', 'created', 'modified']
+            'fields': ['status', 'slug', 'date_end_child', 'created', 'modified']
         })]
 
     inlines = [
@@ -341,6 +356,7 @@ class ChildAdmin(admin.ModelAdmin):
         ChildToPeriodInline,
         ChildToContactInline,
         ChildSpecificNeedInline,
+        ChildTrackingLogInline,
     ]
     # raw_id_fields = ('',)
     readonly_fields = ('slug', "folder", "created", "modified")
@@ -383,3 +399,13 @@ class ChildAdmin(admin.ModelAdmin):
         form = super(ChildAdmin, self).get_form(request, obj, **kwargs)
         form.base_fields['staff'].queryset = Staff.objects.filter(status__exact='active')
         return form
+
+
+@register(ChildTrackingLog)
+class ChildTrackingLogAdmin(admin.ModelAdmin):
+    """
+        Admin View for ChildTrackingLog
+    """
+    list_display = ('date', 'user', 'child',)
+    list_filter = ('date',)
+    search_fields = ('date', "body")

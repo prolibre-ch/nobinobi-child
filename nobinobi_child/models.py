@@ -26,11 +26,11 @@ from django.utils.translation import gettext as _
 from model_utils import Choices
 from model_utils.fields import StatusField, SplitField
 from model_utils.models import TimeStampedModel, StatusModel
-
-from nobinobi_child.utils import get_unique_slug
 from nobinobi_core.models import Organisation
 from nobinobi_staff.models import Staff
 from phonenumber_field.modelfields import PhoneNumberField
+
+from nobinobi_child.utils import get_unique_slug
 
 WEEKDAY_CHOICES = Choices(
     (1, "monday", _("Monday")),
@@ -307,6 +307,8 @@ class Child(StatusModel, TimeStampedModel):
     )
     date_next_classroom = models.DateField(verbose_name=_("Date next classroom"), blank=True, null=True)
 
+    date_end_child = models.DateField(verbose_name=_("Date end for child"), blank=True, null=True, help_text=_(
+        "When this field is filled and saved, all period equal/after this date will be set to this date and child will be archived at this date."))
     age_group = models.ForeignKey(
         to="AgeGroup",
         verbose_name=_("Age group"),
@@ -737,3 +739,30 @@ class ReplacementClassroom(TimeStampedModel):
         elif (self.archived and not self.end_date) or (self.archived and self.end_date > now):
             self.archived = False
         super(ReplacementClassroom, self).save(*args, *kwargs)
+
+
+class ChildTrackingLog(TimeStampedModel):
+    """
+    class of object to track the history of the action for the child object
+    """
+    child = models.ForeignKey(
+        verbose_name=_("Child"),
+        to=Child,
+        on_delete=models.CASCADE,
+        blank=False,
+        null=False
+    )
+    user = models.ForeignKey(
+        verbose_name=_("User"),
+        to=settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        blank=False,
+        null=False
+    )
+    body = SplitField(verbose_name=_("Body"), blank=False, null=True)
+    date = models.DateField(verbose_name=_("Date"), blank=False, null=True)
+
+    class Meta:
+        ordering = ('-date',)
+        verbose_name = _('Tracking log')
+        verbose_name_plural = _('Tracking logs')

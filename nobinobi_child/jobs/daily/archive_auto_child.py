@@ -12,5 +12,16 @@
 #  You should have received a copy of the GNU Affero General Public License
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-__version__ = '0.1.4'
-default_app_config = 'nobinobi_child.apps.NobinobiChildConfig'
+from django.core import management
+from django.utils.translation import gettext as _
+from django_extensions.management.jobs import DailyJob
+
+
+# from config.wsgi import logger
+
+
+class Job(DailyJob):
+    help = _("Archive automatically child")
+
+    def execute(self):
+        management.call_command("archive_auto_child")
