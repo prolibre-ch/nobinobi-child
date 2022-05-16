@@ -29,7 +29,7 @@ class Command(BaseCommand):
         logger.info(_("*** Launch command << archive child automatically >> ***"))
 
         # we collect all children who have an end date and a progress status
-        children = Child.objects.filter(date_end_child__is_null=False, status=Child.STATUS.in_progress)
+        children = Child.objects.filter(date_end_child__isnull=False, status=Child.STATUS.in_progress)
 
         for child in children:
             now = timezone.now()
@@ -39,7 +39,7 @@ class Command(BaseCommand):
                 child.status = Child.STATUS.archived
                 # the archiving is recorded in the log
                 child.childtrackinglog_set.create(
-                    user=User.objects.get(Q(username="Webmaster") or Q(username="Admin")),
+                    user=User.objects.get(Q(username__iexact="webmaster") | Q(username__iexact="Admin")),
                     body=_("The child was archived on {}.").format(child.date_end_child)
                 )
                 child.save()
