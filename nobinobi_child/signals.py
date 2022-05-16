@@ -46,8 +46,9 @@ def close_period_child_after_date_end(sender, instance, **kwargs):
         # if there is an end date
         if instance.date_end_child:
             # we retrieve the periods with an end date that is only after or empty.
-            periods = instance.periods.filter(
-                Q(end_date__gt=instance.date_end_child) | Q(end_date__isnull=True)
+            periods = ChildToPeriod.objects.filter(
+                Q(end_date__gt=instance.date_end_child) | Q(end_date__isnull=True),
+                child_id=instance.id,
             )
             # we put them on the end date and we save
             for period in periods:
