@@ -307,6 +307,8 @@ class Child(StatusModel, TimeStampedModel):
     )
     date_next_classroom = models.DateField(verbose_name=_("Date next classroom"), blank=True, null=True)
 
+    date_end_child = models.DateField(verbose_name=_("Date end for child"), blank=True, null=True, help_text=_(
+        "When this field is filled and saved, all period equal/after this date will be set to this date and child will be archived at this date."))
     age_group = models.ForeignKey(
         to="AgeGroup",
         verbose_name=_("Age group"),

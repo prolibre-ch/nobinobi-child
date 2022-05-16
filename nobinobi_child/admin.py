@@ -348,7 +348,7 @@ class ChildAdmin(admin.ModelAdmin):
             'fields': ['staff']
         }),
         (_('Other'), {
-            'fields': ['status', 'slug', 'created', 'modified']
+            'fields': ['status', 'slug', 'date_end_child', 'created', 'modified']
         })]
 
     inlines = [
