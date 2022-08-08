@@ -694,7 +694,7 @@ class LogChangeClassroom(TimeStampedModel):
 
     class Meta:
         ordering = ("date",)
-        unique_together = ("child", "classroom")
+        unique_together = ("child", "classroom", "date")
         verbose_name = _("Log change classroom")
         verbose_name_plural = _("Logs changed classrooms")
 
@@ -766,3 +766,25 @@ class ChildTrackingLog(TimeStampedModel):
         ordering = ('-date',)
         verbose_name = _('Tracking log')
         verbose_name_plural = _('Tracking logs')
+
+
+class NobinobiChildSettings(models.Model):
+    """Models to store settings of module Nobinobi Child"""
+
+    class AgeGroupTypeChoice(models.TextChoices):
+        STD = 'STD', _('Standard')
+        BTHD = 'BTHD', _('Birthday')
+
+    age_group_type = models.CharField(max_length=4, choices=AgeGroupTypeChoice.choices, default=AgeGroupTypeChoice.STD)
+
+    class Meta:
+        # ordering = ('', '',)
+        verbose_name = _('Nobinobi Child Setting')
+        # verbose_name_plural = _('')
+
+    def __str__(self):
+        return self._meta.verbose_name
+
+    @staticmethod
+    def get_settings():
+        return NobinobiChildSettings.objects.filter().first()
