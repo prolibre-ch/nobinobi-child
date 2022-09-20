@@ -142,7 +142,7 @@ class ChildViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = ChildSerializer
 
     def list(self, request, *args, **kwargs):
-        queryset = self.filter_queryset(self.get_queryset())
+        # queryset = self.filter_queryset(self.get_queryset())
         classroom_allowed = self.request.user.classroom_login.all().values_list("id", flat=True)
         group_classroom_allowed = self.request.user.groups.all().values_list("classroom_group_login", flat=True)
         new_queryset = self.queryset.filter(
