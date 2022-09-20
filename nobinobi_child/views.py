@@ -610,7 +610,7 @@ class ChildAdminPrintHealCardView(WeasyTemplateResponseMixin, DetailView, LoginR
         context['now'] = timezone.localtime()
 
         # Parents
-        parents_name_list = ["pere", "mere", "mother", "father", "père", "mère", "Father", "Mother", "Père", "Mère"]
+        parents_name_list = ["pere", "mere", "mother", "father", "père", "mère", "Father", "Mother", "Père", "Mère", "Papa", "Maman", "papa", "maman"]
         try:
 
             context['parent_1'] = self.object.childtocontact_set.get(order=0, link_with_child__in=parents_name_list)
