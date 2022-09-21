@@ -142,7 +142,7 @@ class ChildViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = ChildSerializer
 
     def list(self, request, *args, **kwargs):
-        queryset = self.filter_queryset(self.get_queryset())
+        # queryset = self.filter_queryset(self.get_queryset())
         classroom_allowed = self.request.user.classroom_login.all().values_list("id", flat=True)
         group_classroom_allowed = self.request.user.groups.all().values_list("classroom_group_login", flat=True)
         new_queryset = self.queryset.filter(
@@ -610,7 +610,7 @@ class ChildAdminPrintHealCardView(WeasyTemplateResponseMixin, DetailView, LoginR
         context['now'] = timezone.localtime()
 
         # Parents
-        parents_name_list = ["pere", "mere", "mother", "father", "père", "mère", "Father", "Mother", "Père", "Mère"]
+        parents_name_list = ["pere", "mere", "mother", "father", "père", "mère", "Father", "Mother", "Père", "Mère", "Papa", "Maman", "papa", "maman"]
         try:
 
             context['parent_1'] = self.object.childtocontact_set.get(order=0, link_with_child__in=parents_name_list)

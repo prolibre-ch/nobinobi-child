@@ -21,7 +21,9 @@ from django.utils import timezone
 from django.utils.translation import gettext as _
 
 # from config.wsgi import logger
-from nobinobi_child.models import AgeGroup, Child
+from nobinobi_child.models import AgeGroup, Child, NobinobiChildSettings
+
+nobi_child_setting = NobinobiChildSettings.get_settings()
 
 
 class Command(BaseCommand):
@@ -34,21 +36,34 @@ class Command(BaseCommand):
         now_date = timezone.localtime().date()
         age_groups = AgeGroup.objects.all()
         now_year = now_date.year
-        for age_group in age_groups:
-            if now_date == datetime.datetime.strptime("31/07/{}".format(now_year), "%d/%m/%Y").date():
-                age_group.from_date = arrow.get(age_group.from_date).shift(years=+1).date()
-                age_group.end_date = arrow.get(age_group.end_date).shift(years=+1).date()
+
+        # if std use:
+        if nobi_child_setting.age_group_type == NobinobiChildSettings.AgeGroupTypeChoice.STD:
+            for age_group in age_groups:
+                if now_date == datetime.datetime.strptime("31/07/{}".format(now_year), "%d/%m/%Y").date():
+                    age_group.from_date = arrow.get(age_group.from_date).shift(years=+1).date()
+                    age_group.end_date = arrow.get(age_group.end_date).shift(years=+1).date()
+                    age_group.save()
+                    logger.info(_("Age group {} changed year +1.").format(age_group))
+
+            # executing empty sample job
+            children = Child.objects.exclude(status=Child.STATUS.archived)
+            for child in children:
+                if child.birth_date:
+                    new_age_group = AgeGroup.objects.filter(from_date__lte=child.birth_date,
+                                                            end_date__gte=child.birth_date).first()
+                    child.age_group = new_age_group
+                    child.save()
+                    logger.info(_("The child {} changed age group.").format(child))
+
+        # else if BTHD use
+        elif nobi_child_setting.age_group_type == NobinobiChildSettings.AgeGroupTypeChoice.BTHD:
+            for age_group in age_groups:
+                from dateutil.relativedelta import relativedelta
+
+                age_group.from_date = now_date
+                age_group.end_date = now_date + relativedelta(months=-18)
                 age_group.save()
                 logger.info(_("Age group {} changed year +1.").format(age_group))
-
-        # executing empty sample job
-        children = Child.objects.exclude(status=Child.STATUS.archived)
-        for child in children:
-            if child.birth_date:
-                new_age_group = AgeGroup.objects.filter(from_date__lte=child.birth_date,
-                                                        end_date__gte=child.birth_date).first()
-                child.age_group = new_age_group
-                child.save()
-                logger.info(_("The child {} changed age group.").format(child))
 
         logger.info(_("*** End of the change of age group year task. ***"))

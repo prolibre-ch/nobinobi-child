@@ -32,7 +32,7 @@ class Command(BaseCommand):
         children = Child.objects.filter(date_end_child__isnull=False, status=Child.STATUS.in_progress)
 
         for child in children:
-            now = timezone.now()
+            now = timezone.localdate()
             # if today is greater than or equal to the current date
             if now >= child.date_end_child:
                 # we set its status to "archived

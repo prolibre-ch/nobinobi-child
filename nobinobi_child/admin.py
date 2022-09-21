@@ -22,7 +22,7 @@ from nobinobi_staff.models import Staff
 
 from nobinobi_child.models import Period, Allergy, FoodRestriction, Language, Classroom, AgeGroup, Absence, AbsenceType, \
     AbsenceGroup, ClassroomDayOff, InformationOfTheDay, Contact, Address, ChildSpecificNeed, LogChangeClassroom, Child, \
-    ChildToPeriod, ChildToContact, ReplacementClassroom, ChildTrackingLog
+    ChildToPeriod, ChildToContact, ReplacementClassroom, ChildTrackingLog, NobinobiChildSettings
 
 
 class DefaultListFilter(SimpleListFilter):
@@ -409,3 +409,7 @@ class ChildTrackingLogAdmin(admin.ModelAdmin):
     list_display = ('date', 'user', 'child',)
     list_filter = ('date',)
     search_fields = ('date', "body")
+
+@register(NobinobiChildSettings)
+class NobinobiChildSettingsAdmin(admin.ModelAdmin):
+    pass
