@@ -3,6 +3,28 @@
 History
 -------
 
+0.1.4.2 (2022-09-21)
++++++++++++++++++++++
+
+* 6d240a3 - fix bug with auto archive child
+* 4cbc105 - fix bug in display list children
+* e908dc7 - add papa and maman to list of name of parents
+* c2aabe3 - Add setting for module add constraint for log change classroom
+* Update traduction
+* Update requirements
+
+0.1.4.1 (2022-05-16)
++++++++++++++++++++++
+
+* b2d820c - fix error in signal for autoclose period
+
+0.1.4 (2022-05-16)
++++++++++++++++++++++
+
+* 7eeb34e - Merge branch 'feature/add-end-auto-period-for-child'
+* 838cf32 - Merge branch 'feature/add-tracking-log-to-child'
+* Update requirements
+
 0.1.3.15 (2022-03-15)
 +++++++++++++++++++++
 
