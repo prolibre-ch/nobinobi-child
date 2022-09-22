@@ -3,6 +3,11 @@
 History
 -------
 
+0.1.4.4 (2022-09-22)
++++++++++++++++++++++
+
+* ee05d14 - fix if admin and webmaster exist in auto archive child
+
 0.1.4.3 (2022-09-22)
 +++++++++++++++++++++
 

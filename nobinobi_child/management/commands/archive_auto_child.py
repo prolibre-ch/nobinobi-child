@@ -40,7 +40,7 @@ class Command(BaseCommand):
                 child.status = Child.STATUS.archived
                 # the archiving is recorded in the log
                 child.childtrackinglog_set.create(
-                    user=User.objects.get(Q(username__iexact="webmaster") | Q(username__iexact="Admin")),
+                    user=User.objects.filter(Q(username__iexact="webmaster") | Q(username__iexact="Admin")).first(),
                     body=_("The child was archived on {}.").format(child.date_end_child)
                 )
                 child.save()
