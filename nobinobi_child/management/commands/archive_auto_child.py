@@ -11,8 +11,7 @@
 #
 #  You should have received a copy of the GNU Affero General Public License
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.core.handlers.base import logger
 from django.core.management.base import BaseCommand
 from django.db.models import Q
@@ -20,6 +19,8 @@ from django.utils import timezone
 from django.utils.translation import gettext as _
 
 from nobinobi_child.models import Child
+
+User = get_user_model()
 
 
 class Command(BaseCommand):
