@@ -262,6 +262,7 @@ class ChildToPeriodInline(admin.TabularInline):
     sortable_by = "period__order"
     show_change_link = False
     can_delete = True
+    classes = ('collapse', 'close')
 
 
 class ChildToContactInline(admin.TabularInline):
@@ -270,6 +271,7 @@ class ChildToContactInline(admin.TabularInline):
     extra = 1
     show_change_link = True
     can_delete = True
+    classes = ('collapse', 'close')
 
 
 class ReplacementClassroomInline(admin.TabularInline):
@@ -278,6 +280,7 @@ class ReplacementClassroomInline(admin.TabularInline):
     extra = 1
     show_change_link = True
     can_delete = True
+    classes = ('collapse', 'close')
 
 
 class ChildSpecificNeedInline(admin.TabularInline):
@@ -287,6 +290,7 @@ class ChildSpecificNeedInline(admin.TabularInline):
     extra = 0
     show_change_link = True
     can_delete = True
+    classes = ('collapse', 'close')
 
 
 class ChildTrackingLogInline(admin.TabularInline):
@@ -296,6 +300,7 @@ class ChildTrackingLogInline(admin.TabularInline):
     # show_change_link = True
     can_delete = True
     ordering = ("-date",)
+    classes = ('collapse', 'close')
 
     def formfield_for_dbfield(self, db_field, **kwargs):
         if db_field.name == 'user':
@@ -330,7 +335,8 @@ class ChildAdmin(admin.ModelAdmin):
                        'red_list',
                        'food_restrictions',
                        'sibling_name', 'sibling_birth_date', 'sibling_institution',
-                       'comment', 'renewal_date', ]
+                       'comment', "autorisations", 'renewal_date', ],
+            # 'classes': ('collapse',),
         }),
         (_('Health info'), {
             'fields': (
@@ -339,16 +345,20 @@ class ChildAdmin(admin.ModelAdmin):
                 "specific_problem",
                 "vaccination",
                 "health_insurance"
-            )
+            ),
+            'classes': ('collapse', 'close'),
         }),
         (_('Classroom'), {
-            'fields': ('classroom', 'next_classroom', 'date_next_classroom', 'age_group')
+            'fields': ('classroom', 'next_classroom', 'date_next_classroom', 'age_group'),
+            # 'classes': ('collapse', 'close'),
         }),
         (_('Staff'), {
-            'fields': ['staff']
+            'fields': ['staff'],
         }),
         (_('Other'), {
-            'fields': ['status', 'slug', 'date_end_child', 'created', 'modified']
+            'fields': ['status', 'slug', 'date_end_child', 'created', 'modified'],
+            'classes': ('collapse', 'close'),
+
         })]
 
     inlines = [
@@ -409,6 +419,7 @@ class ChildTrackingLogAdmin(admin.ModelAdmin):
     list_display = ('date', 'user', 'child',)
     list_filter = ('date',)
     search_fields = ('date', "body")
+
 
 @register(NobinobiChildSettings)
 class NobinobiChildSettingsAdmin(admin.ModelAdmin):

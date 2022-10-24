@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-13 15:34+0200\n"
-"PO-Revision-Date: 2022-05-13 15:36+0200\n"
+"POT-Creation-Date: 2022-10-24 12:08+0200\n"
+"PO-Revision-Date: 2022-10-24 12:08+0200\n"
 "Last-Translator: Florian Alu <fla@grapps.fr>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -16,54 +16,54 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 3.1.1\n"
 
 #: .\admin.py:47 .\templates\nobinobi_child\child_list.html:33
 msgid "All"
 msgstr "Tout"
 
-#: .\admin.py:307 .\templates\nobinobi_child\child_list.html:43
+#: .\admin.py:312 .\templates\nobinobi_child\child_list.html:43
 msgid "Status"
 msgstr "Statut"
 
-#: .\admin.py:327
+#: .\admin.py:332
 msgid "Personal information"
 msgstr "Information personnelle"
 
-#: .\admin.py:335
+#: .\admin.py:341
 msgid "Health info"
 msgstr "Informations sur la santé"
 
-#: .\admin.py:344 .\models.py:193 .\models.py:215 .\models.py:292
-#: .\models.py:503 .\models.py:679 .\models.py:714 .\views.py:130
-#: .\views.py:405
+#: .\admin.py:351 .\models.py:193 .\models.py:215 .\models.py:292
+#: .\models.py:503 .\models.py:679 .\models.py:714 .\settings.py:4
+#: .\views.py:130 .\views.py:405
 msgid "Classroom"
 msgstr "Salle de classe"
 
-#: .\admin.py:347 .\menus.py:54 .\models.py:321
+#: .\admin.py:355 .\menus.py:54 .\models.py:321
 #: .\templates\nobinobi_child\child_list.html:50
 #: .\templates\nobinobi_child\staff\staff_list.html:26
 msgid "Staff"
 msgstr "Personnel"
 
-#: .\admin.py:350 .\models.py:241
+#: .\admin.py:358 .\models.py:241
 #: .\templates\nobinobi_child\child_list.html:121
 msgid "Other"
 msgstr "Autre"
 
-#: .\admin.py:381
+#: .\admin.py:391
 msgid "Folder"
 msgstr "Dossier"
 
-#: .\admin.py:386
+#: .\admin.py:396
 msgid "1 child was"
 msgstr "1 enfant a été"
 
-#: .\admin.py:388
+#: .\admin.py:398
 msgid "{} children were"
 msgstr "enfants ont"
 
-#: .\admin.py:391
+#: .\admin.py:401
 msgid "Put child in archive"
 msgstr "Mettre l'enfant dans les archives"
 
@@ -106,36 +106,37 @@ msgstr "Changement d'auto des groupe d'âge"
 msgid "Change of school year"
 msgstr "Changement d'année scolaire"
 
-#: .\management\commands\archive_auto_child.py:29
+#: .\management\commands\archive_auto_child.py:30
 msgid "*** Launch command << archive child automatically >> ***"
 msgstr ""
 "*** Lancement de la commande << archiver l’enfant automatiquement >> ***"
 
-#: .\management\commands\archive_auto_child.py:43
+#: .\management\commands\archive_auto_child.py:44
 msgid "The child was archived on {}."
 msgstr "L’enfant a été archivé le {}."
 
-#: .\management\commands\archive_auto_child.py:46
+#: .\management\commands\archive_auto_child.py:47
 msgid "The child {} has been archived."
 msgstr "L'enfant {} a été archivé."
 
-#: .\management\commands\archive_auto_child.py:48
+#: .\management\commands\archive_auto_child.py:49
 msgid "*** End command << archive child automatically >> ***"
 msgstr "Fin de la commande << archiver l’enfant automatiquement >> ***"
 
-#: .\management\commands\change_agegroup_auto.py:33
+#: .\management\commands\change_agegroup_auto.py:35
 msgid "*** Launch of the change of age group year task. ***"
 msgstr "*** Lancement de la tâche de changement de l’année scolaire. ***"
 
-#: .\management\commands\change_agegroup_auto.py:42
+#: .\management\commands\change_agegroup_auto.py:47
+#: .\management\commands\change_agegroup_auto.py:67
 msgid "Age group {} changed year +1."
 msgstr "Le groupe d'âge {} a changé d'année +1."
 
-#: .\management\commands\change_agegroup_auto.py:52
+#: .\management\commands\change_agegroup_auto.py:57
 msgid "The child {} changed age group."
 msgstr "L'enfant {} a changé de groupe d'âge."
 
-#: .\management\commands\change_agegroup_auto.py:54
+#: .\management\commands\change_agegroup_auto.py:69
 msgid "*** End of the change of age group year task. ***"
 msgstr "*** Fin de la tâche de changement de l’année scolaire. ***"
 
@@ -151,8 +152,8 @@ msgstr "L’enfant {} a changé d’année scolaire."
 msgid "*** End of the change of school year task. ***"
 msgstr "*** Fin de la tâche de changement de l’année scolaire. ***"
 
-#: .\management\commands\create_group_users.py:39 .\signals.py:65
-#: .\signals.py:108
+#: .\management\commands\create_group_users.py:39 .\signals.py:66
+#: .\signals.py:109
 msgid "Groups {} created successfully."
 msgstr "Groupes {} créés avec succès."
 
@@ -516,6 +517,10 @@ msgstr "Vaccination"
 msgid "Health Insurance"
 msgstr "Assurance maladie"
 
+#: .\models.py:278
+msgid "Autorisations"
+msgstr "Autorisations"
+
 #: .\models.py:279
 msgid "Pediatrician contact"
 msgstr "Contact avec le pédiatre"
@@ -563,7 +568,7 @@ msgid "Contacts"
 msgstr "Contacts"
 
 #: .\models.py:376 .\templates\nobinobi_child\child_detail.html:50
-#: .\templates\nobinobi_child\child_detail.html:211
+#: .\templates\nobinobi_child\child_detail.html:215
 msgid "Full name"
 msgstr "Nom complet"
 
@@ -630,11 +635,11 @@ msgid "Children to contacts"
 msgstr "Enfants aux contacts"
 
 #: .\models.py:575 .\models.py:617
-#: .\templates\nobinobi_child\child_detail.html:236
+#: .\templates\nobinobi_child\child_detail.html:240
 msgid "Address"
 msgstr "Adresse"
 
-#: .\models.py:580 .\templates\nobinobi_child\child_detail.html:244
+#: .\models.py:580 .\templates\nobinobi_child\child_detail.html:248
 #: .\templates\nobinobi_child\staff\staff_list.html:30
 msgid "Email"
 msgstr "E-mail"
@@ -642,21 +647,21 @@ msgstr "E-mail"
 #: .\models.py:581
 #: .\templates\admin\nobinobi_child\child\print_heal_card_pdf.html:240
 #: .\templates\admin\nobinobi_child\child\print_heal_card_pdf.html:335
-#: .\templates\nobinobi_child\child_detail.html:251
+#: .\templates\nobinobi_child\child_detail.html:255
 #: .\templates\nobinobi_child\staff\staff_list.html:28
 msgid "Phone"
 msgstr "Téléphone"
 
 #: .\models.py:582
 #: .\templates\admin\nobinobi_child\child\print_heal_card_pdf.html:245
-#: .\templates\nobinobi_child\child_detail.html:255
+#: .\templates\nobinobi_child\child_detail.html:259
 #: .\templates\nobinobi_child\staff\staff_list.html:29
 msgid "Mobile phone"
 msgstr "Téléphone mobile"
 
 #: .\models.py:583
 #: .\templates\admin\nobinobi_child\child\print_heal_card_pdf.html:250
-#: .\templates\nobinobi_child\child_detail.html:259
+#: .\templates\nobinobi_child\child_detail.html:263
 msgid "Professional phone"
 msgstr "Téléphone professionnel"
 
@@ -664,11 +669,11 @@ msgstr "Téléphone professionnel"
 msgid "Function"
 msgstr "Fonction"
 
-#: .\models.py:586 .\templates\nobinobi_child\child_detail.html:263
+#: .\models.py:586 .\templates\nobinobi_child\child_detail.html:267
 msgid "Contact authorized to pick up the child."
 msgstr "Autorisé à venir chercher l'enfant."
 
-#: .\models.py:588 .\templates\nobinobi_child\child_detail.html:267
+#: .\models.py:588 .\templates\nobinobi_child\child_detail.html:271
 msgid "To contact if needed"
 msgstr "A contacter en cas de besoin"
 
@@ -717,7 +722,7 @@ msgstr "Problème"
 msgid "Individual home project"
 msgstr "Project d'accueil individualisé"
 
-#: .\models.py:651 .\templates\nobinobi_child\child_detail.html:167
+#: .\models.py:651 .\templates\nobinobi_child\child_detail.html:171
 msgid "Attachment"
 msgstr "Pièce jointe"
 
@@ -725,7 +730,7 @@ msgstr "Pièce jointe"
 msgid "Measure to take"
 msgstr "Mesure à prendre"
 
-#: .\models.py:661 .\templates\nobinobi_child\child_detail.html:153
+#: .\models.py:661 .\templates\nobinobi_child\child_detail.html:157
 msgid "Child specific need"
 msgstr "Besoins spécifiques de l’enfant"
 
@@ -769,7 +774,19 @@ msgstr "Journal de suivi"
 msgid "Tracking logs"
 msgstr "Journal des suivis"
 
-#: .\signals.py:82 .\signals.py:210
+#: .\models.py:775
+msgid "Standard"
+msgstr "Informations standard"
+
+#: .\models.py:776
+msgid "Birthday"
+msgstr "Date de naissance"
+
+#: .\models.py:782
+msgid "Nobinobi Child Setting"
+msgstr "Nobinobi Child Paramètres"
+
+#: .\signals.py:83 .\signals.py:211
 msgid "Permission {} added to {} successfully.\n"
 msgstr "Permission {} ajoutée à {} avec succès.\n"
 
@@ -1173,20 +1190,24 @@ msgstr "Oui,Non,Aucune information fournie"
 msgid "No"
 msgstr "Non"
 
-#: .\templates\nobinobi_child\child_detail.html:140
+#: .\templates\nobinobi_child\child_detail.html:128
+msgid "No information provided"
+msgstr "Aucune information fournie"
+
+#: .\templates\nobinobi_child\child_detail.html:144
 msgid "Edit"
 msgstr "Éditer"
 
-#: .\templates\nobinobi_child\child_detail.html:180
+#: .\templates\nobinobi_child\child_detail.html:184
 msgid "Contact (s) of the child"
 msgstr "Contact (s) de l’enfant"
 
-#: .\templates\nobinobi_child\child_detail.html:264
 #: .\templates\nobinobi_child\child_detail.html:268
+#: .\templates\nobinobi_child\child_detail.html:272
 msgid "Yes,No"
 msgstr "Oui,Non"
 
-#: .\templates\nobinobi_child\child_detail.html:289
+#: .\templates\nobinobi_child\child_detail.html:293
 msgid "Period(s)"
 msgstr "Période (s)"
 
@@ -1315,9 +1336,6 @@ msgstr "La photo de l'enfant a été modifiée."
 #: .\views.py:591
 msgid "Success: The child's photo has been modified."
 msgstr "Succès : La photo de l'enfant a été modifiée."
-
-#~ msgid "Standard info"
-#~ msgstr "Informations standard"
 
 #~ msgid ""
 #~ "Do you authorize the administration of granules of Arnica (homeopathy) in "
