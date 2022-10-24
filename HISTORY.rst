@@ -3,6 +3,17 @@
 History
 -------
 
+0.1.4.5 (2022-10-24)
++++++++++++++++++++++
+
+* 57b06dd - fix display child detail in smartphone
+* 3b25c38 - rename file migrate autorisation
+* c4ecd38 - Add field autorisations
+* 67a292a - Add collapsed category for admin child for best read
+* 446e224 - Update coverage from 6.4.4 to 6.5.0
+* dd7807a - Update invoke from 1.7.1 to 1.7.3
+* 3ad06ae - Update phonenumbers from 8.12.55 to 8.12.57
+
 0.1.4.4 (2022-09-22)
 +++++++++++++++++++++
 
