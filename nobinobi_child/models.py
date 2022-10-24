@@ -275,7 +275,7 @@ class Child(StatusModel, TimeStampedModel):
     specific_problem = models.CharField(_("Specific problem"), max_length=255, blank=True, null=True)
     vaccination = models.BooleanField(_("Vaccination"), blank=False, null=True)
     health_insurance = models.CharField(_("Health Insurance"), max_length=255, blank=True, null=True)
-
+    autorisations = models.TextField(_("Autorisations"), blank=True, null=True)
     pediatrician_contact = models.BooleanField(_("Pediatrician contact"), blank=True, null=True)
 
     pediatrician = models.ForeignKey(

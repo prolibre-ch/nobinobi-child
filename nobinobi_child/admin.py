@@ -335,7 +335,7 @@ class ChildAdmin(admin.ModelAdmin):
                        'red_list',
                        'food_restrictions',
                        'sibling_name', 'sibling_birth_date', 'sibling_institution',
-                       'comment', 'renewal_date', ],
+                       'comment', "autorisations", 'renewal_date', ],
             # 'classes': ('collapse',),
         }),
         (_('Health info'), {
