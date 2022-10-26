@@ -3,6 +3,12 @@
 History
 -------
 
+0.1.4.6 (2022-10-26)
++++++++++++++++++++++
+* e247fec - Use html safe for autorisations
+* 7667e6d - Add settings for ordering and list_display child in admin
+* Update requirements
+
 0.1.4.5 (2022-10-24)
 +++++++++++++++++++++
 
