@@ -126,7 +126,7 @@
                     <tr>
                         <th class="col-lg-4" scope="row">{% get_verbose_field_name object "autorisations" %}</th>
                         <td class="col-lg-8">
-                            {% if object.autorisations %}{{ object.autorisations }}{% else %}{% translate "No information provided" %}{% endif %}</td>
+                            <p>{% if object.autorisations %}{{ object.autorisations|safe }}{% else %}{% translate "No information provided" %}{% endif %}</td>
                     </tr>
                     <tr>
                         <th class="col-lg-4" scope="row">{% get_verbose_field_name object "comment" %}</th>
