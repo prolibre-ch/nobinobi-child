@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-24 12:08+0200\n"
-"PO-Revision-Date: 2022-10-24 12:08+0200\n"
+"POT-Creation-Date: 2022-10-26 15:25+0200\n"
+"PO-Revision-Date: 2022-10-26 15:26+0200\n"
 "Last-Translator: Florian Alu <fla@grapps.fr>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -26,44 +26,44 @@ msgstr "Tout"
 msgid "Status"
 msgstr "Statut"
 
-#: .\admin.py:332
+#: .\admin.py:353
 msgid "Personal information"
 msgstr "Information personnelle"
 
-#: .\admin.py:341
+#: .\admin.py:362
 msgid "Health info"
 msgstr "Informations sur la santé"
 
-#: .\admin.py:351 .\models.py:193 .\models.py:215 .\models.py:292
+#: .\admin.py:372 .\models.py:193 .\models.py:215 .\models.py:292
 #: .\models.py:503 .\models.py:679 .\models.py:714 .\settings.py:4
 #: .\views.py:130 .\views.py:405
 msgid "Classroom"
 msgstr "Salle de classe"
 
-#: .\admin.py:355 .\menus.py:54 .\models.py:321
+#: .\admin.py:376 .\menus.py:54 .\models.py:321
 #: .\templates\nobinobi_child\child_list.html:50
 #: .\templates\nobinobi_child\staff\staff_list.html:26
 msgid "Staff"
 msgstr "Personnel"
 
-#: .\admin.py:358 .\models.py:241
+#: .\admin.py:379 .\models.py:241
 #: .\templates\nobinobi_child\child_list.html:121
 msgid "Other"
 msgstr "Autre"
 
-#: .\admin.py:391
+#: .\admin.py:412
 msgid "Folder"
 msgstr "Dossier"
 
-#: .\admin.py:396
+#: .\admin.py:417
 msgid "1 child was"
 msgstr "1 enfant a été"
 
-#: .\admin.py:398
+#: .\admin.py:419
 msgid "{} children were"
 msgstr "enfants ont"
 
-#: .\admin.py:401
+#: .\admin.py:422
 msgid "Put child in archive"
 msgstr "Mettre l'enfant dans les archives"
 
@@ -568,7 +568,7 @@ msgid "Contacts"
 msgstr "Contacts"
 
 #: .\models.py:376 .\templates\nobinobi_child\child_detail.html:50
-#: .\templates\nobinobi_child\child_detail.html:215
+#: .\templates\nobinobi_child\child_detail.html:214
 msgid "Full name"
 msgstr "Nom complet"
 
@@ -635,11 +635,11 @@ msgid "Children to contacts"
 msgstr "Enfants aux contacts"
 
 #: .\models.py:575 .\models.py:617
-#: .\templates\nobinobi_child\child_detail.html:240
+#: .\templates\nobinobi_child\child_detail.html:239
 msgid "Address"
 msgstr "Adresse"
 
-#: .\models.py:580 .\templates\nobinobi_child\child_detail.html:248
+#: .\models.py:580 .\templates\nobinobi_child\child_detail.html:247
 #: .\templates\nobinobi_child\staff\staff_list.html:30
 msgid "Email"
 msgstr "E-mail"
@@ -647,21 +647,21 @@ msgstr "E-mail"
 #: .\models.py:581
 #: .\templates\admin\nobinobi_child\child\print_heal_card_pdf.html:240
 #: .\templates\admin\nobinobi_child\child\print_heal_card_pdf.html:335
-#: .\templates\nobinobi_child\child_detail.html:255
+#: .\templates\nobinobi_child\child_detail.html:254
 #: .\templates\nobinobi_child\staff\staff_list.html:28
 msgid "Phone"
 msgstr "Téléphone"
 
 #: .\models.py:582
 #: .\templates\admin\nobinobi_child\child\print_heal_card_pdf.html:245
-#: .\templates\nobinobi_child\child_detail.html:259
+#: .\templates\nobinobi_child\child_detail.html:258
 #: .\templates\nobinobi_child\staff\staff_list.html:29
 msgid "Mobile phone"
 msgstr "Téléphone mobile"
 
 #: .\models.py:583
 #: .\templates\admin\nobinobi_child\child\print_heal_card_pdf.html:250
-#: .\templates\nobinobi_child\child_detail.html:263
+#: .\templates\nobinobi_child\child_detail.html:262
 msgid "Professional phone"
 msgstr "Téléphone professionnel"
 
@@ -669,11 +669,11 @@ msgstr "Téléphone professionnel"
 msgid "Function"
 msgstr "Fonction"
 
-#: .\models.py:586 .\templates\nobinobi_child\child_detail.html:267
+#: .\models.py:586 .\templates\nobinobi_child\child_detail.html:266
 msgid "Contact authorized to pick up the child."
 msgstr "Autorisé à venir chercher l'enfant."
 
-#: .\models.py:588 .\templates\nobinobi_child\child_detail.html:271
+#: .\models.py:588 .\templates\nobinobi_child\child_detail.html:270
 msgid "To contact if needed"
 msgstr "A contacter en cas de besoin"
 
@@ -722,7 +722,7 @@ msgstr "Problème"
 msgid "Individual home project"
 msgstr "Project d'accueil individualisé"
 
-#: .\models.py:651 .\templates\nobinobi_child\child_detail.html:171
+#: .\models.py:651 .\templates\nobinobi_child\child_detail.html:172
 msgid "Attachment"
 msgstr "Pièce jointe"
 
@@ -730,7 +730,7 @@ msgstr "Pièce jointe"
 msgid "Measure to take"
 msgstr "Mesure à prendre"
 
-#: .\models.py:661 .\templates\nobinobi_child\child_detail.html:157
+#: .\models.py:661 .\templates\nobinobi_child\child_detail.html:158
 msgid "Child specific need"
 msgstr "Besoins spécifiques de l’enfant"
 
@@ -782,7 +782,23 @@ msgstr "Informations standard"
 msgid "Birthday"
 msgstr "Date de naissance"
 
-#: .\models.py:782
+#: .\models.py:779
+msgid "Standard (First name, Last name)"
+msgstr "Standard (Prénom, Nom)"
+
+#: .\models.py:780
+msgid "Inverse (Last name, First Name"
+msgstr "Inverse (Nom, Prénom)"
+
+#: .\models.py:783
+msgid "Admin child list display order"
+msgstr "Ordre d'affichage de la liste des enfants de l'administration"
+
+#: .\models.py:785
+msgid "Admin child ordering"
+msgstr "Classement de la liste des enfants de l'administration"
+
+#: .\models.py:789
 msgid "Nobinobi Child Setting"
 msgstr "Nobinobi Child Paramètres"
 
@@ -1190,24 +1206,24 @@ msgstr "Oui,Non,Aucune information fournie"
 msgid "No"
 msgstr "Non"
 
-#: .\templates\nobinobi_child\child_detail.html:128
+#: .\templates\nobinobi_child\child_detail.html:129
 msgid "No information provided"
 msgstr "Aucune information fournie"
 
-#: .\templates\nobinobi_child\child_detail.html:144
+#: .\templates\nobinobi_child\child_detail.html:145
 msgid "Edit"
 msgstr "Éditer"
 
-#: .\templates\nobinobi_child\child_detail.html:184
+#: .\templates\nobinobi_child\child_detail.html:185
 msgid "Contact (s) of the child"
 msgstr "Contact (s) de l’enfant"
 
-#: .\templates\nobinobi_child\child_detail.html:268
-#: .\templates\nobinobi_child\child_detail.html:272
+#: .\templates\nobinobi_child\child_detail.html:267
+#: .\templates\nobinobi_child\child_detail.html:271
 msgid "Yes,No"
 msgstr "Oui,Non"
 
-#: .\templates\nobinobi_child\child_detail.html:293
+#: .\templates\nobinobi_child\child_detail.html:290
 msgid "Period(s)"
 msgstr "Période (s)"
 

@@ -324,8 +324,29 @@ class ChildAdmin(admin.ModelAdmin):
     """
         Admin View for Child
     """
-    list_display = (
-        'first_name', 'last_name', 'usual_name', 'gender', 'birth_date', 'classroom', 'age_group', 'staff')
+
+    def get_list_display(self, request):
+        """
+        Return a sequence containing the fields to be displayed on the
+        changelist.
+        """
+        settings = NobinobiChildSettings.get_settings()
+        if settings.admin_child_list_display_order == NobinobiChildSettings.OrderChildListDisplayInAdmin.STD:
+            self.list_display = ('first_name', 'last_name', 'usual_name', 'gender', 'birth_date', 'classroom', 'age_group', 'staff')
+        elif settings.admin_child_list_display_order == NobinobiChildSettings.OrderChildListDisplayInAdmin.INV:
+            self.list_display = ('last_name', 'first_name', 'usual_name', 'gender', 'birth_date', 'classroom', 'age_group', 'staff')
+        return self.list_display
+
+    def get_ordering(self, request):
+        """
+        Hook for specifying field ordering.
+        """
+        settings = NobinobiChildSettings.get_settings()
+        if settings.admin_child_ordering == NobinobiChildSettings.OrderChildListDisplayInAdmin.STD:
+            self.ordering = ('first_name', 'last_name', 'created')
+        elif settings.admin_child_ordering == NobinobiChildSettings.OrderChildListDisplayInAdmin.INV:
+            self.ordering = ('last_name', 'first_name', 'created')
+        return self.ordering or ()  # otherwise we might try to *None, which is bad ;)
     list_filter = (StatusFilter, 'gender', 'classroom', 'age_group', 'staff')
 
     fieldsets = [

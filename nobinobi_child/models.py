@@ -775,7 +775,14 @@ class NobinobiChildSettings(models.Model):
         STD = 'STD', _('Standard')
         BTHD = 'BTHD', _('Birthday')
 
+    class OrderChildListDisplayInAdmin(models.TextChoices):
+        STD = 'STD', _('Standard (First name, Last name)')
+        INV = 'INV', _('Inverse (Last name, First Name')
+
     age_group_type = models.CharField(max_length=4, choices=AgeGroupTypeChoice.choices, default=AgeGroupTypeChoice.STD)
+    admin_child_list_display_order = models.CharField(_("Admin child list display order"), max_length=3, choices=OrderChildListDisplayInAdmin.choices,
+                                                      default=OrderChildListDisplayInAdmin.STD)
+    admin_child_ordering = models.CharField(_("Admin child ordering"), max_length=3, choices=OrderChildListDisplayInAdmin.choices, default=OrderChildListDisplayInAdmin.STD)
 
     class Meta:
         # ordering = ('', '',)
