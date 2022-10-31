@@ -3,6 +3,10 @@
 History
 -------
 
+0.1.4.7 (2022-10-31)
++++++++++++++++++++++
+* 8635383 - fix display on many admin menu system
+
 0.1.4.6 (2022-10-26)
 +++++++++++++++++++++
 * e247fec - Use html safe for autorisations

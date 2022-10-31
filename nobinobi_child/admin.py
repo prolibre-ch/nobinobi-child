@@ -262,7 +262,7 @@ class ChildToPeriodInline(admin.TabularInline):
     sortable_by = "period__order"
     show_change_link = False
     can_delete = True
-    classes = ('collapse', 'close')
+    classes = ('collapse',)
 
 
 class ChildToContactInline(admin.TabularInline):
@@ -271,7 +271,7 @@ class ChildToContactInline(admin.TabularInline):
     extra = 1
     show_change_link = True
     can_delete = True
-    classes = ('collapse', 'close')
+    classes = ('collapse',)
 
 
 class ReplacementClassroomInline(admin.TabularInline):
@@ -280,7 +280,7 @@ class ReplacementClassroomInline(admin.TabularInline):
     extra = 1
     show_change_link = True
     can_delete = True
-    classes = ('collapse', 'close')
+    classes = ('collapse',)
 
 
 class ChildSpecificNeedInline(admin.TabularInline):
@@ -290,7 +290,7 @@ class ChildSpecificNeedInline(admin.TabularInline):
     extra = 0
     show_change_link = True
     can_delete = True
-    classes = ('collapse', 'close')
+    classes = ('collapse',)
 
 
 class ChildTrackingLogInline(admin.TabularInline):
@@ -300,7 +300,7 @@ class ChildTrackingLogInline(admin.TabularInline):
     # show_change_link = True
     can_delete = True
     ordering = ("-date",)
-    classes = ('collapse', 'close')
+    classes = ('collapse',)
 
     def formfield_for_dbfield(self, db_field, **kwargs):
         if db_field.name == 'user':
@@ -367,18 +367,18 @@ class ChildAdmin(admin.ModelAdmin):
                 "vaccination",
                 "health_insurance"
             ),
-            'classes': ('collapse', 'close'),
+            'classes': ('collapse',),
         }),
         (_('Classroom'), {
             'fields': ('classroom', 'next_classroom', 'date_next_classroom', 'age_group'),
-            # 'classes': ('collapse', 'close'),
+            # 'classes': ('collapse',),
         }),
         (_('Staff'), {
             'fields': ['staff'],
         }),
         (_('Other'), {
             'fields': ['status', 'slug', 'date_end_child', 'created', 'modified'],
-            'classes': ('collapse', 'close'),
+            'classes': ('collapse',),
 
         })]
 
