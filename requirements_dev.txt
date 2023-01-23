@@ -1,4 +1,4 @@
-invoke==1.7.3
+invoke==2.0.0
 wheel==0.38.0
 zest.releaser==7.0.0
 twine==4.0.1
