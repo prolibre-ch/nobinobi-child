@@ -20,6 +20,7 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Hidden, Field
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
+from django.db.models import Q
 from django.utils import timezone
 from django.utils.translation import gettext as _
 
@@ -77,6 +78,13 @@ class AbsenceCreateForm(BSModalModelForm):
                 self.initial['end_date'] = arrow.get(timezone.localtime()).replace(hour=22, minute=0,
                                                                                    second=0).strftime(
                     "%d/%m/%Y %H:%M")
+        if kwargs["request"].GET.get("classroom"):
+            self.fields['child'].queryset = Child.objects.filter(status=Child.STATUS.in_progress,
+                                                                 classroom=int(kwargs["request"].GET.get("classroom", 0)))
+        if kwargs["request"].GET.get("classrooms"):
+            filter_child = Child.objects.filter(status=Child.STATUS.in_progress)
+            classroom_list = [int(x) for x in str(kwargs["request"].GET.get("classrooms")).split(",")]
+            self.fields['child'].queryset = filter_child.filter(Q(classroom__in=classroom_list) | Q(replacementclassroom__in=classroom_list))
 
 
 class ChildPictureSelectForm(forms.ModelForm):

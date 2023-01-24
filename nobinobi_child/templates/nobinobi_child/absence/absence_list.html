@@ -18,20 +18,20 @@
 {% endblock %}
 
 {% block breadcrumb %}
-	{{ block.super }}
+    {{ block.super }}
     <li class="breadcrumb-item active">{{ title }}</li>
 {% endblock %}
 
 
 {% block content_card %}
     <div class="card-body">
-		{% if perms.nobinobi_child.add_absence %}
+        {% if perms.nobinobi_child.add_absence %}
             <div class="btn-toolbar" role="toolbar" aria-label="">
                 <div class="btn-group" role="group" aria-label="">
                     <button type="button" class="btn btn-info absence-create">{% trans "Add" %}</button>
                 </div>
             </div>
-		{% endif %}
+        {% endif %}
         <table id="absences_datatables" class="display table" style="width:100%">
             <thead>
             <tr>
@@ -45,15 +45,15 @@
         </table>
     </div>
 
-	<!-- modal instanstiation -->
-	{% include "includes/modal.html" %}
+    <!-- modal instanstiation -->
+    {% include "includes/modal.html" %}
 {% endblock %}
 
 {% block extrajs %}
     <script src="{% static 'js/jquery.bootstrap.modal.forms.min.js' %}"></script>
     <script src="{% static 'vendor/DataTables/datatables.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/moment-with-locales.min.js' %}"></script>
-	{#  <script type="text/javascript" src="{% static 'js/bootstrap-datetimepicker.min.js' %}"></script>#}
+    {#  <script type="text/javascript" src="{% static 'js/bootstrap-datetimepicker.min.js' %}"></script>#}
     <script type="text/javascript" src="{% static 'js/bootstrap-datetimepicker.min.js' %}"></script>
 
     <script>
@@ -78,7 +78,8 @@
                 "processing": true,
                 "serverSide": true,
                 "ajax": {
-                    url: "{% url 'nobinobi_child:api-absence-list' %}?format=datatables",
+                    {#url: "{% url 'nobinobi_child:api-absence-absences-by-classroom' classroom_id=classroom.id %} %}?format=datatables",#}
+                    url: "{% url 'nobinobi_child:api-absence-absences-by-classroom' %}?classrooms={% for classroom in classrooms %}{{ classroom.id }}{% if not forloop.last %},{% endif %}{% endfor %}&format=datatables",
                 },
                 "columns": [
                     {
@@ -190,7 +191,7 @@
 
         docReady(function () {
             {% if perms.nobinobi_child.add_absence %}
-                $(".absence-create").modalForm({formURL: "{% url 'nobinobi_child:Absence_create' %}"});
+                $(".absence-create").modalForm({formURL: "{% url 'nobinobi_child:Absence_create' %}?classrooms={% for classroom in classrooms %}{{classroom.id}}{% if not forloop.last %},{%endif%}{% endfor %}"});
             {% else %}
                 console.log("{% trans "Your permission is insufficient." %}");
             {% endif %}

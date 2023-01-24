@@ -33,6 +33,8 @@ urlpatterns = [
                        views.ChildViewSet.as_view({'get': 'presence_by_classroom', }),
                        name='api-child-by-classroom'
                        ),
+                  path('api/absences/absences_by_classroom/',
+                       views.AbsenceViewSet.as_view({'get': 'absences_by_classroom'}), name='api-absence-absences-by-classroom'),
 
                   path('accounts/login/', views.AuthLoginView.as_view(), name='login_view'),
                   path('accounts/logout/',
