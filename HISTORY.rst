@@ -3,6 +3,11 @@
 History
 -------
 
+0.1.4.8 (2023-01-24)
++++++++++++++++++++++
+* 59e60fa - add filter when add absence in absence list and create button
+* update requirements
+
 0.1.4.7 (2022-10-31)
 +++++++++++++++++++++
 * 8635383 - fix display on many admin menu system
