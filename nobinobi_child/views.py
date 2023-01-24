@@ -181,6 +181,23 @@ class AbsenceViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Absence.objects.all()
     serializer_class = AbsenceSerializer
 
+    @action(detail=False, renderer_classes=[DatatablesRenderer])
+    def absences_by_classroom(self, request, **kwargs):
+        classrooms_allowed = [int(x) for x in str(request.GET['classrooms']).split(",")]
+
+        # child_in_classroom = [x.id for x in
+        #                       Absence.objects).select_related("child", "child__classroom") if
+        #                       x.child.now_classroom.id in classrooms_allowed]
+        child_in_classroom = Absence.objects.filter(Q(child__classroom__in=classrooms_allowed) | Q(child__replacementclassroom__classroom__in=classrooms_allowed)).select_related("child", "child__classroom")
+        get_absences = Absence.objects.filter(id__in=child_in_classroom)
+        page = self.paginate_queryset(get_absences)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(get_absences, many=True)
+        return Response(serializer.data)
+
 
 class LanguageCreateView(CreateView):
     model = Language
@@ -234,10 +251,20 @@ class AbsenceUpdateView(BSModalUpdateView):
 class AbsenceListView(LoginRequiredMixin, ListView):
     model = Absence
     template_name = "nobinobi_child/absence/absence_list.html"
+    classrooms = None
+
+    def get(self, request, *args, **kwargs):
+        allowed_classroom_login = Classroom.objects.filter(allowed_login=request.user)
+        group_user = list(request.user.groups.values_list(flat=True))
+        allowed_classroom = Classroom.objects.filter(allowed_group_login__in=group_user)
+
+        self.classrooms = list(allowed_classroom) + list(allowed_classroom_login)
+        return super(AbsenceListView, self).get(request, *args, **kwargs)
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(AbsenceListView, self).get_context_data(object_list=None, **kwargs)
         context['title'] = _("Absences list")
+        context['classrooms'] = self.classrooms
         return context
 
 
