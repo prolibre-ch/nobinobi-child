@@ -3,6 +3,10 @@
 History
 -------
 
+0.1.4.9 (2023-01-26)
++++++++++++++++++++++
+* 9dd851b - fix to use replacementclassroom in absence create
+
 0.1.4.8 (2023-01-24)
 +++++++++++++++++++++
 * 59e60fa - add filter when add absence in absence list and create button
