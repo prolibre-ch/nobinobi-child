@@ -79,8 +79,10 @@ class AbsenceCreateForm(BSModalModelForm):
                                                                                    second=0).strftime(
                     "%d/%m/%Y %H:%M")
         if kwargs["request"].GET.get("classroom"):
-            self.fields['child'].queryset = Child.objects.filter(status=Child.STATUS.in_progress,
-                                                                 classroom=int(kwargs["request"].GET.get("classroom", 0)))
+            filter_child = Child.objects.filter(status=Child.STATUS.in_progress)
+            classroom = int(kwargs["request"].GET.get("classroom", 0))
+            self.fields['child'].queryset = filter_child.filter(Q(classroom__id=classroom) | Q(replacementclassroom__id=classroom))
+
         if kwargs["request"].GET.get("classrooms"):
             filter_child = Child.objects.filter(status=Child.STATUS.in_progress)
             classroom_list = [int(x) for x in str(kwargs["request"].GET.get("classrooms")).split(",")]
