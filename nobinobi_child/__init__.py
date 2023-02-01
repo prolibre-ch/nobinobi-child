@@ -12,6 +12,6 @@
 #  You should have received a copy of the GNU Affero General Public License
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-__version__ = '0.1.4.9'
+__version__ = '0.1.4.10'
 default_app_config = 'nobinobi_child.apps.NobinobiChildConfig'
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
