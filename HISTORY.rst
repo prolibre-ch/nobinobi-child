@@ -3,6 +3,11 @@
 History
 -------
 
+0.1.4.10 (2023-02-01)
++++++++++++++++++++++
+* 1b45fda - Update traduction
+* dcc04ea - Add possibility to use default menu or add new one if you use in another program
+
 0.1.4.9 (2023-01-26)
 +++++++++++++++++++++
 * 9dd851b - fix to use replacementclassroom in absence create

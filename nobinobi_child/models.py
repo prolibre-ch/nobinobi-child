@@ -782,7 +782,9 @@ class NobinobiChildSettings(models.Model):
     age_group_type = models.CharField(max_length=4, choices=AgeGroupTypeChoice.choices, default=AgeGroupTypeChoice.STD)
     admin_child_list_display_order = models.CharField(_("Admin child list display order"), max_length=3, choices=OrderChildListDisplayInAdmin.choices,
                                                       default=OrderChildListDisplayInAdmin.STD)
-    admin_child_ordering = models.CharField(_("Admin child ordering"), max_length=3, choices=OrderChildListDisplayInAdmin.choices, default=OrderChildListDisplayInAdmin.STD)
+    admin_child_ordering = models.CharField(_("Admin child ordering"), max_length=3, choices=OrderChildListDisplayInAdmin.choices,
+                                            default=OrderChildListDisplayInAdmin.STD)
+    default_menu = models.BooleanField(default=True, help_text=_("Requires a restart of the program to see the difference."))
 
     class Meta:
         # ordering = ('', '',)
