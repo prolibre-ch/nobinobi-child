@@ -3,6 +3,11 @@
 History
 -------
 
+0.1.4.11 (2023-05-16)
++++++++++++++++++++++
+* 4d81084 - Distinct list of absence create
+* update requirements
+
 0.1.4.10 (2023-02-01)
 +++++++++++++++++++++
 * 1b45fda - Update traduction
