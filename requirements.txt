@@ -1,5 +1,5 @@
 # Additional requirements go here
-django-phonenumber-field==7.0.2
+django-phonenumber-field==7.1.0
 phonenumbers==8.13.5
 django-select2==8.0.0
 # modalajax
