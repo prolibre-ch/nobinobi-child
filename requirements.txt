@@ -1,6 +1,6 @@
 # Additional requirements go here
 django-phonenumber-field==7.1.0
-phonenumbers==8.13.11
+phonenumbers==8.13.13
 django-select2==8.1.1
 # modalajax
 django-bootstrap-modal-forms==3.0.2
