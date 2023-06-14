@@ -3,6 +3,10 @@
 History
 -------
 
+0.1.4.12 (2023-06-14)
++++++++++++++++++++++
+* update requirements
+
 0.1.4.11 (2023-05-16)
 +++++++++++++++++++++
 * 4d81084 - Distinct list of absence create
