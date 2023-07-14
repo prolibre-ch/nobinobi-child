@@ -263,6 +263,8 @@ class ChildToPeriodInline(admin.TabularInline):
     show_change_link = False
     can_delete = True
     classes = ('collapse',)
+    verbose_name = _("Subscription")
+    verbose_name_plural = _("Subscriptions")
 
 
 class ChildToContactInline(admin.TabularInline):
@@ -272,7 +274,8 @@ class ChildToContactInline(admin.TabularInline):
     show_change_link = True
     can_delete = True
     classes = ('collapse',)
-
+    verbose_name = _("Contact")
+    verbose_name_plural = _("Contacts")
 
 class ReplacementClassroomInline(admin.TabularInline):
     model = ReplacementClassroom
@@ -376,7 +379,7 @@ class ChildAdmin(admin.ModelAdmin):
         (_('Staff'), {
             'fields': ['staff'],
         }),
-        (_('Other'), {
+        (_('File status'), {
             'fields': ['status', 'slug', 'date_end_child', 'created', 'modified'],
             'classes': ('collapse',),
 

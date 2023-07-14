@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-01 13:22+0100\n"
-"PO-Revision-Date: 2023-02-01 13:23+0100\n"
+"POT-Creation-Date: 2023-07-14 16:28+0200\n"
+"PO-Revision-Date: 2023-07-14 16:29+0200\n"
 "Last-Translator: Florian Alu <fla@grapps.fr>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -16,54 +16,69 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #: .\admin.py:47 .\templates\nobinobi_child\child_list.html:33
 msgid "All"
 msgstr "Tout"
 
-#: .\admin.py:312 .\templates\nobinobi_child\child_list.html:43
+#: .\admin.py:266
+msgid "Subscription"
+msgstr "Abonnement"
+
+#: .\admin.py:267
+msgid "Subscriptions"
+msgstr "Abonnements"
+
+#: .\admin.py:277 .\models.py:550 .\models.py:595
+msgid "Contact"
+msgstr "Contact"
+
+#: .\admin.py:278 .\models.py:350 .\models.py:596
+msgid "Contacts"
+msgstr "Contacts"
+
+#: .\admin.py:315 .\templates\nobinobi_child\child_list.html:43
 msgid "Status"
 msgstr "Statut"
 
-#: .\admin.py:353
+#: .\admin.py:356
 msgid "Personal information"
 msgstr "Information personnelle"
 
-#: .\admin.py:362
+#: .\admin.py:365
 msgid "Health info"
 msgstr "Informations sur la santé"
 
-#: .\admin.py:372 .\models.py:193 .\models.py:215 .\models.py:292
+#: .\admin.py:375 .\models.py:193 .\models.py:215 .\models.py:292
 #: .\models.py:503 .\models.py:679 .\models.py:714 .\settings.py:4
 #: .\views.py:130 .\views.py:432
 msgid "Classroom"
 msgstr "Salle de classe"
 
-#: .\admin.py:376 .\menus.py:57 .\models.py:321
+#: .\admin.py:379 .\menus.py:57 .\models.py:321
 #: .\templates\nobinobi_child\child_list.html:50
 #: .\templates\nobinobi_child\staff\staff_list.html:26
 msgid "Staff"
 msgstr "Personnel"
 
-#: .\admin.py:379 .\models.py:241
-#: .\templates\nobinobi_child\child_list.html:121
-msgid "Other"
-msgstr "Autre"
+#: .\admin.py:382
+msgid "File status"
+msgstr "État du dossier"
 
-#: .\admin.py:412
+#: .\admin.py:415
 msgid "Folder"
 msgstr "Dossier"
 
-#: .\admin.py:417
+#: .\admin.py:420
 msgid "1 child was"
 msgstr "1 enfant a été"
 
-#: .\admin.py:419
+#: .\admin.py:422
 msgid "{} children were"
 msgstr "enfants ont"
 
-#: .\admin.py:422
+#: .\admin.py:425
 msgid "Put child in archive"
 msgstr "Mettre l'enfant dans les archives"
 
@@ -426,6 +441,10 @@ msgstr "Garçon"
 msgid "Girl"
 msgstr "Fille"
 
+#: .\models.py:241 .\templates\nobinobi_child\child_list.html:121
+msgid "Other"
+msgstr "Autre"
+
 #: .\models.py:242 .\templates\nobinobi_child\child_list.html:123
 msgid "Unknown"
 msgstr "Inconnu"
@@ -563,10 +582,6 @@ msgstr "Allergies"
 msgid "Periods"
 msgstr "Périodes"
 
-#: .\models.py:350 .\models.py:596
-msgid "Contacts"
-msgstr "Contacts"
-
 #: .\models.py:376 .\templates\nobinobi_child\child_detail.html:50
 #: .\templates\nobinobi_child\child_detail.html:214
 msgid "Full name"
@@ -612,10 +627,6 @@ msgstr "Informations du jour"
 #: .\models.py:532
 msgid "Allergy"
 msgstr "Allergie"
-
-#: .\models.py:550 .\models.py:595
-msgid "Contact"
-msgstr "Contact"
 
 #: .\models.py:553
 #: .\templates\admin\nobinobi_child\child\print_heal_card_pdf.html:225
