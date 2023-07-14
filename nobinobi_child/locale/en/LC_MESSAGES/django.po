@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-01 13:22+0100\n"
+"POT-Creation-Date: 2023-07-14 16:28+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,48 +22,63 @@ msgstr ""
 msgid "All"
 msgstr ""
 
-#: .\admin.py:312 .\templates\nobinobi_child\child_list.html:43
+#: .\admin.py:266
+msgid "Subscription"
+msgstr ""
+
+#: .\admin.py:267
+msgid "Subscriptions"
+msgstr ""
+
+#: .\admin.py:277 .\models.py:550 .\models.py:595
+msgid "Contact"
+msgstr ""
+
+#: .\admin.py:278 .\models.py:350 .\models.py:596
+msgid "Contacts"
+msgstr ""
+
+#: .\admin.py:315 .\templates\nobinobi_child\child_list.html:43
 msgid "Status"
 msgstr ""
 
-#: .\admin.py:353
+#: .\admin.py:356
 msgid "Personal information"
 msgstr ""
 
-#: .\admin.py:362
+#: .\admin.py:365
 msgid "Health info"
 msgstr ""
 
-#: .\admin.py:372 .\models.py:193 .\models.py:215 .\models.py:292
+#: .\admin.py:375 .\models.py:193 .\models.py:215 .\models.py:292
 #: .\models.py:503 .\models.py:679 .\models.py:714 .\settings.py:4
 #: .\views.py:130 .\views.py:432
 msgid "Classroom"
 msgstr ""
 
-#: .\admin.py:376 .\menus.py:57 .\models.py:321
+#: .\admin.py:379 .\menus.py:57 .\models.py:321
 #: .\templates\nobinobi_child\child_list.html:50
 #: .\templates\nobinobi_child\staff\staff_list.html:26
 msgid "Staff"
 msgstr ""
 
-#: .\admin.py:379 .\models.py:241
-#: .\templates\nobinobi_child\child_list.html:121
-msgid "Other"
+#: .\admin.py:382
+msgid "File status"
 msgstr ""
 
-#: .\admin.py:412
+#: .\admin.py:415
 msgid "Folder"
 msgstr ""
 
-#: .\admin.py:417
+#: .\admin.py:420
 msgid "1 child was"
 msgstr ""
 
-#: .\admin.py:419
+#: .\admin.py:422
 msgid "{} children were"
 msgstr ""
 
-#: .\admin.py:422
+#: .\admin.py:425
 msgid "Put child in archive"
 msgstr ""
 
@@ -419,6 +434,10 @@ msgstr ""
 msgid "Girl"
 msgstr ""
 
+#: .\models.py:241 .\templates\nobinobi_child\child_list.html:121
+msgid "Other"
+msgstr ""
+
 #: .\models.py:242 .\templates\nobinobi_child\child_list.html:123
 msgid "Unknown"
 msgstr ""
@@ -553,10 +572,6 @@ msgstr ""
 msgid "Periods"
 msgstr ""
 
-#: .\models.py:350 .\models.py:596
-msgid "Contacts"
-msgstr ""
-
 #: .\models.py:376 .\templates\nobinobi_child\child_detail.html:50
 #: .\templates\nobinobi_child\child_detail.html:214
 msgid "Full name"
@@ -601,10 +616,6 @@ msgstr ""
 
 #: .\models.py:532
 msgid "Allergy"
-msgstr ""
-
-#: .\models.py:550 .\models.py:595
-msgid "Contact"
 msgstr ""
 
 #: .\models.py:553
