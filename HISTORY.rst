@@ -3,6 +3,11 @@
 History
 -------
 
+0.1.4.13 (2023-07-14)
++++++++++++++++++++++
+* 7253788 - Rename inline in child's admin
+* update requirements
+
 0.1.4.12 (2023-06-14)
 +++++++++++++++++++++
 * update requirements
