@@ -3,6 +3,10 @@
 History
 -------
 
+0.1.4.14 (2023-07-17)
++++++++++++++++++++++
+* b6bc75b - add an import extrajs in template base
+
 0.1.4.13 (2023-07-14)
 +++++++++++++++++++++
 * 7253788 - Rename inline in child's admin
