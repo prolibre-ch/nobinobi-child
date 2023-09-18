@@ -189,7 +189,7 @@ class AbsenceViewSet(viewsets.ReadOnlyModelViewSet):
         #                       Absence.objects).select_related("child", "child__classroom") if
         #                       x.child.now_classroom.id in classrooms_allowed]
         child_in_classroom = Absence.objects.filter(Q(child__classroom__in=classrooms_allowed) | Q(child__replacementclassroom__classroom__in=classrooms_allowed)).select_related("child", "child__classroom")
-        get_absences = Absence.objects.filter(id__in=child_in_classroom)
+        get_absences = Absence.objects.filter(id__in=child_in_classroom, child__status=Child.STATUS.in_progress)
         page = self.paginate_queryset(get_absences)
         if page is not None:
             serializer = self.get_serializer(page, many=True)
