@@ -36,8 +36,8 @@ class LoginAuthenticationForm(AuthenticationForm):
         self.helper.form_show_labels = False
         self.helper.form_tag = True
         self.helper.layout = Layout(
-            AppendedText('username', '<i class="fas fa-user"></i>', placeholder=_("Username")),
-            AppendedText('password', '<i class="fas fa-key"></i>', placeholder=_("Password")),
+            AppendedText('username', '<i class="fa fa-user"></i>', placeholder=_("Username")),
+            AppendedText('password', '<i class="fa fa-key"></i>', placeholder=_("Password")),
             Hidden('next', '/'),
             Submit("login", _("Sign In"), css_class='btn btn-primary btn-block btn-flat'),
         )
