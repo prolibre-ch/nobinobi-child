@@ -3,6 +3,13 @@
 History
 -------
 
+0.1.4.15 (2023-09-18)
++++++++++++++++++++++
+* e428ed3 - Fix bug on login icon
+* 068bba3 - Append a line on top of child tracking log to add a new entry
+* a4e62e6 - display only child in progress in absence list
+* Update requirements
+
 0.1.4.14 (2023-07-17)
 +++++++++++++++++++++
 * b6bc75b - add an import extrajs in template base
