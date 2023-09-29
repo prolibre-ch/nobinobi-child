@@ -427,18 +427,19 @@ class Child(StatusModel, TimeStampedModel):
         :return: Union[bool, Classroom]
         """
         from django.db.models import Q
-        try:
-            rc = self.replacementclassroom_set.get(
-                Q(end_date__gte=date) | Q(end_date__isnull=True),
-                archived=False,
-                from_date__lte=date,
-            )
-        except self.replacementclassroom_set.DoesNotExist:
-            return False
-        except self.replacementclassroom_set.MultipleObjectsReturned:
-            return False
+        # Recherche d'un objet ReplacementClassroom qui satisfait les conditions spécifiées
+        rc = self.replacementclassroom_set.filter(
+            Q(end_date__gte=date) | Q(end_date__isnull=True),
+            # Filtre les objets avec une date de fin supérieure ou égale à la date ou une date de fin nulle
+            archived=False,  # Filtre les objets non archivés
+            from_date__lte=date,  # Filtre les objets avec une date de début inférieure ou égale à la date
+        )
+
+        # Vérifie si le queryset rc n'est pas vide et si la première valeur a un attribut 'classroom'
+        if rc.exists() and hasattr(rc.first(), 'classroom'):
+            return rc.first().classroom  # Retourne la première valeur de rc.classroom
         else:
-            return rc.classroom
+            return False  # Retourne False si le queryset est vide ou s'il manque l'attribut 'classroom'
 
 
 class ChildToPeriod(TimeStampedModel):
