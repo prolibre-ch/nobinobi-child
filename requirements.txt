@@ -1,7 +1,7 @@
 nobinobi-staff>=0.1.6.8
 
 # Additional requirements go here
-django-phonenumber-field==7.1.0
+django-phonenumber-field==7.2.0
 phonenumbers==8.13.21
 django-select2==8.1.2
 # modalajax
