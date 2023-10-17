@@ -22,6 +22,7 @@ from django import forms
 from django.contrib.auth.forms import AuthenticationForm
 from django.db.models import Q
 from django.utils import timezone
+from django.utils.safestring import mark_safe
 from django.utils.translation import gettext as _
 
 from nobinobi_child.models import Absence, Child
@@ -36,8 +37,8 @@ class LoginAuthenticationForm(AuthenticationForm):
         self.helper.form_show_labels = False
         self.helper.form_tag = True
         self.helper.layout = Layout(
-            AppendedText('username', '<i class="fa fa-user"></i>', placeholder=_("Username")),
-            AppendedText('password', '<i class="fa fa-key"></i>', placeholder=_("Password")),
+            AppendedText('username', mark_safe('<i class="fas fa-user"></i>'), placeholder=_("Username")),
+            AppendedText('password', mark_safe('<i class="fas fa-key"></i>'), placeholder=_("Password")),
             Hidden('next', '/'),
             Submit("login", _("Sign In"), css_class='btn btn-primary btn-block btn-flat'),
         )
