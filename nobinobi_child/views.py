@@ -63,7 +63,7 @@ from nobinobi_child.models import (
     ChildSpecificNeed,
 )
 from nobinobi_child.serializers import ChildSerializer, AbsenceSerializer
-from nobinobi_child.utils import get_display_contact_address
+from nobinobi_child.utils import get_display_contact_address, get_form_media_datetimepicker
 
 
 class HomeView(LoginRequiredMixin, TemplateView):
@@ -188,7 +188,9 @@ class AbsenceViewSet(viewsets.ReadOnlyModelViewSet):
         # child_in_classroom = [x.id for x in
         #                       Absence.objects).select_related("child", "child__classroom") if
         #                       x.child.now_classroom.id in classrooms_allowed]
-        child_in_classroom = Absence.objects.filter(Q(child__classroom__in=classrooms_allowed) | Q(child__replacementclassroom__classroom__in=classrooms_allowed)).select_related("child", "child__classroom")
+        child_in_classroom = Absence.objects.filter(
+            Q(child__classroom__in=classrooms_allowed) | Q(child__replacementclassroom__classroom__in=classrooms_allowed)).select_related("child",
+                                                                                                                                          "child__classroom")
         get_absences = Absence.objects.filter(id__in=child_in_classroom, child__status=Child.STATUS.in_progress)
         page = self.paginate_queryset(get_absences)
         if page is not None:
@@ -265,6 +267,7 @@ class AbsenceListView(LoginRequiredMixin, ListView):
         context = super(AbsenceListView, self).get_context_data(object_list=None, **kwargs)
         context['title'] = _("Absences list")
         context['classrooms'] = self.classrooms
+        context["media_form_modal"] = get_form_media_datetimepicker()
         return context
 
 

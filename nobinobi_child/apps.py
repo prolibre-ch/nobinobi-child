@@ -20,6 +20,7 @@ from django.db.models.signals import post_migrate
 
 class NobinobiChildConfig(AppConfig):
     name = 'nobinobi_child'
+    default_auto_field = 'django.db.models.AutoField'
 
     def ready(self):
         from nobinobi_child.signals import create_group_nobinobi_child, create_group_admin_nobinobi_child

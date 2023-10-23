@@ -72,3 +72,20 @@ def has_view_staff(request):
 
 def has_view_iotd(request):
     return request.user.has_perm('nobinobi_child.view_informationoftheday')
+
+
+def get_form_media_datetimepicker():
+    from bootstrap_datepicker_plus.settings import WidgetSettings
+    from django import forms
+    return forms.Media(
+        css={
+            "all": (
+                WidgetSettings().datetimepicker_css_url,
+                WidgetSettings().app_static_url + "css/datepicker-widget.css",
+            ),
+        },
+        js=(
+            WidgetSettings().datetimepicker_js_url,
+            WidgetSettings().app_static_url + "js/datepicker-widget.js",
+        )
+    )
