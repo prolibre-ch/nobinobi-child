@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'phonenumber_field',
     'crispy_forms',
+    "crispy_bootstrap5",
     'django_extensions',
     'rest_framework',
     'rest_framework.authtoken',
@@ -145,3 +146,21 @@ REST_FRAMEWORK = {
 
 # NAME_CLASSROOM_DISPLAY = "Salle de classe"
 # NAME_CLASSROOM_DISPLAYS = "Salles de classes"
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+# The link above contains all settings
+BOOTSTRAP_DATEPICKER_PLUS = {
+    "options": {
+        "locale": "fr",
+    },
+    "variant_options": {
+        "date": {
+            "format": "DD/MM/YYYY",
+        },
+        "time": {
+            "format": "HH:mm",
+        },
+    }
+}
