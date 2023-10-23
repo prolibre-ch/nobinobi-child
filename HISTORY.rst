@@ -3,6 +3,15 @@
 History
 -------
 
+0.1.4.17 (2023-10-23)
++++++++++++++++++++++
+* 2dc2ca9 - Import correctly bootstrap-datetimepicker
+* e4bff3b - Fix bug with not import correctly datetimepicker
+* 00c3900 - fix default field for apps
+* 1f1f272 - check every day if end date of replacement classroom has to be archived
+* a089a87 - Fix icon on login page
+* Update requirements
+
 0.1.4.16 (2023-09-29)
 +++++++++++++++++++++
 * b31ab0f - Refont code for check classroom_replacement_set
