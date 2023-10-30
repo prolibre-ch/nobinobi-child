@@ -1,5 +1,5 @@
 invoke==2.2.0
-wheel==0.41.2
+wheel==0.41.3
 zest.releaser==9.1.1
 twine==4.0.2
 Werkzeug==3.0.0
