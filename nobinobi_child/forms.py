@@ -61,24 +61,24 @@ class AbsenceCreateForm(BSModalModelForm):
         model = Absence
         fields = ["child", "start_date", "end_date", "type"]
         widgets = {
+            # "start_date": DateTimePickerInput(),
             "start_date": DateTimePickerInput(options={"locale": "fr", "format": "DD/MM/YYYY HH:mm"}),
-            # "start_date": DateTimePickerInput(options={"locale": "fr", "format": "DD/MM/YYYY HH:MM"}),
-            "end_date": DateTimePickerInput(options={"locale": "fr", "format": "DD/MM/YYYY HH:mm"}),
-            # "end_date": DateTimePickerInput(options={"locale": "fr", "format": "DD/MM/YYYY HH:MM"}),
+            # "end_date": DateTimePickerInput(),
+            "end_date": DateTimePickerInput(range_from="start_date", options={"locale": "fr", "format": "DD/MM/YYYY HH:mm"}),
         }
 
     def __init__(self, *args, **kwargs):
         super(AbsenceCreateForm, self).__init__(*args, **kwargs)
         if not kwargs.get('initial', None):
             if not self.initial.get('start_date', None):
-                self.initial['start_date'] = arrow.get(timezone.localtime()).replace(hour=6, minute=0,
-                                                                                     second=0).strftime(
-                    "%d/%m/%Y %H:%M")
+                # self.initial['start_date'] = timezone.localtime().replace(hour=6, minute=0, second=0).strftime("%d/%m/%Y %H:%M")
+                self.initial['start_date'] = timezone.localtime().replace(hour=6, minute=0, second=0)
 
             if not self.initial.get('end_date', None):
-                self.initial['end_date'] = arrow.get(timezone.localtime()).replace(hour=22, minute=0,
-                                                                                   second=0).strftime(
-                    "%d/%m/%Y %H:%M")
+                # self.initial['end_date'] = timezone.localtime().replace(hour=22, minute=0, second=0).strftime("%d/%m/%Y %H:%M")
+                self.initial['end_date'] = timezone.localtime().replace(hour=22, minute=0, second=0)
+
+
         if kwargs["request"].GET.get("classroom"):
             filter_child = Child.objects.filter(status=Child.STATUS.in_progress)
             classroom = int(kwargs["request"].GET.get("classroom", 0))
