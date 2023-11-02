@@ -3,6 +3,11 @@
 History
 -------
 
+0.1.4.18 (2023-11-02)
++++++++++++++++++++++
+* 4fbedb9 - Fix bug with date picker
+* Update requirements
+
 0.1.4.17 (2023-10-23)
 +++++++++++++++++++++
 * 2dc2ca9 - Import correctly bootstrap-datetimepicker
