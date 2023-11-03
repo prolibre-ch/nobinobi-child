@@ -398,7 +398,7 @@ class ChildAdmin(admin.ModelAdmin):
         'first_name', 'last_name', 'usual_name', 'birth_date', 'classroom__name', 'next_classroom__name',
         'date_next_classroom',
         'age_group__name', 'staff__first_name', 'staff__last_name')
-    actions = ["child_archived"]
+    actions = ["child_archived", "remove_information_after_archived"]
     save_as = True
     save_as_continue = True
     save_on_top = True
@@ -423,6 +423,143 @@ class ChildAdmin(admin.ModelAdmin):
         self.message_user(request, "%s successfully marked as archived." % message_bit)
 
     child_archived.short_description = _('Put child in archive')
+
+    def remove_information_after_archived(self, request, queryset):
+        for qs in queryset.filter(status=Child.STATUS.archived):
+            child = qs
+            child.pediatrician = None
+            child.classroom = None
+            child.next_classroom = None
+            child.age_group = None
+            child.picture = None
+            child.red_list = ""
+            child.comment = ""
+            child.nationality = ""
+            child.sibling_name = ""
+            child.sibling_birth_date = None
+            child.sibling_institution = ""
+            child.renewal_date = None
+            child.usage_paracetamol = None
+            child.usage_homeopathy = None
+            child.healthy_child = None
+            child.good_development = None
+            child.specific_problem = None
+            child.vaccination = None
+            child.pediatrician_contact = None
+            child.health_insurance = ""
+            child.autorisations = ""
+            child.staff = None
+
+            # food rest
+            if hasattr(child, "food_restrictions"):
+                for fr in child.food_restrictions.all():
+                    child.food_restrictions.remove(fr)
+        #     allergies
+            if hasattr(child, "allergies"):
+                for a in child.allergies.all():
+                    child.allergies.remove(a)
+        #     periods
+            if hasattr(child, "periods"):
+                for p in child.periods.all():
+                    child.periods.remove(p)
+        #     periods
+            if hasattr(child, "contacts"):
+                for c in child.contacts.all():
+                    child.contacts.remove(c)
+        #     languages
+            if hasattr(child, "languages"):
+                for l in child.languages.all():
+                    child.languages.remove(l)
+        #     languages
+            if hasattr(child, "childspecificneed"):
+                for l in child.childspecificneed.all():
+                    child.childspecificneed.remove(l)
+
+            # contacts
+            if hasattr(child, "childtocontact_set"):
+                for l in child.childtocontact_set.all():
+                    la = l.contact.id
+                    l.delete()
+                    if not ChildToContact.objects.filter(contact_id=la).exists() and not Child.objects.filter(pediatrician__contacts__id=la).exists():
+                        Contact.objects.get(id=la).delete()
+
+        #     periodes
+            if hasattr(child, "childtoperiod_set"):
+                for l in child.childtoperiod_set.all():
+                    l.delete()
+
+        #     childtrackinglog
+            if hasattr(child, "childtrackinglog_set"):
+                for l in child.childtrackinglog_set.all():
+                    l.delete()
+
+        #     replacementclassroom_set
+            if hasattr(child, "replacementclassroom_set"):
+                for l in child.replacementclassroom_set.all():
+                    l.delete()
+
+
+        #     logchangeclassroom_set
+            if hasattr(child, "logchangeclassroom_set"):
+                for l in child.logchangeclassroom_set.all():
+                    l.delete()
+
+
+            # OBSERVATIONS
+            try:
+                from nobinobi_observation.models import Observation
+            except ModuleNotFoundError as err:
+                # Error handling
+                pass
+            else:
+                obs = Observation.objects.filter(child=child)
+                for ob in obs:
+                    ob.delete()
+
+            #   DAILY FOLLOW UP
+            try:
+                from nobinobi_daily_follow_up.models import DailyFollowUp
+            except ModuleNotFoundError as err:
+                # Error handling
+                pass
+            else:
+                dfus = DailyFollowUp.objects.filter(child=child)
+                for dfu in dfus:
+                    # ACTIVITY
+                    from nobinobi_daily_follow_up.models import Activity
+                    acts = Activity.objects.filter(daily_follow_up=dfu)
+                    for act in acts:
+                        act.delete()
+                    # Nap
+                    from nobinobi_daily_follow_up.models import Nap
+                    naps = Nap.objects.filter(daily_follow_up=dfu)
+                    for nap in naps:
+                        nap.delete()
+                    # LotionDailyFollowUp
+                    from nobinobi_daily_follow_up.models import LotionDailyFollowUp
+                    ldfus = LotionDailyFollowUp.objects.filter(daily_follow_up=dfu)
+                    for ldu in ldfus:
+                        ldu.delete()
+                    # DiaperChange
+                    from nobinobi_daily_follow_up.models import DiaperChange
+                    dpcs = DiaperChange.objects.filter(daily_follow_up=dfu)
+                    for dpc in dpcs:
+                        dpc.delete()
+                    # DailyFollowUpToMedication
+                    from nobinobi_daily_follow_up.models import DailyFollowUpToMedication
+                    xs = LotionDailyFollowUp.objects.filter(daily_follow_up=dfu)
+                    for x in xs:
+                        x.delete()
+                    # Medication
+                    from nobinobi_daily_follow_up.models import Medication
+                    xs = Medication.objects.filter(child=child)
+                    for x in xs:
+                        x.delete()
+
+            child.save()
+            self.message_user(request, "%s successfully removed infos." % child)
+
+    remove_information_after_archived.short_description = _('Remove informations after archived')
 
     def response_change(self, request, obj):
         if "_printhealcard" in request.POST:
