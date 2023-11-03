@@ -3,6 +3,10 @@
 History
 -------
 
+0.1.4.20 (2023-11-03)
++++++++++++++++++++++
+* ce39fa1 - ad remove informations after archivage
+
 0.1.4.19 (2023-11-03)
 +++++++++++++++++++++
 * 9b7e02c - Add archived field on classroom
