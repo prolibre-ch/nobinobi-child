@@ -187,6 +187,7 @@ class Classroom(TimeStampedModel):
         blank=False,
         null=True
     )
+    archived = models.BooleanField(_("Archived"), default=False)
 
     class Meta:
         ordering = ('order', 'name',)
