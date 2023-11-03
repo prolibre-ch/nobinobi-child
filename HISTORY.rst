@@ -3,6 +3,10 @@
 History
 -------
 
+0.1.4.21 (2023-11-03)
++++++++++++++++++++++
+* dd67a4b - fix bug
+
 0.1.4.20 (2023-11-03)
 +++++++++++++++++++++
 * ce39fa1 - ad remove informations after archivage
