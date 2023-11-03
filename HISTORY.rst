@@ -3,6 +3,10 @@
 History
 -------
 
+0.1.4.19 (2023-11-03)
++++++++++++++++++++++
+* 9b7e02c - Add archived field on classroom
+
 0.1.4.18 (2023-11-02)
 +++++++++++++++++++++
 * 4fbedb9 - Fix bug with date picker
