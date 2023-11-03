@@ -523,7 +523,7 @@ class ChildAdmin(admin.ModelAdmin):
                 # Error handling
                 pass
             else:
-                dfus = DailyFollowUp.objects.filter(child=child)
+                dfus = DailyFollowUp.objects.filter(presence_child=child)
                 for dfu in dfus:
                     # ACTIVITY
                     from nobinobi_daily_follow_up.models import Activity
