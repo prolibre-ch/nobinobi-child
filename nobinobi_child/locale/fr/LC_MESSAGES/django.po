@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-03 14:42+0100\n"
-"PO-Revision-Date: 2023-11-03 14:43+0100\n"
+"POT-Creation-Date: 2024-01-25 15:52+0100\n"
+"PO-Revision-Date: 2024-01-25 16:04+0100\n"
 "Last-Translator: Florian Alu <fla@grapps.fr>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.4\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: .\admin.py:47 .\templates\nobinobi_child\child_list.html:33
 msgid "All"
@@ -82,7 +82,7 @@ msgstr "enfants ont"
 msgid "Put child in archive"
 msgstr "Mettre l'enfant dans les archives"
 
-#: .\admin.py:562
+#: .\admin.py:565
 msgid "Remove informations after archived"
 msgstr "Supprimer les informations après archivage"
 
@@ -98,7 +98,7 @@ msgstr "Mot de passe"
 msgid "Sign In"
 msgstr "Se connecter"
 
-#: .\forms.py:48 .\forms.py:96 .\models.py:74 .\models.py:359 .\models.py:452
+#: .\forms.py:48 .\forms.py:97 .\models.py:74 .\models.py:359 .\models.py:452
 #: .\models.py:547 .\models.py:657 .\models.py:676 .\models.py:723
 #: .\models.py:751
 #: .\templates\admin\nobinobi_child\child\print_heal_card_pdf.html:148
@@ -108,7 +108,11 @@ msgstr "Se connecter"
 msgid "Child"
 msgstr "Enfant"
 
-#: .\forms.py:113 .\forms.py:132
+#: .\forms.py:81
+msgid "Please select the end date before entering the start date."
+msgstr "Veuillez sélectionner la date de fin avant de saisir la date de début."
+
+#: .\forms.py:114 .\forms.py:133
 #: .\templates\nobinobi_child\child_picture.html:49
 msgid "Submit"
 msgstr "Envoyer"
@@ -1170,7 +1174,7 @@ msgstr "pour l'enfant"
 msgid "Create Absence"
 msgstr "Créer une absence"
 
-#: .\templates\nobinobi_child\absence\absence_create.html:40
+#: .\templates\nobinobi_child\absence\absence_create.html:45
 msgid "Create"
 msgstr "Créer"
 
@@ -1196,7 +1200,7 @@ msgstr "Votre permission est insuffisante."
 msgid "Update Absence"
 msgstr "Mise à jour de l’absence"
 
-#: .\templates\nobinobi_child\absence\absence_update.html:40
+#: .\templates\nobinobi_child\absence\absence_update.html:45
 #: .\templates\nobinobi_child\child_picture_update.html:64
 msgid "Update"
 msgstr "Mettre à jour"

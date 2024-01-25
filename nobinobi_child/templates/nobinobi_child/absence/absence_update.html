@@ -27,6 +27,11 @@
                 {% else %}
                     {% render_field field class="form-control" placeholder=field.label %}
                 {% endif %}
+                {% if field.help_text %}
+                    <div class="alert alert-info" role="alert">
+                        {{ field.help_text }}
+                    </div>
+                {% endif %}
                 <div class="{% if field.errors %} invalid{% endif %}">
                     {% for error in field.errors %}
                         <p class="help-block">{{ error }}</p>
