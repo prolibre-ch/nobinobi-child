@@ -78,6 +78,7 @@ class AbsenceCreateForm(BSModalModelForm):
                 # self.initial['end_date'] = timezone.localtime().replace(hour=22, minute=0, second=0).strftime("%d/%m/%Y %H:%M")
                 self.initial['end_date'] = timezone.localtime().replace(hour=22, minute=0, second=0)
 
+        self.fields['start_date'].help_text = _("Please select the end date before entering the start date.")
 
         if kwargs["request"].GET.get("classroom"):
             filter_child = Child.objects.filter(status=Child.STATUS.in_progress)
