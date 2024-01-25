@@ -3,6 +3,11 @@
 History
 -------
 
+0.1.4.23 (2024-01-25)
++++++++++++++++++++++
+* 91a185a - Add help text in create and update absence
+* Update requirements
+
 0.1.4.22 (2023-11-03)
 +++++++++++++++++++++
 * 4db264b - fix bug
