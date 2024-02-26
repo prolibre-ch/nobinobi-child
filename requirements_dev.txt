@@ -1,6 +1,6 @@
 invoke==2.2.0
 wheel==0.42.0
-zest.releaser==9.1.1
+zest.releaser==9.1.3
 twine==4.0.2
 Werkzeug==3.0.1
 django-model-utils==4.3.1
