@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-25 15:52+0100\n"
+"POT-Creation-Date: 2024-02-28 17:52+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,67 +22,67 @@ msgstr ""
 msgid "All"
 msgstr ""
 
-#: .\admin.py:266
+#: .\admin.py:277
 msgid "Subscription"
 msgstr ""
 
-#: .\admin.py:267
+#: .\admin.py:278
 msgid "Subscriptions"
 msgstr ""
 
-#: .\admin.py:277 .\models.py:552 .\models.py:597
+#: .\admin.py:288 .\models.py:552 .\models.py:597
 msgid "Contact"
 msgstr ""
 
-#: .\admin.py:278 .\models.py:351 .\models.py:598
+#: .\admin.py:289 .\models.py:351 .\models.py:598
 msgid "Contacts"
 msgstr ""
 
-#: .\admin.py:315 .\templates\nobinobi_child\child_list.html:43
+#: .\admin.py:327 .\templates\nobinobi_child\child_list.html:43
 msgid "Status"
 msgstr ""
 
-#: .\admin.py:356
+#: .\admin.py:369
 msgid "Personal information"
 msgstr ""
 
-#: .\admin.py:365
+#: .\admin.py:378
 msgid "Health info"
 msgstr ""
 
-#: .\admin.py:375 .\models.py:194 .\models.py:216 .\models.py:293
+#: .\admin.py:388 .\models.py:194 .\models.py:216 .\models.py:293
 #: .\models.py:505 .\models.py:681 .\models.py:716 .\settings.py:4
 #: .\views.py:130 .\views.py:435
 msgid "Classroom"
 msgstr ""
 
-#: .\admin.py:379 .\menus.py:57 .\models.py:322
+#: .\admin.py:392 .\menus.py:57 .\models.py:322
 #: .\templates\nobinobi_child\child_list.html:50
 #: .\templates\nobinobi_child\staff\staff_list.html:26
 msgid "Staff"
 msgstr ""
 
-#: .\admin.py:382
+#: .\admin.py:395
 msgid "File status"
 msgstr ""
 
-#: .\admin.py:415
+#: .\admin.py:428
 msgid "Folder"
 msgstr ""
 
-#: .\admin.py:420
+#: .\admin.py:433
 msgid "1 child was"
 msgstr ""
 
-#: .\admin.py:422
+#: .\admin.py:435
 msgid "{} children were"
 msgstr ""
 
-#: .\admin.py:425
+#: .\admin.py:438
 msgid "Put child in archive"
 msgstr ""
 
-#: .\admin.py:565
+#: .\admin.py:575
 msgid "Remove informations after archived"
 msgstr ""
 
@@ -804,18 +804,30 @@ msgid "Inverse (Last name, First Name"
 msgstr ""
 
 #: .\models.py:785
-msgid "Admin child list display order"
+msgid "Standard (Start date, End date, Child)"
 msgstr ""
 
-#: .\models.py:787
-msgid "Admin child ordering"
+#: .\models.py:786
+msgid "Child (Last name, Start date, End date"
 msgstr ""
 
 #: .\models.py:789
-msgid "Requires a restart of the program to see the difference."
+msgid "Admin child list display order"
+msgstr ""
+
+#: .\models.py:791
+msgid "Admin child ordering"
 msgstr ""
 
 #: .\models.py:793
+msgid "Admin child absence ordering"
+msgstr ""
+
+#: .\models.py:796
+msgid "Requires a restart of the program to see the difference."
+msgstr ""
+
+#: .\models.py:800
 msgid "Nobinobi Child Setting"
 msgstr ""
 

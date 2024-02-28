@@ -781,11 +781,18 @@ class NobinobiChildSettings(models.Model):
         STD = 'STD', _('Standard (First name, Last name)')
         INV = 'INV', _('Inverse (Last name, First Name')
 
+    class OrderAbsenceChildListDisplayInAdmin(models.TextChoices):
+        STD = 'STD', _('Standard (Start date, End date, Child)')
+        CHI = 'CH', _('Child (Last name, Start date, End date')
+
     age_group_type = models.CharField(max_length=4, choices=AgeGroupTypeChoice.choices, default=AgeGroupTypeChoice.STD)
     admin_child_list_display_order = models.CharField(_("Admin child list display order"), max_length=3, choices=OrderChildListDisplayInAdmin.choices,
                                                       default=OrderChildListDisplayInAdmin.STD)
     admin_child_ordering = models.CharField(_("Admin child ordering"), max_length=3, choices=OrderChildListDisplayInAdmin.choices,
                                             default=OrderChildListDisplayInAdmin.STD)
+    admin_child_absence_ordering = models.CharField(_("Admin child absence ordering"), max_length=3,
+                                                    choices=OrderAbsenceChildListDisplayInAdmin.choices,
+                                                    default=OrderAbsenceChildListDisplayInAdmin.STD)
     default_menu = models.BooleanField(default=True, help_text=_("Requires a restart of the program to see the difference."))
 
     class Meta:
