@@ -83,13 +83,13 @@ class AbsenceCreateForm(BSModalModelForm):
         if kwargs["request"].GET.get("classroom"):
             filter_child = Child.objects.filter(status=Child.STATUS.in_progress)
             classroom = int(kwargs["request"].GET.get("classroom", 0))
-            self.fields['child'].queryset = filter_child.filter(Q(classroom__id=classroom) | Q(replacementclassroom__id=classroom)).distinct()
+            self.fields['child'].queryset = filter_child.filter(Q(classroom__id=classroom) | Q(replacementclassroom__classroom_id__in=classroom)).distinct()
 
         if kwargs["request"].GET.get("classrooms"):
             filter_child = Child.objects.filter(status=Child.STATUS.in_progress)
             classroom_list = [int(x) for x in str(kwargs["request"].GET.get("classrooms")).split(",")]
             self.fields['child'].queryset = filter_child.filter(
-                Q(classroom__in=classroom_list) | Q(replacementclassroom__in=classroom_list)).distinct()
+                Q(classroom__in=classroom_list) | Q(replacementclassroom__classroom_id__in=classroom_list)).distinct()
 
 
 class ChildPictureSelectForm(forms.ModelForm):
