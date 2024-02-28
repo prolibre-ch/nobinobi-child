@@ -12,7 +12,6 @@
 #  You should have received a copy of the GNU Affero General Public License
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import arrow
 from bootstrap_datepicker_plus.widgets import DateTimePickerInput
 from bootstrap_modal_forms.forms import BSModalModelForm
 from crispy_forms.bootstrap import AppendedText
@@ -79,17 +78,28 @@ class AbsenceCreateForm(BSModalModelForm):
                 self.initial['end_date'] = timezone.localtime().replace(hour=22, minute=0, second=0)
 
         self.fields['start_date'].help_text = _("Please select the end date before entering the start date.")
+        now = timezone.localdate()
 
         if kwargs["request"].GET.get("classroom"):
             filter_child = Child.objects.filter(status=Child.STATUS.in_progress)
             classroom = int(kwargs["request"].GET.get("classroom", 0))
-            self.fields['child'].queryset = filter_child.filter(Q(classroom__id=classroom) | Q(replacementclassroom__classroom_id__in=classroom)).distinct()
+            self.fields['child'].queryset = filter_child.filter(
+                Q(classroom__id=classroom) |
+                Q(replacementclassroom__classroom_id=classroom) &
+                Q(replacementclassroom__from_date__lte=now) &
+                Q(replacementclassroom__end_date__gte=now) &
+                Q(replacementclassroom__archived=False)
+            ).distinct()
 
         if kwargs["request"].GET.get("classrooms"):
             filter_child = Child.objects.filter(status=Child.STATUS.in_progress)
             classroom_list = [int(x) for x in str(kwargs["request"].GET.get("classrooms")).split(",")]
             self.fields['child'].queryset = filter_child.filter(
-                Q(classroom__in=classroom_list) | Q(replacementclassroom__classroom_id__in=classroom_list)).distinct()
+                Q(classroom__in=classroom_list) |
+                Q(replacementclassroom__classroom_id__in=classroom_list) & Q(replacementclassroom__from_date__lte=now) &
+                Q(replacementclassroom__end_date__gte=now) &
+                Q(replacementclassroom__archived=False)
+            ).distinct()
 
 
 class ChildPictureSelectForm(forms.ModelForm):
