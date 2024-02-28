@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-25 15:52+0100\n"
-"PO-Revision-Date: 2024-01-25 16:04+0100\n"
+"POT-Creation-Date: 2024-02-28 17:52+0100\n"
+"PO-Revision-Date: 2024-02-28 17:53+0100\n"
 "Last-Translator: Florian Alu <fla@grapps.fr>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -22,67 +22,67 @@ msgstr ""
 msgid "All"
 msgstr "Tout"
 
-#: .\admin.py:266
+#: .\admin.py:277
 msgid "Subscription"
 msgstr "Abonnement"
 
-#: .\admin.py:267
+#: .\admin.py:278
 msgid "Subscriptions"
 msgstr "Abonnements"
 
-#: .\admin.py:277 .\models.py:552 .\models.py:597
+#: .\admin.py:288 .\models.py:552 .\models.py:597
 msgid "Contact"
 msgstr "Contact"
 
-#: .\admin.py:278 .\models.py:351 .\models.py:598
+#: .\admin.py:289 .\models.py:351 .\models.py:598
 msgid "Contacts"
 msgstr "Contacts"
 
-#: .\admin.py:315 .\templates\nobinobi_child\child_list.html:43
+#: .\admin.py:327 .\templates\nobinobi_child\child_list.html:43
 msgid "Status"
 msgstr "Statut"
 
-#: .\admin.py:356
+#: .\admin.py:369
 msgid "Personal information"
 msgstr "Information personnelle"
 
-#: .\admin.py:365
+#: .\admin.py:378
 msgid "Health info"
 msgstr "Informations sur la santé"
 
-#: .\admin.py:375 .\models.py:194 .\models.py:216 .\models.py:293
+#: .\admin.py:388 .\models.py:194 .\models.py:216 .\models.py:293
 #: .\models.py:505 .\models.py:681 .\models.py:716 .\settings.py:4
 #: .\views.py:130 .\views.py:435
 msgid "Classroom"
 msgstr "Salle de classe"
 
-#: .\admin.py:379 .\menus.py:57 .\models.py:322
+#: .\admin.py:392 .\menus.py:57 .\models.py:322
 #: .\templates\nobinobi_child\child_list.html:50
 #: .\templates\nobinobi_child\staff\staff_list.html:26
 msgid "Staff"
 msgstr "Personnel"
 
-#: .\admin.py:382
+#: .\admin.py:395
 msgid "File status"
 msgstr "État du dossier"
 
-#: .\admin.py:415
+#: .\admin.py:428
 msgid "Folder"
 msgstr "Dossier"
 
-#: .\admin.py:420
+#: .\admin.py:433
 msgid "1 child was"
 msgstr "1 enfant a été"
 
-#: .\admin.py:422
+#: .\admin.py:435
 msgid "{} children were"
 msgstr "enfants ont"
 
-#: .\admin.py:425
+#: .\admin.py:438
 msgid "Put child in archive"
 msgstr "Mettre l'enfant dans les archives"
 
-#: .\admin.py:565
+#: .\admin.py:575
 msgid "Remove informations after archived"
 msgstr "Supprimer les informations après archivage"
 
@@ -814,18 +814,30 @@ msgid "Inverse (Last name, First Name"
 msgstr "Inverse (Nom, Prénom)"
 
 #: .\models.py:785
+msgid "Standard (Start date, End date, Child)"
+msgstr "Standard (date de début, date de fin, enfant)"
+
+#: .\models.py:786
+msgid "Child (Last name, Start date, End date"
+msgstr "Enfant (nom de famille, date de début, date de fin)"
+
+#: .\models.py:789
 msgid "Admin child list display order"
 msgstr "Ordre d'affichage de la liste des enfants de l'administration"
 
-#: .\models.py:787
+#: .\models.py:791
 msgid "Admin child ordering"
 msgstr "Classement de la liste des enfants de l'administration"
 
-#: .\models.py:789
+#: .\models.py:793
+msgid "Admin child absence ordering"
+msgstr "Classement de la liste des absences des enfants de l'administration"
+
+#: .\models.py:796
 msgid "Requires a restart of the program to see the difference."
 msgstr "Il faut relancer le programme pour voir la différence."
 
-#: .\models.py:793
+#: .\models.py:800
 msgid "Nobinobi Child Setting"
 msgstr "Nobinobi Child Paramètres"
 
@@ -1414,9 +1426,6 @@ msgstr "Succès : La photo de l'enfant a été modifiée."
 
 #~ msgid "List IOTD"
 #~ msgstr "List IDJ"
-
-#~ msgid "Start date to end date"
-#~ msgstr "Date de début vers date de fin"
 
 #~ msgid "Date range for period"
 #~ msgstr "Plage de dates pour la période"

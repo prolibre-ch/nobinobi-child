@@ -140,6 +140,17 @@ class AbsenceAdmin(admin.ModelAdmin):
     # readonly_fields = ('',)
     search_fields = ('child__first_name', 'child__last_name')
 
+    def get_ordering(self, request):
+        """
+        Hook for specifying field ordering.
+        """
+        settings = NobinobiChildSettings.get_settings()
+        if settings.admin_child_absence_ordering == NobinobiChildSettings.OrderAbsenceChildListDisplayInAdmin.STD:
+            self.ordering = ('start_date', 'end_date', 'child')
+        elif settings.admin_child_absence_ordering == NobinobiChildSettings.OrderAbsenceChildListDisplayInAdmin.CHI:
+            self.ordering = ('child__last_name', 'start_date', 'end_date')
+        return self.ordering or ()  # otherwise we might try to *None, which is bad ;)
+
 
 @register(AbsenceType)
 class AbsenceTypeAdmin(admin.ModelAdmin):
