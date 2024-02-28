@@ -3,6 +3,11 @@
 History
 -------
 
+0.1.4.25 (2024-02-28)
++++++++++++++++++++++
+* 1168e05 - Fix to add only replacementclassroom in date in absence
+
+
 0.1.4.24 (2024-02-28)
 +++++++++++++++++++++
 * 2ef87e7 - Add settings to configure order in absence enfant
