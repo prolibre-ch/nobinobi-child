@@ -3,6 +3,12 @@
 History
 -------
 
+0.1.4.24 (2024-02-28)
++++++++++++++++++++++
+* 2ef87e7 - Add settings to configure order in absence enfant
+* 919a1d0 - fix bug in absence
+* Update requirements
+
 0.1.4.23 (2024-01-25)
 +++++++++++++++++++++
 * 91a185a - Add help text in create and update absence
