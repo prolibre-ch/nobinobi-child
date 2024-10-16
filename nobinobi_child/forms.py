@@ -44,42 +44,50 @@ class LoginAuthenticationForm(AuthenticationForm):
 
 
 class AbsenceCreateForm(BSModalModelForm):
+    """
+        A form to create an absence record.
+
+        This form initializes with default values for the start date and filters
+        the child queryset based on the classroom or classrooms provided in the request.
+    """
     child = forms.ModelChoiceField(label=_("Child"),
                                    queryset=Child.objects.filter(status=Child.STATUS.in_progress),
                                    )
-
-    # type = forms.ModelChoiceField(
-    #     queryset=AbsenceType.objects.all(),
-    #     widget=ModelSelect2Widget(
-    #         model=AbsenceType,
-    #         search_fields=['name__icontains', 'group__name__icontains']
-    #     )
-    # )
 
     class Meta:
         model = Absence
         fields = ["child", "start_date", "end_date", "type"]
         widgets = {
-            # "start_date": DateTimePickerInput(),
             "start_date": DateTimePickerInput(options={"locale": "fr", "format": "DD/MM/YYYY HH:mm"}),
-            # "end_date": DateTimePickerInput(),
             "end_date": DateTimePickerInput(range_from="start_date", options={"locale": "fr", "format": "DD/MM/YYYY HH:mm"}),
         }
 
     def __init__(self, *args, **kwargs):
+        """
+            Initialize the AbsenceCreateForm.
+
+            Args:
+                *args: Variable length argument list.
+                **kwargs: Arbitrary keyword arguments.
+
+            Keyword Args:
+                initial (dict): Initial data for the form fields.
+                request (HttpRequest): The request object containing GET parameters.
+
+            The form initializes the 'start_date' field with the current date and time
+            set to 6:00 AM if no initial data is provided. It also filters the 'child'
+            field queryset based on the 'classroom' or 'classrooms' GET parameters.
+        """
         super(AbsenceCreateForm, self).__init__(*args, **kwargs)
+
+        # Set default start_date if not provided in initial data
         if not kwargs.get('initial', None):
             if not self.initial.get('start_date', None):
-                # self.initial['start_date'] = timezone.localtime().replace(hour=6, minute=0, second=0).strftime("%d/%m/%Y %H:%M")
                 self.initial['start_date'] = timezone.localtime().replace(hour=6, minute=0, second=0)
 
-            if not self.initial.get('end_date', None):
-                # self.initial['end_date'] = timezone.localtime().replace(hour=22, minute=0, second=0).strftime("%d/%m/%Y %H:%M")
-                self.initial['end_date'] = timezone.localtime().replace(hour=22, minute=0, second=0)
-
-        self.fields['start_date'].help_text = _("Please select the end date before entering the start date.")
         now = timezone.localdate()
 
+        # Filter child queryset based on 'classroom' GET parameter
         if kwargs["request"].GET.get("classroom"):
             filter_child = Child.objects.filter(status=Child.STATUS.in_progress)
             classroom = int(kwargs["request"].GET.get("classroom", 0))
@@ -91,6 +99,7 @@ class AbsenceCreateForm(BSModalModelForm):
                 Q(replacementclassroom__archived=False)
             ).distinct()
 
+        # Filter child queryset based on 'classrooms' GET parameter
         if kwargs["request"].GET.get("classrooms"):
             filter_child = Child.objects.filter(status=Child.STATUS.in_progress)
             classroom_list = [int(x) for x in str(kwargs["request"].GET.get("classrooms")).split(",")]
