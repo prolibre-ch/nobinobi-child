@@ -3,6 +3,15 @@
 History
 -------
 
+0.1.4.26 (2024-10-16)
++++++++++++++++++++++
+* 9ee19b8 - change version
+* ab51978 - Update gitignore
+* a7f2269 - fix text in requirements
+* 5ca116e - #29 Fix datetime in absence
+* Update requirements
+
+
 0.1.4.25 (2024-02-28)
 +++++++++++++++++++++
 * 1168e05 - Fix to add only replacementclassroom in date in absence
