@@ -80,6 +80,9 @@ class AbsenceCreateForm(BSModalModelForm):
         """
         super(AbsenceCreateForm, self).__init__(*args, **kwargs)
 
+        # Remove required fields for autofill if empty
+        self.fields['end_date'].required = False
+
         # Set default start_date if not provided in initial data
         if not kwargs.get('initial', None):
             if not self.initial.get('start_date', None):
@@ -109,6 +112,14 @@ class AbsenceCreateForm(BSModalModelForm):
                 Q(replacementclassroom__end_date__gte=now) &
                 Q(replacementclassroom__archived=False)
             ).distinct()
+
+    def clean(self):
+        cleaned_data = super().clean()
+        # autofill end_date if empty with same date but at night for 1 day
+        end_date = cleaned_data.get('end_date')
+        if not end_date:
+            cleaned_data['end_date'] = timezone.localtime().replace(hour=22, minute=0, second=0)
+        return cleaned_data
 
 
 class ChildPictureSelectForm(forms.ModelForm):
