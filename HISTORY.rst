@@ -3,6 +3,11 @@
 History
 -------
 
+0.1.4.28 (2024-11-25)
++++++++++++++++++++++
+* Fix Requirements
+* 50c3331 - Autofill absences end_date
+
 0.1.4.27 (2024-10-18)
 +++++++++++++++++++++
 * Fix Requirements
