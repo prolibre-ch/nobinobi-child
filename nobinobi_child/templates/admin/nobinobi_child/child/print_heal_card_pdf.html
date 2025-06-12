@@ -265,21 +265,13 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>{{ c_pickup1.contact.first_name }}&nbsp;{{ c_pickup1.contact.last_name }}</td>
-            <td>{{ c_pickup1.link_with_child|default_if_none:"&nbsp;" }}&nbsp;</td>
-            <td>{{ c_pickup1.contact.phone|default_if_none:"&nbsp;" }}&nbsp;{{ c_pickup1.contact.mobile_phone|default_if_none:"&nbsp;" }}</td>
-        </tr>
-        <tr>
-            <td>{{ c_pickup2.contact.first_name }}&nbsp;{{ c_pickup2.contact.last_name }}</td>
-            <td>{{ c_pickup2.link_with_child|default_if_none:"&nbsp;" }}&nbsp;</td>
-            <td>{{ c_pickup2.contact.phone|default_if_none:"&nbsp;" }}&nbsp;{{ c_pickup2.mobile_phone|default_if_none:"&nbsp;" }}</td>
-        </tr>
-        <tr>
-            <td>{{ c_pickup3.contact.first_name }}&nbsp;{{ c_pickup3.contact.last_name }}</td>
-            <td>{{ c_pickup3.link_with_child|default_if_none:"&nbsp;" }}&nbsp;</td>
-            <td>{{ c_pickup3.contact.phone|default_if_none:"&nbsp;" }}&nbsp;{{ c_pickup3.contact.mobile_phone|default_if_none:"&nbsp;" }}</td>
-        </tr>
+        {% for pickup in pickup_contacts %}
+            <tr>
+                <td>{{ pickup.contact.first_name|default_if_none:"&nbsp;" }}&nbsp;{{ pickup.contact.last_name|default_if_none:"&nbsp;" }}</td>
+                <td>{{ pickup.link_with_child|default_if_none:"&nbsp;" }}</td>
+                <td>{{ pickup.contact.phone|default_if_none:"&nbsp;" }}&nbsp;{{ pickup.contact.mobile_phone|default_if_none:"&nbsp;" }}</td>
+            </tr>
+        {% endfor %}
         </tbody>
     </table>
     <br>
@@ -293,27 +285,19 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>{{ c_contact1.contact.first_name }}&nbsp;{{ c_contact1.contact.last_name }}</td>
-            <td>{{ c_contact1.link_with_child|default_if_none:"&nbsp;" }}&nbsp;</td>
-            <td>{{ c_contact1.contact.phone|default_if_none:"&nbsp;" }}&nbsp;{{ c_contact1.contact.mobile_phone|default_if_none:"&nbsp;" }}</td>
-        </tr>
-        <tr>
-            <td>{{ c_contact2.contact.first_name }}&nbsp;{{ c_contact2.contact.last_name }}</td>
-            <td>{{ c_contact2.link_with_child|default_if_none:"&nbsp;" }}&nbsp;</td>
-            <td>{{ c_contact2.contact.phone|default_if_none:"&nbsp;" }}&nbsp;{{ c_contact2.contact.mobile_phone|default_if_none:"&nbsp;" }}</td>
-        </tr>
-        <tr>
-            <td>{{ c_contact3.contact.first_name }}&nbsp;{{ c_contact3.contact.last_name }}</td>
-            <td>{{ c_contact3.link_with_child|default_if_none:"&nbsp;" }}&nbsp;</td>
-            <td>{{ c_contact3.contact.phone|default_if_none:"&nbsp;" }}&nbsp;{{ c_contact3.contact.mobile_phone|default_if_none:"&nbsp;" }}</td>
-        </tr>
+        {% for other in others_contacts %}
+            <tr>
+                <td>{{ other.contact.first_name|default_if_none:"&nbsp;" }}&nbsp;{{ other.contact.last_name|default_if_none:"&nbsp;" }}</td>
+                <td>{{ other.link_with_child|default_if_none:"&nbsp;" }}</td>
+                <td>{{ other.contact.phone|default_if_none:"&nbsp;" }}&nbsp;{{ other.contact.mobile_phone|default_if_none:"&nbsp;" }}</td>
+            </tr>
+        {% endfor %}
         </tbody>
     </table>
 
 </div>
 <div class="mycontainer break">
-    <h3 style="text-align: center">{% trans "Child health" %} ({{ object.first_name }} {{ object.last_name }})</h3>
+    <h3 style="text-align: center">{% trans "Child health" %} ({{ object.first_name }}&nbsp;{{ object.last_name }})</h3>
     <p>{% trans "For any health need requiring special measures in the institution, the nurse and the doctor of the Child and Youth Health Service, which collaborate closely with our IEC (institution from early childhood), are at your disposal. <br> Do not hesitate to contact them. <br><br><b> The IEC refers to the recommendations and ad hoc directives of the YHS for its professional practices in the areas of food, breastfeeding in nursery, health and sleep of children welcomed. </b>" %}</p>
     <br>
     <table>
@@ -370,7 +354,8 @@
         <tbody>
         <tr>
 
-            <td><b>{% trans "Do you authorize the administration of Paracetamol (Ben-u-ron, Tylenol, Dafalgan) in case of fever more 38.5?" %}</b></td>
+            <td><b>{% trans "Do you authorize the administration of Paracetamol (Ben-u-ron, Tylenol, Dafalgan) in case of fever more 38.5?" %}</b>
+            </td>
             {% if object.usage_paracetamol is True %}
                 <td class="yesno"><b>{% trans "YES" %}</b></td>
                 <td class="yesno">&nbsp;</td>
@@ -429,7 +414,8 @@
             {% endif %}
         </tr>
         <tr>
-            <td colspan="3">{% trans "If yes, what problem does your child have (illness, allergies, medication, particularity? in its development, particularity at birth ...)" %}</td>
+            <td
+                colspan="3">{% trans "If yes, what problem does your child have (illness, allergies, medication, particularity? in its development, particularity at birth ...)" %}</td>
         </tr>
         <tr>
             <td colspan="3">{{ object.specific_problem|default_if_none:"&nbsp;<br>&nbsp;<br>" }}</td>
@@ -455,7 +441,9 @@
         </tr>
         </tbody>
     </table>
-    <p style="font-style: italic"><small>{% trans "In the event of an emergency, we inform you that the team will take all the measures necessary for the health of your child, including those recommended by the doctor consulted or 144. The costs incurred are the responsibility of parents." %}</small></p>
+    <p style="font-style: italic">
+        <small>{% trans "In the event of an emergency, we inform you that the team will take all the measures necessary for the health of your child, including those recommended by the doctor consulted or 144. The costs incurred are the responsibility of parents." %}</small>
+    </p>
     <br>
     <br>
     <div class="sign_creche">

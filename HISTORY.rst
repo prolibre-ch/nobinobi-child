@@ -3,6 +3,11 @@
 History
 -------
 
+0.1.4.29 (2025-06-12)
++++++++++++++++++++++
+* Fix Requirements
+* dce9c87 - Fix pickup contact and other contact in print heal status
+
 0.1.4.28 (2024-11-25)
 +++++++++++++++++++++
 * Fix Requirements
