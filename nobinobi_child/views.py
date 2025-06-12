@@ -670,6 +670,7 @@ class ChildAdminPrintHealCardView(WeasyTemplateResponseMixin, DetailView, LoginR
         for cpickup in cpickups:
             context['c_pickup{}'.format(cpickup_nbr)] = cpickup
             cpickup_nbr += 1
+        context['pickup_contacts'] = cpickups
 
         cpickups_exclude = []
         for cpickup in cpickups:
@@ -683,6 +684,7 @@ class ChildAdminPrintHealCardView(WeasyTemplateResponseMixin, DetailView, LoginR
         for c_contact in c_contacts:
             context['c_contact{}'.format(c_contact_nbr)] = c_contact
             c_contact_nbr += 1
+        context['others_contacts'] = c_contacts
 
         # Set current academic year.
         # No need to use timezone.localtime(timezone.now()) here.
