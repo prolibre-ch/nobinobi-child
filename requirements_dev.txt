@@ -118,7 +118,7 @@ sphinxcontrib-htmlhelp==2.0.0 ; python_full_version >= "3.7.0" and python_full_v
 sphinxcontrib-jsmath==1.0.1 ; python_full_version >= "3.7.0" and python_full_version < "4.0.0"
 sphinxcontrib-qthelp==1.0.3 ; python_full_version >= "3.7.0" and python_full_version < "4.0.0"
 sphinxcontrib-serializinghtml==1.1.5 ; python_full_version >= "3.7.0" and python_full_version < "4.0.0"
-sqlparse==0.4.4 ; python_version >= "3.7" and python_version < "4.0"
+sqlparse==0.5.4 ; python_version >= "3.7" and python_version < "4.0"
 tablib[html,ods,xls,xlsx,yaml]==3.4.0 ; python_version >= "3.7" and python_full_version < "4.0.0"
 tinycss2==1.2.1 ; python_version >= "3.7" and python_full_version < "4.0.0"
 tomli==2.0.1 ; python_version >= "3.7" and python_version < "3.11"
